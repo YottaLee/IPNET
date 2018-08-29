@@ -25,10 +25,12 @@ public interface CommunityUserBLService {
     void interestPost(String username, String postID);
     //用户取消关注帖子
     void cancelInterest(String username, String postID);
-    //用户收藏帖子
+
+    /*用户收藏帖子
     void collectPost(String username, String postID);
     //用户取消收藏帖子
-    void cancelCollect(String username, String postID);
+    void cancelCollect(String username, String postID);*/
+
     //用户关注其他用户
     void interestUser(String starID, String fanID);
     //用户取消关注某用户
@@ -38,10 +40,10 @@ public interface CommunityUserBLService {
     List<Mine> getReleased(String username);
     //获取用户关注的帖子列表
     List<Mine> getInterestedpost(String username);
-    //获取用户收藏的帖子列表
-    List<Mine> getCollected(String username);
     //获取用户关注的用户列表
     List<Mine> getInterestedUser(String username);
+    //获取用户收藏的帖子列表
+    //List<Mine> getCollected(String username);
 
 
 }

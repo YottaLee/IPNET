@@ -24,7 +24,7 @@ public class CommunityUser {
 
     private int releasedpost;//用户自己发布的帖子数
     private int interestedpost;//用户关注的帖子数
-    private int collectedpost;//用户收藏的帖子数
+    //private int collectedpost;//用户收藏的帖子数
 
     private int interesteduser;//用户关注的其他用户数
     private int fans;//用户的粉丝数

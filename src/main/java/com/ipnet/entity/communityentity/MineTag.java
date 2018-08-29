@@ -11,7 +11,7 @@ package com.ipnet.entity.communityentity;
 public enum MineTag {
     Release,
     InterestPost,
-    Collect,
+    //Collect,
     InterestUser,
     Fan
 }
