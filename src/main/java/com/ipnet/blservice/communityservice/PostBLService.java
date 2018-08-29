@@ -17,6 +17,8 @@ public interface PostBLService {
     PostVO readArticle(String post_id);
     ArrayList<BriefPost> readArticleList(String author);
 
+    ArrayList<BriefPost> searchArticle(String keywords);
+
 
     ResultMessage addInterestNum(String post_id);
     ResultMessage addRemarkNum(String post_id);

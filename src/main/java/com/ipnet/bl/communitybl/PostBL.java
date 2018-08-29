@@ -81,6 +81,10 @@ public class PostBL implements PostBLService {
         return briefPosts;
     }
 
+    @Override
+    public ArrayList<BriefPost> searchArticle(String keywords) {
+        return null;
+    }
 
 
     @Override

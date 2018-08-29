@@ -1,6 +1,9 @@
 package com.ipnet.controller.communitycontroller;
 
 import com.ipnet.bl.ali.AliServiceImpl;
+import com.ipnet.blservice.communityservice.PostBLService;
+import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.communityenums.Post_tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,16 +22,12 @@ public class PostController {
     @Autowired
     private AliServiceImpl aliService;
 
-    @RequestMapping(value = "/changeBaseToUrl")
-    public @ResponseBody String test(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID){
-        return aliService.uploadPicture(projectID,filename+".jpg",base64);
-    }
+    @Autowired
+    private PostBLService postBLService;
 
-    @RequestMapping(value = "/uploadHtml")
-    public @ResponseBody
-    ArrayList<String> uploadHtml(MultipartFile zipFile, String projectID){
-//        return ossClientUtil.uploadFile(projectID);
-        return null;
+    @RequestMapping(value = "/changeBaseToUrl")
+    public @ResponseBody String uploadPicture(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID){
+        return aliService.uploadPicture(projectID,filename+".jpg",base64);
     }
 
     @RequestMapping("/toUpLoadFile")
@@ -38,7 +37,7 @@ public class PostController {
 
 
     @RequestMapping(value = "/uploadFile")
-    public @ResponseBody String uploadBlog(@RequestParam("file") MultipartFile file) {
+    public @ResponseBody String uploadBlog(MultipartFile file) {
         String filename = file.getOriginalFilename();
         String uploadUrl="";
         try {
@@ -59,6 +58,31 @@ public class PostController {
         }
         return uploadUrl;
     }
+
+    @RequestMapping(value = "/createPostID")
+    public @ResponseBody String createPostID(String author){
+        return postBLService.createID(author);
+    }
+
+    @RequestMapping(value = "/publishArticle")
+    public @ResponseBody
+    ResultMessage publishArticle(String post_id, String author, String post_name, ArrayList<Post_tag> post_tag, String content_url){
+        return postBLService.publishArticle(post_id,author,post_name,post_tag,content_url);
+    }
+
+    @RequestMapping(value = "/editArticle")
+    public @ResponseBody
+    ResultMessage editArticle(String post_id, String post_name, ArrayList<Post_tag> post_tag, String content_url){
+        return postBLService.edit(post_id,post_name,post_tag,content_url);
+    }
+
+    @RequestMapping(value = "/remark")
+    public @ResponseBody
+    ResultMessage remark(String post_id, String reviewer, String remark_content){
+        return postBLService.remark(post_id,reviewer,remark_content);
+    }
+
+
 
 
 

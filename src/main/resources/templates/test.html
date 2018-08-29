@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>【基于OSS的上传文件页面】</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"  media="all">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        #group{
+            position: absolute;
+            left:580px;
+        }
+        #submit{
+            position: absolute;
+            top:140px;
+            left:580px;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h2 style="color:orangered;">基于OSS的上传文件页面</h2>
+</div>
+<br/>
+<form action="/post/uploadFile" enctype="multipart/form-data" method="post">
+    <div class="form-group" id="group">
+        <label for="exampleInputFile">File input</label>
+        <input type="file" id="exampleInputFile" name="file">
+    </div>
+    <button type="submit" class="btn btn-default" id="submit">上传</button>
+</form>
+</body>
+</html>
