@@ -19,14 +19,14 @@ public class Post {
     private String post_id;
     private String author;
     private String post_name;
-    private Post_tag post_tag;
+    @ElementCollection(targetClass =Post_tag .class,fetch = FetchType.LAZY)
+    private List<Post_tag> post_tag;
     private String content_url;
     private Date publish_time;
     private long visits;
     private long remark_num;
-    private long collect_num;//收藏数
     private long interest_num;//关注数
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Remark> remark_content;
 
     public Post(){}
@@ -37,7 +37,7 @@ public class Post {
         this.author=author;
     }
 
-    public Post(String post_id, String author, String post_name, Post_tag post_tag, String content_url){
+    public Post(String post_id, String author, String post_name, List<Post_tag> post_tag, String content_url){
         this.post_id=post_id;
         this.author=author;
         this.post_name=post_name;

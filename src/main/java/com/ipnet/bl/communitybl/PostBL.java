@@ -30,12 +30,12 @@ public class PostBL implements PostBLService {
 
 
     @Override
-    public ResultMessage publishArticle(String post_id,String author, String post_name, Post_tag post_tag, String content_url) {
+    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<Post_tag> post_tag, String content_url) {
         Post post=new Post(post_id,author,post_name,post_tag,content_url);
         post.setPublish_time(new Date());
         post.setVisits(0);
         post.setRemark_num(0);
-        post.setRemark_content(new ArrayList<Remark>());
+        post.setRemark_content(new ArrayList<>());
         postDao.save(post);
         return ResultMessage.Success;
     }
@@ -43,7 +43,7 @@ public class PostBL implements PostBLService {
 
 
     @Override
-    public ResultMessage edit(String post_id, String post_name, Post_tag post_tag, String content_url) {
+    public ResultMessage edit(String post_id, String post_name, ArrayList<Post_tag> post_tag, String content_url) {
         Post post=postDao.getOne(post_id);
         post.setPost_name(post_name);
         post.setPost_tag(post_tag);
@@ -79,5 +79,23 @@ public class PostBL implements PostBLService {
             briefPosts.add(new BriefPost(p));
         }
         return briefPosts;
+    }
+
+
+
+    @Override
+    public ResultMessage addInterestNum(String post_id) {
+        Post post=postDao.getOne(post_id);
+        post.setInterest_num(post.getInterest_num()+1);
+        postDao.save(post);
+        return ResultMessage.Success;
+    }
+
+    @Override
+    public ResultMessage addRemarkNum(String post_id) {
+        Post post=postDao.getOne(post_id);
+        post.setRemark_num(post.getRemark_num()+1);
+        postDao.save(post);
+        return ResultMessage.Success;
     }
 }

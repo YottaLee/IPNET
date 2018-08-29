@@ -5,6 +5,7 @@ import com.ipnet.enums.communityenums.Post_tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Data
@@ -13,7 +14,7 @@ public class BriefPost {
     private String post_id;
     private String author;
     private String post_name;
-    private Post_tag post_tag;
+    private ArrayList<Post_tag> post_tag;
     private String content_url;
     private Date publish_time;
     private long visits;
@@ -25,7 +26,7 @@ public class BriefPost {
         this.post_id=post.getPost_id();
         this.author=post.getAuthor();
         this.post_name=post.getPost_name();
-        this.post_tag=post.getPost_tag();
+        this.post_tag=new ArrayList<>(post.getPost_tag());
         this.content_url=post.getContent_url();
         this.publish_time=post.getPublish_time();
         this.visits=post.getVisits();
