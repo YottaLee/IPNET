@@ -2,17 +2,21 @@ package com.ipnet.vo.communityvo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class CUserVO {
     private String userid;//用户的ID，与非社区部分的ID保持一直，默认为注册时的手机号码或者邮箱
     //用户的昵称，积分，钱包余额……不进行重复存储
+//
+//    private double credits;//用户的积分
+//    private double wallet;//用户的钱包
 
-    private double credits;//用户的积分
-    private double wallet;//用户的钱包
-
-    private String signature;//用户的个性签名
+    private String signature;//用户的昵称
 
     private String[] myTags;//用户的标签，感兴趣的方面？用逗号分隔
 

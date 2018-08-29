@@ -1,6 +1,7 @@
 package com.ipnet.bl.communitybl;
 
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
+import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.dao.communitydao.CommunityUserDao;
 import com.ipnet.entity.communityentity.CommunityUser;
 import com.ipnet.entity.communityentity.Mine;
@@ -26,6 +27,8 @@ public class CommunityUserBL implements CommunityUserBLService {
     private CommunityUserDao communityUserDao;
     @Autowired
     private TransHelper transHelper;
+    @Autowired
+    private PostBLService postBLService;
 
     @Override
     public void addUser(String userID) {
@@ -39,8 +42,6 @@ public class CommunityUserBL implements CommunityUserBLService {
         Optional<CommunityUser> user=communityUserDao.findById(userID);
         if(user.isPresent()){
             CUserVO cUserVO=(CUserVO) this.transHelper.transTO(user.get(),CUserVO.class);
-            cUserVO.setCredits(0);
-            cUserVO.setWallet(0);
             cUserVO.setMyTags(user.get().getTags().split(","));
             return cUserVO;
         }
@@ -79,6 +80,7 @@ public class CommunityUserBL implements CommunityUserBLService {
             CommunityUser user=o_user.get();
             user.setInterestedpost(user.getInterestedpost()+1);
             user.setMines(this.addMine(user.getMines(),postID,MineTag.InterestPost));
+            postBLService.addInterestNum(postID);
             communityUserDao.saveAndFlush(user);
         }
     }
@@ -138,6 +140,7 @@ public class CommunityUserBL implements CommunityUserBLService {
             CommunityUser user=o_user.get();
             user.setInterestedpost(user.getInterestedpost()-1);
             user.setMines(this.removeMine(user.getMines(),postID,MineTag.InterestPost));
+            postBLService.minusInterestNum(postID);
             communityUserDao.saveAndFlush(user);
         }
     }
