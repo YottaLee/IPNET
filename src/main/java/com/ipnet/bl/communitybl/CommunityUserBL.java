@@ -30,7 +30,7 @@ public class CommunityUserBL implements CommunityUserBLService {
     @Override
     public void addUser(String userID) {
         CommunityUser newUser=new CommunityUser(userID,"","",0,0,
-                0,0,new ArrayList<>());
+                0,0,new ArrayList<>(),new ArrayList<>());
         communityUserDao.save(newUser);
     }
 
@@ -171,6 +171,18 @@ public class CommunityUserBL implements CommunityUserBLService {
         }
     }
 
+    @Override
+    public void browsePost(String userID, String postID) {
+        Optional<CommunityUser> o_user=communityUserDao.findById(userID);
+        if(o_user.isPresent()){
+            CommunityUser user=o_user.get();
+            List<String> records=user.getHistory();
+            records.add(postID);
+            user.setHistory(records);
+            communityUserDao.saveAndFlush(user);
+        }
+    }
+
     private List<Mine> removeMine(List<Mine> mines,String toRemoveId,MineTag tag){
         for(Mine mine:mines){
             if(mine.getTag()==tag && mine.getTid().equals(toRemoveId)){
@@ -209,5 +221,11 @@ public class CommunityUserBL implements CommunityUserBLService {
             }
         }
         return result;
+    }
+
+    @Override
+    public List<String> getHistory(String userID){
+        Optional<CommunityUser> o_user=communityUserDao.findById(userID);
+        return o_user.map(CommunityUser::getHistory).orElse(null);
     }
 }

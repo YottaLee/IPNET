@@ -60,4 +60,10 @@ public class CommunityUserController {
     List<Mine> getInterestedUser(String userID){
         return blService.getInterestedUser(userID);
     }
+
+    @RequestMapping("/getHistory")
+    public @ResponseBody
+    List<String> getHistory(String userID){
+        return blService.getHistory(userID);
+    }
 }
