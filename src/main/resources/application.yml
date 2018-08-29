@@ -2,6 +2,11 @@ server:
   port: 8000
 debug: false
 spring:
+  mail:
+    host: smtp.163.com
+    username: ipnet2018@163.com
+    password: ipnet2018
+    default-encoding: UTF-8
   devtools:
     restart:
       enabled: true
@@ -15,10 +20,10 @@ spring:
     servlet:
       content-type: text/html
   datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      username: root
-      password: mysql
-      url: jdbc:mysql://localhost:3306/ipnet?characterEncoding=UTF-8&useSSL=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: mysql
+    url: jdbc:mysql://localhost:3306/ipnet?characterEncoding=UTF-8&useSSL=true
 
   jpa:
     database: mysql
@@ -29,3 +34,10 @@ spring:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      hibernate:
+        enable_lazy_load_no_trans: true
+    open-in-view: true
+
+
+constant:
+  codeLength: 6

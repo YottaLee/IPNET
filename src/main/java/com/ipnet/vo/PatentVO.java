@@ -1,24 +1,26 @@
-package com.ipnet.entity;
+package com.ipnet.vo;
 
 import com.ipnet.enums.Patent_state;
 import com.ipnet.enums.Patent_type;
 import com.ipnet.enums.Region;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
-@Entity
-@Data
+/**
+ * @author lzb
+ * @date 2018/7/21 10:15
+ */
+@Component
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "patent")
-public class Patent {
-    @Id
+@ToString
+@EqualsAndHashCode
+public class PatentVO {
+
     private String patent_id;//专利号
     private String patent_name;//专利名称
     private String patent_holder;//专利持有者

@@ -6,7 +6,10 @@ import com.ipnet.enums.Region;
 import com.ipnet.enums.Sex;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
@@ -22,12 +25,12 @@ import java.util.List;
 public class PersonalUser {
 
     @Id
-    private String id;
+    private String id;//默认为注册时的手机号码或是邮箱
 
     //  持有专利的专利号 持有专利池
     private String idPhoto;//用户身份证照片，用于实名认证
     private String name;//用户的姓名
-    private String username;//用户的用户名，昵称？
+    private String username;//用户的用户名，昵称？nickname？
     private String password;//用户的登录密码
     @ElementCollection(targetClass = Identity.class)
     private List<Identity> identities;//用户的身份认证，可以是专利持有者，购买者，运营者
@@ -43,6 +46,6 @@ public class PersonalUser {
     @ElementCollection(targetClass = String.class)
     private List<String> bankAccount;//用户的银行账号，可以绑定多张银行卡
     private int credits;//用户拥有的积分
-    private double RMB;//用户平台上的人民币或点券
+    private double RMB;//用户平台上的人民币或点券（钱包？）
 
 }
