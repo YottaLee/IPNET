@@ -1,5 +1,6 @@
 package com.ipnet.entity.communityentity;
 
+import com.ipnet.enums.communityenums.Post_state;
 import com.ipnet.enums.communityenums.Post_tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class Post {
     private String post_name;
     @ElementCollection(targetClass =Post_tag .class,fetch = FetchType.LAZY)
     private List<Post_tag> post_tag;
+    private Post_state post_state;
     private String content_url;
     private Date publish_time;
     private long visits;
@@ -35,6 +37,7 @@ public class Post {
         String currentTime=df.format(new Date());// new Date()为获取当前系统时间
         this.post_id=currentTime+author;
         this.author=author;
+        this.post_state=Post_state.Draft;
     }
 
     public Post(String post_id, String author, String post_name, List<Post_tag> post_tag, String content_url){

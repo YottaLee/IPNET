@@ -21,6 +21,7 @@ public class PostVO {
     private Date publish_time;
     private long visits;
     private long remark_num;
+    private long interest_num;//关注数
     private ArrayList<Remark> remark_content;
 
     public PostVO(){}
@@ -34,6 +35,7 @@ public class PostVO {
         this.publish_time=post.getPublish_time();
         this.visits=post.getVisits();
         this.remark_num=post.getRemark_num();
+        this.interest_num=post.getInterest_num();
         this.remark_content=new ArrayList<>(post.getRemark_content());
     }
 

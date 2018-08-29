@@ -4,6 +4,8 @@ import com.ipnet.bl.ali.AliServiceImpl;
 import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.communityenums.Post_tag;
+import com.ipnet.vo.communityvo.BriefPost;
+import com.ipnet.vo.communityvo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,10 +78,34 @@ public class PostController {
         return postBLService.edit(post_id,post_name,post_tag,content_url);
     }
 
+    @RequestMapping(value = "/deleteArticle")
+    public @ResponseBody
+    ResultMessage deleteArticle(String post_id){
+        return postBLService.deleteArticle(post_id);
+    }
+
     @RequestMapping(value = "/remark")
     public @ResponseBody
     ResultMessage remark(String post_id, String reviewer, String remark_content){
         return postBLService.remark(post_id,reviewer,remark_content);
+    }
+
+    @RequestMapping(value = "/readArticle")
+    public @ResponseBody
+    PostVO readArticle(String post_id,String reader){
+        return postBLService.readArticle(post_id,reader);
+    }
+
+    @RequestMapping(value = "/readArticleList")
+    public @ResponseBody
+    ArrayList<BriefPost> readArticleList(String author){
+        return postBLService.readArticleList(author);
+    }
+
+    @RequestMapping(value = "/searchArticle")
+    public @ResponseBody
+    ArrayList<BriefPost> searchArticle(String keywords){
+        return postBLService.searchArticle(keywords);
     }
 
 

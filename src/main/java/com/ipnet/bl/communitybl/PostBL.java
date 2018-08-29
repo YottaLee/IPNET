@@ -1,17 +1,18 @@
 package com.ipnet.bl.communitybl;
 
+import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.dao.communitydao.PostDao;
 import com.ipnet.entity.communityentity.Post;
 import com.ipnet.entity.communityentity.Remark;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.communityenums.Post_state;
 import com.ipnet.enums.communityenums.Post_tag;
 import com.ipnet.vo.communityvo.BriefPost;
 import com.ipnet.vo.communityvo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,9 @@ import java.util.List;
 public class PostBL implements PostBLService {
     @Autowired
     private PostDao postDao;
+
+    @Autowired
+    private CommunityUserBLService communityUserBLService;
 
     @Override
     public String createID(String author) {
@@ -36,7 +40,9 @@ public class PostBL implements PostBLService {
         post.setVisits(0);
         post.setRemark_num(0);
         post.setRemark_content(new ArrayList<>());
+        post.setPost_state(Post_state.Published);
         postDao.save(post);
+        communityUserBLService.releasePost(author,post_id);
         return ResultMessage.Success;
     }
 
@@ -53,6 +59,14 @@ public class PostBL implements PostBLService {
     }
 
     @Override
+    public ResultMessage deleteArticle(String post_id) {
+        Post post=postDao.getOne(post_id);
+        postDao.deleteById(post_id);
+        communityUserBLService.deletePost(post.getAuthor(),post_id);
+        return ResultMessage.Success;
+    }
+
+    @Override
     public ResultMessage remark(String post_id, String reviewer, String remark_content) {
         Remark remark=new Remark(post_id,reviewer,remark_content);
         Post post=postDao.getOne(post_id);
@@ -65,9 +79,10 @@ public class PostBL implements PostBLService {
     }
 
     @Override
-    public PostVO readArticle(String post_id) {
+    public PostVO readArticle(String post_id,String reader) {
         Post post=postDao.getOne(post_id);
         PostVO postVO=new PostVO(post);
+        communityUserBLService.browsePost(reader,post_id);
         return postVO;
     }
 
@@ -83,7 +98,12 @@ public class PostBL implements PostBLService {
 
     @Override
     public ArrayList<BriefPost> searchArticle(String keywords) {
-        return null;
+        ArrayList<Post> posts=postDao.searchArticle(keywords);
+        ArrayList<BriefPost> briefPosts=new ArrayList<>();
+        for(Post p:posts){
+            briefPosts.add(new BriefPost(p));
+        }
+        return briefPosts;
     }
 
 
@@ -91,6 +111,14 @@ public class PostBL implements PostBLService {
     public ResultMessage addInterestNum(String post_id) {
         Post post=postDao.getOne(post_id);
         post.setInterest_num(post.getInterest_num()+1);
+        postDao.save(post);
+        return ResultMessage.Success;
+    }
+
+    @Override
+    public ResultMessage minusInterestNum(String post_id) {
+        Post post=postDao.getOne(post_id);
+        post.setInterest_num(post.getInterest_num()-1);
         postDao.save(post);
         return ResultMessage.Success;
     }
