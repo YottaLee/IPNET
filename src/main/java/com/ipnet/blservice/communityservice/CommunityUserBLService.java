@@ -35,6 +35,8 @@ public interface CommunityUserBLService {
     void interestUser(String starID, String fanID);
     //用户取消关注某用户
     void cancelInterestUser(String starID, String fanID);
+    //用户浏览帖子
+    void browsePost(String userID,String postID);
 
     //获取用户发布的帖子列表
     List<Mine> getReleased(String username);
@@ -42,6 +44,8 @@ public interface CommunityUserBLService {
     List<Mine> getInterestedpost(String username);
     //获取用户关注的用户列表
     List<Mine> getInterestedUser(String username);
+    //获取用户的浏览记录
+    List<String> getHistory(String userID);
     //获取用户收藏的帖子列表
     //List<Mine> getCollected(String username);
 
