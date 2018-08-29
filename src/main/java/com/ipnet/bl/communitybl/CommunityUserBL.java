@@ -30,7 +30,7 @@ public class CommunityUserBL implements CommunityUserBLService {
     @Override
     public void addUser(String userID) {
         CommunityUser newUser=new CommunityUser(userID,"","",0,0,
-                0,0,0,new ArrayList<>());
+                0,0,new ArrayList<>());
         communityUserDao.save(newUser);
     }
 
@@ -83,7 +83,7 @@ public class CommunityUserBL implements CommunityUserBLService {
         }
     }
 
-    @Override
+    /*@Override
     public void collectPost(String username, String postID) {
         Optional<CommunityUser> o_user=communityUserDao.findById(username);
         if(o_user.isPresent()){
@@ -92,7 +92,7 @@ public class CommunityUserBL implements CommunityUserBLService {
             user.setMines(this.addMine(user.getMines(),postID,MineTag.Collect));
             communityUserDao.saveAndFlush(user);
         }
-    }
+    }*/
 
     @Override
     public void interestUser(String starID, String fanID) {
@@ -142,7 +142,7 @@ public class CommunityUserBL implements CommunityUserBLService {
         }
     }
 
-    @Override
+    /*@Override
     public void cancelCollect(String username, String postID) {
         Optional<CommunityUser> o_user=communityUserDao.findById(username);
         if(o_user.isPresent()){
@@ -151,7 +151,7 @@ public class CommunityUserBL implements CommunityUserBLService {
             user.setMines(this.removeMine(user.getMines(),postID,MineTag.Collect));
             communityUserDao.saveAndFlush(user);
         }
-    }
+    }*/
 
     @Override
     public void cancelInterestUser(String starID, String fanID) {
@@ -191,10 +191,10 @@ public class CommunityUserBL implements CommunityUserBLService {
         return this.getMine(username,MineTag.InterestPost);
     }
 
-    @Override
+    /*@Override
     public List<Mine> getCollected(String username) {
         return this.getMine(username,MineTag.Collect);
-    }
+    }*/
 
     @Override
     public List<Mine> getInterestedUser(String username) {

@@ -49,11 +49,11 @@ public class CommunityUserController {
         return blService.getInterestedpost(userID);
     }
 
-    @RequestMapping("/getCollect")
+    /*@RequestMapping("/getCollect")
     public @ResponseBody
     List<Mine> getCollect(String userID){
         return blService.getCollected(userID);
-    }
+    }*/
 
     @RequestMapping("/getInterestedUser")
     public @ResponseBody
