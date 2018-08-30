@@ -14,5 +14,5 @@ public class EditArticleVO {
     private String post_id;
     private String post_name;
     private ArrayList<Post_tag> post_tag;
-    private String content_url;
+    private String content;
 }

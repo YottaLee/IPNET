@@ -41,28 +41,7 @@ public class PostController {
     }
 
 
-    @RequestMapping(value = "/uploadFile")
-    public @ResponseBody String uploadBlog(MultipartFile file) {
-        String filename = file.getOriginalFilename();
-        String uploadUrl="";
-        try {
-            if (file!=null) {
-                if (!"".equals(filename.trim())) {
-                    File newFile = new File(filename);
-                    FileOutputStream os = new FileOutputStream(newFile);
-                    os.write(file.getBytes());
-                    os.close();
-                    file.transferTo(newFile);
-                    // 上传到OSS
-                    uploadUrl = aliService.upLoad(newFile);
-                }
 
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return uploadUrl;
-    }
 
     @RequestMapping(value = "/createPostID")
     public @ResponseBody String createPostID(String author){
@@ -78,7 +57,7 @@ public class PostController {
     @RequestMapping(value = "/editArticle")
     public @ResponseBody
     ResultMessage editArticle(EditArticleVO editArticleVO){
-        return postBLService.edit(editArticleVO.getPost_id(),editArticleVO.getPost_name(),editArticleVO.getPost_tag(),editArticleVO.getContent_url());
+        return postBLService.edit(editArticleVO.getPost_id(),editArticleVO.getPost_name(),editArticleVO.getPost_tag(),editArticleVO.getContent());
     }
 
     @RequestMapping(value = "/deleteArticle")

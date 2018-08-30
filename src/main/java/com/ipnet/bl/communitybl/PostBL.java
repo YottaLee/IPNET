@@ -1,5 +1,6 @@
 package com.ipnet.bl.communitybl;
 
+import com.ipnet.bl.ali.AliServiceImpl;
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.dao.communitydao.PostDao;
@@ -10,9 +11,16 @@ import com.ipnet.enums.communityenums.Post_state;
 import com.ipnet.enums.communityenums.Post_tag;
 import com.ipnet.vo.communityvo.BriefPost;
 import com.ipnet.vo.communityvo.PostVO;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +33,9 @@ public class PostBL implements PostBLService {
     @Autowired
     private CommunityUserBLService communityUserBLService;
 
+    @Autowired
+    private AliServiceImpl aliService;
+
     @Override
     public String createID(String author) {
         Post post=new Post(author);
@@ -32,9 +43,50 @@ public class PostBL implements PostBLService {
         return post.getPost_id();
     }
 
+    private void saveAsFileWriter(String content) {
+        String savefile = "E:\\test.txt";
+        FileWriter fwriter = null;
+        try {
+            fwriter = new FileWriter(savefile);
+            fwriter.write(content);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                fwriter.flush();
+                fwriter.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private String uploadBlog(String post_id,MultipartFile file) {
+        String filename = post_id;
+        String uploadUrl="";
+        try {
+            if (file!=null) {
+                if (!"".equals(filename.trim())) {
+                    File newFile = new File(filename);
+                    FileOutputStream os = new FileOutputStream(newFile);
+                    os.write(file.getBytes());
+                    os.close();
+                    file.transferTo(newFile);
+                    // 上传到OSS
+                    uploadUrl = aliService.upLoad(newFile);
+                }
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return uploadUrl;
+    }
+
 
     @Override
-    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<Post_tag> post_tag, String brief_intro,String content_url) {
+    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<Post_tag> post_tag, String brief_intro,String content) {
+        String content_url="";
         Post post=new Post(post_id,author,post_name,post_tag,brief_intro,content_url);
         post.setPublish_time(new Date());
         post.setVisits(0);
@@ -49,11 +101,11 @@ public class PostBL implements PostBLService {
 
 
     @Override
-    public ResultMessage edit(String post_id, String post_name, ArrayList<Post_tag> post_tag, String content_url) {
+    public ResultMessage edit(String post_id, String post_name, ArrayList<Post_tag> post_tag, String content) {
         Post post=postDao.getOne(post_id);
         post.setPost_name(post_name);
         post.setPost_tag(post_tag);
-        post.setContent_url(content_url);
+        post.setContent_url(content);
         postDao.save(post);
         return ResultMessage.Success;
     }
@@ -83,7 +135,7 @@ public class PostBL implements PostBLService {
     public PostVO readArticle(String post_id,String reader) {
         Post post=postDao.getOne(post_id);
         PostVO postVO=new PostVO(post);
-        communityUserBLService.browsePost(reader,post_id);
+        communityUserBLService.browsePost(reader,post_id,post.getPost_name());
         return postVO;
     }
 
