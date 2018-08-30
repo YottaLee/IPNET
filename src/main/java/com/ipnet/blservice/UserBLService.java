@@ -22,4 +22,7 @@ public interface UserBLService {
 
     //用户登出
     ResultMessage logout(String username);
+
+    //获取用户的头像的url
+    String getImageUrl(String username);
 }
