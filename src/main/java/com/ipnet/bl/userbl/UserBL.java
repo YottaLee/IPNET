@@ -17,6 +17,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.Optional;
 
 
 @Service
@@ -109,6 +110,11 @@ public class UserBL implements UserBLService{
     @Override
     public ResultMessage logout(String username) {
         return null;
+    }
+
+    @Override
+    public String getImageUrl(String username) {
+        return "https://ipnet10.oss-cn-beijing.aliyuncs.com/logo.jpg";
     }
 
 
