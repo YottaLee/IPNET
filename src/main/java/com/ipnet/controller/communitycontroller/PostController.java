@@ -5,7 +5,9 @@ import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.communityenums.Post_tag;
 import com.ipnet.vo.communityvo.BriefPost;
+import com.ipnet.vo.communityvo.EditArticleVO;
 import com.ipnet.vo.communityvo.PostVO;
+import com.ipnet.vo.communityvo.PublishArticleVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,14 +70,14 @@ public class PostController {
 
     @RequestMapping(value = "/publishArticle")
     public @ResponseBody
-    ResultMessage publishArticle(String post_id, String author, String post_name, ArrayList<Post_tag> post_tag, String content_url){
-        return postBLService.publishArticle(post_id,author,post_name,post_tag,content_url);
+    ResultMessage publishArticle(PublishArticleVO publishArticleVO){
+        return postBLService.publishArticle(publishArticleVO.getPost_id(),publishArticleVO.getAuthor(),publishArticleVO.getPost_name(),publishArticleVO.getPost_tag(),publishArticleVO.getContent_url());
     }
 
     @RequestMapping(value = "/editArticle")
     public @ResponseBody
-    ResultMessage editArticle(String post_id, String post_name, ArrayList<Post_tag> post_tag, String content_url){
-        return postBLService.edit(post_id,post_name,post_tag,content_url);
+    ResultMessage editArticle(EditArticleVO editArticleVO){
+        return postBLService.edit(editArticleVO.getPost_id(),editArticleVO.getPost_name(),editArticleVO.getPost_tag(),editArticleVO.getContent_url());
     }
 
     @RequestMapping(value = "/deleteArticle")
@@ -106,6 +108,12 @@ public class PostController {
     public @ResponseBody
     ArrayList<BriefPost> searchArticle(String keywords){
         return postBLService.searchArticle(keywords);
+    }
+
+    @RequestMapping(value = "/getAllArticle")
+    public @ResponseBody
+    ArrayList<BriefPost> getAllArticle(){
+        return postBLService.getAllArticleList();
     }
 
 

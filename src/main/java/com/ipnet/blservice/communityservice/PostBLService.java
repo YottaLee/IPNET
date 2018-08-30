@@ -17,11 +17,11 @@ public interface PostBLService {
     ResultMessage remark(String post_id, String reviewer, String remark_content);
     PostVO readArticle(String post_id,String reader);
     ArrayList<BriefPost> readArticleList(String author);
+    ArrayList<BriefPost> getAllArticleList();
 
     ArrayList<BriefPost> searchArticle(String keywords);
 
 
     ResultMessage addInterestNum(String post_id);
     ResultMessage minusInterestNum(String post_id);
-    ResultMessage addRemarkNum(String post_id);
 }

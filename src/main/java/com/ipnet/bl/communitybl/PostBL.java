@@ -75,6 +75,7 @@ public class PostBL implements PostBLService {
         remarks.add(remark);
         post.setRemark_content(remarks);
         postDao.save(post);
+        addRemarkNum(post_id);
         return ResultMessage.Success;
     }
 
@@ -89,6 +90,16 @@ public class PostBL implements PostBLService {
     @Override
     public ArrayList<BriefPost> readArticleList(String author) {
         ArrayList<Post> posts=postDao.getPostByAuthor(author);
+        ArrayList<BriefPost> briefPosts=new ArrayList<>();
+        for(Post p:posts){
+            briefPosts.add(new BriefPost(p));
+        }
+        return briefPosts;
+    }
+
+    @Override
+    public ArrayList<BriefPost> getAllArticleList() {
+        List<Post> posts=postDao.findAll();
         ArrayList<BriefPost> briefPosts=new ArrayList<>();
         for(Post p:posts){
             briefPosts.add(new BriefPost(p));
@@ -123,8 +134,7 @@ public class PostBL implements PostBLService {
         return ResultMessage.Success;
     }
 
-    @Override
-    public ResultMessage addRemarkNum(String post_id) {
+    private ResultMessage addRemarkNum(String post_id) {
         Post post=postDao.getOne(post_id);
         post.setRemark_num(post.getRemark_num()+1);
         postDao.save(post);
