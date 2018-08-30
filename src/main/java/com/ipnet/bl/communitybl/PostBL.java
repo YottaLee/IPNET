@@ -134,6 +134,12 @@ public class PostBL implements PostBLService {
         return ResultMessage.Success;
     }
 
+    @Override
+    public BriefPost getBriefPostByID(String post_id) {
+        Post post=postDao.getOne(post_id);
+        return new BriefPost(post);
+    }
+
     private ResultMessage addRemarkNum(String post_id) {
         Post post=postDao.getOne(post_id);
         post.setRemark_num(post.getRemark_num()+1);

@@ -24,4 +24,5 @@ public interface PostBLService {
 
     ResultMessage addInterestNum(String post_id);
     ResultMessage minusInterestNum(String post_id);
+    BriefPost getBriefPostByID(String post_id);
 }
