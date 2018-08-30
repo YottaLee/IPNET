@@ -37,6 +37,31 @@ public class CommunityUserController {
         blService.modifyTag(userID,tags);
     }
 
+    @RequestMapping("/interestpost")
+    public @ResponseBody
+    void attentionPost(String userID,String postID){
+        blService.interestPost(userID,postID);
+    }
+
+    @RequestMapping("/interestuser")
+    public @ResponseBody
+    void attentionUser(String starID,String fanID){
+        blService.interestUser(starID,fanID);
+    }
+
+    @RequestMapping("/uninterestpost")
+    public @ResponseBody
+    void unInterestPost(String userID,String postID){
+        blService.cancelInterest(userID,postID);
+    }
+
+    @RequestMapping("/uninterestuser")
+    public @ResponseBody
+    void unInterestUser(String starID,String fanID){
+        blService.cancelInterestUser(starID,fanID);
+    }
+
+
     @RequestMapping("/getRelease")
     public @ResponseBody
     List<Mine> getRelease(String userID){
