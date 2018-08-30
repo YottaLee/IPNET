@@ -1,14 +1,19 @@
 package com.ipnet.bl.communitybl;
 
+import com.ipnet.blservice.UserBLService;
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.dao.communitydao.CommunityUserDao;
 import com.ipnet.entity.communityentity.CommunityUser;
 import com.ipnet.entity.communityentity.Mine;
 import com.ipnet.entity.communityentity.MineTag;
+import com.ipnet.entity.communityentity.Record;
 import com.ipnet.enums.communityenums.Post_tag;
 import com.ipnet.utility.TransHelper;
+import com.ipnet.vo.communityvo.BriefPost;
+import com.ipnet.vo.communityvo.BriefUser;
 import com.ipnet.vo.communityvo.CUserVO;
+import com.ipnet.vo.communityvo.RecordVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +34,8 @@ public class CommunityUserBL implements CommunityUserBLService {
     private TransHelper transHelper;
     @Autowired
     private PostBLService postBLService;
+    @Autowired
+    private UserBLService userBLService;
 
     @Override
     public void addUser(String userID) {
@@ -175,12 +182,13 @@ public class CommunityUserBL implements CommunityUserBLService {
     }
 
     @Override
-    public void browsePost(String userID, String postID) {
+    public void browsePost(String userID, String postID,String postname) {
         Optional<CommunityUser> o_user=communityUserDao.findById(userID);
         if(o_user.isPresent()){
             CommunityUser user=o_user.get();
-            List<String> records=user.getHistory();
-            records.add(postID);
+            List<Record> records=user.getHistory();
+            Record newRecord=new Record(0,postID,postname,new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            records.add(newRecord);
             user.setHistory(records);
             communityUserDao.saveAndFlush(user);
         }
@@ -197,13 +205,23 @@ public class CommunityUserBL implements CommunityUserBLService {
     }
 
     @Override
-    public List<Mine> getReleased(String username) {
-        return this.getMine(username,MineTag.Release);
+    public List<BriefPost> getReleased(String username) {
+        List<BriefPost> posts=new ArrayList<>();
+        List<Mine> mines=this.getMine(username,MineTag.Release);
+        for(Mine mine:mines){
+            posts.add(postBLService.getBriefPostByID(mine.getTid()));
+        }
+        return posts;
     }
 
     @Override
-    public List<Mine> getInterestedpost(String username) {
-        return this.getMine(username,MineTag.InterestPost);
+    public List<BriefPost> getInterestedpost(String username) {
+        List<BriefPost> posts=new ArrayList<>();
+        List<Mine> mines=this.getMine(username,MineTag.InterestPost);
+        for(Mine mine:mines){
+            posts.add(postBLService.getBriefPostByID(mine.getTid()));
+        }
+        return posts;
     }
 
     /*@Override
@@ -212,8 +230,17 @@ public class CommunityUserBL implements CommunityUserBLService {
     }*/
 
     @Override
-    public List<Mine> getInterestedUser(String username) {
-        return this.getMine(username,MineTag.InterestUser);
+    public List<BriefUser> getInterestedUser(String username) {
+        List<Mine> mines=this.getMine(username,MineTag.InterestUser);
+        List<BriefUser> users=new ArrayList<>();
+        for(Mine mine:mines){
+            Optional<CommunityUser> user=communityUserDao.findById(mine.getTid());
+            if(user.isPresent()){
+                BriefUser briefUser=(BriefUser) this.transHelper.transTO(user.get(),BriefUser.class);
+                users.add(briefUser);
+            }
+        }
+        return users;
     }
 
     private List<Mine> getMine(String username,MineTag tag){
@@ -227,8 +254,18 @@ public class CommunityUserBL implements CommunityUserBLService {
     }
 
     @Override
-    public List<String> getHistory(String userID){
+    public List<RecordVO> getHistory(String userID){
         Optional<CommunityUser> o_user=communityUserDao.findById(userID);
-        return o_user.map(CommunityUser::getHistory).orElse(null);
+        List<RecordVO> results=new ArrayList<>();
+        if(o_user.isPresent()){
+            List<Record> records=o_user.get().getHistory();
+            for(Record record:records){
+                RecordVO temp=(RecordVO) transHelper.transTO(record,RecordVO.class);
+                temp.setUrl(userBLService.getImageUrl(record.getPostid().substring(14)));
+                results.add(temp);
+            }
+            return results;
+        }
+        return null;
     }
 }

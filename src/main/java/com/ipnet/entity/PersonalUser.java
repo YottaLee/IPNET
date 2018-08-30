@@ -30,7 +30,7 @@ public class PersonalUser {
     //  持有专利的专利号 持有专利池
     private String idPhoto;//用户身份证照片，用于实名认证
     private String name;//用户的姓名
-    private String username;//用户的用户名，昵称？nickname？
+    private String username;//用户的用户名，昵称？signature？
     private String password;//用户的登录密码
     @ElementCollection(targetClass = Identity.class)
     private List<Identity> identities;//用户的身份认证，可以是专利持有者，购买者，运营者

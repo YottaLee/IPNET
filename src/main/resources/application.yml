@@ -24,7 +24,6 @@ spring:
     username: root
     password: mysql
     url: jdbc:mysql://localhost:3306/ipnet?characterEncoding=UTF-8&useSSL=true
-
   jpa:
     database: mysql
     show-sql: true
@@ -37,5 +36,7 @@ spring:
       hibernate:
         enable_lazy_load_no_trans: true
     open-in-view: true
+  aop:
+    auto: true
 constant:
   codeLength: 6

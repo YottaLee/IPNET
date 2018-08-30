@@ -1,8 +1,10 @@
 package com.ipnet.blservice.communityservice;
 
-import com.ipnet.entity.communityentity.Mine;
 import com.ipnet.enums.communityenums.Post_tag;
+import com.ipnet.vo.communityvo.BriefPost;
+import com.ipnet.vo.communityvo.BriefUser;
 import com.ipnet.vo.communityvo.CUserVO;
+import com.ipnet.vo.communityvo.RecordVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,16 +38,16 @@ public interface CommunityUserBLService {
     //用户取消关注某用户
     void cancelInterestUser(String starID, String fanID);
     //用户浏览帖子
-    void browsePost(String userID,String postID);
+    void browsePost(String userID,String postID,String postname);
 
     //获取用户发布的帖子列表
-    List<Mine> getReleased(String username);
+    List<BriefPost> getReleased(String username);
     //获取用户关注的帖子列表
-    List<Mine> getInterestedpost(String username);
+    List<BriefPost> getInterestedpost(String username);
     //获取用户关注的用户列表
-    List<Mine> getInterestedUser(String username);
+    List<BriefUser> getInterestedUser(String username);
     //获取用户的浏览记录
-    List<String> getHistory(String userID);
+    List<RecordVO> getHistory(String userID);
     //获取用户收藏的帖子列表
     //List<Mine> getCollected(String username);
 

@@ -1,9 +1,11 @@
 package com.ipnet.controller.communitycontroller;
 
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
-import com.ipnet.entity.communityentity.Mine;
 import com.ipnet.enums.communityenums.Post_tag;
+import com.ipnet.vo.communityvo.BriefPost;
+import com.ipnet.vo.communityvo.BriefUser;
 import com.ipnet.vo.communityvo.CUserVO;
+import com.ipnet.vo.communityvo.RecordVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,13 +66,13 @@ public class CommunityUserController {
 
     @RequestMapping("/getRelease")
     public @ResponseBody
-    List<Mine> getRelease(String userID){
+    List<BriefPost> getRelease(String userID){
         return blService.getReleased(userID);
     }
 
     @RequestMapping("/getInterestedPost")
     public @ResponseBody
-    List<Mine> getInterestedPost(String userID){
+    List<BriefPost> getInterestedPost(String userID){
         return blService.getInterestedpost(userID);
     }
 
@@ -82,13 +84,13 @@ public class CommunityUserController {
 
     @RequestMapping("/getInterestedUser")
     public @ResponseBody
-    List<Mine> getInterestedUser(String userID){
+    List<BriefUser> getInterestedUser(String userID){
         return blService.getInterestedUser(userID);
     }
 
     @RequestMapping("/getHistory")
     public @ResponseBody
-    List<String> getHistory(String userID){
+    List<RecordVO> getHistory(String userID){
         return blService.getHistory(userID);
     }
 }

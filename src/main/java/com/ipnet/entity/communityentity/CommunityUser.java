@@ -32,7 +32,7 @@ public class CommunityUser {
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Mine> mines;//与用户相关的帖子或用户的列表
 
-    @ElementCollection(targetClass = String.class)
-    private List<String> history;//用户的浏览记录
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Record> history;//用户的浏览记录
 
 }
