@@ -34,8 +34,8 @@ public class PostBL implements PostBLService {
 
 
     @Override
-    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<Post_tag> post_tag, String content_url) {
-        Post post=new Post(post_id,author,post_name,post_tag,content_url);
+    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<Post_tag> post_tag, String brief_intro,String content_url) {
+        Post post=new Post(post_id,author,post_name,post_tag,brief_intro,content_url);
         post.setPublish_time(new Date());
         post.setVisits(0);
         post.setRemark_num(0);

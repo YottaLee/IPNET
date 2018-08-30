@@ -17,7 +17,7 @@ public class PostVO {
     private String author;
     private String post_name;
     private ArrayList<Post_tag> post_tag;
-    private String content_url;
+    private String content;
     private Date publish_time;
     private long visits;
     private long remark_num;
@@ -31,7 +31,7 @@ public class PostVO {
         this.author=post.getAuthor();
         this.post_name=post.getPost_name();
         this.post_tag=new ArrayList<>(post.getPost_tag());
-        this.content_url=post.getContent_url();
+        this.content=post.getContent_url();
         this.publish_time=post.getPublish_time();
         this.visits=post.getVisits();
         this.remark_num=post.getRemark_num();

@@ -24,6 +24,7 @@ public class Post {
     private List<Post_tag> post_tag;
     private Post_state post_state;
     private String content_url;
+    private String brief_intro;
     private Date publish_time;
     private long visits;
     private long remark_num;
@@ -40,11 +41,12 @@ public class Post {
         this.post_state=Post_state.Draft;
     }
 
-    public Post(String post_id, String author, String post_name, List<Post_tag> post_tag, String content_url){
+    public Post(String post_id, String author, String post_name, List<Post_tag> post_tag, String brief_intro,String content_url){
         this.post_id=post_id;
         this.author=author;
         this.post_name=post_name;
         this.post_tag=post_tag;
+        this.brief_intro=brief_intro;
         this.content_url=content_url;
     }
 

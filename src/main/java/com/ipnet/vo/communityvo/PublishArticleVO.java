@@ -16,6 +16,7 @@ public class PublishArticleVO {
     private String author;
     private String post_name;
     private ArrayList<Post_tag> post_tag;
-    private String content_url;
+    private  String brief_intro;
+    private String content;
 
 }
