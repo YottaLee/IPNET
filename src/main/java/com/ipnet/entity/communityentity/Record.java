@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 
 @Entity
@@ -21,5 +22,5 @@ public class Record {//用户的浏览记录
 
     private String postid;
     private String postname;
-    private String time;
+    private Date time;
 }

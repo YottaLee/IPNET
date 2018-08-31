@@ -25,4 +25,7 @@ public interface CommunityUserDao extends JpaRepository<CommunityUser,String> {
 
     @Query(value = "select c.mines from CommunityUser c where c.userid=:username")
     List<Mine> getMine(@Param("username") String username);
+
+    @Query(value = "select c from CommunityUser c where c.nickname like %?1% or c.userid like %?1%")
+    List<CommunityUser> searchByKey(String keyword);
 }

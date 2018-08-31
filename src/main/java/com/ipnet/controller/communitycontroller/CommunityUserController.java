@@ -21,6 +21,12 @@ public class CommunityUserController {
     @Autowired
     private CommunityUserBLService blService;
 
+    @RequestMapping("/search")
+    public @ResponseBody
+    List<BriefUser> searchByKeyword(String keyword){
+        return blService.searchByKeyword(keyword);
+    }
+
     @RequestMapping("/test")
     public @ResponseBody
     void test(String browser,String postid,String postname){
@@ -99,4 +105,5 @@ public class CommunityUserController {
     List<RecordVO> getHistory(String userID){
         return blService.getHistory(userID);
     }
+
 }
