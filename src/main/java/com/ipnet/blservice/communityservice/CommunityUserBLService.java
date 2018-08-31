@@ -16,7 +16,7 @@ public interface CommunityUserBLService {
     //获得用户的基本信息,包括积分，钱包，签名，关注数……
     CUserVO getUserInfo(String userID);
     //用户修改社区中个性签名
-    void modifySignature(String username, String signature);
+    void modifyNickname(String username, String signature);
     //用户选择他感兴趣的标签
     void modifyTag(String username, ArrayList<Post_tag> tags);
     //用户发布帖子

@@ -21,16 +21,22 @@ public class CommunityUserController {
     @Autowired
     private CommunityUserBLService blService;
 
+    @RequestMapping("/test")
+    public @ResponseBody
+    void test(String browser,String postid,String postname){
+        blService.browsePost(browser,postid,postname);
+    }
+
     @RequestMapping("/info")
     public @ResponseBody
     CUserVO getUserInfo(String userID){
         return blService.getUserInfo(userID);
     }
 
-    @RequestMapping("/signature")
+    @RequestMapping("/nickname")
     public @ResponseBody
-    void modifySignature(String userID,String newSign){
-        blService.modifySignature(userID,newSign);
+    void modifyNickname(String userID,String newName){
+        blService.modifyNickname(userID,newName);
     }
 
     @RequestMapping("/tag")

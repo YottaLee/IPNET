@@ -16,7 +16,7 @@ public class CUserVO {
 //    private double credits;//用户的积分
 //    private double wallet;//用户的钱包
 
-    private String signature;//用户的昵称
+    private String nickname;//用户的昵称
 
     private String[] myTags;//用户的标签，感兴趣的方面？用逗号分隔
 

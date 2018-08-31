@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BriefUser {
-    private String userID;
-    private String nickname;
-    private int releasedpost;
-    private int fans;
+
+    private String url;//用户的头像
+    private String userid;//用户的ID
+    private String nickname;//用户的昵称
+    private int releasedpost;//用户发帖数
+    private int fans;//用户粉丝数
 }

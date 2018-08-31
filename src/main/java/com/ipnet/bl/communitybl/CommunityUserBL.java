@@ -56,7 +56,7 @@ public class CommunityUserBL implements CommunityUserBLService {
     }
 
     @Override
-    public void modifySignature(String username, String signature) {
+    public void modifyNickname(String username, String signature) {
         communityUserDao.modifySignature(username,signature);
     }
 
@@ -237,6 +237,7 @@ public class CommunityUserBL implements CommunityUserBLService {
             Optional<CommunityUser> user=communityUserDao.findById(mine.getTid());
             if(user.isPresent()){
                 BriefUser briefUser=(BriefUser) this.transHelper.transTO(user.get(),BriefUser.class);
+                briefUser.setUrl(userBLService.getImageUrl(mine.getTid()));
                 users.add(briefUser);
             }
         }

@@ -16,8 +16,8 @@ import java.util.List;
 public interface CommunityUserDao extends JpaRepository<CommunityUser,String> {
 
     @Modifying
-    @Query(value = "update CommunityUser c set c.signature=:signature where c.userid=:username")
-    void modifySignature(@Param("username") String username, @Param("signature") String signature);
+    @Query(value = "update CommunityUser c set c.nickname=:nickname where c.userid=:username")
+    void modifySignature(@Param("username") String username, @Param("nickname") String nickname);
 
     @Modifying
     @Query(value = "update CommunityUser c set c.tags=:newTag where c.userid=:username")
