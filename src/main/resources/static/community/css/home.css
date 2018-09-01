@@ -1,0 +1,547 @@
+.wrapper--home {
+    display: block;
+    max-width: 800px
+}
+
+.home__user--bg {
+    background-size: cover;
+    background-position: 50%;
+    padding-top: 128px
+}
+
+.home__user--bg .avatar-big {
+    top: -34px!important;
+    height: 160px!important;
+    width: 160px!important
+}
+
+.home__user--bg .user__info {
+    padding-left: 200px!important
+}
+
+.home__user--opacity {
+    margin-top: -48px;
+    padding-top: 176px
+}
+
+.home__user .dropdown-list {
+    right: 8px;
+    top: 48px
+}
+
+.home__user .avatar-big {
+    height: 106px;
+    width: 106px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-image: none
+}
+
+.home__user .user__info {
+    max-width: 840px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 146px;
+    min-height: 146px;
+    box-sizing: border-box
+}
+
+.home__user .user__item {
+    float: left;
+    color: #616161;
+    padding: 2px 5px;
+    margin: 5px 10px 0 0;
+    position: relative;
+    height: 20px;
+    white-space: nowrap;
+    word-wrap: normal;
+    border-radius: 3px 3px 3px 3px;
+    line-height: 21px;
+    text-decoration: none;
+    background-color: #f1f7fe;
+    border: 1px solid #eee;
+    transition: all .15s ease-in-out
+}
+
+.home__user .user__item img,.home__user .user__item svg {
+    float: left;
+    margin: 3px 3px 0 0
+}
+
+.home__user a.user__item:hover {
+    border-color: transparent;
+    box-shadow: 0 1px 1px rgba(0,0,0,.2)
+}
+
+.home-menu {
+    list-style: none;
+    background-color: #fff
+}
+
+.home-menu a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    text-shadow: 0 1px 0 #fff;
+    border-bottom: 1px solid #eee;
+    color: #616161
+}
+
+.home-menu a:last-child {
+    border-bottom: 0
+}
+
+.home-menu a:hover {
+    text-decoration: none;
+    background-color: #f9f9f9
+}
+
+.home-menu a.current {
+    font-weight: 700;
+    color: #222;
+    cursor: default;
+    background-color: #fff
+}
+
+.home-menu a.current:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    content: "";
+    background-color: #d23f31
+}
+
+.home-menu a .todo {
+    position: absolute;
+    border-style: solid;
+    right: 0;
+    top: 0;
+    border-width: 10px;
+    border-color: #d23f31 #d23f31 transparent transparent
+}
+
+.home-menu a .count.fn__none {
+    display: none
+}
+
+.home-menu a .readNotification {
+    color: #222
+}
+
+.pagination--home--fixed {
+    position: fixed;
+    top: 0;
+    z-index: 1
+}
+
+.pre-post-wrap {
+    background-color: #fff
+}
+
+.pre-post>div {
+    width: 25%;
+    margin: 100px 0;
+    text-align: center;
+    font-size: 30px
+}
+
+.pre-post>div>a {
+    color: #404040;
+    margin: 0 10px;
+    display: block
+}
+
+.pre-post a:hover {
+    text-decoration: none;
+    color: #4285f4
+}
+
+.pre-post a svg {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 50px
+}
+
+.pre-post div.ft-gray {
+    font-size: 15px;
+    margin: 20px 30px 0;
+    text-align: left
+}
+
+.tip-add-article {
+    color: #777;
+    list-style: circle outside none;
+    margin-left: 20px;
+    line-height: 22px
+}
+
+.fn-right>.article-anonymous {
+    margin: 7px 0 10px 15px;
+    line-height: 20px;
+    float: left
+}
+
+.post {
+    background-color: #fff;
+    padding-top: 0
+}
+
+.post__info {
+    float: left;
+    margin: 2px 5px 0 0
+}
+
+.post .wrapper {
+    display: block
+}
+
+.post input[type=number],.post input[type=number]:focus,.post input[type=text],.post input[type=text]:focus {
+    border: 0;
+    background-color: #fff;
+    box-shadow: 0 0 0;
+    border-radius: 0
+}
+
+.post #articleTitle {
+    font-size: 26px;
+    padding: 20px 10px 10px;
+    width: 100%;
+    box-sizing: border-box
+}
+
+.post #articleTitleTip {
+    padding: 10px;
+    color: #999;
+    margin-bottom: 0;
+    background-color: #f1f7fe
+}
+
+.post #articleContent {
+    width: 100%;
+    height: 460px
+}
+
+.post #articleTags {
+    width: 100%
+}
+
+.post #showReward {
+    color: #999;
+    width: 100%;
+    margin: 20px auto 0;
+    display: block
+}
+
+.post #tip {
+    position: inherit;
+    white-space: pre-wrap
+}
+
+.post .tags-wrap {
+    position: relative
+}
+
+.post #articleAskPoint,.post #articleRewardPoint,.post .tags-input {
+    background-color: #fff;
+    padding: 5px 10px;
+    width: 100%;
+    line-height: 26px;
+    border-bottom: 1px solid #f2f2f2;
+    border-top: 1px solid #f2f2f2;
+    box-sizing: border-box
+}
+
+.post #articleAskPoint {
+    border-top-width: 0
+}
+
+.post .tags-input span.tag {
+    margin: 0 5px 0 0;
+    padding: 0 5px;
+    background: #eee;
+    color: #999;
+    line-height: 22px
+}
+
+.post .tags-input .tag>span.close {
+    cursor: pointer;
+    padding-left: 5px;
+    color: #616161
+}
+
+.post .tags-input .tag>span.close:hover {
+    color: #d23f31
+}
+
+.post .tags-input span.tag.haved {
+    color: #000;
+    background-color: #ccc;
+    transition: background .5s ease-in,color .3s ease-out
+}
+
+.post .tags-input input {
+    border: 0;
+    outline: none;
+    box-shadow: 0 0 0 transparent;
+    border-radius: 0;
+    padding: 2px
+}
+
+.post .tags-input input:focus {
+    border: 0;
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent
+}
+
+.post .domains-tags {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #eee;
+    z-index: 82;
+    border-radius: 0 0 3px 3px;
+    width: 50%;
+    top: 33px;
+    box-sizing: border-box;
+    padding: 10px
+}
+
+.post .domain-tags {
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+    padding-top: 10px
+}
+
+.post .domains-tags .tag {
+    cursor: pointer;
+    color: #999;
+    margin: 0 5px 5px 0;
+    padding: 2px 5px;
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    border-radius: 3px
+}
+
+.post .domains-tags .tag:hover {
+    opacity: .7
+}
+
+.home-invisible {
+    padding: 50px 0
+}
+
+.tabs {
+    display: flex
+}
+
+.tabs a {
+    line-height: 18px;
+    flex: 1;
+    padding: 7px 10px 5px;
+    color: #616161;
+    border-bottom: 2px solid transparent;
+    text-decoration: none;
+    text-align: center
+}
+
+.tabs a.selected {
+    border-color: #d23f31;
+    color: #212121
+}
+
+.tabs a:hover {
+    background-color: rgba(0,0,0,.02)
+}
+
+.tabs-sub>a>.count {
+    transform: scale(.8)
+}
+
+.notification .unread {
+    background-color: #f1f7fe
+}
+
+.notification .content-reset>p {
+    margin-bottom: 0
+}
+
+.follow.list h2 {
+    margin-bottom: 6px
+}
+
+.admin .form {
+    padding: 15px 0
+}
+
+.admin .domains,.admin .tags {
+    display: inline-block;
+    width: 50%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: bottom
+}
+
+.admin .form input[type=number],.admin .form input[type=text] {
+    width: 50%;
+    margin-right: 10px
+}
+
+.admin #rolesTitle {
+    width: 150px
+}
+
+.admin #rolesDesc {
+    width: 250px
+}
+
+.admin .admin-domain-tag svg {
+    border-radius: 3px 3px 3px 3px;
+    height: 38px;
+    width: 38px;
+    margin-right: 10px
+}
+
+.form--admin label {
+    flex: 1
+}
+
+.form--admin label div {
+    float: left;
+    font-size: 12px;
+    line-height: 12px;
+    color: rgba(0,0,0,.38)
+}
+
+.form--admin label.mid {
+    margin-left: 20px;
+    margin-right: 20px
+}
+
+.form--admin label input,.form--admin label select,.form--admin label textarea {
+    margin-top: 5px
+}
+
+.form--admin label input[readonly] {
+    border: 0;
+    color: rgba(0,0,0,.54);
+    box-shadow: 0 0 0;
+    background-color: #fff;
+    padding: 0;
+    border-radius: 0
+}
+
+.form--admin label input[readonly]:focus {
+    border-width: 0;
+    box-shadow: 0 0 0
+}
+
+.form--admin .btn--admin {
+    margin-top: 27px
+}
+
+.form--admin .input--admin-readonly {
+    height: 33px;
+    line-height: 33px
+}
+
+.points__item {
+    border-bottom: 1px solid #eee;
+    padding: 15px
+}
+
+.points__item:last-child {
+    border-bottom: 0
+}
+
+.points__item .description {
+    padding: 0 15px;
+    word-break: break-all
+}
+
+.points__item .type {
+    width: 70px;
+    padding: 0 15px;
+    text-align: center
+}
+
+.points__item .sum {
+    color: #d23f31;
+    font-weight: 700;
+    text-align: center
+}
+
+.points__item .sum.plus {
+    color: #569e3d
+}
+
+.top-ranking {
+    padding-top: 15px
+}
+
+.cropper-wrap {
+    max-height: 360px;
+    margin-bottom: 10px;
+    min-height: 210px
+}
+
+#avatarUpload button {
+    margin: 10px 0 0 10px
+}
+
+#shareClipboard {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 0 3px 3px 0
+}
+
+#homeSidePanel {
+    margin-bottom: 20px
+}
+
+#emojiGrid img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer
+}
+
+#pointBuyInvitecode {
+    padding: 0
+}
+
+.account__item {
+    line-height: 33px
+}
+
+.account__icon svg {
+    height: 18px;
+    width: 18px;
+    float: left;
+    margin: 6px 10px 0 0
+}
+
+.account__phone #emailTip,.account__phone #phoneTip,.account__phone input {
+    margin-bottom: 10px
+}
+
+.account__phone .email__code,.account__phone .phone__code {
+    position: relative
+}
+
+.account__phone .email__code img,.account__phone .phone__code img {
+    height: 31px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    border-radius: 0 3px 3px 0
+}
+
+.breezemoon .fn-content {
+    background-color: #f1f7fe
+}
