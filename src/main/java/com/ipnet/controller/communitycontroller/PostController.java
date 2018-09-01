@@ -4,10 +4,7 @@ import com.ipnet.bl.ali.AliServiceImpl;
 import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.communityenums.Post_tag;
-import com.ipnet.vo.communityvo.BriefPost;
-import com.ipnet.vo.communityvo.EditArticleVO;
-import com.ipnet.vo.communityvo.PostVO;
-import com.ipnet.vo.communityvo.PublishArticleVO;
+import com.ipnet.vo.communityvo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 @Controller
@@ -29,6 +29,40 @@ public class PostController {
 
     @Autowired
     private PostBLService postBLService;
+
+
+
+    @RequestMapping(value="/test")
+    public @ResponseBody void test() throws IOException {
+
+        URL url = new URL("https://ipnet10.oss-cn-beijing.aliyuncs.com/%E6%AF%9B%E6%A6%82%E6%95%B4%E7%90%86.docx");
+        InputStream ism=url.openStream();
+        byte[] bytes=new byte[2048];
+        ism.read(bytes);
+        String str=new String(bytes,"utf-8");
+        System.err.println(str);
+        while(ism.read(bytes)>-1){
+            System.err.println(str);
+        }
+
+    }
+
+//    @RequestMapping(value = "/read")
+//    public @ResponseBody void testtesttest() throws Exception {
+//        File remoteFile=new File("https://ipnet10.oss-cn-beijing.aliyuncs.com/%E7%A4%BE%E4%BC%9A%E5%AE%9E%E8%B7%B5%E8%A6%81%E6%B1%82.doc");
+//        BufferedReader br=new BufferedReader(new FileReader(remoteFile),"")
+
+    //}
+
+
+//    @RequestMapping(value = "/testtest")
+//    public @ResponseBody
+//    void testtest() throws IOException {
+//        File file=new File("E:\\test.txt");
+//        FileInputStream input = new FileInputStream(file);
+//        MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",input);
+//        postBLService.uploadFile("test",multipartFile);
+//    }
 
     @RequestMapping(value = "/changeBaseToUrl")
     public @ResponseBody String uploadPicture(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID){
@@ -50,7 +84,7 @@ public class PostController {
 
     @RequestMapping(value = "/publishArticle")
     public @ResponseBody
-    ResultMessage publishArticle(PublishArticleVO publishArticleVO){
+    ResultMessage publishArticle(PublishArticleVO publishArticleVO) throws IOException {
         return postBLService.publishArticle(publishArticleVO.getPost_id(),publishArticleVO.getAuthor(),publishArticleVO.getPost_name(),publishArticleVO.getPost_tag(),publishArticleVO.getBrief_intro(),publishArticleVO.getContent());
     }
 
@@ -133,6 +167,11 @@ public class PostController {
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public String Download() {
         return "/fileDownload";
+    }
+
+    @RequestMapping(value = "/recommend", method = RequestMethod.GET)
+    public ArrayList<RecordVO> recoomend(String author) {
+        return postBLService.recommend(author);
     }
 
 

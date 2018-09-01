@@ -1,5 +1,6 @@
 server:
   port: 8000
+  charset: UTF-8
 debug: false
 spring:
   mail:

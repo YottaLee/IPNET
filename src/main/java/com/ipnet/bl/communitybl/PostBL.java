@@ -1,27 +1,27 @@
 package com.ipnet.bl.communitybl;
 
 import com.ipnet.bl.ali.AliServiceImpl;
+import com.ipnet.blservice.UserBLService;
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.dao.communitydao.PostDao;
 import com.ipnet.entity.communityentity.Post;
+import com.ipnet.entity.communityentity.Record;
 import com.ipnet.entity.communityentity.Remark;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.communityenums.Post_state;
 import com.ipnet.enums.communityenums.Post_tag;
 import com.ipnet.vo.communityvo.BriefPost;
 import com.ipnet.vo.communityvo.PostVO;
-import lombok.AllArgsConstructor;
+import com.ipnet.vo.communityvo.RecordVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +34,9 @@ public class PostBL implements PostBLService {
     private CommunityUserBLService communityUserBLService;
 
     @Autowired
+    private UserBLService userBLService;
+
+    @Autowired
     private AliServiceImpl aliService;
 
     @Override
@@ -43,7 +46,7 @@ public class PostBL implements PostBLService {
         return post.getPost_id();
     }
 
-    private void saveAsFileWriter(String content) {
+    private void saveAsFile(String content) {
         String savefile = "E:\\test.txt";
         FileWriter fwriter = null;
         try {
@@ -61,8 +64,8 @@ public class PostBL implements PostBLService {
         }
     }
 
-    private String uploadBlog(String post_id,MultipartFile file) {
-        String filename = post_id;
+    public String uploadFile(String post_id,MultipartFile file) {
+        String filename = post_id+".txt";
         String uploadUrl="";
         try {
             if (file!=null) {
@@ -85,8 +88,12 @@ public class PostBL implements PostBLService {
 
 
     @Override
-    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<Post_tag> post_tag, String brief_intro,String content) {
-        String content_url="";
+    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<Post_tag> post_tag, String brief_intro,String content) throws IOException {
+        saveAsFile(content);
+        File file=new File("E:\\test.txt");
+        FileInputStream input = new FileInputStream(file);
+        MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",input);
+        String content_url=uploadFile(post_id,multipartFile);
         Post post=new Post(post_id,author,post_name,post_tag,brief_intro,content_url);
         post.setPublish_time(new Date());
         post.setVisits(0);
@@ -157,6 +164,27 @@ public class PostBL implements PostBLService {
             briefPosts.add(new BriefPost(p));
         }
         return briefPosts;
+    }
+
+    @Override
+    public ArrayList<RecordVO> recommend(String author) {
+        ArrayList<Post> posts=new ArrayList<>(postDao.findAll());
+        ArrayList<RecordVO> recordVOS=new ArrayList<>();
+        ArrayList<RecordVO> res=new ArrayList<>();
+        for(Post p:posts){
+            if(!p.getAuthor().equals(author)){
+                recordVOS.add(new RecordVO(p.getPost_id(),p.getPost_name(),userBLService.getImageUrl(p.getAuthor())));
+            }
+        }
+        Collections.shuffle(recordVOS);//打乱数组
+        if(recordVOS.size()<=7){
+            return recordVOS;
+        }else{
+            for(int i=0;i<7;i++){
+                res.add(recordVOS.get(i));
+            }
+            return res;
+        }
     }
 
     @Override
