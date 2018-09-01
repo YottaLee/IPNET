@@ -28,19 +28,21 @@ public class CommunityUserController {
         return blService.searchByKeyword(keyword);
     }
 
-    @MyLog(value = "浏览帖子")
+    /*@MyLog(value = "浏览帖子")
     @RequestMapping("/test")
     public @ResponseBody
     void test(String browser,String postid,String postname){
         blService.browsePost(browser,postid,postname);
-    }
+    }*/
 
+    @MyLog(value = "个人信息浏览")
     @RequestMapping("/info")
     public @ResponseBody
     CUserVO getUserInfo(String userID){
         return blService.getUserInfo(userID);
     }
 
+    @MyLog(value = "修改昵称")
     @RequestMapping("/nickname")
     public @ResponseBody
     void modifyNickname(String userID,String newName){
@@ -53,30 +55,33 @@ public class CommunityUserController {
         blService.modifyTag(userID,tags);
     }
 
+    @MyLog(value = "关注帖子")
     @RequestMapping("/interestpost")
     public @ResponseBody
     void attentionPost(String userID,String postID){
         blService.interestPost(userID,postID);
     }
 
+    @MyLog(value = "关注用户")
     @RequestMapping("/interestuser")
     public @ResponseBody
     void attentionUser(String starID,String fanID){
         blService.interestUser(starID,fanID);
     }
 
+    @MyLog(value = "取关帖子")
     @RequestMapping("/uninterestpost")
     public @ResponseBody
     void unInterestPost(String userID,String postID){
         blService.cancelInterest(userID,postID);
     }
 
+    @MyLog(value = "取关帖子")
     @RequestMapping("/uninterestuser")
     public @ResponseBody
     void unInterestUser(String starID,String fanID){
         blService.cancelInterestUser(starID,fanID);
     }
-
 
     @RequestMapping("/getRelease")
     public @ResponseBody
