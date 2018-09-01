@@ -79,7 +79,8 @@
 </div>
 <div class="main post">
     <div class="fn-flex-1 fn-clear">
-        <input type="text" id="articleTitle" autocomplete="off" tabindex="1" value="" placeholder="请输入标题"/>
+        <input type="text" id="articleTitle" style="padding: 20px 80px 20px 80px" autocomplete="off" tabindex="1" value="" placeholder="请输入标题"/>
+        <input type="text" id="post_intro" style="font-size: 18px;padding: 20px 80px 20px 80px;width: 100%;box-sizing: border-box;margin-right: auto;margin-left: auto" value="" placeholder="文章内容简介"/>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mt50">
@@ -174,61 +175,43 @@
                     <span class="tag">质押率决策模型</span>
                 </div>
                 <div id="tags1521678409149" class="domain-tags fn-none">
-                    <span class="tag">Java</span>
-                    <span class="tag">golang</span>
-                    <span class="tag">Node.js</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">数据库</span>
-                    <span class="tag">Spring</span>
-                    <span class="tag">C++</span>
-                    <span class="tag">PHP</span>
+                    <span class="tag">专利评估国际法律比较</span>
+                    <span class="tag">法律权属</span>
+                    <span class="tag">高校专利评估</span>
+                    <span class="tag">SCDMA专利评估</span>
+                    <span class="tag">Black—Scholes</span>
+                    <span class="tag">期权风险厌恶定价公式</span>
+                    <span class="tag">专利评估货币化</span>
+                    <span class="tag">财务比率方法</span>
                 </div>
                 <div id="tags1457944720669" class="domain-tags fn-none">
-                    <span class="tag">招聘</span>
-                    <span class="tag">创业</span>
-                    <span class="tag">面试</span>
-                    <span class="tag">SOHO</span>
-                    <span class="tag">外包</span>
-                    <span class="tag">职场</span>
-                    <span class="tag">求职</span>
-                    <span class="tag">离职</span>
+                    <span class="tag">专利保险机制</span>
+                    <span class="tag">保险法</span>
+                    <span class="tag">专利保险风险特征</span>
+                    <span class="tag">境外展会专利保险</span>
                 </div>
                 <div id="tags1465892035885" class="domain-tags fn-none">
-                    <span class="tag">B3log</span>
-                    <span class="tag">黑客派</span>
-                    <span class="tag">Solo</span>
-                    <span class="tag">Wide</span>
-                    <span class="tag">Sym</span>
-                    <span class="tag">BND</span>
-                    <span class="tag">Pipe</span>
+                    <span class="tag">专利池经济效率</span>
+                    <span class="tag">专利池反垄断</span>
+                    <span class="tag">专利池博弈分析</span>
+                    <span class="tag">专利联盟搭售</span>
+                    <span class="tag">技术内聚性测度</span>
+                    <span class="tag">专利池运营</span>
+                    <span class="tag">专利池构建策略</span>
                 </div>
                 <div id="tags1526477171358" class="domain-tags fn-none">
-                    <span class="tag">推广</span>
-                    <span class="tag">邀请码</span>
-                    <span class="tag">优惠券</span>
-                    <span class="tag">二手</span>
-                    <span class="tag">糖果</span>
-                    <span class="tag">推荐</span>
-                    <span class="tag">推介</span>
+                    <span class="tag">专利代理实务</span>
+                    <span class="tag">代理机构</span>
+                    <span class="tag">专利代理人资格考证</span>
+                    <span class="tag">行政监管</span>
+                    <span class="tag">法律责任研究</span>
                 </div>
                 <div id="tags1521678834847" class="domain-tags fn-none">
-                    <span class="tag">区块链</span>
-                    <span class="tag">比特币</span>
-                    <span class="tag">以太坊</span>
-                    <span class="tag">IPFS</span>
-                    <span class="tag">去中心化</span>
-                </div>
-                <div id="tags1522416202743" class="domain-tags fn-none">
-                    <span class="tag">Java</span>
-                    <span class="tag">Spring</span>
-                    <span class="tag">NetBeans</span>
-                    <span class="tag">Eclipse</span>
-                    <span class="tag">IDEA</span>
-                    <span class="tag">Dubbo</span>
-                    <span class="tag">Tomcat</span>
-                    <span class="tag">Maven</span>
-                    <span class="tag">Gradle</span>
-                    <span class="tag">Latke</span>
+                    <span class="tag">专利资产评估</span>
+                    <span class="tag">潜在风险分析</span>
+                    <span class="tag">定价机制</span>
+                    <span class="tag">专利投资信托</span>
+                    <span class="tag">专利交易应用</span>
                 </div>
             </div>
         </div>
@@ -245,7 +228,7 @@
             </div>
         </div>
         <div class="wrapper fn__clear">
-            <button class="green fn__right" id="addArticleBtn" tabindex="10" data-csrftoken="dsFPgJv1OpJh">发布</button>
+            <button class="green fn__right" id="publish_post" tabindex="10" data-csrftoken="dsFPgJv1OpJh">发布</button>
             <span class="fn__right">&nbsp; &nbsp;</span>
         </div>
     </div>
@@ -484,7 +467,7 @@
 </script>
 
 <script src="/common/jquery.js"></script>
-<script src="/community/controller/community_home_controller.js"></script>
+<script src="/community/controller/community_publish_controller.js"></script>
 <script src="https://static.hacpai.com/js/lib/algolia/algolia.min.js?v2.0.0"></script>
 <script type="text/javascript" src="https://static.hacpai.com/skins/classic/js/compress/home-post.24addd9cd2e1cd15fbe6.js"></script>
 
