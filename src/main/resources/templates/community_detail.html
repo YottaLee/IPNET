@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="theme-color" content="#3b3e43">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="google-site-verification" content="l6JwXAuzDd2K09z9xYaeZTFjnXVJATmJ7xX1q2_HuEo"/>
+    <meta name="baidu-site-verification" content="flB16pdAO9"/>
+    <meta name="msvalidate.01" content="43B15631A6176E01B4CC074375AD7AF1"/>
+    <meta name="p:domain_verify" content="4ad0f1e10883fcfd6c18da6c6b84e8a0"/>
+    <title>有人把 Windows 95 写进了 Electron 支持多平台 - 黑客派</title>
+    <meta name="description" content="源码： [图片] felixrieseberg/windows95 windows95 - 💩🚀 Windows 95 in Electron. Runs on macOS, Linux, .."/>
+    <meta property="og:description" content="源码： [图片] felixrieseberg/windows95 windows95 - 💩🚀 Windows 95 in Electron. Runs on macOS, Linux, .."/>
+    <meta name="twitter:description" property="og:description" itemprop="description" content="源码： [图片] felixrieseberg/windows95 windows95 - 💩🚀 Windows 95 in Electron. Runs on macOS, Linux, .."/>
+    <link rel="dns-prefetch" href="//static.hacpai.com"/>
+    <link rel="dns-prefetch" href="//img.hacpai.com"/>
+    <link rel="preconnect" href="https://static.hacpai.com">
+    <link rel="stylesheet" href="commity/css/base.css"/>
+    <link rel="icon" type="image/png" href="https://static.hacpai.com/images/favicon.png"/>
+    <link rel="apple-touch-icon" href="https://static.hacpai.com/images/faviconH.png">
+    <link rel="shortcut icon" href="https://static.hacpai.com/images/faviconH.png">
+    <meta name="copyright" content="B3log"/>
+    <meta http-equiv="Window-target" content="_top"/>
+    <meta property="og:locale" content="zh-cmn-Hans"/>
+    <meta property="og:title" content="有人把 Windows 95 写进了 Electron 支持多平台 - 黑客派"/>
+    <meta property="og:site_name" content="黑客派"/>
+    <meta property="og:url" content="http://hacpai.com:443/article/1535076511412"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:domain" content="hacpai.com"/>
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="有人把 Windows 95 写进了 Electron 支持多平台 - 黑客派"/>
+    <meta name="twitter:site" content="@B3logOS"/>
+    <meta name="twitter:url" content="http://hacpai.com:443/article/1535076511412"/>
+    <meta property="og:image" content="https://img.hacpai.com/avatar/1453895874455_1521467490550.jpg?imageView2/1/w/242/h/242/interlace/0/q/100"/>
+    <meta name="twitter:image" content="https://img.hacpai.com/avatar/1453895874455_1521467490550.jpg?imageView2/1/w/242/h/242/interlace/0/q/100"/>
+    <link rel="search" type="application/opensearchdescription+xml" title="HacPai" href="/opensearch.xml">
+    <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?f241a238dc8343347478081db6c7cf5c";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script>
+    <link rel="stylesheet" href="commity/css/index.css"/>
+    <link rel="canonical" href="https://hacpai.com/article/1535076511412">
+    <link rel="prev" title="201807 汽车销量锐减揭示了什么？" href="https://hacpai.com/article/1535041973538">
+    <link rel="next" title="水果与养生" href="https://hacpai.com/article/1535076682048">
+    <meta property="og:type" content="article"/>
+    <meta property="article:published_time" content="2018-08-24 10:08:31"/>
+    <meta property="article:modified_time" content="2018-08-24 10:08:31"/>
+    <meta property="article:tag" content="Electron"/>
+    <meta property="article:tag" content="Windows"/>
+    <meta property="article:tag" content="开源"/>
+
+    <link rel="stylesheet" href="commity/css/themes/quill.snow.css">
+    <style type="text/css">
+        #editor-container {
+            height: 200px;
+        }
+    </style>
+    <script src="commity/dist/quill.js"></script>
+
+</head>
+<body itemscope itemtype="http://schema.org/Product" class="article">
+<img itemprop="image" class="fn-none" src="https://img.hacpai.com/avatar/1453895874455_1521467490550.jpg?imageView2/1/w/242/h/242/interlace/0/q/100"/>
+<p itemprop="description" class="fn-none">
+    "源码： [图片] felixrieseberg/windows95 windows95 - 💩🚀 Windows 95 in Electron. Runs on macOS, Linux, .."
+</p>
+<div class="nav">
+    <h1 aria-label="黑客派" class="tooltipped tooltipped__s">
+        <!--<a href="https://hacpai.com" style="background-image: url('https://i.imgur.com/vAbb5kA.png')">-->
+        <!--<svg>-->
+        <!--<use xlink:href="#iconLogo"></use>-->
+        <!--</svg>-->
+        <!--</a>-->
+        <div style="background: url('https://i.imgur.com/vAbb5kA.png') no-repeat center;height: 50px;width: 50px;background-size: 100% 100%">
+        </div>
+    </h1>
+    <div class="nav-tabs">
+        <!--<a href="https://hacpai.com">-->
+        <!--<svg>-->
+        <!--<use xlink:href="#iconHome"></use>-->
+        <!--</svg> 首页</a>-->
+        <a href="https://hacpai.com/domain/play" class="current">
+            <svg>
+                <use xlink:href="#iconDomain"></use>
+            </svg> 发现</a>
+        <!--<a pjax-title="问答 - 黑客派"-->
+        <!--href="https://hacpai.com/qna">-->
+        <!--<svg>-->
+        <!--<use xlink:href="#iconAsk"></use>-->
+        <!--</svg> 问答</a>-->
+        <a href="https://hacpai.com/watch">
+            <svg>
+                <use xlink:href="#time"></use>
+            </svg> 关注</a>
+        <!--<a href="https://hacpai.com/city/my">-->
+        <!--<svg>-->
+        <!--<use xlink:href="#icon-local"></use>-->
+        <!--</svg> 南京</a>-->
+        <!--<a href="https://hacpai.com/chainbook">-->
+        <!--<svg>-->
+        <!--<use xlink:href="#iconChainBook"></use>-->
+        <!--</svg> 链书</a>-->
+        <!--<a pjax-title="最新 - 黑客派"-->
+        <!--href="https://hacpai.com/top">-->
+        <!--<svg>-->
+        <!--<use xlink:href="#iconTop"></use>-->
+        <!--</svg> 榜单</a>-->
+        <a pjax-title="最新 - 黑客派" href="https://hacpai.com/recent">
+            <svg>
+                <use xlink:href="#refresh"></use>
+            </svg> 最新</a>
+    </div>
+    <form class="responsive-hide fn-left" target="_blank" action="https://hacpai.com/search">
+        <input class="search" placeholder="输入关键词搜索" type="text" name="key" id="algoliaSearch" value="">
+        <input type="submit" class="fn-none" value=""/>
+    </form>
+    <div class="user-nav">
+        <a href="https://hacpai.com/pre-post">发帖</a>
+        <a id="aNotifications" class="tooltipped tooltipped__w " href="https://hacpai.com/notifications" aria-label="消息"><span class="has-point"></span>
+            <svg>
+                <use xlink:href="#iconBell"></use>
+            </svg>
+        </a>
+        <a href="javascript:void(0)" id="aPersonListPanel" class="tooltipped tooltipped__w" aria-label="查看主页与配置等" data-url="https://hacpai.com/member/czf1046277348">
+            <span class="avatar-small" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/52/h/52/interlace/0/q/100" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>
+        </a>
+        <div class="module person-list dropdown-list" id="personListPanel">
+            <ul>
+                <li>
+                    <a href="https://hacpai.com/member/czf1046277348">个人主页</a>
+                    <!--<a href="https://hacpai.com/member/czf1046277348/points">积分</a>-->
+                    <!--<a href="https://hacpai.com/settings/wallet">钱包</a>-->
+                </li>
+                <!--<li>-->
+                <!--<a class="current"-->
+                <!--href="https://hacpai.com/activity/daily-checkin">✅ 每日签到</a>-->
+                <!--<a href="https://hacpai.com/activities">🎉 活动</a>-->
+                <!--<a href="https://hacpai.com/settings/help">帮助</a>-->
+                <!--</li>-->
+                <li>
+                    <a href="https://hacpai.com/settings">设置</a>
+                    <a href="javascript:void(0)" id="signOut">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="article-body">
+    <div class="wrapper">
+        <div class="article-info fn-flex">
+            <a rel="author" href="https://hacpai.com/member/amorist">
+                <div aria-name="amorist" class="avatar-mid tooltipped__user" data-src="https://img.hacpai.com/avatar/1453895874455_1521467490550.jpg?imageView2/1/w/80/h/80/interlace/0/q/100">
+                </div>
+            </a>
+            <div class="fn-flex-1 fn-ellipsis ft-smaller">
+				<span class="ft-gray">
+				<a rel="author" href="https://hacpai.com/member/amorist" aria-name="amorist" class="ft-a-title tooltipped__user">用户名称</a>
+				</span>
+                <!--<a href="https://hacpai.com/city/香港" target="_blank" class="ft-gray ft-13"-->
+                <!--rel="nofollow">香港</a>-->
+                <!--<span id="articltVia" class="ft-fade articleVia" data-ua="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"></span>-->
+                <br/>
+                <span class="ft-gray">简介</span>
+                <br/>
+                <span class="ft-gray">
+				<a rel="nofollow" class="ft-gray" href="#comments">
+				<span class="article-level0">（回帖人数）</span> 回帖</a>
+                    &nbsp;•&nbsp;
+				<span class="article-level0">（浏览人数）</span>浏览&nbsp;•&nbsp;
+				<time class="tooltipped tooltipped__n" aria-label="2018-08-24 10:08:31">发帖时间</time>
+				</span>
+            </div>
+            <!--<div>-->
+            <!--<span class="btn mid" style="display: none" id="articleReportBtn">举报</span>-->
+            <!--<span id="articleMoreBtn" aria-label="更多"-->
+            <!--class="btn mid tooltipped tooltipped__e">...</span>-->
+            <!--</div>-->
+        </div>
+        <h1 class="article-title" itemprop="name">
+            文章标题
+        </h1>
+        <div class="content-reset article-content" data-link="https://hacpai.com/article/1535076511412" data-author="amorist">
+            <p>
+                源码：
+            </p>
+            <p>
+            </p>
+            <div class="tooltipped tooltipped__s" aria-label="https://github.com/felixrieseberg/windows95">
+                <a href="https://hacpai.com/forward?goto=https%3A%2F%2Fgithub.com%2Ffelixrieseberg%2Fwindows95" class="link-card fn__flex" target="_blank"><span class="fn__flex-1 link-card__info"><span class="link-card__title fn__flex-inline"><img class="link-card__icon" data-src="https://assets-cdn.github.com/favicon.ico"><span>&nbsp;&nbsp;</span> felixrieseberg/windows95 </span><span class="link-card__abstract"> windows95 - 💩🚀 Windows 95 in Electron. Runs on macOS, Linux, and Windows. </span><span class="ft__blue ft__smaller"> GitHub - github.com </span></span><span class="link-card__image" data-src="https://avatars2.githubusercontent.com/u/1426799?s=400&amp;v=4"></span></a>
+            </div>
+            <p>
+            </p>
+            <p>
+                <img src="https://user-images.githubusercontent.com/1426799/44532591-4ceb3680-a6a8-11e8-8c2c-bc29f3bfdef7.png" alt="alt text" data-src="https://user-images.githubusercontent.com/1426799/44532591-4ceb3680-a6a8-11e8-8c2c-bc29f3bfdef7.png">
+            </p>
+        </div>
+        <div class="article-tail">
+            <div class="fn-flex">
+                <div class="fn-flex-1">
+                    <a rel="tag" class="tag" href="https://hacpai.com/tag/electron">标签1</a>&nbsp;
+                    <a rel="tag" class="tag" href="https://hacpai.com/tag/windows">标签2</a>&nbsp;
+                    <a rel="tag" class="tag" href="https://hacpai.com/tag/opensource">标签3</a>&nbsp;
+                </div>
+                <!--<div class="fn-flex">-->
+                <!--<a href="https://hacpai.com/forward?goto=https://ipfs.infura.io/ipns/ipfs.b3log.org/hacpai/amorist/1535076511412.html" rel="nofollow" target="_blank" aria-label="IPFS" class="tooltipped tooltipped__n">-->
+                <!--<svg>-->
+                <!--<use xlink:href="#iconIpfs"></use>-->
+                <!--</svg>-->
+                <!--</a>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="wrapper" id="articleCommentsPanel">
+        <div class="module comments" id="comments">
+            <div class="comments-header module-header">
+                <span class="article-cmt-cnt">（回帖数量） 回帖</span>
+                <!--<span class="fn-right">-->
+                <!--<a class="tooltipped tooltipped__nw ft-a-title"-->
+                <!--id="articleCommentChangeSort"-->
+                <!--href="javascript:Comment.exchangeCmtSort(1)"-->
+                <!--aria-label="切换到传统回帖浏览模式"><svg><use-->
+                <!--xlink:href="#time"></use></svg></a> &nbsp; &nbsp;-->
+                <!--<span class="tooltipped tooltipped__nw ft-a-title"-->
+                <!--id="articleCommentGoBottom"-->
+                <!--aria-label="跳转到底部回帖"><svg><use-->
+                <!--xlink:href="#iconChevronDown"></use></svg></span>-->
+                <!--</span>-->
+            </div>
+            <div class="list">
+                <div class="pagination pagination--top">
+                </div>
+                <div class="comment__reply fn-flex">
+                    <span class="avatar" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/80/h/80/interlace/0/q/100" style="background-image: url('https://i.imgur.com/ova4597.png');background-size: 100% 100%"></span>
+                    <span class="reply__text fn-flex-1 commentToggle">请输入回帖内容
+                            ...
+					</span>
+                </div>
+                <ul>
+                    <li id="1535336693203" class="">
+                        <div class="fn-flex">
+                            <div>
+                                <a rel="nofollow" href="https://hacpai.com/member/Jane1221">
+                                    <div class="avatar tooltipped__user" aria-name="Jane1221" data-src="https://img.hacpai.com/avatar/1535332977065?imageView2/1/w/80/h/80/interlace/0/q/100">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="fn-flex-1">
+                                <div class="comment-get-comment list">
+                                    <ul>
+                                        <li class="cmt-selected">
+                                            <div class="fn-flex">
+                                                <div>
+                                                    <a rel="nofollow" href="https://hacpai.com/member/Jane1221">
+                                                        <div class="avatar tooltipped__user" aria-name="Jane1221" style="background-image: url('https://img.hacpai.com/avatar/1535332977065?imageView2/1/w/80/h/80/interlace/0/q/100');"></div>
+                                                    </a>
+                                                </div>
+                                                <div class="fn-flex-1">
+                                                    <div class="fn-clear comment-info">
+                                                        <span class="fn-left ft-smaller">
+                                                            <a rel="nofollow" aria-name="czf1046277348" href="https://hacpai.com/member/czf1046277348" class="ft-a-title tooltipped__user">用户名</a>
+                                                            <span class="ft-fade">•
+                                                                <time aria-label="2018-08-27 10:22:09" class="tooltipped tooltipped__n">回复时间</time>
+                                                            </span>
+                                                        </span>
+                                                        <span class="fn-right">
+                                                            <span class="tooltipped tooltipped__n ft-a-title articleCommentCloseBtn" aria-label="关闭">
+                                                                <svg>
+                                                                    <use xlink:href="#iconClose"></use>
+                                                                </svg>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="content-reset comment" data-author="czf1046277348" data-link="https://hacpai.com/article/1535076511412#1535336529051">
+                                                        <p>回复内容</p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="fn-clear comment-info">
+								    <span class="fn-left ft-smaller">
+								        <a rel="nofollow" aria-name="Jane1221" href="https://hacpai.com/member/Jane1221" class="ft-a-title tooltipped__user">回复用户1</a>
+								        <span class="ft-fade">•
+								            <time aria-label="2018-08-27 10:24:53" class="tooltipped tooltipped__n">回复时间</time>
+								        </span>
+                                        <span class="articleCommentThankCnt"></span>
+                                        <span class="cmt-via ft-fade hover-show fn-hidden" data-ua="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134"></span>
+                                    </span>
+                                    <span class="fn-right">&nbsp; &nbsp;
+                                        <span class="fn-pointer ft-a-title tooltipped tooltipped__nw articleCommentOriginalBtn" aria-label="查看原回复" data-ooid="1535336529051"><svg class="icon-reply-to"><use xlink:href="#reply-to"></use></svg>
+                                            <div class="avatar-small" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/80/h/80/interlace/0/q/100">
+
+                                            </div>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="content-reset comment" data-author="Jane1221" data-link="https://hacpai.com/article/1535076511412#1535336693203">
+                                    <p>回复内容</p>
+                                </div>
+                                <div class="comment-action">
+                                    <div class="ft-fade fn-clear">
+                                        <span class="fn-right action-btns">
+                                            <span class="tooltipped tooltipped__n fn-hidden hover-show articleCommentGoodBtn" aria-label="0 赞同" data-cnt="0" data-grant="true" data-vote="false"><svg class="icon-thumbs-up"><use xlink:href="#iconChevronUp"></use></svg></span> &nbsp;&nbsp;
+                                            <span class="tooltipped tooltipped__n fn-hidden fn__none hover-show articleCommentBadBtn" aria-label="0 反对" data-cnt="0" data-grant="false" data-vote="false"><svg class="icon-thumbs-down"><use xlink:href="#iconChevronDown"></use></svg></span>&nbsp;&nbsp;
+                                            <!--<span class="ft__smaller fn-hidden hover-show articleCommentThank fn-pointer" data-cnt="0" data-tip="确定赠送 15 积分给 Jane1221 以表谢意？" data-grant="true">感谢</span>-->
+                                            <!--<span class="fn__none ft__smaller fn-hidden hover-show fn__pointer articleCommentReportBtn" data-oid="1535336693203">&nbsp;&nbsp; 举报-->
+                                            <!--</span>-->
+                                            <!--<span aria-label="更多" class="tooltipped tooltipped__n ft__smaller fn-hidden hover-show fn__pointer articleCommentMore">&nbsp;&nbsp; ...-->
+                                            <!--</span>&nbsp;&nbsp;-->
+                                            <span class="ft-smaller fn-pointer articleCommentShowEditorBtn" data-avatar="https://img.hacpai.com/avatar/1535332977065?imageView2/1/w/80/h/80/interlace/0/q/100" data-name="Jane1221">回复</span>
+                                        </span>
+                                    </div>
+                                    <div class="comment-replies list">
+                                        <ul>
+                                            <li>
+                                                <div class="fn-flex">
+                                                    <div>
+                                                        <a href="https://hacpai.com/member/Jane1221" rel="nofollow">
+                                                            <div class="avatar tooltipped__user" style="background-image: url('https://img.hacpai.com/avatar/1535332977065?imageView2/1/w/80/h/80/interlace/0/q/100');" aria-name="Jane1221"></div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="fn-flex-1">
+                                                        <div class="fn-clear comment-info">
+                                                            <span class="fn-left ft-smaller">
+                                                                <a class="ft-a-title tooltipped__user" href="https://hacpai.com/member/Jane1221" rel="nofollow" aria-name="Jane1221">回帖人姓名</a>
+                                                                <span class="ft-fade">•
+                                                                    <time class="tooltipped tooltipped__n" aria-label="2018-08-27 10:24:53">回帖时间</time>
+                                                                </span>
+                                                            </span>
+                                                            <span class="fn-right">
+                                                                <span class="tooltipped tooltipped__n ft-a-title articleCommentReferBtn" aria-label="关闭">
+                                                                    <svg>
+                                                                        <use xlink:href="#iconClose"></use>
+                                                                    </svg>
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="content-reset comment" data-author="Jane1221" data-link="https://hacpai.com/article/1535076511412#1535336693203">
+                                                            <p>回复内容</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="1535336529051" class=" cmt-selected">
+                        <div class="fn-flex">
+                            <div>
+                                <a rel="nofollow" href="https://hacpai.com/member/czf1046277348">
+                                    <div class="avatar tooltipped__user" aria-name="czf1046277348" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/80/h/80/interlace/0/q/100">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="fn-flex-1">
+                                <div class="comment-get-comment list">
+                                </div>
+                                <div class="fn-clear comment-info">
+								<span class="fn-left ft-smaller">
+								<a rel="nofollow" aria-name="czf1046277348" href="https://hacpai.com/member/czf1046277348" class="ft-a-title tooltipped__user">czf1046277348</a>
+								<span class="ft-fade">•
+								<time aria-label="2018-08-27 10:22:09" class="tooltipped tooltipped__n">4 分钟前</time>
+								</span>
+								<span class="articleCommentThankCnt">
+								</span>
+								<span class="cmt-via ft-fade hover-show fn-hidden" data-ua="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"></span>
+								</span>
+                                    <span class="fn-right">
+                        &nbsp; &nbsp;
+								<span class="tooltipped tooltipped__n ft-a-title hover-show fn-hidden articleCommentEditBtn" aria-label="编辑"><svg><use xlink:href="#edit"></use></svg></span>
+                        &nbsp; &nbsp;
+								<span class="fn-pointer ft-a-title tooltipped tooltipped__nw articleCommentOriginalBtn" aria-label="查看原回复" data-ooid="1535103617201"><svg class="icon-reply-to"><use xlink:href="#reply-to"></use></svg>
+								<div class="avatar-small" data-src="https://img.hacpai.com/avatar/1353745196544_1530582712751.?imageView2/1/w/80/h/80/interlace/0/q/100">
+								</div>
+								</span>
+								</span>
+                                </div>
+                                <div class="content-reset comment" data-author="czf1046277348" data-link="https://hacpai.com/article/1535076511412#1535336529051">
+                                    <p>
+                                        😂
+                                    </p>
+                                </div>
+                                <div class="comment-action">
+                                    <div class="ft-fade fn-clear">
+									<span class="fn-pointer ft-smaller fn-left articleCommentReplyBtn">
+                            1 回复
+									<svg class="icon-chevron-down fn-text-top"><use xlink:href="#iconChevronDown"></use></svg>
+									</span>
+                                        <span class="fn-right action-btns">
+									<span class="tooltipped tooltipped__n fn-hidden hover-show articleCommentGoodBtn" aria-label="0 赞同" data-cnt="0" data-grant="true" data-vote="false"><svg class="icon-thumbs-up"><use xlink:href="#iconChevronUp"></use></svg></span> &nbsp;&nbsp;
+									<span class="tooltipped tooltipped__n fn-hidden fn__none hover-show articleCommentBadBtn" aria-label="0 反对" data-cnt="0" data-grant="false" data-vote="false"><svg class="icon-thumbs-down"><use xlink:href="#iconChevronDown"></use></svg></span>
+									<span class="fn__none ft__smaller fn-hidden hover-show fn__pointer articleCommentReportBtn" data-oid="1535336529051">
+                            &nbsp;&nbsp; 举报
+									</span>
+									<span aria-label="更多" class="tooltipped tooltipped__n ft__smaller fn-hidden hover-show fn__pointer articleCommentMore">
+                            &nbsp;&nbsp; ...
+									</span>
+									</span>
+                                    </div>
+                                    <div class="comment-replies list">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="1535103617201" class=" cmt-selected">
+                        <div class="fn-flex">
+                            <div>
+                                <a rel="nofollow" href="https://hacpai.com/member/Vanessa">
+                                    <div class="avatar tooltipped__user" aria-name="Vanessa" data-src="https://img.hacpai.com/avatar/1353745196544_1530582712751.?imageView2/1/w/80/h/80/interlace/0/q/100">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="fn-flex-1">
+                                <div class="comment-get-comment list">
+                                </div>
+                                <div class="fn-clear comment-info">
+								<span class="fn-left ft-smaller">
+								<a rel="nofollow" aria-name="Vanessa" href="https://hacpai.com/member/Vanessa" class="ft-a-title tooltipped__user">Vanessa</a>
+								<span class="ft-fade">•
+								<time aria-label="2018-08-24 17:40:17" class="tooltipped tooltipped__n">2 天前</time>
+								</span>
+								<span class="articleCommentThankCnt">
+								</span>
+								<span class="cmt-via ft-fade hover-show fn-hidden" data-ua="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"></span>
+								</span>
+                                    <span class="fn-right">
+								</span>
+                                </div>
+                                <div class="content-reset comment" data-author="Vanessa" data-link="https://hacpai.com/article/1535076511412#1535103617201">
+                                    <p>
+                                        莫非应用也是他一点一点写的？
+                                    </p>
+                                </div>
+                                <div class="comment-action">
+                                    <div class="ft-fade fn-clear">
+									<span class="fn-pointer ft-smaller fn-left articleCommentReplyBtn">
+                            1 回复
+									<svg class="icon-chevron-down fn-text-top"><use xlink:href="#iconChevronDown"></use></svg>
+									</span>
+                                        <span class="fn-right action-btns">
+									<span class="tooltipped tooltipped__n fn-hidden hover-show articleCommentGoodBtn" aria-label="0 赞同" data-cnt="0" data-grant="true" data-vote="false"><svg class="icon-thumbs-up"><use xlink:href="#iconChevronUp"></use></svg></span> &nbsp;&nbsp;
+									<span class="tooltipped tooltipped__n fn-hidden fn__none hover-show articleCommentBadBtn" aria-label="0 反对" data-cnt="0" data-grant="false" data-vote="false"><svg class="icon-thumbs-down"><use xlink:href="#iconChevronDown"></use></svg></span>
+                            &nbsp;&nbsp;
+									<span class="ft__smaller fn-hidden hover-show articleCommentThank fn-pointer" data-cnt="0" data-tip="确定赠送 15 积分给 Vanessa 以表谢意？" data-grant="true">感谢</span>
+									<span class="fn__none ft__smaller fn-hidden hover-show fn__pointer articleCommentReportBtn" data-oid="1535103617201">
+                            &nbsp;&nbsp; 举报
+									</span>
+									<span aria-label="更多" class="tooltipped tooltipped__n ft__smaller fn-hidden hover-show fn__pointer articleCommentMore">
+                            &nbsp;&nbsp; ...
+									</span>
+                            &nbsp;&nbsp;
+									<span class="ft-smaller fn-pointer articleCommentShowEditorBtn" data-avatar="https://img.hacpai.com/avatar/1353745196544_1530582712751.?imageView2/1/w/80/h/80/interlace/0/q/100" data-name="Vanessa">回复</span>
+									</span>
+                                    </div>
+                                    <div class="comment-replies list">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="pagination">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="heatBar">
+    <i class="heat tooltipped tooltipped__w" style="width:0px" aria-label="帖子活跃度"></i>
+</div>
+<div class="share">
+    <span id="thankArticle" aria-label="感谢" class="tooltipped tooltipped__e article__thank icon-link" data-oid="1535076511412" data-grant="true" data-cnt="0"><svg><use xlink:href="#iconHeart"></use></svg><span class="ft-13">&nbsp;</span></span>
+    <div id="qrCode" class="fn-none" data-avatar="https://img.hacpai.com/avatar/1453895874455_1521467490550.jpg?imageView2/1/w/242/h/242/interlace/0/q/100" data-shareurl="https://hacpai.com/article/1535076511412?r=czf1046277348">
+    </div>
+    <span class="tooltipped tooltipped__e" aria-label="share to wechat" data-type="wechat"><svg class="icon-wechat"><use xlink:href="#iconWechat"></use></svg></span>
+    <span class="tooltipped tooltipped__e" aria-label="share to weibo" data-type="weibo"><svg class="icon-weibo"><use xlink:href="#iconWeibo"></use></svg></span>
+    <span class="tooltipped tooltipped__e" aria-label="share to twitter" data-type="twitter"><svg class="icon-twitter"><use xlink:href="#iconTwitter"></use></svg></span>
+    <span class="tooltipped tooltipped__e" aria-label="share to google" data-type="google"><svg class="icon-google"><use xlink:href="#iconGoogle"></use></svg></span>
+    <span class="tooltipped tooltipped__e" data-type="copy" aria-label="复制" id="shareClipboard"><svg class="icon-link"><use xlink:href="#iconLink"></use></svg></span>
+    <input type="text" class="article-clipboard" value="https://hacpai.com/article/1535076511412?r=czf1046277348"/>
+</div>
+<!--<div class="article__bottom">-->
+    <!--<div class="fn-clear">-->
+		<!--<span class="ft-13">-->
+		<!--<span id="articleCollectCnt">1</span> 收藏  &nbsp;•&nbsp;-->
+		<!--<span id="articleFollowCnt">2</span> 关注 &nbsp;•&nbsp;-->
+		<!--<span id="articleGoodCnt">0</span> 赞同 &nbsp;•&nbsp;-->
+		<!--<span id="articleBadCnt">0</span> 反对-->
+		<!--</span>-->
+        <!--<div class="fn-right" id="articleActions">-->
+            <!--<span class="tooltipped tooltipped__n" id="articleCollectBtn" data-cnt="1" aria-label="收藏" data-grant="true" data-type="follow"><svg class="icon-star"><use xlink:href="#iconStar"></use></svg></span> &nbsp;-->
+            <!--&nbsp;-->
+            <!--<span class="tooltipped tooltipped__n" data-cnt="2" aria-label="关注" id="articleFollowBtn" data-grant="true" data-type="follow"><svg class="icon-view"><use xlink:href="#iconView"></use></svg></span> &nbsp; &nbsp;-->
+            <!--<span class="tooltipped tooltipped__n" id="articleGoodBtn" data-voted="false" data-cnt="0" data-grant="true" aria-label="赞同"><svg class="icon-thumbs-up"><use xlink:href="#iconChevronUp"></use></svg></span> &nbsp; &nbsp;-->
+            <!--<span class="tooltipped tooltipped__n" id="articleBadBtn" data-voted="false" data-cnt="0" data-grant="false" aria-label="反对"><svg class="icon-thumbs-down"><use xlink:href="#iconChevronDown"></use></svg></span> &nbsp; &nbsp;-->
+            <!--<a rel="prev" class="tooltipped tooltipped__n" aria-label="下一贴: 201807 汽车销量锐减揭示了什么？" href="https://hacpai.com/article/1535041973538">-->
+                <!--<svg>-->
+                    <!--<use xlink:href="#refresh"></use>-->
+                <!--</svg>-->
+            <!--</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="editor-panel">
+    <div class="editor-bg">
+    </div>
+    <div class="editor-content">
+        <div class="fn-clear">
+            <div class="fn-flex">
+                <div id="replyUseName" class="fn-flex-1 fn-ellipsis">
+                </div>
+                <span class="tooltipped tooltipped__w fn-pointer editor-hide commentToggle" aria-label="取消"><svg><use xlink:href="#iconChevronDown"></use></svg></span>
+            </div>
+            <div class="article-comment-content">
+                <div id="commentContent" data-placeholder="请输入回帖内容" style="display: none">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mt50">
+                            <div id="standalone-container">
+                                <div id="toolbar-container">
+                                    <!--<span class="ql-formats">-->
+                                    <!--<select class="ql-font"></select>-->
+                                    <!--<select class="ql-size"></select>-->
+                                    <!--</span>-->
+                                    <span class="ql-formats">
+                                <button class="ql-bold tooltipped tooltipped__n" aria-label="字体加粗"></button>
+                                <button class="ql-italic tooltipped tooltipped__n" aria-label="字体倾斜"></button>
+                                <button class="ql-underline tooltipped tooltipped__n" aria-label="添加下划线"></button>
+                                <button class="ql-strike tooltipped tooltipped__n" aria-label="添加删除线"></button>
+                            </span>
+                                    <span class="ql-formats">
+                                <select class="ql-color tooltipped tooltipped__n" aria-label="字体颜色"></select>
+                                <select class="ql-background tooltipped tooltipped__n" aria-label="字体填充色"></select>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-script tooltipped tooltipped__n" aria-label="上标" value="sub"></button>
+                                <button class="ql-script tooltipped tooltipped__n" aria-label="下标" value="super"></button>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-header tooltipped tooltipped__n" aria-label="大标题" value="1"></button>
+                                <button class="ql-header tooltipped tooltipped__n" aria-label="小标题" value="2"></button>
+                                <button class="ql-blockquote tooltipped tooltipped__n" aria-label="引用"></button>
+                                <button class="ql-code-block tooltipped tooltipped__n" aria-label="整行填充"></button>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-list tooltipped tooltipped__n" aria-label="有序列表" value="ordered"></button>
+                                <button class="ql-list tooltipped tooltipped__n" aria-label="无序列表" value="bullet"></button>
+                                <button class="ql-indent tooltipped tooltipped__n" aria-label="整体左移" value="-1"></button>
+                                <button class="ql-indent tooltipped tooltipped__n" aria-label="整体右移" value="+1"></button>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-direction tooltipped tooltipped__n" aria-label="左右对齐" value="rtl"></button>
+                                <select class="ql-align tooltipped tooltipped__n" aria-label="对齐方式"></select>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-link tooltipped tooltipped__n" aria-label="添加链接"></button>
+                                <button class="ql-image tooltipped tooltipped__n" aria-label="添加图片"></button>
+                                <button class="ql-video tooltipped tooltipped__n" aria-label="添加音频"></button>
+                                        <!--<button class="ql-formula" title=""></button>-->
+                            </span>
+                                    <!--<span class="ql-formats">-->
+                                    <!--<button class="ql-clean"></button>-->
+                                    <!--</span>-->
+                                </div>
+                                <div id="editor-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-submit">
+                    <!--<label>仅楼主可见<input type="checkbox" id="commentVisible"></label>-->
+                    <div class="fn__right">
+                        &nbsp;
+                        &nbsp;
+                        <button class="green" id="articleCommentSubmitBtn" data-haspermission="true">提交</button>
+                        &nbsp;
+                        &nbsp;
+                        <span class="fn-pointer ft-a-title commentToggle">取消</span>
+                        &nbsp;
+                        &nbsp;
+                    </div>
+                    <div class="tip fn-right" id="addCommentTip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper">
+        <div class="fn-clear">
+            <div class="slogan">
+                为未来而构建的社区
+                <!-- 未来这里将是 IT 失业者、报废码农的大本营 --> &nbsp; &nbsp;
+                <a href="https://github.com/b3log/symphony" target="_blank" rel="noopener" class="tooltipped tooltipped__n" aria-label="本站源代码">
+                    <svg class="icon-github">
+                        <use xlink:href="#iconGithub"></use>
+                    </svg>
+                </a> &nbsp;
+                <a href="http://weibo.com/u/2778228501" target="_blank" rel="noopener" class="tooltipped tooltipped__n" aria-label="关注微博">
+                    <svg class="icon-weibo">
+                        <use xlink:href="#iconWeibo"></use>
+                    </svg>
+                </a> &nbsp;
+                <a href="https://twitter.com/b3logos" target="_blank" rel="noopener" class="tooltipped tooltipped__n" aria-label="Twitter">
+                    <svg class="icon-twitter">
+                        <use xlink:href="#iconTwitter"></use>
+                    </svg>
+                </a> &nbsp;
+                <a target="_blank" rel="noopener" class="tooltipped tooltipped__n" aria-label="加入电报群" href="https://t.me/b3log">
+                    <svg class="icon-telegram">
+                        <use xlink:href="#iconTelegram"></use>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-nav fn-clear">
+            <a rel="help" href="https://hacpai.com/about">关于</a>
+            <a href="https://hacpai.com/article/1457158841475">API</a>
+            <a href="https://hacpai.com/tag/announcement">公告</a>
+            <a href="https://hacpai.com/domains">领域</a>
+            <a href="https://hacpai.com/tags">标签</a>
+            <a href="https://hacpai.com/statistic">数据统计</a>
+            <a href="https://hacpai.com/article/1460083956075">广告投放</a>
+            <div class="fn-right">
+                &COPY; 2018
+                <a rel="copyright" href="https://hacpai.com" target="_blank">hacpai.com</a>
+                黑客与画家
+            </div>
+        </div>
+        <div class="fn-clear ft-smaller">
+            Feel easy about trust.
+            <div class="fn-right">
+                Powered by
+                <a href="https://b3log.org" rel="noopener" target="_blank">B3log 开源</a> •
+                <a href="https://sym.b3log.org" rel="noopener" target="_blank">Sym</a>
+                3.2.0 • 64ms
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var Label = {
+        markedAvailable: true,
+        searchTimeTipLabel: '⚡️ 已找到 <strong>{count}</strong> 个相关结果（用时 <strong>{time}ms</strong>）',
+        searchEmptyLabel: '暂时没有 [${key}] 相关的数据 :(',
+        statUserLabel: '用户',
+        tagLabel: '标签',
+        articleLabel: '帖子',
+        updateNameTipLabel: '（修改用户名需消耗 {point} 积分）',
+        certainLabel: '确定',
+        deactivateAccountLabel: '永久停用账号',
+        tipLabel: '提示',
+        reportContentLabel: '请说明举报理由',
+        miscLabel: '其他',
+        reportSuccLabel: '举报成功',
+        spamADLabel: '垃圾广告',
+        pornographicLabel: '低俗色情',
+        violationOfRegulationsLabel: '违法违规',
+        allegedlyInfringingLabel: '涉嫌侵权',
+        personalAttacksLabel: '人身攻击',
+        posingAccountLabel: '冒充账号',
+        spamADAccountLabel: '垃圾广告账号',
+        personalInfoViolationLabel: '个人信息违规',
+        reportLabel: '举报',
+        noMessageLabel: '无消息',
+        invalidQnAOfferPointLabel: '悬赏积分必须大于等于 20',
+        submitLabel: '提交',
+        nextStepLabel: '下一步',
+        breezemoonLabel: '清风明月',
+        breezemoonDescriptionLabel: '只与清风、明月为伴。',
+        invalidUserNameLabel: '用户名仅允许使用数字或字母',
+        finshLabel: '完成',
+        invalidEmailLabel: '邮箱地址格式有误',
+        confirmPwdErrorLabel: '密码输入不一致',
+        captchaErrorLabel: '验证码错误',
+        imgMaxSize: 5242880,
+        fileMaxSize: 10485760,
+        miniPostfix: '.min',
+        messageLabel: '消息',
+        desktopNotificationTemplateLabel: '你有 ${count} 条未读消息',
+        invalidPasswordLabel: '密码格式有误（数字及字母组合，长度 6-16）',
+        loginNameErrorLabel: '登录名称长度 1-256',
+        followLabel: '关注',
+        unfollowLabel: '取消关注',
+        symphonyLabel: '黑客派',
+        visionLabel: '黑客与画家',
+        cmtLabel: '回帖',
+        collectLabel: '收藏',
+        uncollectLabel: '取消收藏',
+        copyLabel: '复制',
+        copiedLabel: '已复制',
+        servePath: 'https://hacpai.com',
+        staticServePath: 'https://static.hacpai.com',
+        isLoggedIn: true,
+        funNeedLoginLabel: '登录后才能使用该功能',
+        notificationCommentedLabel: '收到的回帖',
+        notificationReplyLabel: '收到的回复',
+        notificationAtLabel: '提及我的',
+        notificationFollowingLabel: '我关注的',
+        pointLabel: '积分',
+        sameCityLabel: '同城',
+        systemLabel: '系统',
+        walletLabel: '钱包',
+        newFollowerLabel: '新关注者',
+        makeAsReadLabel: '标记为已读',
+        commaLabel: '，',
+        canDragLabel: '可拖拽',
+        staticResourceVersion: '1535194155082',
+        setEmotionLabel: '设置常用表情',
+        year: '2018',
+        mouseEffects: false,
+        killBrowserLabel: '<div class="fn__clear content-reset">为了让浏览器更好的发展，人类更加的进步，拥有更好的体验，让我们放弃使用那些过时、不安全的浏览器。<p>你可以下载：</p><ul class="fn__left"><li><a href="http://www.google.com/chrome" target="_blank" rel="noopener">谷歌浏览器</a></li><li><a href="http://www.mozilla.com/" target="_blank" rel="noopener">火狐</a></li><li><a href="http://se.360.cn/" target="_blank" rel="noopener">360</a> 或者 <a href="https://www.baidu.com/s?wd=%E6%B5%8F%E8%A7%88%E5%99%A8" target="_blank" rel="noopener">其它浏览器</a></li></ul><img class="fn__right" alt="Kill IE6" title="Kill IE6" src="/images/kill-browser.png"></div>',
+        killBrowserTitleLabel: '让我们放弃使用那些过时、不安全的浏览器吧！',
+        activityStartEatingSnakeTipLabel: '玩一局需要 【{point}】积分，确定开始么？',
+        activityStartGobangTipLabel: '玩一局需要 【{point}】积分，确定开始么？',
+        activityAskForDrawLabel: '对方请求和棋，是否同意？',
+        newVersionAvailableLabel: '新版本可用',
+        colonLabel: '：',
+        upToDateLabel: '已是最新版',
+        amountNotEmpty: '数额不能为空',
+        updateFailLabel: '更新失败',
+        updateSuccLabel: '更新成功',
+        transferSuccLabel: '转账成功',
+        invalidUserURLLabel: '链接需要符合 URL（协议://地址），最大长度 100',
+        tagsErrorLabel: '最多包含 4 个标签，每个标签长度 1-9，请勿包含特殊符号',
+        invalidUserQQLabel: 'QQ 号必须为数字，最大长度 12',
+        invalidUserIntroLabel: '个性签名最大长度 255',
+        invalidUserB3KeyLabel: 'B3 Key 最大长度 20',
+        invalidUserB3ClientURLLabel: 'B3 客户端接口最大长度 150',
+        invalidUserNicknameLabel: '昵称最大长度 20',
+        previewLabel: '预览',
+        unPreviewLabel: '取消预览',
+        invalidPhoneLabel: '手机号有误',
+        uploadLabel: '上传',
+        addBoldLabel: '添加粗体',
+        addItalicLabel: '添加斜体',
+        insertQuoteLabel: '插入引用',
+        addBulletedLabel: '添加无序列表',
+        addNumberedListLabel: '添加有序列表',
+        addLinkLabel: '添加链接',
+        undoLabel: '撤销',
+        redoLabel: '恢复',
+        helpLabel: '帮助',
+        fullscreenLabel: '全屏',
+        uploadFileLabel: '上传文件',
+        insertEmojiLabel: '插入表情',
+        articleTitleErrorLabel: '帖子标题长度 1-255',
+        articleContentErrorLabel: '帖子内容长度 4-{maxArticleContentLength}',
+        recordDeniedLabel: '授权后才可以使用音频',
+        recordDeviceNotFoundLabel: '录音设备加载失败',
+        audioRecordingLabel: '[录音中]',
+        uploadingLabel: '[上传中请稍候]',
+        articleRewardPointErrorLabel: '打赏区积分必须为正整数',
+        discussionLabel: '小黑屋',
+        commonAtUser: 'true',
+        commentErrorLabel: '回帖内容长度 1-2000',
+        thankSentLabel: '谢意已传达~',
+        notAllowCmtLabel: '该帖已关闭回帖',
+        upLabel: '赞同',
+        downLabel: '反对',
+        removedLabel: '相关数据已被删除',
+        stickConfirmLabel: '确定要消费 100 积分来置顶该帖子吗？',
+        noRevisionLabel: '权限不足或内容没有发生过改变。',
+        thankedLabel: '已感谢',
+        thankLabel: '感谢',
+        isAdminLoggedIn: false,
+        adminLabel: '管理',
+        thankSelfLabel: '老王，你家的瓜熟了~',
+        replyLabel: '回复',
+        referenceLabel: '引用',
+        goCommentLabel: '跳转到回帖',
+        commonUpdateCommentPermissionLabel: '更新回帖',
+        noPermissionLabel: '你目前是<span class="ft-green">新手</span>，还不能使用该功能 <img align="absmiddle" alt=":flushed:" class="emoji" src="https://static.hacpai.com/emoji/graphics/flushed.png" title=":flushed:"><br><span class="ft-smaller">了解<a href="https://hacpai.com/article/1482057214675" target="_blank">社区信任体系</a></span>',
+        rewardLabel: '打赏',
+        closeLabel: '关闭',
+        invalidAppRoleLabel: '角色有误',
+        cancelLabel: '取消',
+        notificationCmtIds: '1535103617201',
+        articleAuthorName: 'amorist',
+        userCommentViewMode: 1,
+        thankArticleConfirmLabel: '确定赠送 20 积分给该帖作者以表谢意？',
+        rewardConfirmLabel: '确定要打赏 0 积分给该帖子作者？',
+        articleTitle: '有人把 Windows 95 写进了 Electron 支持多平台',
+        articleChannel: 'wss://hacpai.com:/article-channel?articleId=1535076511412&articleType=0&userId=1533003378805',
+        articleType: 0,
+        csrfToken: 'a07oGKF9q7c3',
+        articleOId: '1535076511412',
+        confirmRemoveLabel: '确定删除么？',
+        qiniuUploadToken: 'tnY1Na7LCoBAqmTmpHsWVuYlPC040SY__sOqLwD3:633zEFORPs-d3fUTP81Lf87ad1c=:eyJzY29wZSI6InN5bXBob255IiwiZGVhZGxpbmUiOjE1MzUzMzc0Mjd9',
+        qiniuDomain: 'https://img.hacpai.com',
+        userNotifyStatus: '0',
+        chatRoomChannelURL: 'wss://hacpai.com:/chat-room-channel',
+        currentUserName: 'czf1046277348',
+        currentUserId: '1533003378805',
+        userKeyboardShortcutsStatus: '1',
+        userChannelURL: 'wss://hacpai.com:/user-channel?&userId=1533003378805',
+        algoliaAppId: 'RORM6JWE5I',
+        algoliaSearchKey: '71dbdd62005849ec443fbb8aa973a131',
+    }
+</script>
+<script src="commity/js/lib/algolia/algolia.min.js"></script>
+<script type="text/javascript" src="commity/js/compress/article.js"></script>
+
+<script>
+    var quill = new Quill('#editor-container', {
+        modules: {
+            formula: true,
+            syntax: true,
+            toolbar: '#toolbar-container'
+        },
+        placeholder: 'Compose an epic...',
+        theme: 'snow'
+    });
+</script>
+
+</body>
+</html>
