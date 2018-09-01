@@ -18,7 +18,7 @@ public class CommunityUser {
     private String userid;//用户的ID，与非社区部分的ID保持一直，默认为注册时的手机号码或者邮箱
     //用户的昵称，积分，钱包余额……不进行重复存储
 
-    private String signature;//用户的昵称
+    private String nickname;//用户的昵称
 
     private String tags;//用户的标签，感兴趣的方面？用逗号分隔
 

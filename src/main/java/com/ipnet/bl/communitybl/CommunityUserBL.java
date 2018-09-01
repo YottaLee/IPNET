@@ -38,6 +38,20 @@ public class CommunityUserBL implements CommunityUserBLService {
     private UserBLService userBLService;
 
     @Override
+    public List<BriefUser> searchByKeyword(String keyword) {
+        List<BriefUser> results=new ArrayList<>();
+        List<CommunityUser> users=communityUserDao.searchByKey(keyword);
+        if(users!=null){
+            for(CommunityUser u:users){
+                BriefUser briefUser=(BriefUser)transHelper.transTO(u,BriefUser.class);
+                briefUser.setUrl(userBLService.getImageUrl(u.getUserid()));
+                results.add(briefUser);
+            }
+        }
+        return results;
+    }
+
+    @Override
     public void addUser(String userID) {
         CommunityUser newUser=new CommunityUser(userID,"","",0,0,
                 0,0,new ArrayList<>(),new ArrayList<>());
@@ -50,13 +64,14 @@ public class CommunityUserBL implements CommunityUserBLService {
         if(user.isPresent()){
             CUserVO cUserVO=(CUserVO) this.transHelper.transTO(user.get(),CUserVO.class);
             cUserVO.setMyTags(user.get().getTags().split(","));
+            cUserVO.setUrl(userBLService.getImageUrl(userID));
             return cUserVO;
         }
         return null;
     }
 
     @Override
-    public void modifySignature(String username, String signature) {
+    public void modifyNickname(String username, String signature) {
         communityUserDao.modifySignature(username,signature);
     }
 
@@ -184,11 +199,31 @@ public class CommunityUserBL implements CommunityUserBLService {
     @Override
     public void browsePost(String userID, String postID,String postname) {
         Optional<CommunityUser> o_user=communityUserDao.findById(userID);
+        boolean isExist=false;
         if(o_user.isPresent()){
             CommunityUser user=o_user.get();
             List<Record> records=user.getHistory();
-            Record newRecord=new Record(0,postID,postname,new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            records.add(newRecord);
+            for(Record record:records){
+                if(record.getPostid().equals(postID)){//浏览记录中已经存在的
+                    isExist=true;
+                    record.setTime(new Date());
+                    break;
+                }
+            }
+            if (!isExist) {
+                if(records.size()>=7){
+                    //如果记录超过7条，找到最早的，移除
+                    int index=0;
+                    for(int i=1;i<records.size();i++){
+                        if(records.get(i).getTime().before(records.get(index).getTime())){
+                            index=i;
+                        }
+                    }
+                    records.remove(index);
+                }
+                Record newRecord=new Record(0,postID,postname,new Date());
+                records.add(newRecord);
+            }
             user.setHistory(records);
             communityUserDao.saveAndFlush(user);
         }
@@ -237,6 +272,7 @@ public class CommunityUserBL implements CommunityUserBLService {
             Optional<CommunityUser> user=communityUserDao.findById(mine.getTid());
             if(user.isPresent()){
                 BriefUser briefUser=(BriefUser) this.transHelper.transTO(user.get(),BriefUser.class);
+                briefUser.setUrl(userBLService.getImageUrl(mine.getTid()));
                 users.add(briefUser);
             }
         }
@@ -260,8 +296,10 @@ public class CommunityUserBL implements CommunityUserBLService {
         if(o_user.isPresent()){
             List<Record> records=o_user.get().getHistory();
             for(Record record:records){
+                System.err.println(record.toString());
                 RecordVO temp=(RecordVO) transHelper.transTO(record,RecordVO.class);
                 temp.setUrl(userBLService.getImageUrl(record.getPostid().substring(14)));
+//                temp.setUrl(userBLService.getImageUrl(userID));
                 results.add(temp);
             }
             return results;
