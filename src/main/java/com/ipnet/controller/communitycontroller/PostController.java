@@ -7,10 +7,7 @@ import com.ipnet.enums.communityenums.Post_tag;
 import com.ipnet.vo.communityvo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,38 +28,14 @@ public class PostController {
     private PostBLService postBLService;
 
 
-
-    @RequestMapping(value="/test")
-    public @ResponseBody void test() throws IOException {
-
-        URL url = new URL("https://ipnet10.oss-cn-beijing.aliyuncs.com/%E6%AF%9B%E6%A6%82%E6%95%B4%E7%90%86.docx");
-        InputStream ism=url.openStream();
-        byte[] bytes=new byte[2048];
-        ism.read(bytes);
-        String str=new String(bytes,"utf-8");
-        System.err.println(str);
-        while(ism.read(bytes)>-1){
-            System.err.println(str);
+    @RequestMapping(value = "/testtest")
+    public @ResponseBody
+    void testtest() throws IOException {
+        try{
+            postBLService.downLoadFromUrl("https://ipnet10.oss-cn-beijing.aliyuncs.com/20180902001530jane.txt");
+        }catch (Exception e) {
         }
-
     }
-
-//    @RequestMapping(value = "/read")
-//    public @ResponseBody void testtesttest() throws Exception {
-//        File remoteFile=new File("https://ipnet10.oss-cn-beijing.aliyuncs.com/%E7%A4%BE%E4%BC%9A%E5%AE%9E%E8%B7%B5%E8%A6%81%E6%B1%82.doc");
-//        BufferedReader br=new BufferedReader(new FileReader(remoteFile),"")
-
-    //}
-
-
-//    @RequestMapping(value = "/testtest")
-//    public @ResponseBody
-//    void testtest() throws IOException {
-//        File file=new File("E:\\test.txt");
-//        FileInputStream input = new FileInputStream(file);
-//        MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",input);
-//        postBLService.uploadFile("test",multipartFile);
-//    }
 
     @RequestMapping(value = "/changeBaseToUrl")
     public @ResponseBody String uploadPicture(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID){
@@ -78,49 +51,50 @@ public class PostController {
 
 
     @RequestMapping(value = "/createPostID")
-    public @ResponseBody String createPostID(String author){
+    public @ResponseBody String createPostID(@RequestParam String author){
         return postBLService.createID(author);
     }
 
     @RequestMapping(value = "/publishArticle")
     public @ResponseBody
-    ResultMessage publishArticle(PublishArticleVO publishArticleVO) throws IOException {
+    ResultMessage publishArticle(@RequestBody PublishArticleVO publishArticleVO) throws IOException {
+        System.err.println(publishArticleVO.getPost_id()+"77777777777");
         return postBLService.publishArticle(publishArticleVO.getPost_id(),publishArticleVO.getAuthor(),publishArticleVO.getPost_name(),publishArticleVO.getPost_tag(),publishArticleVO.getBrief_intro(),publishArticleVO.getContent());
     }
 
     @RequestMapping(value = "/editArticle")
     public @ResponseBody
-    ResultMessage editArticle(EditArticleVO editArticleVO){
+    ResultMessage editArticle(@RequestBody EditArticleVO editArticleVO){
         return postBLService.edit(editArticleVO.getPost_id(),editArticleVO.getPost_name(),editArticleVO.getPost_tag(),editArticleVO.getContent());
     }
 
     @RequestMapping(value = "/deleteArticle")
     public @ResponseBody
-    ResultMessage deleteArticle(String post_id){
+    ResultMessage deleteArticle(@RequestParam String post_id){
         return postBLService.deleteArticle(post_id);
     }
 
     @RequestMapping(value = "/remark")
     public @ResponseBody
-    ResultMessage remark(String post_id, String reviewer, String remark_content){
+    ResultMessage remark(@RequestParam String post_id, @RequestParam String reviewer, @RequestParam String remark_content){
         return postBLService.remark(post_id,reviewer,remark_content);
     }
 
     @RequestMapping(value = "/readArticle")
     public @ResponseBody
-    PostVO readArticle(String post_id,String reader){
+    PostVO readArticle(@RequestParam String post_id,@RequestParam String reader) throws IOException {
         return postBLService.readArticle(post_id,reader);
     }
 
     @RequestMapping(value = "/readArticleList")
     public @ResponseBody
-    ArrayList<BriefPost> readArticleList(String author){
+    ArrayList<BriefPost> readArticleList(@RequestParam String author){
         return postBLService.readArticleList(author);
     }
 
     @RequestMapping(value = "/searchArticle")
     public @ResponseBody
-    ArrayList<BriefPost> searchArticle(String keywords){
+    ArrayList<BriefPost> searchArticle(@RequestParam String keywords){
         return postBLService.searchArticle(keywords);
     }
 
