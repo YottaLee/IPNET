@@ -64,6 +64,7 @@ public class CommunityUserBL implements CommunityUserBLService {
         if(user.isPresent()){
             CUserVO cUserVO=(CUserVO) this.transHelper.transTO(user.get(),CUserVO.class);
             cUserVO.setMyTags(user.get().getTags().split(","));
+            cUserVO.setUrl(userBLService.getImageUrl(userID));
             return cUserVO;
         }
         return null;

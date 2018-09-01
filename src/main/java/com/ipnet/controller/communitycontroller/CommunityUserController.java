@@ -2,6 +2,7 @@ package com.ipnet.controller.communitycontroller;
 
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.enums.communityenums.Post_tag;
+import com.ipnet.log.MyLog;
 import com.ipnet.vo.communityvo.BriefPost;
 import com.ipnet.vo.communityvo.BriefUser;
 import com.ipnet.vo.communityvo.CUserVO;
@@ -27,6 +28,7 @@ public class CommunityUserController {
         return blService.searchByKeyword(keyword);
     }
 
+    @MyLog(value = "浏览帖子")
     @RequestMapping("/test")
     public @ResponseBody
     void test(String browser,String postid,String postname){

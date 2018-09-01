@@ -1,4 +1,4 @@
-package com.ipnet;
+package com.ipnet.log;
 
 import java.lang.annotation.*;
 

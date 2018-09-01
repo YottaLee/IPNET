@@ -1,4 +1,4 @@
-package com.ipnet.entity;
+package com.ipnet.log;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

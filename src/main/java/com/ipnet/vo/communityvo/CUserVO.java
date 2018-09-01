@@ -15,6 +15,7 @@ public class CUserVO {
 //
 //    private double credits;//用户的积分
 //    private double wallet;//用户的钱包
+    private String url;//用户头像的url
 
     private String nickname;//用户的昵称
 
