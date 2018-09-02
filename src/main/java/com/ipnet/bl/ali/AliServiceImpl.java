@@ -19,9 +19,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.Base64;
-import java.util.Date;
 
 @Service
 public class AliServiceImpl implements AliService {
@@ -125,11 +123,8 @@ public class AliServiceImpl implements AliService {
     }
 
     public String upLoad(File file){
-
-
-        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-        String dateStr=format.format(new Date());
-
+//        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+//        String dateStr=format.format(new Date());
         // 判断文件
         if(file==null){
             return null;
@@ -152,14 +147,10 @@ public class AliServiceImpl implements AliService {
             if (result != null) {
                 return "https:"+fileSeparator+bucketName+"."+endPoint+fileSeparator+fileUrl;
             }
-        } catch (OSSException oe){
+        } catch (OSSException | com.aliyun.oss.ClientException ignored){
 
-        }catch (com.aliyun.oss.ClientException ce){
-
-        }finally{
-            if(client!=null){
-                client.shutdown();
-            }
+        } finally{
+            client.shutdown();
         }
         return null;
     }
