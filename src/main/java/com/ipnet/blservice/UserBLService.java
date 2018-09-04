@@ -1,27 +1,34 @@
 package com.ipnet.blservice;
 
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.vo.uservo.EmailRegister;
+
+import java.util.Map;
 
 public interface UserBLService {
 
+    //个人用户手机验证码注册
     //获取短信验证码，返回发送的验证码；若手机号已被注册，返回"Exist"
-    String getMessageCode(String username);
+    Map<String,String> getMessageCode(String telephone);
+    //个人用户手机号注册
+    ResultMessage registerByPhone(Map<String,String> request);
 
-    //获取邮件验证
-    String sendEmail(String toEmail);
-    void sendHtmlMail(String toEmail);
+    //个人用户邮箱注册
+    ResultMessage personalEmailRegister(EmailRegister register);
+    //企业用户邮箱注册
+    ResultMessage companyRegister(EmailRegister register);
+    //邮箱验证
+    ResultMessage checkEmail(String email,String code);
+    /*
+    * 用户登录
+    * 方式：手机号登录——仅限个人
+    *       邮箱登录——个人或企业*/
 
-    //个人用户注册，可以用手机号或者邮箱
-    ResultMessage personalRegister(String username, String password);
+    //手机号登录，仅限个人用户
+    ResultMessage loginPhone(String telephone, String password);
 
-    //企业用户注册，使用企业邮箱
-    ResultMessage companyRegister(String email, String password);
-
-    //个人用户登录,可以使用手机号或者邮箱
-    ResultMessage login(String username, String password);
-
-    //用户登出
-    ResultMessage logout(String username);
+    //邮箱登录,企业和个人都可以
+    ResultMessage loginEmail(String email, String password);
 
     //获取用户的头像的url
     String getImageUrl(String username);

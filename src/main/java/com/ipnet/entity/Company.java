@@ -1,7 +1,7 @@
 package com.ipnet.entity;
 
-import com.ipnet.enums.Company_type;
 import com.ipnet.enums.Identity;
+import com.ipnet.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +16,17 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "company_user")
-public class CompanyUser {
+@Table(name = "company")
+public class Company {
     @Id
+    private String id;//注册时的邮箱
     private String tel;//手机号
+
+    private String image;//公司用户的头像
+
     private String bus_licence_url;//营业执照的url
     private String company_name;//企业名称
-    private Company_type company_type;//企业类型
+    private Role role;//企业角色，评估机构？保险机构？金融机构？普通平台用户？
     private String juridical_person;//企业法人
     private double registered_capital;//注册资本
     private Date establish_date;//成立日期
@@ -43,9 +47,12 @@ public class CompanyUser {
     private ArrayList<Identity> identities;//身份认证
     private String user_name;//用户名
     private String description;//自我描述
-    private String register_date;//注册日期
+    private String registerTime;//注册日期
+
+    private boolean isActive;//用户的激活状态
+    private String activeCode;//用户的激活码
     //@ElementCollection(targetClass = String.class,fetch = FetchType.LAZY)
-    private ArrayList<String> patent_id;//拥有专利号
+    //private ArrayList<String> patent_id;//拥有专利号
     //@ElementCollection(targetClass = String.class,fetch = FetchType.LAZY)
-    private ArrayList<String> patent_pool_id;//拥有专利池号
+    //private ArrayList<String> patent_pool_id;//拥有专利池号
 }
