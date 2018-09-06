@@ -9,7 +9,10 @@ import com.ipnet.entity.Company;
 import com.ipnet.entity.Person;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.MD5Util;
+import com.ipnet.utility.TransHelper;
+import com.ipnet.vo.uservo.CompanyVerify;
 import com.ipnet.vo.uservo.EmailRegister;
+import com.ipnet.vo.uservo.PersonVerify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -35,6 +38,8 @@ public class UserBL implements UserBLService{
     private CommunityUserBLService communityUserBLService;
     @Autowired
     private MD5Util md5Util;
+    @Autowired
+    private TransHelper transHelper;
 
     @Value("${spring.mail.username}")
     private String fromEmail;
@@ -65,19 +70,16 @@ public class UserBL implements UserBLService{
 
     /*
     参数：key--value
-          phoneNum--号码
-          pass--密码
           time--限制时间(之前后端传到前端的)
           hash--哈希值(之前后端传到前端的)
           code--用户填写的验证码
     */
     @Override
-    public ResultMessage registerByPhone(Map<String,String> request) {
-        String requestHash=request.get("hash");
-        String phoneNum=request.get("phoneNum");
+    public ResultMessage verifyCode(Map<String, String> info) {
+        String requestHash=info.get("hash");
 
-        String time=request.get("time");
-        String code=request.get("code");
+        String time=info.get("time");
+        String code=info.get("code");
         String hash=md5Util.md5Encode(this.key+"@"+time+"@"+code);
 
         SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -86,19 +88,42 @@ public class UserBL implements UserBLService{
 
         if (time.compareTo(currentTime)>0){
             if(requestHash.equalsIgnoreCase(hash)){
-                Person newUser=new Person();
-                newUser.setId(phoneNum);
-                newUser.setPassword(request.get("pass"));
-                newUser.setTelephone(phoneNum);
-                newUser.setRegisterTime(currentTime);
-                //自动为用户生成社区用户的实体
-                communityUserBLService.addUser(phoneNum);
                 return ResultMessage.Success;
             }else{//验证码错误
                 return ResultMessage.CodeError;
             }
         }else{//验证码超时
             return ResultMessage.Timeout;
+        }
+    }
+
+
+    /*
+    参数：key--value
+          phoneNum--号码
+          pass--密码
+          time--限制时间(之前后端传到前端的)
+          hash--哈希值(之前后端传到前端的)
+          code--用户填写的验证码
+    */
+    @Override
+    public ResultMessage registerByPhone(Map<String,String> request) {
+        ResultMessage resultMessage=this.verifyCode(request);
+        if(resultMessage.equals(ResultMessage.Success)){
+            String phoneNum=request.get("phoneNum");
+            Person newUser=new Person();
+            newUser.setId(phoneNum);
+            newUser.setPassword(request.get("pass"));
+            newUser.setTelephone(phoneNum);
+            newUser.setRegisterTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            newUser.setVerified(false);
+
+            personalDao.save(newUser);
+            //自动为用户生成社区用户的实体
+            communityUserBLService.addUser(phoneNum);
+            return ResultMessage.Success;
+        }else{
+            return resultMessage;
         }
     }
 
@@ -128,6 +153,7 @@ public class UserBL implements UserBLService{
             }
             String activeCode=md5Util.md5Encode(this.key+register.getUsername()+code.toString());
             newPerson.setActiveCode(activeCode);
+            newPerson.setVerified(false);
 
             if(this.sendEmail(register.getUsername(),activeCode)){
                 personalDao.save(newPerson);
@@ -167,6 +193,7 @@ public class UserBL implements UserBLService{
             }
             String activeCode=md5Util.md5Encode(this.key+register.getUsername()+code.toString());
             newCompany.setActiveCode(activeCode);
+            newCompany.setVerified(false);
 
             if(!this.sendEmail(register.getUsername(),activeCode)){
                 return ResultMessage.Fail;
@@ -227,8 +254,6 @@ public class UserBL implements UserBLService{
         message.setFrom(fromEmail);
         message.setTo(toEmail);
         message.setSubject("测试邮件");
-
-        //sb.append("</a>");
 
         //发送邮件
         String sb = "点击下面链接激活账号，48小时生效，否则重新注册账号，链接只能使用一次，请尽快激活！\n" + "http://localhost:8000/user/register?email=" +
@@ -298,6 +323,55 @@ public class UserBL implements UserBLService{
                 return ResultMessage.NoUser;//该用户既不是企业用户，也不是个人用户
             }
         }
+    }
+
+    @Override
+    public boolean personVerify(PersonVerify personVerify) {
+        Optional<Person> person=personalDao.findById(personVerify.getId());
+        if(person.isPresent()){
+            Person toPerson=person.get();
+            toPerson.setIdPhoto(personVerify.getIdPhoto());
+            toPerson.setName(personVerify.getName());
+            toPerson.setSex(personVerify.getSex());
+            toPerson.setTelephone(personVerify.getTelephone());
+            toPerson.setDescription(personVerify.getDescription());
+            toPerson.setCompany(personVerify.getCompany());
+            toPerson.setIndustry(personVerify.getIndustry());
+            toPerson.setRegion(personVerify.getRegion());
+
+            //调用系统管理员审核方法
+            personalDao.saveAndFlush(toPerson);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean companyVerify(CompanyVerify companyVerify) {
+        Optional<Company> companyOptional=companyDao.findById(companyVerify.getId());
+        if(companyOptional.isPresent()){
+            Company company=companyOptional.get();
+            company.setRepresentative(companyVerify.getRepresentative());
+            company.setCreditCode(companyVerify.getCreditCode());
+            company.setPersonPhoto(companyVerify.getPersonPhoto());
+            company.setTel(companyVerify.getTel());
+            company.setType(companyVerify.getType());
+            company.setEstablishDate(companyVerify.getEstablishDate());
+            company.setAddress(companyVerify.getAddress());
+            company.setName(companyVerify.getName());
+            company.setFund(companyVerify.getFund());
+            company.setBusTerm(companyVerify.getBusTerm());
+            company.setStatement(companyVerify.getStatement());
+            company.setField(companyVerify.getField());
+            company.setBusinessNum(companyVerify.getBusinessNum());
+            company.setLicence(companyVerify.getLicence());
+            company.setWebsite(companyVerify.getWebsite());
+
+            //调用系统管理员的验证
+            companyDao.saveAndFlush(company);
+            return true;
+        }
+        return false;
     }
 
     @Override

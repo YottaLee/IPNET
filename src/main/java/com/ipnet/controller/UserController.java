@@ -3,8 +3,10 @@ package com.ipnet.controller;
 import com.ipnet.blservice.UserBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
+import com.ipnet.vo.uservo.CompanyVerify;
 import com.ipnet.vo.uservo.EmailRegister;
 import com.ipnet.vo.uservo.LoginReq;
+import com.ipnet.vo.uservo.PersonVerify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +27,9 @@ public class UserController {
     String check(String username){
         return userBLService.getImageUrl(username);
     }
+
     //个人用户使用手机号码注册
-    /*
+    /**
     描述：获取短信验证码
     返回值：key--value(注册验证时再传到后端)
             time--限制时间
@@ -39,7 +42,7 @@ public class UserController {
         return userBLService.getMessageCode(telephone);
     }
 
-    /*
+    /**
     描述：注册，核对验证码
     参数：key--value
           phoneNum--号码
@@ -58,7 +61,7 @@ public class UserController {
         return userBLService.registerByPhone(request);
     }
 
-    /*
+    /**
     描述：个人邮箱注册
     参数：EmailRegister(email+password+role(角色可忽略))
     返回值：Success--发送链接成功
@@ -74,11 +77,6 @@ public class UserController {
         }
     }
 
-    /*
-    描述：企业注册，仅限邮箱
-    参数：EmailRegister(email+password+role(角色分为四种：非第三方/评估机构/保险机构/金融机构))
-     */
-
     //激活邮箱
     @RequestMapping("/checkEmail")
     public @ResponseBody
@@ -86,7 +84,7 @@ public class UserController {
         return userBLService.checkEmail(email,code);
     }
 
-    /*
+    /**
     描述：通过手机号码登录（仅限个人用户）
     参数：LoginReq(username+password)
     返回值：PersonLogin--登录成功
@@ -99,7 +97,7 @@ public class UserController {
         return userBLService.loginPhone(loginReq.getUsername(),loginReq.getPassword());
     }
 
-    /*
+    /**
     描述：通过邮箱登录（企业或个人）
     参数：LoginReq(username+password)
     返回值：PersonLogin--个人用户登录成功
@@ -113,11 +111,21 @@ public class UserController {
     @RequestMapping("/emailLogin")
     public @ResponseBody
     ResultMessage loginByEmail(LoginReq loginReq){
-        return userBLService.loginPhone(loginReq.getUsername(),loginReq.getPassword());
+        return userBLService.loginEmail(loginReq.getUsername(),loginReq.getPassword());
     }
 
     //个人身份认证
+    @RequestMapping("personVerify")
+    public @ResponseBody
+    boolean personVerify(@RequestBody PersonVerify personVerify){
+        return userBLService.personVerify(personVerify);
+    }
     //企业信息认证
+    @RequestMapping("companyVerify")
+    public @ResponseBody
+    boolean companyVerify(@RequestBody CompanyVerify companyVerify){
+        return userBLService.companyVerify(companyVerify);
+    }
     //查看个人身份信息
     //查看企业身份信息
 }

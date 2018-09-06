@@ -27,6 +27,8 @@ public class Person {
     private boolean isActive;//用户的激活状态
     private String activeCode;//用户的激活码
 
+    private boolean verified;//用户是否已经实名认证且通过
+
     private String idPhoto;//用户身份证照片，用于实名认证
     private String name;//用户的姓名
     private String nickname;//用户的昵称？nickname？暂时无用
