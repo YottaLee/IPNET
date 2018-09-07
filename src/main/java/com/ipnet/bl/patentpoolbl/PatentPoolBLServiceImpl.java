@@ -85,18 +85,35 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         patentIDList.add(patentID);
 
         this.patentPoolDao.saveAndFlush(pool);
-
         return true;
     }
 
+    /**
+     * @author gy
+     * @param ipId
+     * @param ipSetId
+     */
     @Override
-    public void inviteIpSet(String ipId,String ipSetId){
+    public void inviteIpSet(String ipId,String ipSetId){                      //ip需要添加新的属性
+         Optional<PatentPool> optional = this.patentPoolDao.findById(ipSetId);
 
     }
 
+    /**
+     * @author gy
+     * @param ipSetVo
+     * @return
+     */
     @Override
     public boolean updateIpSet(PatentPoolVO ipSetVo){
         boolean flag = false;
+        PatentPool domain = (PatentPool) this.transHelper.transTO(ipSetVo, PatentPool.class);
+        String patentPoolId = domain.getId();
+        if(searchPatentPoolByID(patentPoolId)!=null) {
+            this.patentPoolDao.deleteById(patentPoolId);
+            this.patentPoolDao.saveAndFlush(domain);
+            flag = true;
+        }
         return flag;
     }
 }

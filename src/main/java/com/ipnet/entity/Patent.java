@@ -28,4 +28,5 @@ public class Patent {
     private Region region;//所属地区
     private Patent_type patent_type;//专利类别
 
+    //需要添加一个所属专利池？
 }
