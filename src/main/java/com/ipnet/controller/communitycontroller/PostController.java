@@ -31,76 +31,81 @@ public class PostController {
     @RequestMapping(value = "/testtest")
     public @ResponseBody
     void testtest() throws IOException {
-        try{
+        try {
             postBLService.downLoadFromUrl("https://ipnet10.oss-cn-beijing.aliyuncs.com/20180902001530jane.txt");
-        }catch (Exception e) {
+        } catch (Exception e) {
         }
     }
 
     @RequestMapping(value = "/changeBaseToUrl")
-    public @ResponseBody String uploadPicture(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID){
-        return aliService.uploadPicture(projectID,filename+".jpg",base64);
+    public @ResponseBody
+    String uploadPicture(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID) {
+        return aliService.uploadPicture(projectID, filename + ".jpg", base64);
     }
 
-    @RequestMapping("/toUpLoadFile")
-    public String toUpLoadFile(){
-        return "test";
+    /**
+     * @param file 上传的文件
+     * @return
+     */
+
+    @RequestMapping("/upLoadFile")
+    public String upLoadFile(MultipartFile file) {
+        return postBLService.uploadFile(file.getName(), file);
     }
-
-
 
 
     @RequestMapping(value = "/createPostID")
-    public @ResponseBody String createPostID(@RequestParam String author){
+    public @ResponseBody
+    String createPostID(@RequestParam String author) {
         return postBLService.createID(author);
     }
 
     @RequestMapping(value = "/publishArticle")
     public @ResponseBody
     ResultMessage publishArticle(@RequestBody PublishArticleVO publishArticleVO) throws IOException {
-        System.err.println(publishArticleVO.getPost_id()+"77777777777");
-        return postBLService.publishArticle(publishArticleVO.getPost_id(),publishArticleVO.getAuthor(),publishArticleVO.getPost_name(),publishArticleVO.getPost_tag(),publishArticleVO.getBrief_intro(),publishArticleVO.getContent());
+        System.err.println(publishArticleVO.getPost_id() + "77777777777");
+        return postBLService.publishArticle(publishArticleVO.getPost_id(), publishArticleVO.getAuthor(), publishArticleVO.getPost_name(), publishArticleVO.getPost_tag(), publishArticleVO.getBrief_intro(), publishArticleVO.getContent());
     }
 
     @RequestMapping(value = "/editArticle")
     public @ResponseBody
-    ResultMessage editArticle(@RequestBody EditArticleVO editArticleVO){
-        return postBLService.edit(editArticleVO.getPost_id(),editArticleVO.getPost_name(),editArticleVO.getPost_tag(),editArticleVO.getContent());
+    ResultMessage editArticle(@RequestBody EditArticleVO editArticleVO) {
+        return postBLService.edit(editArticleVO.getPost_id(), editArticleVO.getPost_name(), editArticleVO.getPost_tag(), editArticleVO.getContent());
     }
 
     @RequestMapping(value = "/deleteArticle")
     public @ResponseBody
-    ResultMessage deleteArticle(@RequestParam String post_id){
+    ResultMessage deleteArticle(@RequestParam String post_id) {
         return postBLService.deleteArticle(post_id);
     }
 
     @RequestMapping(value = "/remark")
     public @ResponseBody
-    ResultMessage remark(@RequestParam String post_id, @RequestParam String reviewer, @RequestParam String remark_content){
-        return postBLService.remark(post_id,reviewer,remark_content);
+    ResultMessage remark(@RequestParam String post_id, @RequestParam String reviewer, @RequestParam String remark_content) {
+        return postBLService.remark(post_id, reviewer, remark_content);
     }
 
     @RequestMapping(value = "/readArticle")
     public @ResponseBody
-    PostVO readArticle(@RequestParam String post_id,@RequestParam String reader) throws IOException {
-        return postBLService.readArticle(post_id,reader);
+    PostVO readArticle(@RequestParam String post_id, @RequestParam String reader) throws IOException {
+        return postBLService.readArticle(post_id, reader);
     }
 
     @RequestMapping(value = "/readArticleList")
     public @ResponseBody
-    ArrayList<BriefPost> readArticleList(@RequestParam String author){
+    ArrayList<BriefPost> readArticleList(@RequestParam String author) {
         return postBLService.readArticleList(author);
     }
 
     @RequestMapping(value = "/searchArticle")
     public @ResponseBody
-    ArrayList<BriefPost> searchArticle(@RequestParam String keywords){
+    ArrayList<BriefPost> searchArticle(@RequestParam String keywords) {
         return postBLService.searchArticle(keywords);
     }
 
     @RequestMapping(value = "/getAllArticle")
     public @ResponseBody
-    ArrayList<BriefPost> getAllArticle(){
+    ArrayList<BriefPost> getAllArticle() {
         return postBLService.getAllArticleList();
     }
 
@@ -149,5 +154,4 @@ public class PostController {
     }
 
 
-
-        }
+}
