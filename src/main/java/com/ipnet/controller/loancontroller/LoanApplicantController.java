@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
+/**
+ * 贷款-专利持有人部分
+ */
 @Controller
 @RequestMapping("applicant/")
 public class LoanApplicantController {
@@ -14,6 +17,7 @@ public class LoanApplicantController {
 
     /**
      * 将该专利的质押贷款保证保险申请提供给保险公司
+     *
      * @param patentID 专利号
      * @param insuranceList 选择的保险公司列表
      * @return
@@ -26,6 +30,7 @@ public class LoanApplicantController {
 
     /**
      * 存取该专利贷款意向结果
+     *
      * @param patentID 专利号
      * @param money 意向金额
      * @param time 意向期限
@@ -39,18 +44,34 @@ public class LoanApplicantController {
     }
 
     /**
+     * 存取最终确认选择的银行，同时通知其他银行
+     *
+     * @param patentID 专利号
+     * @param bank 银行
+     * @return
+     */
+    @RequestMapping("/sureBank")
+    @ResponseBody
+    public String sureBank(String patentID,String bank){
+        return null;
+    }
+
+
+    /**
      * 将该专利的贷款意向信息反馈给各银行
+     *
      * @param patentID
      * @return
      */
     @RequestMapping("/tellBank")
     @ResponseBody
-    public String chooseBank(String patentID){
+    public String tellBank(String patentID){
         return null;
     }
 
     /**
      * 判断该专利是否已经拥有评估结果
+     *
      * @param patentID 专利号
      * @return
      */
@@ -62,6 +83,7 @@ public class LoanApplicantController {
 
     /**
      * 判断该专利是否已经填写贷款意向信息
+     *
      * @param patentID
      * @return
      */
