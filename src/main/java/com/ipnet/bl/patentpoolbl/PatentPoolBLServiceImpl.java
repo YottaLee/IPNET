@@ -88,4 +88,15 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
 
         return true;
     }
+
+    @Override
+    public void inviteIpSet(String ipId,String ipSetId){
+
+    }
+
+    @Override
+    public boolean updateIpSet(PatentPoolVO ipSetVo){
+        boolean flag = false;
+        return flag;
+    }
 }

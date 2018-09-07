@@ -75,4 +75,25 @@ public class PatentBLServiceImpl implements PatentBLService {
         Patent resultPatent = this.patentDao.saveAndFlush(patent);
         return true;
     }
+
+    @Override
+    public void exitIpSet(String ipId,String ipSetId){
+
+    }
+
+    @Override
+    public PatentVO searchIp(String info){
+        return new PatentVO();
+    }
+    @Override
+    public boolean applyIpSet(String ipId,String ipSetId){
+        boolean flag = false;
+        return flag;
+    }
+
+    @Override
+    public boolean updateIp(PatentVO ipVo){
+        boolean flag = false;
+        return flag;
+    }
 }

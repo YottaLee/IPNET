@@ -22,6 +22,15 @@ public interface PatentBLService {
 
     Boolean updatePatentState(Patent_state newState, String patentID) throws IDNotExistsException;
 
+    void exitIpSet(String ipId,String ipSetId);     //专利退池
+
+    PatentVO searchIp(String info);     //专利详情
+
+    boolean applyIpSet(String ipId,String ipSetId);   //专利申请入池
+
+    boolean updateIp(PatentVO ipVo);  //更新专利
+
+
 
 
 }
