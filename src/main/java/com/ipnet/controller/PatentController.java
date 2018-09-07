@@ -49,7 +49,7 @@ public class PatentController {
        }
 
        @RequestMapping("/exitIpSet")
-       public @ResponseBody void exitIpSet(@RequestParam String ipId,@RequestParam String ipSetId){
+       public @ResponseBody void exitIpSet(@RequestParam String ipId,@RequestParam String ipSetId) throws IDNotExistsException {
              service.exitIpSet(ipId,ipSetId);
        }
 
@@ -59,7 +59,7 @@ public class PatentController {
        }
 
        @RequestMapping("/applyIpSet")
-       public @ResponseBody boolean applyIpSet(@RequestParam String ipId,@RequestParam String ipSetId){
+       public @ResponseBody boolean applyIpSet(@RequestParam String ipId,@RequestParam String ipSetId) throws IDNotExistsException {
            return service.applyIpSet(ipId,ipSetId);
        }
 
