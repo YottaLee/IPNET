@@ -30,6 +30,7 @@ public interface PatentBLService {
 
     boolean updateIp(PatentVO ipVo);  //更新专利
 
+    void denyInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
 
 
 
