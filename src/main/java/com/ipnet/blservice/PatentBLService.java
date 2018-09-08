@@ -32,6 +32,7 @@ public interface PatentBLService {
 
     void denyInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
 
+    void sendInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
 
 
 }

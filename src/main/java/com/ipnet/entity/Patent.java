@@ -33,11 +33,15 @@ public class Patent {
     @ElementCollection(targetClass = String.class)
     private List<String> invitationPoolIdList;//邀请本专利入池的专利池列表
 
-    public void denyInvitationFromPool(String patentPoolId){
+    public void deleteInvitationFromPool(String patentPoolId){
         if (this.invitationPoolIdList == null || this.invitationPoolIdList.size()==0){
             return;
         }
         this.invitationPoolIdList.remove(patentPoolId);
+    }
+
+    public void addInvitationFromPool(String patentPoolId){
+        this.invitationPoolIdList.add(patentPoolId);
     }
 
 
