@@ -19,12 +19,12 @@ public class LoanApplicantController {
      * 将该专利的质押贷款保证保险申请提供给保险公司
      *
      * @param patentID 专利号
-     * @param insuranceList 选择的保险公司列表
+     * @param insurance 选择的保险公司列表
      * @return
      */
     @RequestMapping("/chooseInsurance")
     @ResponseBody
-    public String chooseInsurance(String patentID,ArrayList<String> insuranceList){
+    public String chooseInsurance(String patentID,String insurance){
         return null;
     }
 
@@ -34,25 +34,12 @@ public class LoanApplicantController {
      * @param patentID 专利号
      * @param money 意向金额
      * @param time 意向期限
-     * @param bankList 金融机构列表
+     * @param bank 金融机构
      * @return
      */
     @RequestMapping("/chooseBank")
     @ResponseBody
-    public String chooseBank(String patentID,int money,String time,ArrayList<String> bankList){
-        return null;
-    }
-
-    /**
-     * 存取最终确认选择的银行，同时通知其他银行
-     *
-     * @param patentID 专利号
-     * @param bank 银行
-     * @return
-     */
-    @RequestMapping("/sureBank")
-    @ResponseBody
-    public String sureBank(String patentID,String bank){
+    public String chooseBank(String patentID,int money,String time,String bank){
         return null;
     }
 
