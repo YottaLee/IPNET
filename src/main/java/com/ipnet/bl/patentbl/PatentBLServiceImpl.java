@@ -103,14 +103,6 @@ public class PatentBLServiceImpl implements PatentBLService {
             //设置ip的状态
     }
 
-    @Override
-    public PatentVO searchIp(String info){
-        return new PatentVO();
-    }     //info的形式是什么？
-    @Override
-    public boolean applyIpSet(String ipId,String ipSetId) throws IDNotExistsException {
-        return true;
-    }
 
     @Override
     public boolean updateIp(PatentVO ipVo){
@@ -125,7 +117,22 @@ public class PatentBLServiceImpl implements PatentBLService {
 
         return flag;
     }
+    @Override
+    public boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
+        boolean flag = false;
+        if (!this.patentDao.existsById(patentId)){
+            throw new IDNotExistsException("patent id not exists");
+        }
 
+        Patent patent = this.getPatentById(patentId);
+        PatentPool pool = this.patentpoolDao.findById(patentPoolId).get();
+        if(!pool.isFull()){
+            flag = true;
+            patent.deleteInvitationFromPool(patentPoolId);
+            pool.addPatent(patentId);
+        }
+        return flag;
+    }
     @Override
     public void denyInvitationFromPool(String patentId, String patentPoolId) throws IDNotExistsException {
         if (!this.patentDao.existsById(patentId)){

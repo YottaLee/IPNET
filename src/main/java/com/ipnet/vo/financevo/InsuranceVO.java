@@ -11,10 +11,9 @@ import org.springframework.stereotype.Component;
 @ToString
 @EqualsAndHashCode
 
-public class Insurance {
+public class InsuranceVO {
 
     private String loanID; //贷款号
-    private String patentID; //专利号
     private String person; //投保单位
     private String address; //地址
     private String time; //出险时间

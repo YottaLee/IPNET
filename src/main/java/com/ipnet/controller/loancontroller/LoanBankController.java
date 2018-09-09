@@ -26,7 +26,7 @@ public class LoanBankController {
     @RequestMapping("/getInfo")
     @ResponseBody
     public LoanVO getInfo(String loanID) {
-        return null;
+        return loanBLService.getInfo(loanID);
     }
 
 
@@ -39,7 +39,7 @@ public class LoanBankController {
     @RequestMapping("/getApplication")
     @ResponseBody
     public LoanVO getApplication(String loanID) {
-        return null;
+        return loanBLService.getApplication(loanID);
     }
 
     /**
@@ -55,7 +55,7 @@ public class LoanBankController {
     @RequestMapping("/submitApplication")
     @ResponseBody
     public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
-        return null;
+        return submitApplication(loanID,bank,ifPass,ifInsurance,money,time);
     }
 
     /**
