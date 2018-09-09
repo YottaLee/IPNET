@@ -5,6 +5,7 @@ import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.personalservice.ElectronicWalletBLService;
 import com.ipnet.dao.CompanyUserDao;
 import com.ipnet.dao.UserDao;
+import com.ipnet.entity.Person;
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.CreditCard;
@@ -21,7 +22,7 @@ import java.util.List;
 @Service
 public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     @Autowired
-    private UserDao userDao;
+    private Person userDao;
     @Autowired
     private CompanyUserDao companyUserDao;
     @Autowired
