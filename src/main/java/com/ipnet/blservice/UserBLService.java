@@ -39,6 +39,11 @@ public interface UserBLService {
     //企业信息实名认证
     boolean companyVerify(CompanyVerify companyVerify);
 
+    //用户是否通过实名认证
+    boolean isVerified(String userID);
+    //用户是否已经绑定手机号
+    boolean hasTelephone(String userID);
+
     //获取用户的头像的url
     String getImageUrl(String username);
 }

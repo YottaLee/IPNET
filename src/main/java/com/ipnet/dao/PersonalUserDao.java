@@ -17,5 +17,5 @@ public interface PersonalUserDao extends JpaRepository<PersonalUser,String> {
 
     PersonalUser findPersonalUserByName(String name);
 
-
 }
+
