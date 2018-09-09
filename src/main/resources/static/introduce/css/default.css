@@ -1,0 +1,59 @@
+/*
+#1 = 35A49C
+#2 = 79CDC0
+*/
+a {
+	/*color: rgb(127,191,245);*/
+	color: rgb(86,61,67);
+}
+a:hover {
+	color: rgb(127,191,245);
+}
+
+/* menu */
+.nav>li>a:hover {
+	color: rgb(127,191,245);
+}
+
+.navbar .navbar-nav > .active > a {
+	/*color: rgb(127,191,245);*/
+}
+
+/* flexslider */
+.flex-control-paging li a {
+	background:rgb(127,191,245);
+}
+
+.flex-direction-nav a:hover{
+	background-color:rgb(127,191,245);
+}
+
+.testimonial span.author a {
+	color: rgb(127,191,245);
+}
+
+/* --- icon box hover --- */
+
+
+/* btn */
+.btn-theme {
+  background: rgb(127,191,245);
+}
+.btn-theme:hover,.btn-theme:focus,.btn-theme:active{
+  background: rgb(127,191,245);
+}
+
+/* contact */
+.validation {
+	color:rgb(86,61,67);
+}
+
+/* footer */
+.social-circle li a {
+	background:rgb(86,61,67);
+}
+
+/*a.scrollup{*/
+	/*background:rgb(86,61,67);*/
+/*}*/
+
