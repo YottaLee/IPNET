@@ -4,7 +4,7 @@ import com.ipnet.blservice.AliService;
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.personalservice.UserInfoBLService;
 import com.ipnet.dao.CompanyUserDao;
-import com.ipnet.dao.UserDao;
+import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.entity.CompanyUser;
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserInfoBLServiceImpl implements UserInfoBLService {
     @Autowired
-    private UserDao userDao;
+    private PersonalUserDao userDao;
     @Autowired
     private CompanyUserDao companyUserDao;
     @Autowired
@@ -39,10 +39,10 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public ResultMessage savePersonalUserInfo(PersonalUserSaveVo personalUserSaveVo) {
-        if(userDao.searchUserById(personalUserSaveVo.getUsername()).equals(null)){
+        if(userDao.findPersonalUserByName(personalUserSaveVo.getUsername()).equals(null)){
             return ResultMessage.Fail;
         }else{
-            PersonalUser personalUser=userDao.searchUserById(personalUserSaveVo.getUsername());
+            PersonalUser personalUser=userDao.findPersonalUserByName(personalUserSaveVo.getUsername());
             personalUser.setName(personalUserSaveVo.getName());
             personalUser.setSex(personalUserSaveVo.getGender());
             personalUser.setTelephone(personalUserSaveVo.getPhone());
@@ -59,11 +59,11 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public ResultMessage saveCompanyUserInfo(CompanyUserSaveVo companyUserSaveVo) {
-        if(companyUserDao.searchUserById(companyUserSaveVo.getName()).equals(null)){
+        if(companyUserDao.findCompanyUserByName(companyUserSaveVo.getName()).equals(null)){
             return ResultMessage.Fail;
         }else{
-            CompanyUser companyUser=companyUserDao.searchUserById(companyUserSaveVo.getName());
-            companyUser.setJuridical_person(companyUserSaveVo.getRepresentative());
+            CompanyUser companyUser=companyUserDao.findCompanyUserByName(companyUserSaveVo.getName());
+            companyUser.setRepresentative(companyUserSaveVo.getRepresentative());
 
 
 
@@ -75,7 +75,7 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public UserInfoVo getUserInfo(String userId) {
-        PersonalUser personalUser=userDao.searchUserById(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser!=null){
             return new UserInfoVo(personalUser.getName(),personalUser.getSex(),personalUser.getTelephone(),
                     personalUser.getIndustry(),personalUser.getCompany(),personalUser.getRegion(),personalUser.getDescription(),
@@ -86,7 +86,7 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public AccountInfoVo getAccountInfo(String userId) {
-        PersonalUser personalUser=userDao.searchUserById(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.equals(null))
             return null;
         else{
@@ -97,7 +97,7 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public ResultMessage isUserValidate(String userId) {
-        PersonalUser personalUser=userDao.searchUserById(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.getIdentities().size()!=0)
             return ResultMessage.Success;
         return ResultMessage.Fail;

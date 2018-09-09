@@ -8,12 +8,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
+import java.util.ArrayList;
 
 
 @Repository
 @Table(name = "companyPersonal_user")
 public interface CompanyUserDao extends JpaRepository<CompanyUser,String> {
 
-    @Query(value = "select t from CompanyUser t where t.username =:username")
-    CompanyUser searchUserById(@Param("username") String username);
+    CompanyUser findCompanyUserById(String id);
+
+    CompanyUser findCompanyUserByName(String name);
+
+
 }

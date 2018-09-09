@@ -4,8 +4,8 @@ import com.ipnet.blservice.AliService;
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.personalservice.ElectronicWalletBLService;
 import com.ipnet.dao.CompanyUserDao;
-import com.ipnet.dao.UserDao;
-import com.ipnet.entity.Person;
+import com.ipnet.dao.PersonalUserDao;
+
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.CreditCard;
@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     @Autowired
-    private Person userDao;
+    private PersonalUserDao userDao;
     @Autowired
     private CompanyUserDao companyUserDao;
     @Autowired
@@ -35,18 +35,18 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
 
     @Override
     public Double getAccountBalance(String userId) {
-        return userDao.getOne(userId).getRMB();
+        return userDao.findPersonalUserById(userId).getRMB();
     }
 
     @Override
     public List<String> getAllAccountId(String userId) {
-        return userDao.getOne(userId).getBankAccount();
+        return userDao.findPersonalUserById(userId).getBankAccount();
     }
 
     @Override
     public ResultMessage chargeBalance(String userId, double rmb_num, String card) {
         //???
-        List<String> account=userDao.getOne(userId).getBankAccount();
+        List<String> account=userDao.findPersonalUserById(userId).getBankAccount();
 
         return ResultMessage.Success;
     }
@@ -54,7 +54,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     @Override
     public ResultMessage withDrawBalance(String userId, double rmb_num, String card) {
         //???
-        List<String> account=userDao.searchUserById(userId).getBankAccount();
+        List<String> account=userDao.findPersonalUserById(userId).getBankAccount();
 
         return ResultMessage.Success;
     }
@@ -62,7 +62,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     @Override
     public List<CreditCard> getCreditCardInfo(String userId) {
 
-        List<String> account=userDao.getOne(userId).getBankAccount();
+        List<String> account=userDao.findPersonalUserById(userId).getBankAccount();
         List<CreditCard> creditCards=new ArrayList<>();
         for(String a:account){
             creditCards.add(new CreditCard(a,""));
@@ -72,7 +72,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
 
     @Override
     public ResultMessage setCreditCard(String userId, String card, String card_code) {
-        PersonalUser personalUser=userDao.getOne(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.equals(null))
             return ResultMessage.Fail;
         else{
@@ -89,7 +89,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
 
     @Override
     public ResultMessage cancelCreditCard(String userId, String card) {
-        PersonalUser personalUser=userDao.getOne(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.equals(null))
             return ResultMessage.Fail;
         else{
@@ -97,6 +97,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
             if(true){
                 personalUser.getBankAccount().remove(card);
                 userDao.save(personalUser);
+                return ResultMessage.Success;
             }else
                 return ResultMessage.Fail;
 
@@ -105,6 +106,6 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
 
     @Override
     public int getPoint(String userId) {
-        return userDao.getOne(userId).getCredits();
+        return userDao.findPersonalUserById(userId).getCredits();
     }
 }

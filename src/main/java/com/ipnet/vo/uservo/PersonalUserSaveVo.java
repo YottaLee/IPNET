@@ -5,6 +5,8 @@ import com.ipnet.enums.Region;
 import com.ipnet.enums.Role;
 import com.ipnet.enums.Sex;
 
+import javax.print.DocFlavor;
+
 public class PersonalUserSaveVo {
 
     private String username;
@@ -19,13 +21,13 @@ public class PersonalUserSaveVo {
 
     private String company;
 
-    private Region region;
+    private String region;
 
     private String statement;
 
     private String IDcard_img;
 
-    public PersonalUserSaveVo(String username, String name, Sex gender, String phone, Industry profession, String company, Region region, String statement, String IDcard_img) {
+    public PersonalUserSaveVo(String username, String name, Sex gender, String phone, Industry profession, String company, String region, String statement, String IDcard_img) {
         this.username = username;
         this.name = name;
         this.gender = gender;
@@ -88,11 +90,11 @@ public class PersonalUserSaveVo {
         this.company = company;
     }
 
-    public Region getRegion() {
+    public String getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    public void setRegion(String region) {
         this.region = region;
     }
 
