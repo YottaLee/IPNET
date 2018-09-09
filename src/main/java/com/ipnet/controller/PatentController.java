@@ -79,6 +79,15 @@ public class PatentController {
         return service.updateIp(ipVo);
     }
 
+    @RequestMapping("/denyInvitationFromPool")
+    public @ResponseBody void denyInvitationFromPool(@RequestParam String patentId , @RequestParam String patentPoolId) throws IDNotExistsException{
+         service.denyInvitationFromPool(patentId , patentPoolId);
+    }
+
+    @RequestMapping("/")
+    public void sendInvitationFromPool(String patentId, String patentPoolId) throws IDNotExistsException{
+         service.sendInvitationFromPool(patentId , patentPoolId);
+    }
     /**
      * 获取专利列表
      * @param userId 用户Id
