@@ -48,7 +48,7 @@ public class UserInfoController {
     }
 
     //查看是否完成验证
-    @RequestMapping("/getAccount")
+    @RequestMapping("/getValid")
     public @ResponseBody
     ResultMessage isUserValidate (String userId){
         return userBLService.isUserValidate(userId);

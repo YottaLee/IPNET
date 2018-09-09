@@ -3,7 +3,7 @@ package com.ipnet.bl.userbl;
 import com.ipnet.blservice.AliService;
 import com.ipnet.blservice.UserBLService;
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
-import com.ipnet.dao.CompanyDao;
+import com.ipnet.dao.CompanyUserDao;
 import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.entity.CompanyUser;
 import com.ipnet.entity.PersonalUser;
@@ -29,7 +29,7 @@ public class UserBL implements UserBLService{
     @Autowired
     private PersonalUserDao personalUserDao;
     @Autowired
-    private CompanyDao companyDao;
+    private CompanyUserDao companyUserDao;
     @Autowired
     private AliService aliService;
     @Autowired
@@ -38,6 +38,7 @@ public class UserBL implements UserBLService{
     private CommunityUserBLService communityUserBLService;
     @Autowired
     private MD5Util md5Util;
+
     @Autowired
     private TransHelper transHelper;
 
@@ -129,7 +130,7 @@ public class UserBL implements UserBLService{
 
     @Override
     public ResultMessage personalEmailRegister(EmailRegister register) {
-        if(personalUserDao.existsById(register.getUsername())||companyDao.existsById(register.getUsername())){
+        if(personalUserDao.existsById(register.getUsername())|| companyUserDao.existsById(register.getUsername())){
             //该邮箱已经被注册过
             return ResultMessage.Exist;
         }else{
@@ -168,7 +169,7 @@ public class UserBL implements UserBLService{
 
     @Override
     public ResultMessage companyRegister(EmailRegister register) {
-        if(personalUserDao.existsById(register.getUsername())||companyDao.existsById(register.getUsername())){
+        if(personalUserDao.existsById(register.getUsername())|| companyUserDao.existsById(register.getUsername())){
             //该邮箱已经被注册过
             return ResultMessage.Exist;
         }else{
@@ -198,7 +199,7 @@ public class UserBL implements UserBLService{
             if(!this.sendEmail(register.getUsername(),activeCode)){
                 return ResultMessage.Fail;
             }else{
-                companyDao.save(newCompanyUser);
+                companyUserDao.save(newCompanyUser);
                 communityUserBLService.addUser(register.getUsername());
                 return ResultMessage.Success;
             }
@@ -207,13 +208,13 @@ public class UserBL implements UserBLService{
 
     @Override
     public ResultMessage checkEmail(String email, String activeCode) {
-        Optional<CompanyUser> c_user=companyDao.findById(email);
+        Optional<CompanyUser> c_user= companyUserDao.findById(email);
         Optional<PersonalUser> p_user= personalUserDao.findById(email);
         if(c_user.isPresent()){
             CompanyUser user=c_user.get();
             if(user.getActiveCode().equals(activeCode)){
                 user.setActive(true);
-                companyDao.saveAndFlush(user);
+                companyUserDao.saveAndFlush(user);
                 return ResultMessage.Success;
             }
         }else if(p_user.isPresent()){
@@ -287,7 +288,7 @@ public class UserBL implements UserBLService{
 
     @Override
     public ResultMessage loginEmail(String email, String password) {
-        Optional<CompanyUser> c_user= companyDao.findById(email);
+        Optional<CompanyUser> c_user= companyUserDao.findById(email);
         Optional<PersonalUser> p_user= personalUserDao.findById(email);
         if(c_user.isPresent()){//该用户是企业用户
             if(!c_user.get().isActive()){
@@ -348,7 +349,7 @@ public class UserBL implements UserBLService{
 
     @Override
     public boolean companyVerify(CompanyVerify companyVerify) {
-        Optional<CompanyUser> companyOptional=companyDao.findById(companyVerify.getId());
+        Optional<CompanyUser> companyOptional= companyUserDao.findById(companyVerify.getId());
         if(companyOptional.isPresent()){
             CompanyUser companyUser =companyOptional.get();
             companyUser.setRepresentative(companyVerify.getRepresentative());
@@ -368,7 +369,7 @@ public class UserBL implements UserBLService{
             companyUser.setWebsite(companyVerify.getWebsite());
 
             //调用系统管理员的验证
-            companyDao.saveAndFlush(companyUser);
+            companyUserDao.saveAndFlush(companyUser);
             return true;
         }
         return false;
@@ -380,7 +381,7 @@ public class UserBL implements UserBLService{
         if(personOptional.isPresent()){
             return personOptional.get().isVerified();
         }else{
-            Optional<CompanyUser> companyOptional=companyDao.findById(userID);
+            Optional<CompanyUser> companyOptional= companyUserDao.findById(userID);
             if(companyOptional.isPresent()){
                 return companyOptional.get().isVerified();
             }
@@ -397,7 +398,7 @@ public class UserBL implements UserBLService{
     public String getImageUrl(String username) {
         String image=null;
         Optional<PersonalUser> person= personalUserDao.findById(username);
-        Optional<CompanyUser> company=companyDao.findById(username);
+        Optional<CompanyUser> company= companyUserDao.findById(username);
         if(person.isPresent()){
             image=person.get().getImage();
         }else if(company.isPresent()){

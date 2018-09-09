@@ -18,20 +18,20 @@ public class LoanApplicantController {
     /**
      * 将该专利的质押贷款保证保险申请提供给保险公司
      *
-     * @param patentID 专利号
+     * @param loanID 贷款号
      * @param insurance 选择的保险公司
      * @return
      */
     @RequestMapping("/chooseInsurance")
     @ResponseBody
-    public ResultMessage chooseInsurance(String patentID, String insurance){
+    public ResultMessage chooseInsurance(String loanID, String insurance){
         return null;
     }
 
     /**
      * 存取该专利贷款意向结果
      *
-     * @param patentID 专利号
+     * @param loanID 贷款号
      * @param money 意向金额
      * @param time 意向期限
      * @param bank 金融机构
@@ -39,22 +39,33 @@ public class LoanApplicantController {
      */
     @RequestMapping("/chooseBank")
     @ResponseBody
-    public ResultMessage chooseBank(String patentID,int money,String time,String bank){
+    public ResultMessage chooseBank(String loanID,int money,String time,String bank){
         return null;
     }
 
 
-    /**
-     * 将该专利的贷款意向信息反馈给各银行
-     *
-     * @param patentID
-     * @return
-     */
+//    /**
+//     * 将该专利的贷款意向信息反馈给各银行
+//     *
+//     * @param patentID
+//     * @return
+//     */
 //    @RequestMapping("/tellBank")
 //    @ResponseBody
 //    public String StringtellBank(String patentID){
 //        return null;
 //    }
+
+    /**
+     * 存取该专利已经有贷款申请，可借此机会生成loanID
+     * @param patentID
+     * @return 返回loanID
+     */
+    @RequestMapping("/applyLoan")
+    @ResponseBody
+    public String saveLoanApply(String patentID){
+        return null;
+    }
 
     /**
      * 判断该专利是否已经拥有评估结果

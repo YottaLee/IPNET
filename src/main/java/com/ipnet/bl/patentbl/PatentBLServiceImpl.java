@@ -83,9 +83,6 @@ public class PatentBLServiceImpl implements PatentBLService {
         return true;
     }
 
-    /**
-     * @author gy
-     */
     @Override
     public void exitIpSet(String ipId,String ipSetId) throws IDNotExistsException {
             Optional<PatentPool> option = this.patentpoolDao.findById(ipSetId);
@@ -105,28 +102,13 @@ public class PatentBLServiceImpl implements PatentBLService {
             //设置ip的状态
     }
 
-    /**
-     * @author gy
-     * @param info
-     * @return
-     */
     @Override
     public PatentVO searchIp(String info){
         return new PatentVO();
     }     //info的形式是什么？
-
     @Override
     public boolean applyIpSet(String ipId,String ipSetId) throws IDNotExistsException {
-        boolean flag = false;
-        Optional<PatentPool> option = this.patentpoolDao.findById(ipSetId);
-        if(option!=null || option.isPresent() == false){
-            throw new IDNotExistsException("pool id not exists");
-        }
-        //是否要给patentpool里面加一个申请入池的iplist
-        else {
-            flag = true;
-        }
-        return flag;
+        return true;
     }
 
     @Override

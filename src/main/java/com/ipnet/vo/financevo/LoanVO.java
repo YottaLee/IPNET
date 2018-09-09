@@ -11,12 +11,14 @@ import org.springframework.stereotype.Component;
 @ToString
 @EqualsAndHashCode
 
+
 /**
  * 贷款
  * @author Panxy
  */
-public class Loan {
+public class LoanVO {
 
+    private String loanID; //贷款ID
     private String patentID;//专利ID
     private String patent;//专利名称
     private String person; //专利持有人

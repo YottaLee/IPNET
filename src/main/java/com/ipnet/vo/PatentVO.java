@@ -30,5 +30,4 @@ public class PatentVO {
     private Region region;//所属地区
     private Patent_type patent_type;//专利类别
 
-
 }
