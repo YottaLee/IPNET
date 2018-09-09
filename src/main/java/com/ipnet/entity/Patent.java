@@ -7,10 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,5 +29,21 @@ public class Patent {
     private String valid_period;//有效期限
     private Region region;//所属地区
     private Patent_type patent_type;//专利类别
+
+    @ElementCollection(targetClass = String.class)
+    private List<String> invitationPoolIdList;//邀请本专利入池的专利池列表
+
+    public void deleteInvitationFromPool(String patentPoolId){
+        if (this.invitationPoolIdList == null || this.invitationPoolIdList.size()==0){
+            return;
+        }
+        this.invitationPoolIdList.remove(patentPoolId);
+    }
+
+    public void addInvitationFromPool(String patentPoolId){
+        this.invitationPoolIdList.add(patentPoolId);
+    }
+
+
 
 }
