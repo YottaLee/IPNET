@@ -21,7 +21,13 @@ public interface PatentPoolBLService {
 
     Boolean addPatentIntoPool(String poolID, String PatentID) throws IDNotExistsException;
 
-    void inviteIpSet(String ipId,String ipSetId);      //邀请专利入池
+    boolean applyIpSet(String ipId,String ipSetId) throws IDNotExistsException;   //专利申请入池
+
+    void acceptIpApply(String ipId , String ipSetId) throws  IDNotExistsException;     //同意专利入池
+
+    void denyIpApply(String ipId , String ipSetId) throws IDNotExistsException; //拒绝专利入池
+
+    boolean isFull(String ipSetId) throws IDNotExistsException;        //池子是否已满
 
     boolean updateIpSet(PatentPoolVO ipSetVo);         //更新专利池
 

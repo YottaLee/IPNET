@@ -141,4 +141,15 @@ public class UserController {
     boolean hasTelephone(String userID){
         return userBLService.hasTelephone(userID);
     }
+
+    /**
+     * 返回用户的身份
+     * @param userID 用户ID
+     * @return 用户角色
+     */
+    @RequestMapping("/getUserRole")
+    @ResponseBody
+    public Role getUserRole(String userID){
+        return null;
+    }
 }

@@ -14,6 +14,7 @@ import com.ipnet.blservice.AliService;
 import com.ipnet.enums.ResultMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -43,7 +44,7 @@ public class AliServiceImpl implements AliService {
         oss_accessKeyId= AliConstant.oss_accessKeyId;
         oss_accessKeySecret= AliConstant.oss_accessKeySecret;
         bucketName= AliConstant.bucketName;
-        fileSeparator=File.separator;
+        fileSeparator="/";
 
         //短信平台必要变量初始化
         product=AliConstant.product;
@@ -77,6 +78,7 @@ public class AliServiceImpl implements AliService {
         ossClient=new OSSClient(endPoint,oss_accessKeyId,oss_accessKeySecret);
     }
 
+
     public String uploadPicture(String projectID,String filename,String base64){
         //截取出图片类型
         int end=base64.indexOf(";base64");
@@ -89,12 +91,23 @@ public class AliServiceImpl implements AliService {
         return this.uploadStreamToOss(inputStream,projectID+fileSeparator+filename.substring(0,sepatator)+"."+type);
     }
 
+    @Override
+    public String uploadFile(String path, MultipartFile file) {
+        try {
+            InputStream inputStream=file.getInputStream();
+            return this.uploadStreamToOss(inputStream,path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private String uploadStreamToOss(InputStream inputStream, String fileName) {
         String ret = "";
         String url="";
         try {
             //创建上传Object的Metadata
-            ObjectMetadata objectMetadata = new ObjectMetadata();
+            ObjectMetadata objectMetadata =   new ObjectMetadata();
             objectMetadata.setContentLength(inputStream.available());
             objectMetadata.setCacheControl("no-cache");
             objectMetadata.setHeader("Pragma", "no-cache");
