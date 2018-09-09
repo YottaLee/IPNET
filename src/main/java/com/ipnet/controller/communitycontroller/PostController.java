@@ -4,20 +4,17 @@ import com.ipnet.bl.ali.AliServiceImpl;
 import com.ipnet.blservice.communityservice.PostBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.communityenums.Post_tag;
-import com.ipnet.vo.communityvo.BriefPost;
-import com.ipnet.vo.communityvo.EditArticleVO;
-import com.ipnet.vo.communityvo.PostVO;
-import com.ipnet.vo.communityvo.PublishArticleVO;
+import com.ipnet.vo.communityvo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 @Controller
@@ -30,69 +27,85 @@ public class PostController {
     @Autowired
     private PostBLService postBLService;
 
+
+    @RequestMapping(value = "/testtest")
+    public @ResponseBody
+    void testtest() throws IOException {
+        try {
+            postBLService.downLoadFromUrl("https://ipnet10.oss-cn-beijing.aliyuncs.com/20180902001530jane.txt");
+        } catch (Exception e) {
+        }
+    }
+
     @RequestMapping(value = "/changeBaseToUrl")
-    public @ResponseBody String uploadPicture(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID){
-        return aliService.uploadPicture(projectID,filename+".jpg",base64);
+    public @ResponseBody
+    String uploadPicture(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID) {
+        return aliService.uploadPicture(projectID, filename + ".jpg", base64);
     }
 
-    @RequestMapping("/toUpLoadFile")
-    public String toUpLoadFile(){
-        return "test";
+    /**
+     * @param file 上传的文件
+     * @return
+     */
+
+    @RequestMapping("/upLoadFile")
+    public String upLoadFile(MultipartFile file) {
+        return postBLService.uploadFile(file.getName(), file);
     }
-
-
 
 
     @RequestMapping(value = "/createPostID")
-    public @ResponseBody String createPostID(String author){
+    public @ResponseBody
+    String createPostID(@RequestParam String author) {
         return postBLService.createID(author);
     }
 
     @RequestMapping(value = "/publishArticle")
     public @ResponseBody
-    ResultMessage publishArticle(PublishArticleVO publishArticleVO){
-        return postBLService.publishArticle(publishArticleVO.getPost_id(),publishArticleVO.getAuthor(),publishArticleVO.getPost_name(),publishArticleVO.getPost_tag(),publishArticleVO.getBrief_intro(),publishArticleVO.getContent());
+    ResultMessage publishArticle(@RequestBody PublishArticleVO publishArticleVO) throws IOException {
+        System.err.println(publishArticleVO.getPost_id() + "77777777777");
+        return postBLService.publishArticle(publishArticleVO.getPost_id(), publishArticleVO.getAuthor(), publishArticleVO.getPost_name(), publishArticleVO.getPost_tag(), publishArticleVO.getBrief_intro(), publishArticleVO.getContent());
     }
 
     @RequestMapping(value = "/editArticle")
     public @ResponseBody
-    ResultMessage editArticle(EditArticleVO editArticleVO){
-        return postBLService.edit(editArticleVO.getPost_id(),editArticleVO.getPost_name(),editArticleVO.getPost_tag(),editArticleVO.getContent());
+    ResultMessage editArticle(@RequestBody EditArticleVO editArticleVO) {
+        return postBLService.edit(editArticleVO.getPost_id(), editArticleVO.getPost_name(), editArticleVO.getPost_tag(), editArticleVO.getContent());
     }
 
     @RequestMapping(value = "/deleteArticle")
     public @ResponseBody
-    ResultMessage deleteArticle(String post_id){
+    ResultMessage deleteArticle(@RequestParam String post_id) {
         return postBLService.deleteArticle(post_id);
     }
 
     @RequestMapping(value = "/remark")
     public @ResponseBody
-    ResultMessage remark(String post_id, String reviewer, String remark_content){
-        return postBLService.remark(post_id,reviewer,remark_content);
+    ResultMessage remark(@RequestParam String post_id, @RequestParam String reviewer, @RequestParam String remark_content) {
+        return postBLService.remark(post_id, reviewer, remark_content);
     }
 
     @RequestMapping(value = "/readArticle")
     public @ResponseBody
-    PostVO readArticle(String post_id,String reader){
-        return postBLService.readArticle(post_id,reader);
+    PostVO readArticle(@RequestParam String post_id, @RequestParam String reader) throws IOException {
+        return postBLService.readArticle(post_id, reader);
     }
 
     @RequestMapping(value = "/readArticleList")
     public @ResponseBody
-    ArrayList<BriefPost> readArticleList(String author){
+    ArrayList<BriefPost> readArticleList(@RequestParam String author) {
         return postBLService.readArticleList(author);
     }
 
     @RequestMapping(value = "/searchArticle")
     public @ResponseBody
-    ArrayList<BriefPost> searchArticle(String keywords){
+    ArrayList<BriefPost> searchArticle(@RequestParam String keywords) {
         return postBLService.searchArticle(keywords);
     }
 
     @RequestMapping(value = "/getAllArticle")
     public @ResponseBody
-    ArrayList<BriefPost> getAllArticle(){
+    ArrayList<BriefPost> getAllArticle() {
         return postBLService.getAllArticleList();
     }
 
@@ -135,6 +148,10 @@ public class PostController {
         return "/fileDownload";
     }
 
+    @RequestMapping(value = "/recommend", method = RequestMethod.GET)
+    public ArrayList<RecordVO> recoomend(String author) {
+        return postBLService.recommend(author);
+    }
 
 
-        }
+}

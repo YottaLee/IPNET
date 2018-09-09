@@ -16,8 +16,8 @@ import java.util.List;
 public interface CommunityUserDao extends JpaRepository<CommunityUser,String> {
 
     @Modifying
-    @Query(value = "update CommunityUser c set c.signature=:signature where c.userid=:username")
-    void modifySignature(@Param("username") String username, @Param("signature") String signature);
+    @Query(value = "update CommunityUser c set c.nickname=:nickname where c.userid=:username")
+    void modifySignature(@Param("username") String username, @Param("nickname") String nickname);
 
     @Modifying
     @Query(value = "update CommunityUser c set c.tags=:newTag where c.userid=:username")
@@ -25,4 +25,7 @@ public interface CommunityUserDao extends JpaRepository<CommunityUser,String> {
 
     @Query(value = "select c.mines from CommunityUser c where c.userid=:username")
     List<Mine> getMine(@Param("username") String username);
+
+    @Query(value = "select c from CommunityUser c where c.nickname like %?1% or c.userid like %?1%")
+    List<CommunityUser> searchByKey(String keyword);
 }
