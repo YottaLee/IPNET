@@ -375,6 +375,25 @@ public class UserBL implements UserBLService{
     }
 
     @Override
+    public boolean isVerified(String userID) {
+        Optional<Person> personOptional=personalDao.findById(userID);
+        if(personOptional.isPresent()){
+            return personOptional.get().isVerified();
+        }else{
+            Optional<Company> companyOptional=companyDao.findById(userID);
+            if(companyOptional.isPresent()){
+                return companyOptional.get().isVerified();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasTelephone(String userID) {
+        return false;
+    }
+
+    @Override
     public String getImageUrl(String username) {
         String image=null;
         Optional<Person> person=personalDao.findById(username);

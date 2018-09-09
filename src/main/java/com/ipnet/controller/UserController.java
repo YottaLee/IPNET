@@ -128,4 +128,17 @@ public class UserController {
     }
     //查看个人身份信息
     //查看企业身份信息
+
+    //用户是否通过实名认证
+    @RequestMapping("isVerified")
+    public @ResponseBody
+    boolean isVerified(String userID){
+        return userBLService.isVerified(userID);
+    }
+    //用户是否已经绑定手机号
+    @RequestMapping("hasPhone")
+    public @ResponseBody
+    boolean hasTelephone(String userID){
+        return userBLService.hasTelephone(userID);
+    }
 }
