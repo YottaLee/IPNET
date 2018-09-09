@@ -1,13 +1,11 @@
 package com.ipnet.controller.loancontroller;
 
 import com.ipnet.enums.ResultMessage;
-import com.ipnet.vo.financevo.Loan;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 
 /**
  * 贷款-银行部分
@@ -25,7 +23,7 @@ public class LoanBankController {
      */
     @RequestMapping("/getInfo")
     @ResponseBody
-    public Loan getInfo(String loanID) {
+    public LoanVO getInfo(String loanID) {
         return null;
     }
 
@@ -38,7 +36,7 @@ public class LoanBankController {
      */
     @RequestMapping("/getApplication")
     @ResponseBody
-    public Loan getApplication(String loanID) {
+    public LoanVO getApplication(String loanID) {
         return null;
     }
 

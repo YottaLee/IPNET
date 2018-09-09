@@ -16,7 +16,7 @@ public class UploadController {
 
     /**
      * 上传文件到OSS服务器
-     * @param path 文件夹名字，末尾不需要文件分隔符
+     * @param path 文件的完整路径，即文件夹/文件名，e.g.ipnet/logo.jpg
      * @param file 要上传的文件
      * @return 上传的文件的url
      */
