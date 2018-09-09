@@ -2,7 +2,7 @@ package com.ipnet.bl.loanbl;
 
 import com.ipnet.blservice.LoanBLService;
 import com.ipnet.dao.LoanDao;
-import com.ipnet.dao.communitydao.InsuranceDao;
+import com.ipnet.dao.InsuranceDao;
 import com.ipnet.entity.Loan;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.InsuranceVO;
@@ -20,8 +20,8 @@ public class LoanBL implements LoanBLService {
     private InsuranceDao insuranceDao;
 
     @Override
-    public ResultMessage insuranceApplication(String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money) {
-        InsuranceVO insurance=new InsuranceVO(loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
+    public ResultMessage insuranceApplication(String insurance_contractid,String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money) {
+        InsuranceVO insurance=new InsuranceVO(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
         insuranceDao.saveAndFlush(insurance);
         return ResultMessage.Success;
     }

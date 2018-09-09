@@ -37,9 +37,9 @@ public class LoanInsuranceController {
      */
     @RequestMapping("/insuranceApplication")
     @ResponseBody
-    public ResultMessage insuranceApplication(String loanID, String person, String address, String time, String reason,
+    public ResultMessage insuranceApplication(String insurance_contractid,String loanID, String person, String address, String time, String reason,
                                        String bank, String bankName, String bankID, String insuranceID, int money) {
-        return loanBLService.insuranceApplication(loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
+        return loanBLService.insuranceApplication(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
     }
 
     /**

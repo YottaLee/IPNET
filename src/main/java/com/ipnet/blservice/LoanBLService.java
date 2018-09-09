@@ -7,7 +7,7 @@ import com.ipnet.vo.financevo.LoanVO;
 
 public interface LoanBLService {
 
-    ResultMessage insuranceApplication(String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money);
+    ResultMessage insuranceApplication(String insurance_contractid,String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money);
 
     ResultMessage ifInsurance(String loanID, boolean ifPass);
 

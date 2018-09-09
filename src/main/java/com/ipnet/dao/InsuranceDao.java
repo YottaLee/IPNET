@@ -1,4 +1,4 @@
-package com.ipnet.dao.communitydao;
+package com.ipnet.dao;
 
 import com.ipnet.vo.financevo.InsuranceVO;
 import org.springframework.data.jpa.repository.JpaRepository;
