@@ -42,4 +42,9 @@ public class PageController {
         return "/community/community_person";
     }
 
+    @RequestMapping("pay")
+    public String pay(){
+        return "pay";
+    }
+
 }

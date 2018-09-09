@@ -70,7 +70,7 @@ public class UserController {
     @RequestMapping("/emailRegister")
     public @ResponseBody
     ResultMessage EmailRegister(@RequestBody EmailRegister register){
-        if(register.get   Role()== Role.PersonalUser){
+        if(register.getRole()== Role.PersonalUser){
             return userBLService.personalEmailRegister(register);
         }else{
             return userBLService.companyRegister(register);
