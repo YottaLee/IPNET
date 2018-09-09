@@ -27,9 +27,6 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
     private TransHelper transHelper;
 
     @Autowired
-    private PatentDao patentDao;
-
-    @Autowired
     private PatentPoolDao patentPoolDao;
 
     @Autowired
@@ -99,22 +96,6 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
      * @param ipSetId
      * @expalnmation:该方法放在了patent里面，因为只改变patent的属性，会发生循环依赖
      */
-    @Override
-    public void inviteIpSet(String ipId,String ipSetId) throws IDNotExistsException {                      //ip需要添加新的属性
-//        Optional<PatentPool> optional = this.patentPoolDao.findById(ipSetId);
-//        if (optional == null || optional.isPresent() == false) {
-//            throw new IDNotExistsException("pool id not exists");
-//        }
-//        PatentPool realPool = optional.get();
-//
-//        Optional<Patent> optionalPatent = this.patentDao.findById(ipId);
-//        if(optionalPatent == null || optional.isPresent() == false){
-//            throw  new IDNotExistsException("ip id not exists");
-//        }
-//        Patent targetIp = optionalPatent.get();
-//        targetIp.addPoolToList(ipSetId);
-//        this.patentDao.saveAndFlush(targetIp);
-    }
 
     /**
      * @author gy

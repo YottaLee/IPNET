@@ -48,13 +48,28 @@ public class PatentPoolController {
          return  service.addPatentIntoPool(poolID,PatentID);
     }
 
-    @RequestMapping("/inviteIpSet")
-    public @ResponseBody void inviteIpSet(@RequestParam String ipId,@RequestParam String ipSetId) throws IDNotExistsException {
-          service.inviteIpSet(ipId,ipSetId);
-    }
-
     @RequestMapping("/updateIpSet")
     public @ResponseBody boolean updateIpSet(@RequestBody PatentPoolVO ipSetVo){
          return service.updateIpSet(ipSetVo);
+    }
+
+    @RequestMapping("/applyIpSet")
+    public @ResponseBody boolean applyIpSet(@RequestParam String ipId,@RequestParam String ipSetId) throws IDNotExistsException{
+         return  service.applyIpSet(ipId , ipSetId);
+    }
+
+    @RequestMapping("/acceptIpApply")
+    public @ResponseBody void acceptIpApply(@RequestParam String ipId , @RequestParam String ipSetId) throws  IDNotExistsException{
+         service.acceptIpApply(ipId , ipSetId);
+    }
+
+    @RequestMapping("/denyIpApply")
+    public @ResponseBody void denyIpApply(@RequestParam String ipId , @RequestParam String ipSetId) throws IDNotExistsException{
+         service.denyIpApply(ipId , ipSetId);
+    }
+
+    @RequestMapping("/isFull")
+    public @ResponseBody boolean isFull(@RequestParam String ipSetId) throws IDNotExistsException{
+         return service.isFull(ipSetId);
     }
 }
