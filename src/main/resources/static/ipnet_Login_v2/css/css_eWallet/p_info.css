@@ -1,0 +1,34 @@
+.info-container {
+    /*margin: 4%;*/
+    padding: 4%;
+    border: 1px solid #d8d8d8;
+}
+.form1 input{
+    margin-top: 3%;
+    margin-left: 5%;
+}
+.form1 button {
+    margin-top: 5%;
+    margin-left: 5%;
+}
+.form1-content {
+    margin-top: 3%;
+    margin-left: 5%;
+}
+.text1{
+    font-size: 15px;
+    font-family: "Microsoft YaHei", Poppins-Regular;
+    /*color: #757575;*/
+    /*margin: 5% ;*/
+    position: relative;  /* absolute */
+    display: inline-block;
+    padding:9px 9px !important;  /* 15px 10px !important */
+    font-weight: bold;
+    background: #82cff0;
+    color: #fff;
+    /*border: 0;
+    outline: 0;
+    top: 0;
+    left: 9px;*/
+    border-radius: 3px;
+}
