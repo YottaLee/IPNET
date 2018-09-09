@@ -39,35 +39,24 @@
             padding: 0 !important;
         }
     </style>
-    <link rel='stylesheet' id='contact-form-7-css'  href='static/css/styles.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='contact-form-7-css' href='../../static/ipnet_Login_v2/static/css/styles.css' type='text/css' media='all' />
     <!--<link rel='stylesheet' id='newspaper-x-fonts-css'  href='//fonts.googleapis.com/css?family=Droid+Serif%3A400%2C700%7CNunito+Sans%3A300%2C400%2C700%2C900%7CSource+Sans+Pro%3A400%2C700&#038;ver=1.2.9' type='text/css' media='all' />-->
     <link rel='stylesheet' id='font-awesome-css'  href='https://colorlib.com/newspaper-x/wp-content/themes/newspaper-x/assets/vendors/fontawesome/font-awesome.min.css?ver=4.9.7' type='text/css' media='all' />
     <link rel='stylesheet' id='bootstrap-css'  href='https://colorlib.com/newspaper-x/wp-content/themes/newspaper-x/assets/vendors/bootstrap/bootstrap.min.css?ver=4.9.7' type='text/css' media='all' />
     <link rel='stylesheet' id='bootstrap-theme-css'  href='https://colorlib.com/newspaper-x/wp-content/themes/newspaper-x/assets/vendors/bootstrap/bootstrap-theme.min.css?ver=4.9.7' type='text/css' media='all' />
-    <link rel='stylesheet' id='newspaper-x-stylesheet-css'  href='static/css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='newspaper-x-stylesheet-css' href='../../static/ipnet_Login_v2/static/css/style.css' type='text/css' media='all' />
     <style id='newspaper-x-stylesheet-inline-css' type='text/css'>
 
         .newspaper-x-header-widget-area{
             background: #0e0e11;
         }
     </style>
-    <link rel='stylesheet' id='owl.carousel-css'  href='static/css/carousel.min.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='owl.carousel-theme-css'  href='static/css/default.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='owl.carousel-css' href='../../static/ipnet_Login_v2/static/css/carousel.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='owl.carousel-theme-css' href='../../static/ipnet_Login_v2/static/css/default.css' type='text/css' media='all' />
 
     <!-- 新添加 -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link rel="stylesheet" type="text/css" href="css/css_eWallet/wallet.css">
-    <link rel="stylesheet" type="text/css" href="css/css_eWallet/p_info.css">
-    <link rel="stylesheet" type="text/css" href="css/security.css">
-    <link href="css/fancy-textbox.css" rel="stylesheet" type="text/css" />
-    <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-    <script src="js/jquery.fancy-textbox.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var inputname = document.getElementsByName('s_info');
-            $(inputname).ftext();
-        });
-    </script>
+    <link href="../../static/ipnet_Login_v2/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../../static/ipnet_Login_v2/css/css_eWallet/wallet.css">
 
     <!--<script type='text/javascript' src='https://colorlib.com/newspaper-x/wp-content/plugins/google-analytics-premium/assets/js/frontend.min.js?ver=7.0.19'></script>
     <script type='text/javascript' src='https://colorlib.com/newspaper-x/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
@@ -78,7 +67,7 @@
     <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://colorlib.com/newspaper-x/wp-includes/wlwmanifest.xml" />
     <meta name="generator" content="WordPress 4.9.7" />
     <link rel='shortlink' href='https://colorlib.com/newspaper-x/' />
-    <link rel="alternate" type="application/json+oembed" href="https://colorlib.com/newspapecr-x/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcolorlib.com%2Fnewspaper-x%2F" />
+    <link rel="alternate" type="application/json+oembed" href="https://colorlib.com/newspaper-x/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcolorlib.com%2Fnewspaper-x%2F" />
     <link rel="alternate" type="text/xml+oembed" href="https://colorlib.com/newspaper-x/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcolorlib.com%2Fnewspaper-x%2F&#038;format=xml" />
     <meta name="onesignal" content="wordpress-plugin"/>
     <link rel="manifest" href="https://colorlib.com/newspaper-x/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/manifest.json.php?gcm_sender_id="/>-->
@@ -214,7 +203,7 @@
                             <article class="ac-small">
                                 <ul>
                                     <!--<li><a href="#">账户设置</a></li>-->
-                                    <li><a href="pcenter_info_security.html">安全设置</a></li>
+                                    <li><a href="#">安全设置</a></li>
                                     <li><a href="pcenter_info.html">身份认证</a></li>
                                 </ul>
                             </article>
@@ -238,71 +227,150 @@
                             <div class="row">
                                 <header class="col-xs-12">
                                     <h3 class="page-title">
-                                        <span>安全设置 - 支付密码设置</span>
+                                        <span>账户信息</span>
                                     </h3>
                                 </header>
                             </div>
-                            <div class="t3">
-                                <div class="row">
-                                    <div class="col-xs-12" style="padding: 4%; border: 1px solid #d8d8d8; margin: 5px 10px;">
-                                        <form action="" id="form_info_s" class="form2">
-                                            <div class="col-xs-12">
-                                                <input type="text" name="s_info" data-animation="clean-slide" id="pay_code" data-label="支付密码" data-label-bg="#82cff0"
-                                                       data-label-color="#fff" data-mask=""/>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                <input type="text" name="s_info" data-animation="clean-slide" id="pay_code_sec" data-label="再输一次" data-label-bg="#82cff0"
-                                                       data-label-color="#fff" data-mask=""/>
-                                                <br /><br /><br />
-                                            </div>
-                                            <div class="col-xs-12">
-                                                <button value="取消" class="btn-balance">取消</button>
-                                                <button value="确定" class="btn-balance">确定</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <!--<div class="t3">
                                 <div class="row">
-                                    <div class="col-xs-12" style="padding: 4%; border: 1px solid #d8d8d8; margin: 5px 10px; background-color: #f5f5f5;">
-                                        <div class="col-xs-6"><span>用户名</span></div>
-                                        <div class="col-xs-6"><button class="btn-colLeft">去设置</button></div>
+                                    <div class="col-xs-6">
+                                        <header class="entry-header">
+                                            用户名
+                                        </header>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div style="margin-left: 60%; margin-bottom: 20px"><button class="btn-balance">重新编辑</button></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="t3">
                                 <div class="row">
-                                    <div class="col-xs-12" style="padding: 4%; border: 1px solid #d8d8d8; margin: 5px 10px; /*background-color: #f5f5f5;*/">
-                                        <div class="col-xs-6"><span>邮箱</span></div>
-                                        <div class="col-xs-6"><button class="btn-colLeft">去绑定</button></div>
+                                    <div class="col-xs-6">
+                                        <header class="entry-header">
+                                            身份认证<span class="idVeri">暂无</span>
+                                        </header>
                                     </div>
                                 </div>
                             </div>
                             <div class="t3">
                                 <div class="row">
-                                    <div class="col-xs-12" style="padding: 4%; border: 1px solid #d8d8d8; margin: 5px 10px; background-color: #f5f5f5;">
-                                        <div class="col-xs-6"><span>手机号</span></div>
-                                        <div class="col-xs-6"><button class="btn-colLeft">去绑定</button></div>
+                                    <div class="col-xs-6">
+                                        <header class="entry-header">
+                                            注册时间
+                                        </header>
                                     </div>
                                 </div>
                             </div>
                             <div class="t3">
                                 <div class="row">
-                                    <div class="col-xs-12" style="padding: 4%; border: 1px solid #d8d8d8; margin: 5px 10px; /*background-color: #f5f5f5;*/">
-                                        <div class="col-xs-6"><span>登录密码</span></div>
-                                        <div class="col-xs-6"><button class="btn-colLeft">修&nbsp;&nbsp;&nbsp;改</button></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="t3">
-                                <div class="row">
-                                    <div class="col-xs-12" style="padding: 4%; border: 1px solid #d8d8d8; margin: 5px 10px; background-color: #f5f5f5;">
-                                        <div class="col-xs-6"><span>支付密码</span></div>
-                                        <div class="col-xs-6"><button class="btn-colLeft">去设置</button></div>
+                                    <div class="col-xs-6">
+                                        <header class="entry-header">
+                                            <span class="t3">自我描述</span>
+                                        </header>
                                     </div>
                                 </div>
                             </div>-->
+                            <!--<div class="t3">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="t7" style="margin-top: 10px;">
+                                            用户名
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div style="margin-left: 60%;"><button class="btn-balance">重新编辑</button></div>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <div class="t3">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="t7">
+                                            用户名
+                                        </div>
+                                        <div class="t7">
+                                            注册时间
+                                        </div>
+                                        <!--<div class="t7">
+                                            自我描述
+                                        </div>-->
+                                        <div class="t7">
+                                            持有专利数
+                                        </div>
+                                        <div class="t7">
+                                            持有专利池数
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <header class="entry-header">
+                                            身份认证<span class="idVeri">暂无</span>
+                                        </header>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="t3">
+                                <div class="row">
+                                    <header class="col-xs-12">
+                                        <h3 class="page-title">
+                                            <span class="t3">企业信息</span>
+                                        </h3>
+                                    </header>
+                                </div>
+                            </div>
+                            <div class="t3">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <img src="../../static/ipnet_Login_v2/images/person.jpg" alt="IDcard">
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div style="margin-left: 60%; margin-bottom: 20px"><button class="btn-balance">重新编辑</button></div>
+                                        <div class="t7">
+                                            名称
+                                        </div>
+                                        <div class="t7">
+                                            企业法人
+                                        </div>
+                                        <div class="t7">
+                                            成立日期
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="t3">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="t7">
+                                            企业地址
+                                        </div>
+                                        <div class="t7">
+                                            联系电话
+                                        </div>
+                                        <div class="t7">
+                                            企业简介
+                                        </div>
+                                        <div class="t7">
+                                            业务范围
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="t7">
+                                            企业类型
+                                        </div>
+                                        <div class="t7">
+                                            注册资本（万元）
+                                        </div>
+                                        <div class="t7">
+                                            营业期限
+                                        </div>
+                                        <div class="t7">
+                                            官网
+                                        </div>
+                                        <div class="t7">
+                                            电子邮箱
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
                     </div>
                 </main>
