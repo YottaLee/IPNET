@@ -1,5 +1,6 @@
 package com.ipnet.controller.loancontroller;
 
+import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.Insurance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("insurance/")
 public class LoanInsuranceController {
 
-    @Autowired
+
 
     /**
      * 专利持有人未提交贷款，银行向保险公司发出理赔申请
@@ -32,7 +33,7 @@ public class LoanInsuranceController {
      */
     @RequestMapping("/insuranceApplication")
     @ResponseBody
-    public String insuranceApplication(String patentID, String person, String address, String time, String reason,
+    public ResultMessage insuranceApplication(String patentID, String person, String address, String time, String reason,
                                        String bank, String bankName, String bankID, String insuranceID, int money) {
         return null;
     }
@@ -46,7 +47,7 @@ public class LoanInsuranceController {
      */
     @RequestMapping("/ifInsurance")
     @ResponseBody
-    public String ifInsurance(String patentID, boolean ifPass) {
+    public ResultMessage ifInsurance(String patentID, boolean ifPass) {
         return null;
     }
 
@@ -72,7 +73,7 @@ public class LoanInsuranceController {
      */
     @RequestMapping("/ifCompensate")
     @ResponseBody
-    public String ifCompensate(String patentID, String insuranceID, boolean ifPass) {
+    public ResultMessage ifCompensate(String patentID, String insuranceID, boolean ifPass) {
         return null;
     }
 
