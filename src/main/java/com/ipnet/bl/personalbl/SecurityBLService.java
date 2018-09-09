@@ -3,7 +3,8 @@ package com.ipnet.bl.personalbl;
 import com.ipnet.blservice.AliService;
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.dao.CompanyUserDao;
-import com.ipnet.dao.UserDao;
+import com.ipnet.dao.PersonalUserDao;
+
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import javax.validation.constraints.Null;
 @Service
 public class SecurityBLService implements com.ipnet.blservice.personalservice.SecurityBLService {
     @Autowired
-    private UserDao userDao;
+    private PersonalUserDao userDao;
     @Autowired
     private CompanyUserDao companyUserDao;
     @Autowired
@@ -35,18 +36,18 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
     @Override
     public ResultMessage setUsername(String userId, String username) {
 
-        PersonalUser personalUser=userDao.getOne(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.equals(null)){
             return ResultMessage.Fail;
         }else{
-            personalUser.setUsername(username);
+            personalUser.setName(username);
             return ResultMessage.Success;
         }
     }
 
     @Override
     public ResultMessage isEmailValidate(String userId) {
-        PersonalUser personalUser=userDao.getOne(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.getEmail().equals(null))
             return ResultMessage.Fail;
         return ResultMessage.Success;
@@ -54,7 +55,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
 
     @Override
     public ResultMessage setEmail(String useId, String email) {
-        PersonalUser personalUser=userDao.getOne(useId);
+        PersonalUser personalUser=userDao.findPersonalUserById(useId);
         if(personalUser.equals(null))
             return ResultMessage.Fail;
         personalUser.setEmail(email);
@@ -63,7 +64,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
 
     @Override
     public ResultMessage isPhoneValidate(String userId) {
-        PersonalUser personalUser=userDao.getOne(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.equals(null))
             return ResultMessage.Fail;
         else{
@@ -87,7 +88,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
 
     @Override
     public ResultMessage setPhone(String userId, String phone, String verification) {
-        PersonalUser personalUser=userDao.searchUserById(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         personalUser.setTelephone(phone);
         userDao.save(personalUser);
         return ResultMessage.Success;
@@ -95,7 +96,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
 
     @Override
     public ResultMessage setPassword(String userId, String password) {
-        PersonalUser personalUser=userDao.searchUserById(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.equals(null))
             return ResultMessage.Fail;
         else{
@@ -107,7 +108,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
 
     @Override
     public ResultMessage setPaymentPassword(String userId, String pay_code) {
-        PersonalUser personalUser=userDao.searchUserById(userId);
+        PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.equals(null))
             return ResultMessage.Fail;
         else{

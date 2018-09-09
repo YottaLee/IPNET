@@ -10,14 +10,14 @@ public class UserInfoVo {
     String phone;
     Industry profession;
     String company;
-    Region region;
+    String region;
     String statement;
     String IDcard_img;
 
     public UserInfoVo() {
     }
 
-    public UserInfoVo(String name, Sex gender, String phone, Industry profession, String company, Region region, String statement, String IDcard_img) {
+    public UserInfoVo(String name, Sex gender, String phone, Industry profession, String company, String region, String statement, String IDcard_img) {
         this.name = name;
         this.gender = gender;
         this.phone = phone;
