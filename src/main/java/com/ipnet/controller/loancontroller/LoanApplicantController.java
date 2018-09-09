@@ -1,5 +1,6 @@
 package com.ipnet.controller.loancontroller;
 
+import com.ipnet.blservice.LoanBLService;
 import com.ipnet.enums.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("applicant/")
 public class LoanApplicantController {
+    @Autowired
+    private LoanBLService loanBLService;
 
     /**
      * 将该专利的质押贷款保证保险申请提供给保险公司

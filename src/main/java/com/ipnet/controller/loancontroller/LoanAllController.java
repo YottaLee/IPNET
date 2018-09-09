@@ -1,6 +1,8 @@
 package com.ipnet.controller.loancontroller;
 
+import com.ipnet.blservice.LoanBLService;
 import com.ipnet.enums.ResultMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +15,9 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("all/")
 public class LoanAllController {
+
+    @Autowired
+    private LoanBLService loanBLService;
 
     /**
      * 获取该合同的所有方信息

@@ -1,5 +1,6 @@
 package com.ipnet.controller.loancontroller;
 
+import com.ipnet.blservice.LoanBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.Insurance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoanInsuranceController {
 
 
-
+    @Autowired
+    private LoanBLService loanBLService;
     /**
      * 专利持有人未提交贷款，银行向保险公司发出理赔申请
      *
