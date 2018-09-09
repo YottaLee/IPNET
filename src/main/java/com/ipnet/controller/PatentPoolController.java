@@ -49,7 +49,7 @@ public class PatentPoolController {
     }
 
     @RequestMapping("/inviteIpSet")
-    public @ResponseBody void inviteIpSet(@RequestParam String ipId,@RequestParam String ipSetId){
+    public @ResponseBody void inviteIpSet(@RequestParam String ipId,@RequestParam String ipSetId) throws IDNotExistsException {
           service.inviteIpSet(ipId,ipSetId);
     }
 

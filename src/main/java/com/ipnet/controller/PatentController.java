@@ -84,7 +84,7 @@ public class PatentController {
          service.denyInvitationFromPool(patentId , patentPoolId);
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/sendInvitationFromPool")
     public void sendInvitationFromPool(String patentId, String patentPoolId) throws IDNotExistsException{
          service.sendInvitationFromPool(patentId , patentPoolId);
     }
