@@ -167,6 +167,9 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         if(option!=null || option.isPresent() == false){
             throw new IDNotExistsException("pool id not exists");
         }
+        if (this.patentBLHelper.ifPatentExists(ipId) == false){
+            throw new IDNotExistsException("patent id not exists");
+        }
         PatentPool pool = option.get();
         pool.acceptApply(ipId);
         this.patentPoolDao.saveAndFlush(pool);
@@ -184,4 +187,6 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         pool.denyApply(ipId);
         this.patentPoolDao.saveAndFlush(pool);
     }
+
+
 }

@@ -25,13 +25,11 @@ public interface PatentBLService {
 
     void exitIpSet(String ipId,String ipSetId) throws IDNotExistsException;     //专利退池
 
-    PatentVO searchIp(String info);     //专利详情
-
-    boolean applyIpSet(String ipId,String ipSetId) throws IDNotExistsException;   //专利申请入池
-
     boolean updateIp(PatentVO ipVo);  //更新专利
 
     void denyInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
+
+    boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
 
     void sendInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
 
