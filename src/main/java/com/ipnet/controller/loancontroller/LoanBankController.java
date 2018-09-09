@@ -1,7 +1,9 @@
 package com.ipnet.controller.loancontroller;
 
+import com.ipnet.blservice.LoanBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.LoanVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("bank/")
 public class LoanBankController {
 
-
-
+    @Autowired
+    private LoanBLService loanBLService;
     /**
      * 获取贷款信息
      * @param loanID 贷款号
@@ -24,7 +26,7 @@ public class LoanBankController {
     @RequestMapping("/getInfo")
     @ResponseBody
     public LoanVO getInfo(String loanID) {
-        return null;
+        return loanBLService.getInfo(loanID);
     }
 
 
@@ -37,7 +39,7 @@ public class LoanBankController {
     @RequestMapping("/getApplication")
     @ResponseBody
     public LoanVO getApplication(String loanID) {
-        return null;
+        return loanBLService.getApplication(loanID);
     }
 
     /**
@@ -53,7 +55,7 @@ public class LoanBankController {
     @RequestMapping("/submitApplication")
     @ResponseBody
     public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
-        return null;
+        return submitApplication(loanID,bank,ifPass,ifInsurance,money,time);
     }
 
     /**

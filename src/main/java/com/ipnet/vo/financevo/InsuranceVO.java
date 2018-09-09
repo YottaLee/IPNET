@@ -3,6 +3,9 @@ package com.ipnet.vo.financevo;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Component
 @Getter
 @Setter
@@ -10,11 +13,14 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Entity
+public class InsuranceVO {
 
-public class Insurance {
+
+    @Id
+    private String insurance_contractid;
 
     private String loanID; //贷款号
-    private String patentID; //专利号
     private String person; //投保单位
     private String address; //地址
     private String time; //出险时间

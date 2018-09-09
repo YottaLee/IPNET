@@ -1,6 +1,8 @@
 package com.ipnet.controller.loancontroller;
 
+import com.ipnet.blservice.LoanBLService;
 import com.ipnet.enums.ResultMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,9 @@ import java.util.ArrayList;
 @RequestMapping("all/")
 public class LoanAllController {
 
+    @Autowired
+    private LoanBLService loanBLService;
+
     /**
      * 获取该合同的所有方信息
      * @param loanID 贷款号
@@ -22,7 +27,7 @@ public class LoanAllController {
     @RequestMapping("/getContract")
     @ResponseBody
     public ArrayList<String> getContract(String loanID){
-        return null;
+        return loanBLService.getContract(loanID);
     }
 
     /**
@@ -35,6 +40,6 @@ public class LoanAllController {
     @RequestMapping("/ifContract")
     @ResponseBody
     public ResultMessage ifContact(String loanID, String userid, Boolean ifPass){
-        return null;
+        return loanBLService.ifContract(loanID,userid,ifPass);
     }
 }
