@@ -376,11 +376,11 @@ public class UserBL implements UserBLService{
 
     @Override
     public boolean isVerified(String userID) {
-        Optional<Person> personOptional=personalDao.findById(userID);
+        Optional<PersonalUser> personOptional=personalUserDao.findById(userID);
         if(personOptional.isPresent()){
             return personOptional.get().isVerified();
         }else{
-            Optional<Company> companyOptional=companyDao.findById(userID);
+            Optional<CompanyUser> companyOptional=companyDao.findById(userID);
             if(companyOptional.isPresent()){
                 return companyOptional.get().isVerified();
             }

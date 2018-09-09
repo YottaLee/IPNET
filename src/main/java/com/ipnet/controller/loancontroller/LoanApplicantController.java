@@ -1,5 +1,6 @@
 package com.ipnet.controller.loancontroller;
 
+import com.ipnet.enums.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,18 +14,17 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("applicant/")
 public class LoanApplicantController {
-    @Autowired
 
     /**
      * 将该专利的质押贷款保证保险申请提供给保险公司
      *
      * @param patentID 专利号
-     * @param insurance 选择的保险公司列表
+     * @param insurance 选择的保险公司
      * @return
      */
     @RequestMapping("/chooseInsurance")
     @ResponseBody
-    public String chooseInsurance(String patentID,String insurance){
+    public ResultMessage chooseInsurance(String patentID, String insurance){
         return null;
     }
 
@@ -39,7 +39,7 @@ public class LoanApplicantController {
      */
     @RequestMapping("/chooseBank")
     @ResponseBody
-    public String chooseBank(String patentID,int money,String time,String bank){
+    public ResultMessage chooseBank(String patentID,int money,String time,String bank){
         return null;
     }
 
@@ -50,11 +50,11 @@ public class LoanApplicantController {
      * @param patentID
      * @return
      */
-    @RequestMapping("/tellBank")
-    @ResponseBody
-    public String tellBank(String patentID){
-        return null;
-    }
+//    @RequestMapping("/tellBank")
+//    @ResponseBody
+//    public String StringtellBank(String patentID){
+//        return null;
+//    }
 
     /**
      * 判断该专利是否已经拥有评估结果
