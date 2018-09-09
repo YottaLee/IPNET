@@ -7,14 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-
 /**
  * 贷款-专利持有人部分
  */
 @Controller
 @RequestMapping("applicant/")
 public class LoanApplicantController {
+
     @Autowired
     private LoanBLService loanBLService;
 
@@ -23,12 +22,12 @@ public class LoanApplicantController {
      *
      * @param loanID 贷款号
      * @param insurance 选择的保险公司
-     * @return
+     * @return ResultMessage
      */
     @RequestMapping("/chooseInsurance")
     @ResponseBody
     public ResultMessage chooseInsurance(String loanID, String insurance){
-        return null;
+        return loanBLService.chooseInsurance(loanID,insurance);
     }
 
     /**
@@ -38,12 +37,12 @@ public class LoanApplicantController {
      * @param money 意向金额
      * @param time 意向期限
      * @param bank 金融机构
-     * @return
+     * @return ResultMessage
      */
     @RequestMapping("/chooseBank")
     @ResponseBody
-    public ResultMessage chooseBank(String loanID,int money,String time,String bank){
-        return null;
+    public ResultMessage chooseBank(String loanID,double money,String time,String bank){
+        return loanBLService.chooseBank(loanID,money,time,bank);
     }
 
 
@@ -61,37 +60,37 @@ public class LoanApplicantController {
 
     /**
      * 存取该专利已经有贷款申请，可借此机会生成loanID
-     * @param patentID
+     * @param patentID 专利号
      * @return 返回loanID
      */
     @RequestMapping("/applyLoan")
     @ResponseBody
     public String saveLoanApply(String patentID){
-        return null;
+        return loanBLService.saveLoanApply(patentID);
     }
 
     /**
      * 判断该专利是否已经拥有评估结果
      *
      * @param patentID 专利号
-     * @return
+     * @return boolean
      */
     @RequestMapping("/ifValue")
     @ResponseBody
     public boolean ifValue(String patentID){
-        return false;
+        return loanBLService.ifValue(patentID);
     }
 
     /**
      * 判断该专利是否已经填写贷款意向信息
      *
-     * @param patentID
-     * @return
+     * @param patentID 专利号???这里应该是loanID？？？？？？？？？？？？
+     * @return boolean
      */
     @RequestMapping("/ifBankChosen")
     @ResponseBody
     public boolean ifBankChosen(String patentID){
-        return false;
+        return loanBLService.ifBankChosen(patentID);
     }
 
 

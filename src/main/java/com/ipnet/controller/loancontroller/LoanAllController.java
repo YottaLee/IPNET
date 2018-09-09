@@ -27,7 +27,7 @@ public class LoanAllController {
     @RequestMapping("/getContract")
     @ResponseBody
     public ArrayList<String> getContract(String loanID){
-        return null;
+        return loanBLService.getContract(loanID);
     }
 
     /**
@@ -40,6 +40,6 @@ public class LoanAllController {
     @RequestMapping("/ifContract")
     @ResponseBody
     public ResultMessage ifContact(String loanID, String userid, Boolean ifPass){
-        return null;
+        return loanBLService.ifContract(loanID,userid,ifPass);
     }
 }

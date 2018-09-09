@@ -23,13 +23,14 @@ public class Loan {
     private String expect_time; //预期质押期限
 
     private String bank; //银行名称
-    private boolean pass;//银行是否同意质押申请
+    private boolean pass;//银行是否同意质押申请，即质押双方是否已经签署了合同
     private String loanContract;//质押合同ID
     private double actual_money;//成交金额
     private String actual_time;//成交期限
 
     private String insurance;//保险公司
-    private boolean accept;//保险公司是否同意担保
+    private boolean accept;//保险公司是否同意担保,即保险双方是否已经签署了合同
+    private boolean toClaim;//保险公司是否同意理赔
     private String insuranceContract;//保险合同ID
 
 
