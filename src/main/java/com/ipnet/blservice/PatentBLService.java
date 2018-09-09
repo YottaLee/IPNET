@@ -4,6 +4,7 @@ import com.ipnet.enums.Patent_state;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.PatentVO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,5 +35,6 @@ public interface PatentBLService {
 
     void sendInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
 
+    List<PatentVO> getPatentList(String userId);
 
 }

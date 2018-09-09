@@ -21,5 +21,8 @@ public interface PatentDao extends JpaRepository<Patent,String>{
     @Query(value = "select p from Patent p where p.patent_name = :patentName")
     List<Patent> searchPatentByPatentName(@Param("patentName") String patentName);
 
+    @Query(value = "select p from Patent p where p.patent_holder = :patent_holder")
+    List<Patent> searchPatentByHolder(@Param("patent_holder") String patent_holder);
+
 
 }

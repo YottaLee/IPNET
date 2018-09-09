@@ -95,8 +95,8 @@ public class PatentController {
      */
     @RequestMapping("/getPatentList")
     @ResponseBody
-    public ArrayList<PatentVO> getPatentList(String userId) {
-        return null;
+    public List<PatentVO> getPatentList(@RequestParam String userId) {
+        return service.getPatentList(userId);
     }
 
 }

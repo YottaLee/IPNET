@@ -12,6 +12,7 @@ import com.ipnet.utility.TransHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -147,7 +148,15 @@ public class PatentBLServiceImpl implements PatentBLService {
         this.savePatent(patent);
     }
 
-
+    @Override
+    public List<PatentVO> getPatentList(String userId){
+         List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
     private Patent getPatentById(String patentId) throws IDNotExistsException{
         Optional<Patent> optionalPatent = this.patentDao.findById(patentId);
         if (optionalPatent.isPresent() ==false){
@@ -161,4 +170,6 @@ public class PatentBLServiceImpl implements PatentBLService {
     private void savePatent(Patent patent){
         this.patentDao.saveAndFlush(patent);
     }
+
+
 }
