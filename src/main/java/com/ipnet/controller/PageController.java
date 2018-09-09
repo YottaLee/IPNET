@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("ipnet")
 public class PageController {
 
-    @RequestMapping("/community_home")
+    @RequestMapping("community_home")
     public  String community_home(){
         return "/community/community_home";
     }
 
-    /*@RequestMapping("community_detail")
+    @RequestMapping("community_detail")
     public String community_detail(){
         return "/community/community_detail";
     }
@@ -45,10 +45,10 @@ public class PageController {
     @RequestMapping("pay")
     public String pay(){
         return "pay";
-    }*/
+    }
 
     /* 登录 注册 */
-    /*@RequestMapping("login")
+    @RequestMapping("login")
     public String loginIndex(){
         return "/login/index";
     }
@@ -69,13 +69,13 @@ public class PageController {
     }
 
     /* 个人中心-电子钱包 */
-    /*@RequestMapping("pc_eWallet")
+    @RequestMapping("pc_eWallet")
     public String pcenter_e_wallet(){
         return "/pcenter/pcenter_e_wallet";
     }
 
     /* 个人中心-身份信息/身份认证 */
-    /*@RequestMapping("pc_info")
+    @RequestMapping("pc_info")
     public String pcenter_info(){
         return "/pcenter/pcenter_info";
     }
@@ -106,7 +106,7 @@ public class PageController {
     }
 
     /* 个人中心-安全设置 */
-    /*@RequestMapping("pc_info_security")
+    @RequestMapping("pc_info_security")
     public String pcenter_info_security(){
         return "/pcenter/pcenter_info_security";
     }
@@ -137,7 +137,7 @@ public class PageController {
     }
 
     /* 管理员 */
-    /*@RequestMapping("admin_IPIweight")
+    @RequestMapping("admin_IPIweight")
     public String admin_IPIweight(){
         return "/admin/admin_IPIweight";
     }
@@ -155,6 +155,6 @@ public class PageController {
     @RequestMapping("admin_statisticsCharts")
     public String admin_statisticsCharts(){
         return "/admin/admin_statisticsCharts";
-    }*/
+    }
 
 }
