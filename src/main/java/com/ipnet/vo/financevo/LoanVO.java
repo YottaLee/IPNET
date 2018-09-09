@@ -3,6 +3,10 @@ package com.ipnet.vo.financevo;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+/**
+ * 贷款
+ * @author Panxy
+ */
 @Component
 @Getter
 @Setter
@@ -10,13 +14,9 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+public class LoanVO {
 
-/**
- * 贷款
- * @author Panxy
- */
-public class Loan {
-
+    private String id;//贷款ID，由时间和专利号构成
     private String patentID;//专利ID
     private String patent;//专利名称
     private String person; //专利持有人

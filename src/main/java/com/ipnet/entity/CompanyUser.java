@@ -57,7 +57,7 @@ public class CompanyUser {
     private boolean isActive;//用户的激活状态
     private String activeCode;//用户的激活码
 
-    public String getId() {
+    /*public String getId() {
         return id;
     }
 
@@ -287,5 +287,5 @@ public class CompanyUser {
 
     public void setActiveCode(String activeCode) {
         this.activeCode = activeCode;
-    }
+    }*/
 }

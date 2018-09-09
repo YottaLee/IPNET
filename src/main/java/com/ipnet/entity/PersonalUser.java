@@ -35,14 +35,6 @@ public class PersonalUser {
     private String image;//用户头像的url
     private String pay_code;
 
-    public String getPay_code() {
-        return pay_code;
-    }
-
-    public void setPay_code(String pay_code) {
-        this.pay_code = pay_code;
-    }
-
     @ElementCollection(targetClass = Identity.class)
     private List<Identity> identities;//用户的身份认证，可以是专利持有者，购买者，运营者
     private Sex sex;//用户的性别
@@ -58,6 +50,15 @@ public class PersonalUser {
     private List<String> bankAccount;//用户的银行账号，可以绑定多张银行卡
     private int credits;//用户拥有的积分
     private double RMB;//用户平台上的人民币或点券（钱包？）
+
+    /*
+    public String getPay_code() {
+        return pay_code;
+    }
+
+    public void setPay_code(String pay_code) {
+        this.pay_code = pay_code;
+    }
 
     public String getId() {
         return id;
@@ -233,7 +234,7 @@ public class PersonalUser {
 
     public void setRMB(double RMB) {
         this.RMB = RMB;
-    }
+    }*/
 
 
 }
