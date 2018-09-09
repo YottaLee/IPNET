@@ -2,7 +2,7 @@ package com.ipnet.controller.loancontroller;
 
 import com.ipnet.blservice.LoanBLService;
 import com.ipnet.enums.ResultMessage;
-import com.ipnet.vo.financevo.Insurance;
+import com.ipnet.vo.financevo.InsuranceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("insurance/")
 public class LoanInsuranceController {
+
+
 
 
     @Autowired
@@ -37,7 +39,7 @@ public class LoanInsuranceController {
     @ResponseBody
     public ResultMessage insuranceApplication(String loanID, String person, String address, String time, String reason,
                                        String bank, String bankName, String bankID, String insuranceID, int money) {
-        return null;
+        return loanBLService.insuranceApplication(loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
     }
 
     /**
@@ -50,7 +52,7 @@ public class LoanInsuranceController {
     @RequestMapping("/ifInsurance")
     @ResponseBody
     public ResultMessage ifInsurance(String loanID, boolean ifPass) {
-        return null;
+        return loanBLService.ifInsurance(loanID,ifPass);
     }
 
     /**
@@ -61,8 +63,8 @@ public class LoanInsuranceController {
      */
     @RequestMapping("/getInsurance")
     @ResponseBody
-    public Insurance getInsurance(String loanID) {
-        return null;
+    public InsuranceVO getInsurance(String loanID) {
+        return loanBLService.getInsurance(loanID);
     }
 
     /**
@@ -76,7 +78,7 @@ public class LoanInsuranceController {
     @RequestMapping("/ifCompensate")
     @ResponseBody
     public ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass) {
-        return null;
+        return loanBLService.ifCompensate(loanID,insuranceID,ifPass);
     }
 
 }

@@ -15,9 +15,11 @@ public class Loan {
 
     @Id
     private String loanID;
+
     private String patentID;//专利ID
     private String patent;//专利名称
     private String person; //专利持有人
+
     private int evaluation; //评估经济价值结果
     private double expect_money; //预期金额
     private String expect_time; //预期质押期限
@@ -30,6 +32,7 @@ public class Loan {
 
     private String insurance;//保险公司
     private boolean accept;//保险公司是否同意担保
+    private boolean toClaim;
     private String insuranceContract;//保险合同ID
 
 
