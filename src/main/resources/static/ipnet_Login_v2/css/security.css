@@ -1,0 +1,38 @@
+.btn-colLeft {
+    background-color: #25a2ff;
+    color: #FFFFFF;
+    border: 1px solid #25a2ff;
+    padding: 7px 14px;
+    text-align: center;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+
+    font-family: "Microsoft YaHei", Poppins-Regular, 'Lato', Calibri, Arial, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 75%;
+    border-radius: 2px;
+}
+.btn-colLeft:hover {
+    background-color: #258eff;
+    border: 1px solid #258eff;
+}
+
+.sendVeriCode {
+    border-radius: 3px;
+    border:1px solid #e1e1e1;
+    background-color: #82cff0;
+    width: 110px;
+    padding: 4px 0;
+    color: #FFFFFF;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    cursor: pointer;
+    text-align:center;
+}
+.sendVeriCode:hover {
+    color: #FFFFFF;
+    background-color: #25a2ff;
+}
+

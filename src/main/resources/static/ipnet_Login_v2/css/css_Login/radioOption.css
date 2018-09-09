@@ -1,0 +1,44 @@
+input[type=radio] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0;
+    outline: 0 !important;
+    line-height: 20px;
+    color: #d8d8d8;
+}
+
+input[type=radio]:after {
+    content: "";
+    display:block;
+    width: 16px;  /* 20 */
+    height: 16px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 14px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid #999999;  /* #ddd */
+    background-color: #fff;
+    box-sizing:border-box;
+}
+
+input[type=radio]:checked:after {
+    content: "L";
+    font-size: 3px;
+    text-align: center;
+    transform:matrix(-0.766044,-0.642788,-0.642788,0.766044,0,0);
+    -webkit-transform:matrix(-0.766044,-0.642788,-0.642788,0.766044,0,0);
+    border-color: #099414;
+    background-color: #099414;
+}
+
+.txtRadio {
+    font-family: "Microsoft YaHei", Poppins-Regular;
+    font-size: 14px;
+    color: #666666;
+    line-height: 1.5;
+}

@@ -1,5 +1,6 @@
 package com.ipnet.controller.loancontroller;
 
+import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 @Controller
 @RequestMapping("bank/")
 public class LoanBankController {
-    @Autowired
+
 
 
     /**
@@ -53,7 +54,7 @@ public class LoanBankController {
      */
     @RequestMapping("/submitApplication")
     @ResponseBody
-    public String submitApplication(String patentID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
+    public ResultMessage submitApplication(String patentID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
         return null;
     }
 
@@ -62,10 +63,10 @@ public class LoanBankController {
      * @param patentID
      * @return
      */
-    @RequestMapping("/getBankList")
-    @ResponseBody
-    public ArrayList<Loan> getBankList(String patentID){
-        return null;
-    }
+//    @RequestMapping("/getBankList")
+//    @ResponseBody
+//    public ArrayList<Loan> getBankList(String patentID){
+//        return null;
+//    }
 
 }

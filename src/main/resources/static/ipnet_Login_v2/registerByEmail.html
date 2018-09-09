@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IPNET - Sign Up</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/tabOption.css">
+    <link rel="stylesheet" type="text/css" href="css/css_Login/radioOption.css">
+    <style type="text/css">
+        .zxx_list_title{background:#eeeeee; border:1px solid #cccccc; padding:1em;}
+        .zxx_list_content{padding:1em;}
+        #tinybox{position:absolute; display:none; padding:10px 50px; background:#e3e3e3 /*url(images/preload.gif) no-repeat 50% 50%*/; border:2px solid #9f9f9f; z-index:2000; border-radius: 100px;}
+        #tinymask{position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000000; z-index:1500; border-radius: 12px;}
+        #tinycontent{background:#e3e3e3; font-size:1.1em; font-family: "Microsoft YaHei", Poppins-Regular; border-radius: 12px;}
+    </style>
+    <script type="text/javascript" src="js/tinybox.js"></script>
+    <script type="text/javascript" src="js/tab.js"></script>
+    <script type="text/javascript">
+        window.onload = function () { tabRegisterEmail(0); }
+    </script>
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100">
+            <form class="login100-form validate-form">
+                <span class="login100-form-title p-b-26">
+                    Welcome to IPNET
+                </span>
+                <span class="login100-form-title p-b-48">
+                    <i class="zmdi zmdi-font"></i>
+                </span>
+
+                <div class="door_container">
+                    <div class="TabTitle">
+                        <ul id="myTab">
+                            <li class="active" onclick=nTabs("registerEmailPerson",this,0);>个人注册</li>
+                            <li class="normal" onclick=nTabs("registerEmailEnterprise",this,1);>企业注册</li>
+                        </ul>
+                    </div>
+                    <div class="TabContent">
+                        <div id=myTab_Content0><!-- 个人注册 -->
+                            <div class="star">
+                                <div>
+                                    <p class="register-msg" id="err_msg" style="text-align: right"></p>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+                                    <input class="input100" type="text" name="email">
+                                    <span class="focus-input100" data-placeholder="邮箱"></span><!-- Email -->
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Enter password">
+						            <span class="btn-show-pass">
+							            <i class="zmdi zmdi-eye"></i>
+						            </span>
+                                    <input class="input100" type="password" name="pass">
+                                    <span class="focus-input100" data-placeholder="密码"></span><!-- Password -->
+                                </div>
+
+                                <div class="container-login100-form-btn">
+                                    <div class="wrap-login100-form-btn">
+                                        <div class="login100-form-bgbtn"></div>
+                                        <a class="login100-form-btn" href="#zhangxinxu" id="register_btn">
+                                            注册<!-- Sign Up -->
+                                        </a>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    T$('register_btn').onclick = function(){
+                                        registerMsg();  // 方法registerMsg()的定义见于js/registerEmail.js
+                                    }
+                                </script>
+
+                                <div class="text-center p-t-115">
+                                    <a class="txt1" href="register.html">手机号注册</a>
+                                    /
+                                    <a class="txt1" href="registerByEmail.html">[邮箱注册]</a>
+                                    <br /><br />
+                                    <span class="txt1">
+							            已有账号？<!-- Already have an account? -->
+                                    </span>
+
+                                    <a class="txt2" href="loginByEmail.html">
+                                        <strong>去登录</strong><!-- <em>Sign In</em> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="none" id=myTab_Content1><!-- 企业/机构注册 -->
+                            <div class="star">
+                                <div>
+                                    <p class="register-msg" id="err_msg2" style="text-align: right"></p>
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
+                                    <input class="input100" type="text" name="email">
+                                    <span class="focus-input100" data-placeholder="邮箱"></span><!-- Email -->
+                                </div>
+
+                                <div class="wrap-input100 validate-input" data-validate="Enter password">
+						            <span class="btn-show-pass">
+							            <i class="zmdi zmdi-eye"></i>
+						            </span>
+                                    <input class="input100" type="password" name="pass">
+                                    <span class="focus-input100" data-placeholder="密码"></span><!-- Password -->
+                                </div>
+
+                                <div>
+                                    <p>类型选择：</p>
+                                    <form id="register_type" action="">
+                                        <input type="radio" name="enterpriseType" id="non-third" value="Non-thirdParty"><span class="txtRadio">非第三方机构</span>
+                                        <input type="radio" name="enterpriseType" id="financial" value="FinancialInstitution" style="margin-left: 60px;"><span class="txtRadio">金融机构</span><br />
+                                        <input type="radio" name="enterpriseType" id="insurance" value="InsuranceInstitute"><span class="txtRadio">保险机构</span>
+                                        <input type="radio" name="enterpriseType" id="evaluating" value="EvaluatingInstitution" style="margin-left: 87px;"><span class="txtRadio">评估机构</span>
+                                    </form>
+                                </div>
+
+                                <div class="container-login100-form-btn" style="margin-top: 30px;">
+                                    <div class="wrap-login100-form-btn">
+                                        <div class="login100-form-bgbtn"></div>
+                                        <a class="login100-form-btn" href="#zhangxinxu" id="register_btn2">
+                                            注册<!-- Sign Up -->
+                                        </a>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    T$('register_btn2').onclick = function(){
+                                        registerMsg();  // 方法registerMsg()的定义见于js/registerEmail.js
+                                    }
+                                </script>
+
+                                <div class="text-center p-t-115">
+                                    <!--<a class="txt1" href="registerByEmail.html">[邮箱注册]</a>
+                                    <br /><br />-->
+                                    <span class="txt1">
+							            已有账号？<!-- Already have an account? -->
+                                    </span>
+
+                                    <a class="txt2" href="loginByEmail.html">
+                                        <strong>去登录</strong><!-- <em>Sign In</em> -->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="zxx_list_title"><b>自动隐藏</b><button class="login100-form-btn" id="click_test4">效果预览</button></div>-->
+                <!--<div class="zxx_list_title"><b>自动隐藏</b><a class="ml20" href="#zhangxinxu" id="click_test4">效果预览</a></div>
+                <script type="text/javascript">
+                    var content4 = "该浮动层将在3秒钟内消失。";
+                    T$('click_test4').onclick = function(){TINY.box.show(content4,0,0,0,0,3)}
+                </script>-->
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/daterangepicker/moment.min.js"></script>
+<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/registerEmail.js"></script>
+
+</body>
+</html>
