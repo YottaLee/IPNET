@@ -70,9 +70,6 @@ public interface LoanBLService {
     boolean ifBankChosen(String patentID);
 
 
-
-    ResultMessage insuranceApplication(String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money);
-
     ResultMessage ifInsurance(String loanID, boolean ifPass);
 
     InsuranceVO getInsurance(String loanID);

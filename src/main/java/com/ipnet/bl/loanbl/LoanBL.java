@@ -109,6 +109,7 @@ public class LoanBL implements LoanBLService {
         return loanOptional.map(loan -> loan.getBank().equals("")).orElse(false);
     }
 
+
     @Override
     public ResultMessage insuranceApplication(String insurance_contractid,String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money) {
         InsuranceVO insurance=new InsuranceVO(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
