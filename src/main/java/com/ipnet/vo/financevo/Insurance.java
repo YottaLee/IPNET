@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 public class Insurance {
 
+    private String loanID; //贷款号
     private String patentID; //专利号
     private String person; //投保单位
     private String address; //地址

@@ -1,10 +1,13 @@
 package com.ipnet.controller.loancontroller;
 
 import com.ipnet.enums.ResultMessage;
-import com.ipnet.vo.financevo.LoanVO;
+import com.ipnet.vo.financevo.Loan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
 
 /**
  * 贷款-银行部分
@@ -17,12 +20,12 @@ public class LoanBankController {
 
     /**
      * 获取贷款信息
-     * @patentID 专利号
+     * @param loanID 贷款号
      * @return 贷款信息
      */
     @RequestMapping("/getInfo")
     @ResponseBody
-    public LoanVO getInfo(String patentID) {
+    public Loan getInfo(String loanID) {
         return null;
     }
 
@@ -30,18 +33,18 @@ public class LoanBankController {
     /**
      * 获取贷款意向
      *
-     * @param patentID 专利号
+     * @param loanID 贷款号
      * @return 贷款意向
      */
     @RequestMapping("/getApplication")
     @ResponseBody
-    public LoanVO getApplication(String patentID) {
+    public Loan getApplication(String loanID) {
         return null;
     }
 
     /**
      * 银行提交通过意见
-     * @param patentID 专利号
+     * @param loanID 贷款号
      * @param bank 金融机构名称
      * @param ifPass 是否同意放贷
      * @param ifInsurance 是否同意让专利持有人购买专利质押贷款保证保险
@@ -51,7 +54,7 @@ public class LoanBankController {
      */
     @RequestMapping("/submitApplication")
     @ResponseBody
-    public ResultMessage submitApplication(String patentID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
+    public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
         return null;
     }
 
