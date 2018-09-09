@@ -8,6 +8,7 @@ import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.entity.CompanyUser;
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.Role;
 import com.ipnet.utility.MD5Util;
 import com.ipnet.utility.TransHelper;
 import com.ipnet.vo.uservo.CompanyVerify;
@@ -324,6 +325,20 @@ public class UserBL implements UserBLService{
                 return ResultMessage.NoUser;//该用户既不是企业用户，也不是个人用户
             }
         }
+    }
+
+    @Override
+    public Role getUserRole(String userID) {
+        Optional<PersonalUser> optionalPersonalUser=personalUserDao.findById(userID);
+        if(optionalPersonalUser.isPresent()){
+            return Role.PersonalUser;
+        }else {
+            Optional<CompanyUser> optionalCompanyUser=companyUserDao.findById(userID);
+            if(optionalCompanyUser.isPresent()){
+                return optionalCompanyUser.get().getRole();
+            }
+        }
+        return null;
     }
 
     @Override

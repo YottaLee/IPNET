@@ -1,6 +1,7 @@
 package com.ipnet.blservice;
 
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.Role;
 import com.ipnet.vo.uservo.CompanyVerify;
 import com.ipnet.vo.uservo.EmailRegister;
 import com.ipnet.vo.uservo.PersonVerify;
@@ -33,6 +34,8 @@ public interface UserBLService {
     ResultMessage loginPhone(String telephone, String password);
     //邮箱登录,企业和个人都可以
     ResultMessage loginEmail(String email, String password);
+
+    Role getUserRole(String userID);
 
     //用户实名身份认证
     boolean personVerify(PersonVerify personVerify);

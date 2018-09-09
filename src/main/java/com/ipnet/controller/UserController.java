@@ -150,6 +150,6 @@ public class UserController {
     @RequestMapping("/getUserRole")
     @ResponseBody
     public Role getUserRole(String userID){
-        return null;
+        return userBLService.getUserRole(userID);
     }
 }
