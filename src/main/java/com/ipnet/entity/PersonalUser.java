@@ -2,14 +2,12 @@ package com.ipnet.entity;
 
 import com.ipnet.enums.Identity;
 import com.ipnet.enums.Industry;
-import com.ipnet.enums.Region;
 import com.ipnet.enums.Sex;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 
@@ -31,7 +29,7 @@ public class PersonalUser {
 
     private String idPhoto;//用户身份证照片，用于实名认证
     private String name;//用户的姓名
-    private String nickname;//用户的昵称？nickname？暂时无用
+    private String username;//用户的昵称？username？暂时无用
     private String password;//用户的登录密码
 
     private String image;//用户头像的url
@@ -109,12 +107,12 @@ public class PersonalUser {
         this.name = name;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
