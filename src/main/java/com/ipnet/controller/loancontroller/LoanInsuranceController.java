@@ -45,6 +45,18 @@ public class LoanInsuranceController {
     }
 
     /**
+     * 获取保险申请URL
+     * @param loanID 贷款号
+     * @return url
+     */
+    @RequestMapping("/getInsuranceApplicationURL")
+    @ResponseBody
+    public String getInsuranceApplicationURL(String loanID) {
+        return null;
+    }
+
+
+    /**
      * 存取是否愿意投保
      *
      * @param loanID 贷款号

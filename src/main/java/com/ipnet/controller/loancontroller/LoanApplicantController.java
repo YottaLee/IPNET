@@ -33,6 +33,16 @@ public class LoanApplicantController {
     }
 
     /**
+     * 获取保险申请文件的url
+     * @param loanID 贷款号
+     * @return url
+     */
+    @RequestMapping("/getChooseInsuranceURL")
+    @ResponseBody
+    public String getChooseInsuranceURL(String loanID) {
+        return null;
+    }
+    /**
      * 存取该专利贷款意向结果
      *
      * @param loanID 贷款号
@@ -47,6 +57,17 @@ public class LoanApplicantController {
     public ResultMessage chooseBank(String loanID, String url, double money, String time, String bank) {
         return null;
         //return loanBLService.chooseBank(loanID, money, time, bank);
+    }
+
+    /**
+     * 获取贷款意向文件的url
+     * @param loanID 贷款号
+     * @return url
+     */
+    @RequestMapping("/getChooseBankURL")
+    @ResponseBody
+    public String getChooseBankURL(String loanID) {
+        return null;
     }
 
 

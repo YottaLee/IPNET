@@ -33,13 +33,27 @@ public class LoanAllController {
     /**
      * 存取该合同的用户是否同意并签署最终合同
      * @param loanID 贷款号
+     * @param url 上传签字的url
      * @param userid 用户
      * @param ifPass 是否同意
      * @return
      */
     @RequestMapping("/ifContract")
     @ResponseBody
-    public ResultMessage ifContact(String loanID, String userid, Boolean ifPass){
-        return loanBLService.ifContract(loanID,userid,ifPass);
+    public ResultMessage ifContract(String loanID,String url, String userid, Boolean ifPass){
+        return null;
+      //  return loanBLService.ifContract(loanID,userid,ifPass);
+    }
+
+    /**
+     * 获取合同照片的url
+     * @param loanID 贷款号
+     * @param userid 用户ID
+     * @return
+     */
+    @RequestMapping("/ifContract")
+    @ResponseBody
+    public String getContractURL(String loanID, String userid){
+        return null;
     }
 }
