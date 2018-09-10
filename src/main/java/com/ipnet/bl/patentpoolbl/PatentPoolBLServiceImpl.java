@@ -188,5 +188,17 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         this.patentPoolDao.saveAndFlush(pool);
     }
 
+    @Override
+    public List<PatentPoolVO> getIPSETList(String userId) throws IDNotExistsException{
+        List<PatentPool> poolists = this.patentPoolDao.searchPatentPoolByOwner(userId);
+        if (poolists == null || poolists.size() == 0) {
+            return null;
+        }
+        return poolists.stream()
+                .filter(patentPool -> patentPool!=null)
+                .map(patentPool -> (PatentPoolVO)this.transHelper.transTO(patentPool,PatentPoolVO.class))
+                .collect(Collectors.toList());
+    }
+
 
 }

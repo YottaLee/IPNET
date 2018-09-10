@@ -31,4 +31,6 @@ public interface PatentPoolBLService {
 
     boolean updateIpSet(PatentPoolVO ipSetVo);         //更新专利池
 
+    List<PatentPoolVO> getIPSETList(String userId) throws IDNotExistsException;
+
 }

@@ -81,8 +81,8 @@ public class PatentPoolController {
      * @throws IDNotExistsException
      */
     @RequestMapping("/getIPSETList")
-    @ResponseBody
-    public ArrayList<PatentPoolVO> getIPSETList(String userId) throws IDNotExistsException{
-        return null;
+
+    public @ResponseBody List<PatentPoolVO> getIPSETList(@RequestParam String userId) throws IDNotExistsException{
+        return service.getIPSETList(userId);
     }
 }
