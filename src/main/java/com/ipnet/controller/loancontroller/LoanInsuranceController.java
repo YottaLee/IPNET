@@ -23,6 +23,7 @@ public class LoanInsuranceController {
     /**
      * 专利持有人未提交贷款，银行向保险公司发出理赔申请
      *
+     * @param url 理赔申请文件路径
      * @param loanID 贷款号
      * @param person 投保单位名称
      * @param address 投保单位地址
@@ -37,9 +38,10 @@ public class LoanInsuranceController {
      */
     @RequestMapping("/insuranceApplication")
     @ResponseBody
-    public ResultMessage insuranceApplication(String insurance_contractid,String loanID, String person, String address, String time, String reason,
+    public ResultMessage insuranceApplication(String loanID, String url,String person, String address, String time, String reason,
                                        String bank, String bankName, String bankID, String insuranceID, int money) {
-        return loanBLService.insuranceApplication(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
+        return null;
+      //  return loanBLService.insuranceApplication(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
     }
 
     /**

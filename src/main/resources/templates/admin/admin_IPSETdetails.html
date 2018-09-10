@@ -9,20 +9,19 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>IPNET - Admin Home Page</title>
+    <title>IPNET - IPSET 详情</title>
     <meta name="description" content="IPNET - Admin Home Page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--<link rel="apple-touch-icon" href="apple-icon.png">-->
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <link rel="stylesheet" href="css/flag-icon.min.css">
-    <link rel="stylesheet" href="css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="scss/style.css">
-    <link rel="stylesheet" href="css/lib/chosen/chosen.min.css">
+    <link rel="stylesheet" href="/ipnet_Login_v2/admin/css/normalize.css">
+    <link rel="stylesheet" href="/ipnet_Login_v2/admin/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/ipnet_Login_v2/admin/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/ipnet_Login_v2/admin/css/themify-icons.css">
+    <link rel="stylesheet" href="/ipnet_Login_v2/admin/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/ipnet_Login_v2/admin/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/ipnet_Login_v2/admin/scss/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -37,29 +36,29 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="./"><!--<img src="images/logo.png" alt="Logo">--><span>IPNET Admin</span></a>
-            <a class="navbar-brand hidden" href="./"><!--<img src="images/logo2.png" alt="Logo">--><span>IP</span></a>
+            <a class="navbar-brand" href="/ipnet_Login_v2/admin"><!--<img src="images/logo.png" alt="Logo">--><span>IPNET Admin</span></a>
+            <a class="navbar-brand hidden" href="/ipnet_Login_v2/admin"><!--<img src="images/logo2.png" alt="Logo">--><span>IP</span></a>
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <h3 class="menu-title">IPI 指数</h3><!-- /.menu-title -->
                 <li>
-                    <a href="#"><i class="menu-icon fa fa-book"></i>权重设置</a>
+                    <a href="/ipnet/admin_IPIweight"><i class="menu-icon fa fa-book"></i>权重设置</a>
                 </li>
                 <li>
-                    <a href="#"><i class="menu-icon fa fa-bar-chart"></i>统计信息</a>
+                    <a href="/ipnet/admin_statisticsCharts"><i class="menu-icon fa fa-bar-chart"></i>统计信息</a>
                 </li>
 
                 <h3 class="menu-title">IPSET</h3>
                 <li>
-                    <a href="#"><i class="menu-icon fa fa-laptop"></i>IPSET 查看</a>
+                    <a href="/ipnet/admin_IPSETlist"><i class="menu-icon fa fa-laptop"></i>IPSET 查看</a>
                 </li>
 
                 <h3 class="menu-title">平台审核</h3>
-                <!--<li>
+                <li>
                     <a href="#"><i class="menu-icon ti-email"></i>审核审批</a>
-                </li>-->
+                </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>审核审批</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -92,7 +91,7 @@
             <div class="col-sm-5">
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        <img class="user-avatar rounded-circle" src="../../static/ipnet_Login_v2/admin/images/admin.jpg" alt="User Avatar">
                     </a>
 
                     <div class="user-menu dropdown-menu">
@@ -126,7 +125,7 @@
         <div class="col-sm-4">
             <div class="page-header float-left">
                 <div class="page-title">
-                    <h1>Dashboard</h1>
+                    <h1>IPSET</h1>
                 </div>
             </div>
         </div>
@@ -134,8 +133,9 @@
             <div class="page-header float-right">
                 <div class="page-title">
                     <ol class="breadcrumb text-right">
-                        <li><a href="#">Dashboard</a></li>
-                        <li class="active">Advanced</li>
+                        <li><a href="#">IPSET</a></li>
+                        <li><a href="#">IPSET 查看</a></li>
+                        <li class="active">详情查看</li>
                     </ol>
                 </div>
             </div>
@@ -326,10 +326,10 @@
 
 <!-- Right Panel -->
 
-<script src="js/vendor/jquery-2.1.4.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/main.js"></script>
+<script src="/ipnet_Login_v2/admin/js/vendor/jquery-2.1.4.min.js"></script>
+<script src="/ipnet_Login_v2/admin/js/popper.min.js"></script>
+<script src="/ipnet_Login_v2/admin/js/plugins.js"></script>
+<script src="/ipnet_Login_v2/admin/js/main.js"></script>
 
 </body>
 </html>

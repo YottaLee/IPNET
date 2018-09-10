@@ -194,7 +194,7 @@ function loginMsg(){
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "../../home.html";
+                        window.location.href = "../../index.html";
                     },2000);
                 }
                 else if(data == "NoUser"){
