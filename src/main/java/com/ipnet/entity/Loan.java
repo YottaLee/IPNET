@@ -27,6 +27,8 @@ public class Loan {
     private String loanContract;//质押合同ID
     private double actual_money;//成交金额
     private String actual_time;//成交期限
+    private double insurance_expect_money;
+    private String insurance_expect_time;
 
     private String insurance;//保险公司
     private boolean accept;//保险公司是否同意担保,即保险双方是否已经签署了合同

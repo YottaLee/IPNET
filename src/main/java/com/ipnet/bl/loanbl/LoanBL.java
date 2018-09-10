@@ -160,7 +160,9 @@ public class LoanBL implements LoanBLService {
         loan.setBank(bank);
         loan.setPass(ifPass);
         loan.setAccept(ifInsurance);
-        //这里有点疑问
+        loan.setInsurance_expect_money(money);
+        loan.setInsurance_expect_time(time);
+        loanDao.saveAndFlush(loan);
         return ResultMessage.Success;
     }
 }
