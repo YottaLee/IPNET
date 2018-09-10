@@ -1,6 +1,7 @@
 package com.ipnet.controller.evaluationcontroller;
 
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.vo.financevo.EvaluationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,4 +35,11 @@ public class EvaluationController {
     public ResultMessage applyEvaluation(String patentID, String url) {
         return null;
     }
+
+    @RequestMapping("/getEvaluation")
+    @ResponseBody
+    public EvaluationVO getEvaluation(String patentID) {
+        return null;
+    }
+
 }
