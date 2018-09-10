@@ -100,7 +100,13 @@ public class PatentBLServiceImpl implements PatentBLService {
             pool.setPatents(patentlist);
             this.patentpoolDao.saveAndFlush(pool);
 
-            //设置ip的状态
+            Optional<Patent> optionalPatent = this.patentDao.findById(ipId);
+            if(option!=null || option.isPresent() == false){
+                  throw new IDNotExistsException("patent id not exists");
+             }
+             Patent realPatent = optionalPatent.get();
+             realPatent.setPool_id("");
+             this.patentDao.saveAndFlush(realPatent);
     }
 
 

@@ -22,6 +22,7 @@ import java.util.Date;
 public class PatentVO {
 
     private String patent_id;//专利号
+    private String pool_id; //专利池号
     private String patent_name;//专利名称
     private String patent_holder;//专利持有者
     private Patent_state state;//专利状态
