@@ -13,9 +13,8 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class TokenServiceBL implements TokenService{
-    @Autowired
-    private Token token;
 
+    private Token token = new Token();
 
     public String getRealAccessToken(String username , String password) throws IOException{
         String client_id = APIConstant.CLIENT_ID;
