@@ -69,7 +69,7 @@ public class UserInfoController {
     @RequestMapping("/setUsername")
     public @ResponseBody
     ResultMessage setUsername(String userId,String username){
-        return securityBLService.setUsername(userId);
+        return securityBLService.setUsername(userId,username);
     }
 
     //查看是否已绑定邮箱
