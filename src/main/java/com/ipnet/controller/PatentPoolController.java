@@ -43,11 +43,11 @@ public class PatentPoolController {
     public @ResponseBody Boolean deletePatentPool(@RequestParam String patentPoolID){
         return service.deletePatentPool(patentPoolID);
     }
-
-    @RequestMapping("/addPatentIntoPool")
-    public @ResponseBody Boolean addPatentIntoPool(@RequestParam String poolID,@RequestParam String PatentID) throws IDNotExistsException{
-        return  service.addPatentIntoPool(poolID,PatentID);
-    }
+//
+//    @RequestMapping("/addPatentIntoPool")
+//    public @ResponseBody Boolean addPatentIntoPool(@RequestParam String poolID,@RequestParam String PatentID) throws IDNotExistsException{
+//        return  service.addPatentIntoPool(poolID,PatentID);
+//    }
 
     @RequestMapping("/updateIpSet")
     public @ResponseBody boolean updateIpSet(@RequestBody PatentPoolVO ipSetVo){
