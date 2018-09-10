@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@Entity
+
 @Data
 public class Token {
     private String accessToken ;
@@ -22,21 +22,18 @@ public class Token {
     private String exponent;
 
     public Token() {
-        try {
-            accessToken = getAccessToken();
-            Map<String , String> map = getBizTokenEtc(accessToken);
-            eventId = map.get("eventId");
-            bizToken = map.get("bizToken");
-            modulus = map.get("modulus");
-            exponent = map.get("exponent");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        accessToken = getAccessToken();
+        Map<String , String> map = getBizTokenEtc(accessToken);
+        eventId = map.get("eventId");
+        bizToken = map.get("bizToken");
+        modulus = map.get("modulus");
+        exponent = map.get("exponent");
 
     }
 
-    private static String getAccessToken() throws IOException{
+    private static String getAccessToken(){
+        String accessToken = "";
+        try{
         OkHttpClient client = new OkHttpClient();
         String client_id = APIConstant.CLIENT_ID;
         String client_scrent = APIConstant.CLIENT_SCRENT;
@@ -53,46 +50,57 @@ public class Token {
                 .build();
         Response response = client.newCall(request).execute();
         JSONObject jsonObject = (JSONObject) JSONValue.parse(response.body().string());
-        String accessToken = (String) jsonObject.get("access_token");
+        accessToken = (String) jsonObject.get("access_token");
         System.out.println("step1 access_token:");
         System.out.println("\t" + accessToken);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
         return accessToken;
     }
 
-    private static Map getBizTokenEtc(String accessToken) throws IOException{
+    private static Map getBizTokenEtc(String accessToken){
         Map<String, String> map = new HashMap<>();
-        OkHttpClient client = new OkHttpClient();
-        String client_id = APIConstant.CLIENT_ID;
-        String authorization = "Bearer " + accessToken;
-        UUID uuid = UUID.randomUUID();
-        Request request = new Request.Builder()
-                .url("https://sandbox.apihub.citi.com/gcb/api/security/e2eKey")
-                .get()
-                .addHeader("authorization", authorization)
-                .addHeader("client_id", client_id)
-                .addHeader("uuid", uuid.toString())
-                .addHeader("content-type", "application/json")
-                .build();
-        Response response = client.newCall(request).execute();
-        JSONObject jsonObject = (JSONObject) JSONValue.parse(response.body().string());
-        String modulus = null;
-        String exponent = null;
-        String bizToken = null;
-        String eventId = null;
-        if (jsonObject != null) {
-            modulus = (String) jsonObject.get("modulus");
-            exponent = (String) jsonObject.get("exponent");
-            Headers headers = response.headers();
-            bizToken = headers.get("bizToken");
-            eventId = headers.get("eventId");
-            map.put("modulus", modulus);
-            map.put("exponent", exponent);
-            map.put("bizToken", bizToken);
-            map.put("eventId", eventId);
+        try {
+
+            OkHttpClient client = new OkHttpClient();
+            String client_id = APIConstant.CLIENT_ID;
+            String authorization = "Bearer " + accessToken;
+            UUID uuid = UUID.randomUUID();
+            Request request = new Request.Builder()
+                    .url("https://sandbox.apihub.citi.com/gcb/api/security/e2eKey")
+                    .get()
+                    .addHeader("authorization", authorization)
+                    .addHeader("client_id", client_id)
+                    .addHeader("uuid", uuid.toString())
+                    .addHeader("content-type", "application/json")
+                    .build();
+            Response response = client.newCall(request).execute();
+            JSONObject jsonObject = (JSONObject) JSONValue.parse(response.body().string());
+            String modulus = null;
+            String exponent = null;
+            String bizToken = null;
+            String eventId = null;
+            if (jsonObject != null) {
+                modulus = (String) jsonObject.get("modulus");
+                exponent = (String) jsonObject.get("exponent");
+                Headers headers = response.headers();
+                bizToken = headers.get("bizToken");
+                eventId = headers.get("eventId");
+                map.put("modulus", modulus);
+                map.put("exponent", exponent);
+                map.put("bizToken", bizToken);
+                map.put("eventId", eventId);
+            }
+            System.out.println("step2 map:");
+            for (String s : map.keySet()) {
+                System.out.println("\tkey:" + s + "\tvalues:" + map.get(s));
+            }
+
         }
-        System.out.println("step2 map:");
-        for (String s : map.keySet()) {
-            System.out.println("\tkey:" + s + "\tvalues:" + map.get(s));
+        catch(IOException e){
+            e.printStackTrace();
         }
         return map;
     }
