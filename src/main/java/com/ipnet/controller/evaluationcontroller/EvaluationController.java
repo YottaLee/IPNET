@@ -40,6 +40,17 @@ public class EvaluationController {
         return evaluationBLService.applyEvaluation(patentID,url);
     }
 
+    /**
+     * 获取申请评估的文件url
+     * @param patentID 专利号
+     * @return 专利持有人申请评估文件的url
+     */
+    @RequestMapping("/getEvaluationApplicationURL")
+    @ResponseBody
+    public String getEvaluationApplicationURL(String patentID) {
+        return null;
+    }
+
     @RequestMapping("/getEvaluation")
     @ResponseBody
     public EvaluationVO getEvaluation(String patentID) {
