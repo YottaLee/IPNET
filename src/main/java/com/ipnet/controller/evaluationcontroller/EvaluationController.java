@@ -48,7 +48,7 @@ public class EvaluationController {
     @RequestMapping("/getEvaluationApplicationURL")
     @ResponseBody
     public String getEvaluationApplicationURL(String patentID) {
-        return null;
+        return evaluationBLService.getEvaluationApplicationURL(patentID);
     }
 
     @RequestMapping("/getEvaluation")

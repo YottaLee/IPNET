@@ -46,8 +46,7 @@ public class LoanAllController {
     @RequestMapping("/ifContract")
     @ResponseBody
     public ResultMessage ifContract(String loanID, String url, String userid, Boolean ifPass) {
-        return null;
-        //  return loanBLService.ifContract(loanID,userid,ifPass);
+        return loanBLService.ifContract(loanID,url,userid,ifPass);
     }
 
     /**
@@ -61,7 +60,7 @@ public class LoanAllController {
     @RequestMapping("/saveContractURL")
     @ResponseBody
     public ResultMessage saveContractURL(String loanID, String userid, int gov, String url) {
-        return null;
+        return loanBLService.saveGovernmentSign(loanID,userid,gov,url);
     }
 
     /**
@@ -74,7 +73,7 @@ public class LoanAllController {
     @RequestMapping("/getContractURL")
     @ResponseBody
     public ArrayList<String> getContractURL(String loanID) {
-        return null;
+        return loanBLService.getSigns(loanID);
     }
 
     /**
@@ -85,6 +84,6 @@ public class LoanAllController {
     @RequestMapping("/getPatentList")
     @ResponseBody
     public ArrayList<LoanVO> getPatentList(String userId) {
-        return null;
+        return loanBLService.getPatentList(userId);
     }
 }
