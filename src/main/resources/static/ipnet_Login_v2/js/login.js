@@ -186,7 +186,8 @@ function loginMsg(){
         $.ajax({
             url: "/user/phoneLogin",
             type: "POST",
-            dataType: "application/json",
+            contentType: "application/json",
+            dataType: "json",
             data: JSON.stringify(loginreq),
             success: function (data) {
                 if (data == "PersonLogin"){
@@ -211,6 +212,7 @@ function loginMsg(){
                 }
             },
             error: function () {
+                alert("req.username:" + loginreq.username);
                 content = "请求失败！再试一次 . . .";
                 TINY.box.show(content,0,0,0,0,3);
             }
