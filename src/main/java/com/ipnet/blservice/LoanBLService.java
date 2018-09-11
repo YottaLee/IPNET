@@ -19,6 +19,8 @@ public interface LoanBLService {
 
     ArrayList<LoanVO> getPatentList(String userID);
 
+    boolean getIfContract(String loanID,String userID);
+
     //LoanApplicationController
     ResultMessage chooseInsurance(String loanID,String url,String insurance);
 

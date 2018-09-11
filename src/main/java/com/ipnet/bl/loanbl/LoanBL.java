@@ -95,6 +95,32 @@ public class LoanBL implements LoanBLService {
     }
 
     /**
+     * 该用户是否已在该合同最终确认（此步接上个controller）
+     * @param loanID 贷款号
+     * @param userid 用户ID
+     * @return 是否确认过合同
+     */
+    @Override
+    public boolean getIfContract(String loanID,String userid){
+        Optional<Loan> loanOptional=loanDao.findById(loanID);
+        if(loanOptional.isPresent()){
+            Loan loan=loanOptional.get();
+            Role role=userBLService.getUserRole(userid);
+            switch (role){
+                case Insurance:
+                    return loan.isInsurancePass();
+                case Evaluator:
+                    return loan.isEvaluationPass();
+                case Financial:
+                    return loan.isBankPass();
+                default:
+                    return loan.isOwnerPass();
+            }
+        }
+        return false;
+    }
+
+    /**
      * 存取合同url
      * @param loanID 贷款ID
      * @param userid 用户ID
