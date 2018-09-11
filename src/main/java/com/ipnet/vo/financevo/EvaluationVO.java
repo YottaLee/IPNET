@@ -6,6 +6,14 @@ import org.springframework.stereotype.Component;
 import javax.persistence.Entity;
 
 @Data
+@Component
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
+@Entity
 /**
  * 评估
  */

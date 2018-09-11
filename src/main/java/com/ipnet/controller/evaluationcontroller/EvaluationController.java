@@ -25,6 +25,17 @@ public class EvaluationController {
     }
 
     /**
+     * 获取评估报告
+     * @param patentID 专利号
+     * @return 评估报告
+     */
+    @RequestMapping("/getEvaluation")
+    @ResponseBody
+    public EvaluationVO getEvaluation(String patentID) {
+        return null;
+    }
+
+    /**
      * 申请评估
      * @param patentID 专利号
      * @param url 申请评估文件的路径
@@ -36,10 +47,16 @@ public class EvaluationController {
         return null;
     }
 
-    @RequestMapping("/getEvaluation")
+    /**
+     * 获取申请评估的文件url
+     * @param patentID 专利号
+     * @return 专利持有人申请评估文件的url
+     */
+    @RequestMapping("/getEvaluationApplication")
     @ResponseBody
-    public EvaluationVO getEvaluation(String patentID) {
+    public String getEvaluationApplication(String patentID) {
         return null;
     }
+
 
 }
