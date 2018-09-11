@@ -20,29 +20,54 @@ public class LoanApplicantController {
     /**
      * 将该专利的质押贷款保证保险申请提供给保险公司
      *
-     * @param loanID 贷款号
+     * @param loanID    贷款号
+     * @param url       专利质押保险投保单url
      * @param insurance 选择的保险公司
      * @return ResultMessage
      */
     @RequestMapping("/chooseInsurance")
     @ResponseBody
-    public ResultMessage chooseInsurance(String loanID, String insurance){
-        return loanBLService.chooseInsurance(loanID,insurance);
+    public ResultMessage chooseInsurance(String loanID, String url, String insurance) {
+        return null;
+        // return loanBLService.chooseInsurance(loanID,insurance);
     }
 
+    /**
+     * 获取保险申请文件的url
+     * @param loanID 贷款号
+     * @return url
+     */
+    @RequestMapping("/getChooseInsuranceURL")
+    @ResponseBody
+    public String getChooseInsuranceURL(String loanID) {
+        return null;
+    }
     /**
      * 存取该专利贷款意向结果
      *
      * @param loanID 贷款号
-     * @param money 意向金额
-     * @param time 意向期限
-     * @param bank 金融机构
+     * @param url 意向申请的文件路径
+     * @param money  意向金额
+     * @param time   意向期限
+     * @param bank   金融机构
      * @return ResultMessage
      */
     @RequestMapping("/chooseBank")
     @ResponseBody
-    public ResultMessage chooseBank(String loanID,double money,String time,String bank){
-        return loanBLService.chooseBank(loanID,money,time,bank);
+    public ResultMessage chooseBank(String loanID, String url, double money, String time, String bank) {
+        return null;
+        //return loanBLService.chooseBank(loanID, money, time, bank);
+    }
+
+    /**
+     * 获取贷款意向文件的url
+     * @param loanID 贷款号
+     * @return url
+     */
+    @RequestMapping("/getChooseBankURL")
+    @ResponseBody
+    public String getChooseBankURL(String loanID) {
+        return null;
     }
 
 
@@ -60,12 +85,13 @@ public class LoanApplicantController {
 
     /**
      * 存取该专利已经有贷款申请，可借此机会生成loanID
+     *
      * @param patentID 专利号
      * @return 返回loanID
      */
     @RequestMapping("/applyLoan")
     @ResponseBody
-    public String saveLoanApply(String patentID){
+    public String saveLoanApply(String patentID) {
         return loanBLService.saveLoanApply(patentID);
     }
 
@@ -77,7 +103,7 @@ public class LoanApplicantController {
      */
     @RequestMapping("/ifValue")
     @ResponseBody
-    public boolean ifValue(String patentID){
+    public boolean ifValue(String patentID) {
         return loanBLService.ifValue(patentID);
     }
 
@@ -89,7 +115,7 @@ public class LoanApplicantController {
      */
     @RequestMapping("/ifBankChosen")
     @ResponseBody
-    public boolean ifBankChosen(String patentID){
+    public boolean ifBankChosen(String patentID) {
         return loanBLService.ifBankChosen(patentID);
     }
 

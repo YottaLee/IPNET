@@ -71,24 +71,6 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         return true;
     }
 
-    @Override
-    public Boolean addPatentIntoPool(String poolID, String patentID) throws IDNotExistsException {
-        Optional<PatentPool> optionalPatentPool = this.patentPoolDao.findById(poolID);
-        if (optionalPatentPool == null || optionalPatentPool.isPresent() == false) {
-            throw new IDNotExistsException("pool id not exists");
-        }
-        PatentPool pool = optionalPatentPool.get();
-
-        if (this.patentBLHelper.ifPatentExists(patentID) == false){
-            throw new IDNotExistsException("patent id not exists");
-        }
-
-        List<String> patentIDList = pool.getPatents();
-        patentIDList.add(patentID);
-
-        this.patentPoolDao.saveAndFlush(pool);
-        return true;
-    }
 
     /**
      * @author gy
@@ -174,7 +156,6 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         pool.acceptApply(ipId);
         this.patentPoolDao.saveAndFlush(pool);
 
-
         //个人感觉需要加一个ip的所属专利池的属性
     }
 
@@ -186,6 +167,18 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         PatentPool pool = this.patentPoolDao.findById(ipSetId).get();
         pool.denyApply(ipId);
         this.patentPoolDao.saveAndFlush(pool);
+    }
+
+    @Override
+    public List<PatentPoolVO> getIPSETList(String userId) throws IDNotExistsException{
+        List<PatentPool> poolists = this.patentPoolDao.searchPatentPoolByOwner(userId);
+        if (poolists == null || poolists.size() == 0) {
+            return null;
+        }
+        return poolists.stream()
+                .filter(patentPool -> patentPool!=null)
+                .map(patentPool -> (PatentPoolVO)this.transHelper.transTO(patentPool,PatentPoolVO.class))
+                .collect(Collectors.toList());
     }
 
 

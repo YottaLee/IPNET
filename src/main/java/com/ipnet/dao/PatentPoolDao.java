@@ -20,4 +20,6 @@ public interface PatentPoolDao extends JpaRepository<PatentPool , String>{
     @Query(value = "select pool from PatentPool pool where pool.name = :poolName")
     List<PatentPool> searchPatentPoolByName(@Param("poolName") String poolName);
 
+    @Query(value = "select pool from PatentPool pool where pool.owner = :owner")
+    List<PatentPool> searchPatentPoolByOwner(@Param("owner") String owner);
 }

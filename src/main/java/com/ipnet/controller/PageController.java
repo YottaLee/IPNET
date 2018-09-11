@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("ipnet")
 public class PageController {
 
+    @RequestMapping("home")
+    public String home(){
+        return "home";
+    }
+
     @RequestMapping("community_home")
     public  String community_home(){
         return "/community/community_home";
