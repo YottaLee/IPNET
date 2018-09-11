@@ -97,7 +97,7 @@ public class UserInfoController {
         return securityBLService.getverification(phone);
     }
     //绑定手机号
-    @RequestMapping("/getVerification")
+    @RequestMapping("/setPhone")
     public @ResponseBody
     ResultMessage setPhone(String userId,String phone,String verification){
         return securityBLService.setPhone(userId,phone,verification);

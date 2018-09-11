@@ -1,7 +1,9 @@
 package com.ipnet.controller.loancontroller;
 
 import com.ipnet.blservice.LoanBLService;
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.vo.PatentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,6 +73,17 @@ public class LoanAllController {
     @RequestMapping("/getContractURL")
     @ResponseBody
     public ArrayList<String> getContractURL(String loanID) {
+        return null;
+    }
+
+    /**
+     * 返回金融机构、保险公司、评估机构有关的所有专利信息
+     * @param userId 用户id
+     * @return 专利列表
+     */
+    @RequestMapping("/getPatentList")
+    @ResponseBody
+    public ArrayList<PatentVO> getPatentList(String userId) {
         return null;
     }
 }
