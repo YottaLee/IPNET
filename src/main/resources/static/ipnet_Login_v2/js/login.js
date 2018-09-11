@@ -185,8 +185,9 @@ function loginMsg(){
 
         $.ajax({
             url: "/user/phoneLogin",
-            type: "GET",
-            dataType: "application/json",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
             data: JSON.stringify(loginreq),
             success: function (data) {
                 if (data == "PersonLogin"){
@@ -194,7 +195,7 @@ function loginMsg(){
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "../../index.html";
+                        window.location.href = "/ipnet/pc_eWallet";
                     },2000);
                 }
                 else if(data == "NoUser"){
@@ -206,12 +207,13 @@ function loginMsg(){
                     TINY.box.show(content,0,0,0,0,3);
                 }
                 else {
-                    content = "登录失败！再试一次 . . .";
+                    content = "未知错误！再试一次 . . .";
                     TINY.box.show(content,0,0,0,0,3);
                 }
             },
             error: function () {
-                content = "登录失败！再试一次 . . .";
+                alert("req.username:" + loginreq.username);
+                content = "请求失败！再试一次 . . .";
                 TINY.box.show(content,0,0,0,0,3);
             }
         });

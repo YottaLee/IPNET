@@ -102,16 +102,16 @@
                                 <div class="container-login100-form-btn">
                                     <div class="wrap-login100-form-btn">
                                         <div class="login100-form-bgbtn"></div>
-                                        <a class="login100-form-btn" href="#zhangxinxu" id="register_btn">
+                                        <a class="login100-form-btn" href="#" id="register_btn" onclick="registerMsg();">
                                             注册<!-- Sign Up -->
                                         </a>
                                     </div>
                                 </div>
-                                <script type="text/javascript">
+                                <!--<script type="text/javascript">
                                     T$('register_btn').onclick = function(){
                                         registerMsg();  // 方法registerMsg()的定义见于js/register.js
                                     }
-                                </script>
+                                </script>-->
 
                                 <div class="text-center p-t-115">
                                     <a class="txt1" href="/ipnet/register">[手机号注册]</a>
@@ -129,14 +129,15 @@
                             </div>
                         </div>
                         <div class="none" id=myTab_Content1><!-- 企业/机构注册 -->
-                            <div class="star">
+                        </div></div></div>
+                            <!--<div class="star">
                                 <div>
                                     <p class="register-msg" id="err_msg2" style="text-align: right"></p>
                                 </div>
 
                                 <div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
                                     <input class="input100" type="text" name="email">
-                                    <span class="focus-input100" data-placeholder="邮箱"></span><!-- Email -->
+                                    <span class="focus-input100" data-placeholder="邮箱"></span>
                                 </div>
 
                                 <div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -144,7 +145,7 @@
 							            <i class="zmdi zmdi-eye"></i>
 						            </span>
                                     <input class="input100" type="password" name="pass">
-                                    <span class="focus-input100" data-placeholder="密码"></span><!-- Password -->
+                                    <span class="focus-input100" data-placeholder="密码"></span>
                                 </div>
 
                                 <div>
@@ -160,32 +161,33 @@
                                 <div class="container-login100-form-btn" style="margin-top: 30px;">
                                     <div class="wrap-login100-form-btn">
                                         <div class="login100-form-bgbtn"></div>
-                                        <a class="login100-form-btn" href="#zhangxinxu" id="register_btn2">
-                                            注册<!-- Sign Up -->
+                                        <a class="login100-form-btn" href="#">
+                                            <button id="register_btn2" disabled="disabled" onclick="registerMsgByEmail();">注册</button>
                                         </a>
                                     </div>
                                 </div>
-                                <script type="text/javascript">
+                                !--<script type="text/javascript">
                                     T$('register_btn2').onclick = function(){
-                                        registerMsg();  // 方法registerMsg()的定义见于js/registerEmail.js
+                                        registerMsgByEmail();  // 方法registerMsg()的定义见于js/registerEmail.js
                                     }
-                                </script>
+                                </script>--
 
                                 <div class="text-center p-t-115">
-                                    <!--<a class="txt1" href="registerByEmail.html">[邮箱注册]</a>
-                                    <br /><br />-->
+                                    !--<a class="txt1" href="registerByEmail.html">[邮箱注册]</a>
+                                    <br /><br />--
                                     <span class="txt1">
-							            已有账号？<!-- Already have an account? -->
+							            已有账号？
                                     </span>
 
                                     <a class="txt2" href="/ipnet/register_byEmail">
-                                        <strong>去登录</strong><!-- <em>Sign In</em> -->
+                                        <strong>去登录</strong>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                -->
 
                 <!--<div class="zxx_list_title"><b>自动隐藏</b><button class="login100-form-btn" id="click_test4">效果预览</button></div>--.>
                 <!--<div class="zxx_list_title"><b>自动隐藏</b><a class="ml20" href="#zhangxinxu" id="click_test4">效果预览</a></div>
@@ -219,7 +221,7 @@
 <!--===============================================================================================-->
 <script type="text/javascript" src="/ipnet_Login_v2/js/main.js"></script>
 <script type="text/javascript" src="/ipnet_Login_v2/js/register.js"></script>
-<script type="text/javascript" src="/ipnet_Login_v2/js/registerEmail.js"></script>
+<!--<script type="text/javascript" src="/ipnet_Login_v2/js/registerEmail.js"></script>-->
 
 </body>
 </html>
