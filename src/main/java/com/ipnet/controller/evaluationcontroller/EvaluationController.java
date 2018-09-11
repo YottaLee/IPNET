@@ -1,5 +1,6 @@
 package com.ipnet.controller.evaluationcontroller;
 
+import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.EvaluationVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("evaluation/")
 public class EvaluationController {
 
+    @Autowired
+    private EvaluationBLService evaluationBLService;
+
     /**
      * 提交专利评估报告
      * @param patentID 专利号
@@ -21,18 +25,7 @@ public class EvaluationController {
     @RequestMapping("/submitReport")
     @ResponseBody
     public ResultMessage submitReport(String patentID,String url, int evaluation) {
-        return null;
-    }
-
-    /**
-     * 获取评估报告
-     * @param patentID 专利号
-     * @return 评估报告
-     */
-    @RequestMapping("/getEvaluation")
-    @ResponseBody
-    public EvaluationVO getEvaluation(String patentID) {
-        return null;
+        return evaluationBLService.submitReport(patentID,url,evaluation);
     }
 
     /**
@@ -44,19 +37,25 @@ public class EvaluationController {
     @RequestMapping("/apply")
     @ResponseBody
     public ResultMessage applyEvaluation(String patentID, String url) {
-        return null;
+        return evaluationBLService.applyEvaluation(patentID,url);
+    }
+
+    @RequestMapping("/getEvaluation")
+    @ResponseBody
+    public EvaluationVO getEvaluation(String patentID) {
+        return evaluationBLService.getEvaluation(patentID);
     }
 
     /**
-     * 获取申请评估的文件url
+     * 判断该专利是否已经拥有评估结果
+     *
      * @param patentID 专利号
-     * @return 专利持有人申请评估文件的url
+     * @return boolean
      */
-    @RequestMapping("/getEvaluationApplication")
+    @RequestMapping("/ifValue")
     @ResponseBody
-    public String getEvaluationApplication(String patentID) {
-        return null;
+    public boolean ifValue(String patentID) {
+        return evaluationBLService.ifValue(patentID);
     }
-
 
 }
