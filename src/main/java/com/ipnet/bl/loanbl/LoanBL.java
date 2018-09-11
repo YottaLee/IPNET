@@ -5,8 +5,6 @@ import com.ipnet.dao.InsuranceDao;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Loan;
 import com.ipnet.enums.ResultMessage;
-import com.ipnet.entity.Loan;
-import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.InsuranceVO;
 import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.beans.factory.annotation.Autowired;

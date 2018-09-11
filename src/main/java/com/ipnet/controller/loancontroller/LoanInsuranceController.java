@@ -44,6 +44,7 @@ public class LoanInsuranceController {
       //  return loanBLService.insuranceApplication(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
     }
 
+
     /**
      * 存取是否愿意投保
      *
