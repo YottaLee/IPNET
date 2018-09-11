@@ -97,7 +97,10 @@ function loan(patentID) {
                             type: "POST",
                             url: "applicant/applyLoan",
                             dataType: "json",
-                            data: patentID,
+                            data: {
+                                userID: userID,
+                                patentID: patentID
+                            },
                             success: function (data) {
                                 storage.loanID = data;
                                 window.location.href = "Applicant-evaluation2.html";

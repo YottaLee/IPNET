@@ -1,5 +1,5 @@
 var storage = window.localStorage;
-var patentID = storage.patentID;
+var loanID = storage.loanID;
 
 // Form-File-Upload.js
 // ====================================================================
@@ -129,7 +129,7 @@ $(document).ready(function () {
                 $.ajax({
                     url: 'applicant/ifBankChosen',
                     type: 'GET',
-                    data: patentID,
+                    data: loanID,
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
