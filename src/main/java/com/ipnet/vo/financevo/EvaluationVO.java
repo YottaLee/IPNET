@@ -11,5 +11,6 @@ public class EvaluationVO {
     private String patentID; //专利ID
     private String url; //文件url
     private double evaluation; //经济价值
+    private double money; //评估费用
 
 }
