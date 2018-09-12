@@ -133,11 +133,12 @@ function checkRadioInput() {
     return false;
 }
 
-function registerMsg() {
+function registerMsgByEmail() {
     //1-调用后端的方法验证（待定）
     //2-若验证为真，则提示注册成功，跳转到登录后的主页；若为假，则提示失败原因（待定）
     // ? 验证方法
 
+    alert("call registerMsgByEmail");
     var content = "";
     var isChecked = checkRadioInput();
 

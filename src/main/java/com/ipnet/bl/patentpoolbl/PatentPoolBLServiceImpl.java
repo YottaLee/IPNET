@@ -181,5 +181,18 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<PatentPoolVO> getNotFullPools() throws IDNotExistsException {
+        List<PatentPool> poolists = this.patentPoolDao.findAll();
+        for(PatentPool pool : poolists){
+            if(isFull(pool.getId())){
+                poolists.remove(pool);
+            }
+        }
+        return poolists.stream()
+                .filter(patentPool -> patentPool!=null)
+                .map(patentPool -> (PatentPoolVO)this.transHelper.transTO(patentPool,PatentPoolVO.class))
+                .collect(Collectors.toList());
+    }
 
 }

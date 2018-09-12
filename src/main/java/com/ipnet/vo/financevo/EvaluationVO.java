@@ -1,18 +1,16 @@
 package com.ipnet.vo.financevo;
 
 import lombok.*;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-
-@Data
 /**
  * 评估
  */
+@Data
 public class EvaluationVO {
 
     private String patentID; //专利ID
     private String url; //文件url
-    private int evaluation; //经济价值
+    private double evaluation; //经济价值
+    private double money; //评估费用
 
 }

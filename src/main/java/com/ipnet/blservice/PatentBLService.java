@@ -33,6 +33,8 @@ public interface PatentBLService {
 
     void sendInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
 
+     List<PatentVO> searchRelatedPatents();
+
     List<PatentVO> getPatentList(String userId);
 
 }

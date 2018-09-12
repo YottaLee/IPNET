@@ -1,5 +1,6 @@
 package com.ipnet.vo;
 
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.Patent_state;
 import com.ipnet.enums.Patent_type;
 import com.ipnet.enums.Region;
