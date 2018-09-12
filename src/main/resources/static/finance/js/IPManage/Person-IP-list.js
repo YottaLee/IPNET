@@ -16,7 +16,7 @@ $.ajax({
                 "                                <td>\n" +
                 "                                    <div class=\"label label-table label-success\">" + data[i].state + "</div>\n" +
                 "                                </td>\n" +
-                "                                <td><i class=\"demo-pli-mine\"></i>"+data[i].pool_id+"</td>\n" +
+                "                                <td><i class=\"demo-pli-mine\"></i>" + data[i].pool_id + "</td>\n" +
                 "                                <td>\n" +
                 "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-warning\" onclick=\"toIndex()\">合同详情</button>\n" +
                 "                                </td>\n" +
@@ -92,23 +92,90 @@ function loan(patentID) {
                     if (data) {
                         window.location.href = "Applicant-loan2.html";
                     } else {
-                        //存取意向信息
+                       //是否有最新的贷款
                         $.ajax({
-                            type: "POST",
-                            url: "applicant/applyLoan",
+                            type: "GET",
+                            url: "all/getLatestLoan",
                             dataType: "json",
                             data: {
-                                userID: userID,
                                 patentID: patentID
                             },
-                            success: function (data) {
-                                storage.loanID = data;
-                                window.location.href = "Applicant-evaluation2.html";
+                            success: function (loanID) {
+                                if (loanID != null) {
+                                    storage.loanID = loanID;
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "bank/getInfo",
+                                        dataType: "json",
+                                        data:{
+                                            loanID:loanID
+                                        },
+                                        success:function (loan) {
+                                           var state = loan.loan_state;
+                                           switch(state){
+                                               case 1://贷款详情
+                                               break;
+                                               case 2:
+                                                   payForEvaluation(patentID);
+                                                   break;
+                                               case 3:
+                                               case 4://贷款详情
+                                                   break;
+                                               case 5:
+                                                   $.ajax({
+                                                       type: "GET",
+                                                       url: "all/getIfContract",
+                                                       dataType: "json",
+                                                       data: {
+                                                           loanID: loanID,
+                                                           userid: userId
+                                                       },
+                                                       success: function (data) {
+                                                           if (data)
+                                                               window.location.href = "All-loan-check.html";
+                                                           else
+                                                               window.location.href = "All-loan-contract.html";
+                                                       }
+                                                   });
+                                                   break;
+                                               case 6://专利持有人贷款详情
+                                                   break;
+                                               case 7:
+                                               case 8:
+                                               case 9://无法对该专利进行操作
+                                                   break;
+
+                                           }
+                                        }
+                                    });
+                                }
+                                else{
+                                    //存取意向信息
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "applicant/applyLoan",
+                                        dataType: "json",
+                                        data: {
+                                            userID: userId,
+                                            patentID: patentID
+                                        },
+                                        success: function (loanID) {
+                                            storage.loanID = loanID;
+                                            window.location.href = "Applicant-evaluation2.html";
+                                        },
+                                        error: function () {
+
+                                        }
+                                    });
+                                }
+
                             },
                             error: function () {
 
                             }
                         });
+
+
                     }
                 },
                 error: function () {
@@ -159,4 +226,35 @@ function stateToText(state) {
         default:
             return "未找到状态";
     }
+}
+
+//向评估机构支付费用
+function payForEvaluation(patentID) {
+    var patent = "";
+    var holder = "";
+    $.ajax({
+        url: '/Patent/searchPatentByID',
+        type: 'GET',
+        data: {
+            patentID: patentID
+        },
+        success: function (data) {
+            patent = data.patent_name;
+            holder = data.patent_holder;
+
+        },
+        error: function () {
+
+        }
+    });
+
+    //跳入向评估公司申请的支付界面
+    var transaction = {
+        patentID: patentID,
+        patent: patent,
+        holder: holder,
+        way: "专利评估",
+        amount: money
+    };
+    window.location.href = "../pay.html";
 }

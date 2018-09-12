@@ -20,12 +20,14 @@ public class EvaluationController {
      * @param patentID 专利号
      * @param url 上传评估报告的文件路径
      * @param evaluation 经济评估价值
+     * @param money 评估费用
      * @return
      */
     @RequestMapping("/submitReport")
     @ResponseBody
-    public ResultMessage submitReport(String patentID,String url, int evaluation) {
-        return evaluationBLService.submitReport(patentID,url,evaluation);
+    public ResultMessage submitReport(String patentID,String url, int evaluation,int money) {
+        return null;
+       // return evaluationBLService.submitReport(patentID,url,evaluation);
     }
 
     /**

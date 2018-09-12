@@ -23,6 +23,7 @@ $('#submit').on('click', function () {
     else {
 
         var evaluation = $("#evaluation").val();
+        var money = $("#money").val();
 
         //提交评估报告
         $.ajax({
@@ -32,37 +33,10 @@ $('#submit').on('click', function () {
             data: {
                 patentID: patentID,
                 url: url,
-                evaluation: evaluation
+                evaluation: evaluation,
+                money: money
             },
             success: function () {
-                var patent = "";
-                var holder = "";
-                $.ajax({
-                    url: '/Patent/searchPatentByID',
-                    type: 'GET',
-                    data: {
-                        patentID: patentID
-                    },
-                    success: function (data) {
-                        patent = data.patent_name;
-                        holder = data.patent_holder;
-
-                    },
-                    error: function () {
-
-                    }
-                });
-
-                //跳入向评估公司申请的支付界面
-                var transaction = {
-                    patentID: patentID,
-                    patent: patent,
-                    holoder: holder,
-                    way: "专利评估",
-                    amount: money
-                };
-
-                window.location.href = "../pay.html";
                 window.location.href = "Evaluation-reportFinish.html";
             },
             error: function () {
