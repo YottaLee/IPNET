@@ -34,5 +34,6 @@ public interface EvaluationBLService {
 
     EvaluationVO getEvaluation(String patentID);
 
+    String getEvaluationApplicationURL(String patentID);
 
 }

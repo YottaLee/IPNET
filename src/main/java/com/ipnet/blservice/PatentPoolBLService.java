@@ -31,4 +31,6 @@ public interface PatentPoolBLService {
 
     List<PatentPoolVO> getIPSETList(String userId) throws IDNotExistsException;
 
+    List<PatentPoolVO> getNotFullPools() throws IDNotExistsException;
+
 }

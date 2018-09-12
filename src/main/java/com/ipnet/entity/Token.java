@@ -1,8 +1,8 @@
 package com.ipnet.entity;
 
 import lombok.Data;
-import net.minidev.json.JSONValue;
-import net.sf.json.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.JSONObject;
 import okhttp3.*;
 import org.apache.commons.codec.binary.Base64;
 

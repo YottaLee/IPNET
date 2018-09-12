@@ -73,4 +73,14 @@ public class EvaluationBL implements EvaluationBLService {
             return null;
         }
     }
+
+    @Override
+    public String getEvaluationApplicationURL(String patentID) {
+        ArrayList<Evaluation> evaluations=evaluationDao.findByPatentIDSortByTime(patentID);
+        if(evaluations==null || evaluations.size()==0){
+            return null;
+        }else {
+            return evaluations.get(0).getSpecification();
+        }
+    }
 }
