@@ -15,6 +15,9 @@ var n_msg = "";
 var p_msg = "";
 var n_valid = 0;
 var p_valid = 0;
+var oUsername = "";
+var oPassword = "";
+var oRole = "";
 
 
 function tabRegisterEmail(num){
@@ -72,6 +75,7 @@ function tabRegisterEmail(num){
         }
         else{
             n_valid = 1;
+            oUsername = this.value;
             n_msg = "";
             all_msg.innerHTML=n_msg + p_msg + "<br /><br />";
         }
@@ -112,6 +116,7 @@ function tabRegisterEmail(num){
             all_msg.innerHTML=n_msg + p_msg + "<br /><br />";
         }else{
             p_valid = 1;
+            oPassword = this.value;
             p_msg = "";
             all_msg.innerHTML=n_msg + p_msg + "<br /><br />";
         }
@@ -125,7 +130,7 @@ function checkRadioInput() {
     for (var i = 0; i < type.length; i++) {
         if (type[i].checked) {
             //出现选中项
-
+            oRole = type[i].value;
             return true;
         }
     }
@@ -133,12 +138,13 @@ function checkRadioInput() {
     return false;
 }
 
-function registerMsgByEmail() {
+
+function registerMsgByEmailEnterprise() {
     //1-调用后端的方法验证（待定）
     //2-若验证为真，则提示注册成功，跳转到登录后的主页；若为假，则提示失败原因（待定）
     // ? 验证方法
 
-    alert("call registerMsgByEmail");
+    alert("call registerMsgByEmailEnterprise");
     var content = "";
     var isChecked = checkRadioInput();
 
@@ -146,12 +152,67 @@ function registerMsgByEmail() {
         content = "请前往邮箱确认！即将跳转 . . .";
         TINY.box.show(content,0,0,0,0,2);
         setTimeout(function () {
-            window.location.href = "loginByEmail.html";  //跳转到登录界面
+            window.location.href = "/ipnet/login_byEmail";  //跳转到登录界面
         },2000);
     }
     else if(n_valid == 1 && p_valid == 1 && isChecked == false){
         content = "请选择注册类型！";
         TINY.box.show(content,0,0,0,0,3);
+    }
+    else{
+        content = "注册失败！请重试 . . .";
+        TINY.box.show(content,0,0,0,0,3);
+    }
+}
+
+function registerMsgByEmailPerson() {
+    //1-调用后端的方法验证（待定）
+    //2-若验证为真，则提示注册成功，跳转到登录后的主页；若为假，则提示失败原因（待定）
+    // ? 验证方法
+
+    alert("call registerMsgByEmailPerson");
+    var content = "";
+
+    if(n_valid == 1 && p_valid == 1){
+        var emailRegister = {};
+        emailRegister.username = oUsername;
+        emailRegister.password = oPassword;
+        //emailRegister.role = null;
+
+        $.ajax({
+            url: "/user/emailRegister",
+            type: "POST",
+            async: false,
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(emailRegister),
+            success: function (data) {
+                if (data == "Success"){
+                    content = "发送链接成功，请前往邮箱确认！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/login_byEmail";  //跳转到登录界面
+                    },2000);
+
+
+                    //确认激活  ???
+
+                }
+                else if(data == "Exist"){
+                    content = "已存在..";  // ???
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+                else {
+                    content = "未知错误！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+            },
+            error: function () {
+                content = "请求失败！再试一次 . . .";
+                TINY.box.show(content,0,0,0,0,3);
+            }
+        });
+
     }
     else{
         content = "注册失败！请重试 . . .";

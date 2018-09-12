@@ -179,9 +179,12 @@ function loginMsg(){
 
     var content = "";
     if(n_valid == 1 && p_valid == 1 && isVertifySucc == true){
-        var loginreq = {};
-        loginreq.username = oUsername;
-        loginreq.password = oPassword;
+        /*loginreq.username = oUsername;
+        loginreq.password = oPassword;*/
+        var loginreq = {
+            username: oUsername,
+            password: oPassword
+        };
 
         $.ajax({
             url: "/user/phoneLogin",
@@ -212,7 +215,7 @@ function loginMsg(){
                 }
             },
             error: function () {
-                alert("req.username:" + loginreq.username);
+                alert(oUsername + "," + oPassword);
                 content = "请求失败！再试一次 . . .";
                 TINY.box.show(content,0,0,0,0,3);
             }
