@@ -258,7 +258,7 @@ public class UserBL implements UserBLService{
         message.setSubject("测试邮件");
 
         //发送邮件
-        String sb = "点击下面链接激活账号，48小时生效，否则重新注册账号，链接只能使用一次，请尽快激活！\n" + "http://localhost:8000/user/register?email=" +
+        String sb = "点击下面链接激活账号，48小时生效，否则重新注册账号，链接只能使用一次，请尽快激活！\n" + "http://localhost:8000/user/checkEmail?email=" +
                 toEmail +
                 "&code=" +
                 code;
