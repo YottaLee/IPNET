@@ -168,9 +168,8 @@ function registerMsgByEmailEnterprise() {
 function registerMsgByEmailPerson() {
     //1-调用后端的方法验证（待定）
     //2-若验证为真，则提示注册成功，跳转到登录后的主页；若为假，则提示失败原因（待定）
-    // ? 验证方法
 
-    alert("call registerMsgByEmailPerson");
+    //alert("call registerMsgByEmailPerson");
     var content = "";
 
     if(n_valid == 1 && p_valid == 1){
@@ -193,15 +192,15 @@ function registerMsgByEmailPerson() {
                         window.location.href = "/ipnet/login_byEmail";  //跳转到登录界面
                     },2000);
 
-
-                    //确认激活  ???
+                    //确认激活 ...
 
                 }
                 else if(data == "Exist"){
-                    alert(emailRegister.username + ", " + emailRegister.password + ", " + emailRegister.role);
-
-                    content = "已存在..";  // ???
-                    TINY.box.show(content,0,0,0,0,3);
+                    content = "链接已存在，请前往邮箱确认！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/login_byEmail";  //跳转到登录界面
+                    },2000);
                 }
                 else {
                     content = "未知错误！再试一次 . . .";
