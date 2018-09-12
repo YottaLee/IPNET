@@ -17,6 +17,7 @@ var p_msg = "";
 var n_valid = 0;
 var d_valid = 0;
 var p_valid = 0;
+var reqMap = {};
 
 window.onload= function(){ tabRegisterPerson(0); }
 
@@ -46,11 +47,45 @@ function tabRegisterPerson(num){
     n_valid = 0;
     d_valid = 0;
     p_valid = 0;
+    reqMap = {};
 
+    function getVerificationCode(tele){
+        var result = false;
+        $.ajax({
+            url: "/user/getCode",
+            type: "POST",
+            async: false,
+            dataType: "json",
+            data: {telephone: tele},
+            success: function (data) {
+                if (data != null){
+                    result = true;
+                    reqMap["time"] = data["time"];
+                    reqMap["hash"] = data["hash"];
+                    return result;
+                }
+                else{
+                    //alert("data is null");
+                }
+            },
+            error: function () {
+                result = false;
+                //alert("post error");
+            }
+        });
+
+        return result;
+    }
     send.onclick=function(){
         // 计时开始
         if(n_valid == 1){
-            timer = setInterval(djs,1000);
+            var result = getVerificationCode(oName.value);
+            if(result == true){
+                timer = setInterval(djs,1000);
+            }
+            else{
+                alert("发送失败");
+            }
         }
         else{
             all_msg.innerHTML = "请先输入正确的手机号" + "<br /><br />";
@@ -77,7 +112,6 @@ function tabRegisterPerson(num){
     oName.onfocus=function(){
         oName.removeAttribute("placeholder");
     }
-
     oName.onblur=function(){
         // 含有非法字符 ，不能为空 ，长度少于5个字符 ，长度大于25个字符
         var tel = /^1[3|4|5|7|8][0-9]\d{8}$/;
@@ -93,22 +127,26 @@ function tabRegisterPerson(num){
         else{
             //oName.style.border='1px solid #fff';
             n_valid = 1;
+            reqMap["phoneNum"] = this.value;
             n_msg = "";
             all_msg.innerHTML=n_msg + d_msg + p_msg + "<br /><br />";
         }
 
     }
 
-    //短信验证码检测（待定）
-
+    //短信验证码检测（暂不作检测）
     dx.onfocus=function(){
         //dx_msg.style.display='block';
         dx.removeAttribute("placeholder");
         //dx.style.border='1px solid #fff';
 
-        d_valid = 1;
+        d_valid = 0;
         d_msg = "";
 
+    }
+    dx.onblur=function(){
+        d_valid = 1;
+        reqMap["code"] = this.value;
     }
 
     //密码检测
@@ -145,6 +183,7 @@ function tabRegisterPerson(num){
             all_msg.innerHTML=n_msg + d_msg + p_msg + "<br /><br />";
         }else{
             p_valid = 1;
+            reqMap["pass"] = this.value;
             p_msg = "";
             all_msg.innerHTML=n_msg + d_msg + p_msg + "<br /><br />";
         }
@@ -171,15 +210,48 @@ function registerMsg() {
     //1-调用后端的方法验证（待定）
     //2-若验证为真，则提示注册成功，跳转到登录后的主页；若为假，则提示失败原因（待定）
 
+    //alert("call registerMsg");
     var content = "";
     if(n_valid == 1 && d_valid == 1 && p_valid == 1){
-        content = "注册成功！即将跳转 . . .";
-        TINY.box.show(content,0,0,0,0,2);
-        setTimeout(function () {
-            window.location.href = "index.html";  //跳转到登录界面
-        },2000);
+        //alert("all valid");
+        //alert("req[code]" + reqMap["code"]);
+
+        $.ajax({
+            url: "/user/verify",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(reqMap),
+            success: function (data) {
+                if (data == "Success"){
+                    content = "注册成功！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/login";  //跳转到登录界面
+                    },2000);
+                }
+                else if(data == "Timeout"){
+                    content = "超时！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+                else if(data == "CodeError"){
+                    content = "验证码错误！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+                else {
+                    content = "未知错误！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+            },
+            error: function () {
+                content = "请求失败！再试一次 . . .";
+                TINY.box.show(content,0,0,0,0,3);
+            }
+        });
+
     }
     else{
+        alert("sth invalid");
         content = "注册失败！请重试 . . .";
         TINY.box.show(content,0,0,0,0,3);
     }

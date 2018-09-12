@@ -28,17 +28,18 @@ public class LoanVO {
     private String bank; //银行名称
     private double money; //金额
     private String time; //期限
-    private int evaluation; //评估经济价值结果
+    private double evaluation; //评估经济价值结果
 
     public LoanVO(Loan loan){
         this.loanID=loan.getLoanID();
         this.patentID=loan.getPatentID();
-        this.patentID=loan.getPatent();
+        this.patent=loan.getPatent();
         this.person=loan.getPerson();
         this.bank=loan.getBank();
         this.money=loan.getActual_money();
         this.time=loan.getActual_time();
         this.evaluation=loan.getEvaluation();
+        this.loan_state=loan.getState();
     }
 
 }

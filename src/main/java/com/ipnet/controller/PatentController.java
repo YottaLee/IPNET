@@ -118,4 +118,14 @@ public class PatentController {
         return service.getPatentList(userId);
     }
 
+    /**
+     *
+     *
+     */
+    @RequestMapping("/searchRelatedPatents")
+    @ResponseBody
+    public List<PatentVO> searchRelatedPatents(){
+        return service.searchRelatedPatents();
+    }
+
 }

@@ -1,0 +1,499 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+html,
+body,
+.manage-modal {
+    width: 100%;
+    height: 100%;
+}
+
+input{
+    outline: none;
+    width:120px;
+}
+
+.manage-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .4);
+}
+
+.input-class {
+    border: 0;
+    position: relative;
+    top: -1px;
+    border-bottom: 1px solid #333;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width: 70px;
+    background-color: transparent;
+}
+
+.fm-top {
+    padding-top: 10px;
+    margin-bottom: 35px;
+}
+
+.fm-top p {
+    font-size: 12px;
+    margin: 0 20px 0 0;
+    height: 24px;
+    line-height: 24px;
+    text-align: right;
+}
+
+.fm-title {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 56px;
+    font-family: "SimSun";
+}
+
+.fm-sign {
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.fm-sign .seal {
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    border: 0;
+    width: 54px;
+    height: 30px;
+    background: url('https://i.imgur.com/pODYiyn.png') top left no-repeat;
+    background-size: 100% 100%;
+    font-size: 14px;
+    color: #ff1c1c;
+}
+
+.fm-sign .qx-seal {
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    border: 1px solid #333;
+    background-color: transparent;
+    width: 54px;
+    height: 30px;
+    font-size: 14px;
+    color: #333;
+    display: none;
+}
+
+.fm-sign .seal:hover,
+.fm-sign .qx_seal:hover {
+    transform: scale(1.1);
+}
+
+.disabled .fm-sign,
+.disabled .fm-sign label,
+.disabled .fm-sign p {
+    color: #ccc;
+}
+
+.disabled .fm-sign .seal,
+.disabled .fm-sign .qx-seal {
+    background: url('https://i.imgur.com/YZ7ubap.png') top left no-repeat;
+    background-size: 100% 100%;
+    color: #cccccc;
+    cursor: no-drop;
+}
+
+.disabled .fm-sign .qx-seal {
+    border: 1px solid #ccc;
+}
+
+.fm-sign .disabled:hover {
+    transform: scale(1);
+}
+
+.fm-sign label {
+    font-weight: 100;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.fm-input {
+    width: 185px;
+}
+
+.fm-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+}
+
+.fm-footer>p {
+    font-size: 12px;
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.manage-page {
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.manage-page p {
+    color: #000000;
+    font-size: 16px;
+    text-indent: 2em;
+    margin: 0;
+    line-height: 22px;
+    overflow: hidden;
+}
+
+.manage-page .wrap {
+    text-indent: 0;
+}
+
+.manage-page .page-title {
+    font-size: 20px;
+    position: relative;
+    top: -10px;
+    margin-bottom: 5px;
+}
+
+.party {
+    width: 195px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.party-a {
+    float: left;
+}
+
+.party-b {
+    float: right;
+}
+
+.party .fm-sign {
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.party .input-class {
+    top: -3px;
+}
+
+.disabled>.fm-sign>.input-class {
+    border-bottom: 1px solid #ccc;
+    cursor: no-drop;
+}
+
+.long {
+    width: 140px;
+}
+
+.length2 {
+    width: 153px;
+}
+
+.length5 {
+    width: 111px;
+}
+
+.length4 {
+    width: 125px;
+}
+
+.year {
+    width: 41px;
+}
+
+.date {
+    width: 20px;
+}
+
+.small .page-title {
+    font-size: 16px;
+}
+
+.small .fm-sign {
+    font-size: 11px;
+    margin-bottom: 0;
+}
+
+.small .fm-sign .length2 {
+    width: 100px;
+}
+
+.small .fm-sign .length4 {
+    width: 78px;
+}
+
+.small .fm-sign .length5 {
+    width: 67px;
+}
+
+.small>.party {
+    width: 140px;
+}
+
+.small .fm-sign>.seal,
+.small .fm-sign>.qx-seal {
+    width: 38px;
+    height: 18px;
+    top: -1px;
+    font-size: 11px;
+    z-index: 1000;
+}
+
+.small .year {
+    width: 20px;
+}
+
+.small .date {
+    width: 10px;
+}
+
+.box {
+    width: 160px;
+    height: 160px;
+    background: url('https://i.imgur.com/WGlzcI0.png') top left no-repeat;
+    background-size: 100% 100%;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    overflow: hidden;
+    /*display: none;*/
+}
+
+.box>span {
+    position: absolute;
+    font-size: 20px;
+    color: #f65b5b;
+    font-weight: 900;
+    font-family: "宋体";
+}
+
+.letter1 {
+    top: 119px;
+    left: 73px;
+    transform: rotate(-184deg);
+}
+
+.letter2 {
+    top: 115px;
+    left: 50px;
+    transform: rotate(-155deg);
+}
+
+.letter3 {
+    top: 102px;
+    left: 32px;
+    transform: rotate(-135deg);
+}
+
+.letter4 {
+    top: 82px;
+    left: 20px;
+    transform: rotate(-107deg);
+}
+
+.letter5 {
+    top: 58px;
+    left: 18px;
+    transform: rotate(-79deg);
+}
+
+.letter6 {
+    top: 36px;
+    left: 27px;
+    transform: rotate(-57deg);
+}
+
+.letter7 {
+    top: 21px;
+    left: 45px;
+    transform: rotate(-30deg);
+}
+
+.letter8 {
+    top: 15px;
+    left: 67px;
+    transform: rotate(-3deg);
+}
+
+.letter9 {
+    top: 19px;
+    left: 90px;
+    transform: rotate(27deg);
+}
+
+.letter10 {
+    top: 34px;
+    left: 108px;
+    transform: rotate(56deg);
+}
+
+.letter11 {
+    top: 54px;
+    left: 119px;
+    transform: rotate(73deg);
+}
+
+.letter12 {
+    top: 77px;
+    left: 121px;
+    transform: rotate(100deg);
+}
+
+.letter13 {
+    top: 98px;
+    left: 110px;
+    transform: rotate(129deg);
+}
+
+.small .box {
+    width: 110px;
+    height: 110px;
+    background: url('https://i.imgur.com/WGlzcI0.png') top left no-repeat;
+    background-size: 100% 100%;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    display: none;
+}
+
+.small .box>span {
+    position: absolute;
+    font-size: 15px;
+    color: #f65b5b;
+    font-weight: 900;
+    font-family: "宋体";
+}
+
+.small .letter1 {
+    top: 79px;
+    left: 37px;
+    transform: rotate(-145deg);
+}
+
+.small .letter2 {
+    top: 71px;
+    left: 23px;
+    transform: rotate(-133deg);
+}
+
+.small .letter3 {
+    top: 57px;
+    left: 14px;
+    transform: rotate(-107deg);
+}
+
+.small .letter4 {
+    top: 40px;
+    left: 12px;
+    transform: rotate(-84deg);
+}
+
+.small .letter5 {
+    top: 24px;
+    left: 18px;
+    transform: rotate(-53deg);
+}
+
+.small .letter6 {
+    top: 13px;
+    left: 29px;
+    transform: rotate(-29deg);
+}
+
+.small .letter7 {
+    top: 8px;
+    left: 45px;
+    transform: rotate(-9deg);
+}
+
+.small .letter8 {
+    top: 11px;
+    left: 62px;
+    transform: rotate(32deg);
+}
+
+.small .letter9 {
+    top: 21px;
+    left: 74px;
+    transform: rotate(56deg);
+}
+
+.small .letter10 {
+    top: 35px;
+    left: 81px;
+    transform: rotate(79deg);
+}
+
+.small .letter11 {
+    top: 51px;
+    left: 83px;
+    transform: rotate(101deg);
+}
+
+.small .letter12 {
+    top: 66px;
+    left: 78px;
+    transform: rotate(124deg);
+}
+
+.small .letter13 {
+    top: 77px;
+    left: 66px;
+    transform: rotate(146deg);
+}
+
+.manage-btn {
+    text-align: center;
+}
+
+.manage-btn button {
+    margin: 0 20px;
+}
+
+.manage-btn .btn-default {
+    border: 1px solid #fff;
+}
+
+.small .btn-design {
+    width: 66px;
+    height: 25px;
+    font-size: 12px;
+}
+
+.t_after span {
+    margin: 0 10px;
+    color: #7A7A7A;
+}
+
+.t_after span:hover {
+    color: #4481eb;
+}

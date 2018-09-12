@@ -22,8 +22,8 @@ public class InsuranceVO {
     private String insurance_contractid;
 
     private String loanID; //贷款号
-    private String url;//理赔申请文件url
-    private Patent_loan_state loan_state;//专利贷款状态
+//    private String url;//理赔申请文件url
+   // private Patent_loan_state loan_state;//专利贷款状态
     private String person; //投保单位
     private String address; //地址
     private String time; //出险时间

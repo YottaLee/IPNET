@@ -31,7 +31,6 @@ public class AccountServiceBL implements AccountService{
                 .addHeader("client_id", client_id)
                 .build();
         Response response = client.newCall(request).execute();
-
         String responseBodyString = response.body().string();
         System.out.println("step4 accounts:");
         System.out.println("\t"+responseBodyString);
