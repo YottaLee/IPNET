@@ -3,6 +3,7 @@ package com.ipnet.bl.api;
 import com.ipnet.blservice.apiservice.MoneyMovementService;
 import com.ipnet.entity.APIConstant;
 import lombok.Data;
+import net.sf.json.JSONArray;
 import org.json.simple.JSONValue;
 import org.json.simple.JSONObject;
 import okhttp3.*;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -39,8 +42,40 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
 
         Response response = client.newCall(request).execute();
         String responseBodyString = response.body().string();
-        System.out.println("retrieveDestacc "+responseBodyString);
+        System.out.println(responseBodyString);
         return responseBodyString;
+    }
+
+    @Override
+    public List<String>  CombinationsAccountandPayee(String username ,String password) throws IOException {
+        String jsonstr = retrieveDestacc(username,password);
+        net.sf.json.JSONObject object = net.sf.json.JSONObject.fromObject(jsonstr);
+        List<String> combiantions = new ArrayList<String>();
+        List<String> accountIds = new ArrayList<String>();
+        if(object.has("payeeSourceAccountCombinations")){
+            JSONArray arrays = object.getJSONArray("payeeSourceAccountCombinations");
+            for(int i = 0; i < arrays.size(); i++){
+                String t = arrays.getString(i);
+                net.sf.json.JSONObject inner = net.sf.json.JSONObject.fromObject(t);
+                if(inner.has("payeeId")){
+                    combiantions.add(inner.get("payeeId").toString());        // payeeId
+                    System.out.println(inner.get("payeeId").toString());
+                }
+                if(inner.has("sourceAccountIds")){
+                    JSONArray accIds = inner.getJSONArray("sourceAccountIds");
+                    for(int j = 0;j < accIds.size(); j++){
+                        String o = accIds.getString(j);
+                        net.sf.json.JSONObject account = net.sf.json.JSONObject.fromObject(o);
+                        if(account.has("sourceAccountId")){
+                            accountIds.add(account.getString("sourceAccountId"));
+                            System.out.println(account.getString("sourceAccountId"));
+                        }
+                    }
+                }
+            }
+        }
+
+        return combiantions;
     }
 
     @Override
