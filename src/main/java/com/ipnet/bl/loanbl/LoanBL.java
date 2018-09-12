@@ -110,8 +110,8 @@ public class LoanBL implements LoanBLService {
 
     @Override
     public ResultMessage insuranceApplication(String insurance_contractid,String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money) {
-        InsuranceVO insurance=new InsuranceVO(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
-        insuranceDao.saveAndFlush(insurance);
+//        InsuranceVO insurance=new InsuranceVO(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
+//        insuranceDao.saveAndFlush(insurance);
         return ResultMessage.Success;
     }
 
