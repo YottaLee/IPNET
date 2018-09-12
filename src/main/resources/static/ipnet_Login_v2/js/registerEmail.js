@@ -177,12 +177,11 @@ function registerMsgByEmailPerson() {
         var emailRegister = {};
         emailRegister.username = oUsername;
         emailRegister.password = oPassword;
-        //emailRegister.role = null;
+        emailRegister.role = "PersonalUser";
 
         $.ajax({
             url: "/user/emailRegister",
             type: "POST",
-            async: false,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(emailRegister),
@@ -199,6 +198,8 @@ function registerMsgByEmailPerson() {
 
                 }
                 else if(data == "Exist"){
+                    alert(emailRegister.username + ", " + emailRegister.password + ", " + emailRegister.role);
+
                     content = "已存在..";  // ???
                     TINY.box.show(content,0,0,0,0,3);
                 }
