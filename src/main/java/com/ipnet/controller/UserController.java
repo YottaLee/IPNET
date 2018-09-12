@@ -93,8 +93,10 @@ public class UserController {
      */
     @RequestMapping("/phoneLogin")
     public @ResponseBody
-    ResultMessage loginByPhone(LoginReq loginReq){
-        return userBLService.loginPhone(loginReq.getUsername(),loginReq.getPassword());
+    ResultMessage loginByPhone(String telephone,String password){
+        return userBLService.loginPhone(telephone,password);
+//    ResultMessage loginByPhone(LoginReq loginReq){
+//        return userBLService.loginPhone(loginReq.getUsername(),loginReq.getPassword());
     }
 
     /**
