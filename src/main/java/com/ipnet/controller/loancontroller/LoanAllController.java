@@ -41,13 +41,24 @@ public class LoanAllController {
      * @param url    上传签字的url
      * @param userid 用户
      * @param ifPass 是否同意
-     * @return
+     * @return ResultMessage
      */
     @RequestMapping("/ifContract")
     @ResponseBody
     public ResultMessage ifContract(String loanID, String url, String userid, Boolean ifPass) {
-        return null;
-        //  return loanBLService.ifContract(loanID,userid,ifPass);
+        return loanBLService.ifContract(loanID,url,userid,ifPass);
+    }
+
+    /**
+     * 该用户是否已在该合同最终确认（此步接上个controller）
+     * @param loanID 贷款号
+     * @param userid 用户ID
+     * @return 是否确认过合同
+     */
+    @RequestMapping("/getIfContract")
+    @ResponseBody
+    public Boolean getIfContract(String loanID, String userid) {
+        return loanBLService.getIfContract(loanID,userid);
     }
 
     /**
@@ -56,12 +67,12 @@ public class LoanAllController {
      * @param userid 用户ID
      * @param gov 如果用户为专利持有人，此参数有效，0为知识产权局，1为财政局
      * @param url url
-     * @return
+     * @return ResultMessage
      */
     @RequestMapping("/saveContractURL")
     @ResponseBody
     public ResultMessage saveContractURL(String loanID, String userid, int gov, String url) {
-        return null;
+        return loanBLService.saveGovernmentSign(loanID,userid,gov,url);
     }
 
     /**
@@ -74,7 +85,7 @@ public class LoanAllController {
     @RequestMapping("/getContractURL")
     @ResponseBody
     public ArrayList<String> getContractURL(String loanID) {
-        return null;
+        return loanBLService.getSigns(loanID);
     }
 
     /**
@@ -85,6 +96,18 @@ public class LoanAllController {
     @RequestMapping("/getPatentList")
     @ResponseBody
     public ArrayList<LoanVO> getPatentList(String userId) {
-        return null;
+        return loanBLService.getPatentList(userId);
     }
+
+    /**
+     * 根据专利号得到最近一次质押号
+     * @param patentID 专利号
+     * @return 最近一次质押号，如果没有质押记录，返回null
+     */
+    @RequestMapping("/getLatestLoan")
+    @ResponseBody
+    public String getLatestLoanID(String patentID){
+        return loanBLService.getLatestLoanID(patentID);
+    }
+
 }

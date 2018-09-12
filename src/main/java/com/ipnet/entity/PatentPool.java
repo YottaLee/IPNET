@@ -61,9 +61,9 @@ public class PatentPool {
     }
     public  void acceptApply(String ipId){
         denyApply(ipId);
-        patents.add(ipId);
+        this.patents.add(ipId);
     }
      public boolean isFull(){
-        return (patents.size() > amount);
+        return (this.patents.size() > this.amount);
      }
 }

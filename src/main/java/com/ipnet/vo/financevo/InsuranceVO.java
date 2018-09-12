@@ -20,7 +20,6 @@ public class InsuranceVO {
 
     @Id
     private String insurance_contractid;
-
     private String loanID; //贷款号
     private String url;//理赔申请文件url
     private Patent_loan_state loan_state;//专利贷款状态

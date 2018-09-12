@@ -30,6 +30,9 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
     private PatentPoolDao patentPoolDao;
 
     @Autowired
+    private  PatentDao patentDao;
+
+    @Autowired
     private PatentBLHelper patentBLHelper;
 
 
@@ -107,7 +110,7 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
    @Override
     public  boolean isFull(String ipSetId) throws IDNotExistsException {
         Optional<PatentPool> option = this.patentPoolDao.findById(ipSetId);
-        if(option!=null || option.isPresent() == false){
+        if(option ==null || option.isPresent() == false){
             throw new IDNotExistsException("pool id not exists");
         }
         PatentPool pool = option.get();
@@ -125,7 +128,7 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
     public boolean applyIpSet(String ipId,String ipSetId) throws IDNotExistsException{
         boolean flag = false;
         Optional<PatentPool> option = this.patentPoolDao.findById(ipSetId);
-        if(option!=null || option.isPresent() == false){
+        if(option ==null || option.isPresent() == false){
             throw new IDNotExistsException("pool id not exists");
         }
         else {
@@ -146,7 +149,7 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
     @Override
     public void acceptIpApply(String ipId , String ipSetId) throws  IDNotExistsException{
         Optional<PatentPool> option = this.patentPoolDao.findById(ipSetId);
-        if(option!=null || option.isPresent() == false){
+        if(option ==null || option.isPresent() == false){
             throw new IDNotExistsException("pool id not exists");
         }
         if (this.patentBLHelper.ifPatentExists(ipId) == false){
@@ -157,6 +160,9 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         this.patentPoolDao.saveAndFlush(pool);
 
         //个人感觉需要加一个ip的所属专利池的属性
+        Patent patent = this.patentDao.findById(ipId).get();
+        patent.setPool_id(ipSetId);
+        this.patentDao.saveAndFlush(patent);
     }
 
     @Override
@@ -181,5 +187,21 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<PatentPoolVO> getNotFullPools() throws IDNotExistsException {
+        List<PatentPool> poolists = this.patentPoolDao.findAll();
+        for(PatentPool pool : poolists){
+            if(isFull(pool.getId())){
+                poolists.remove(pool);
+            }
+        }
+        if (poolists.size() ==0 || poolists==null){
+            return null;
+        }
+        return poolists.stream()
+                .filter(patentPool -> patentPool!=null)
+                .map(patentPool -> (PatentPoolVO)this.transHelper.transTO(patentPool,PatentPoolVO.class))
+                .collect(Collectors.toList());
+    }
 
 }

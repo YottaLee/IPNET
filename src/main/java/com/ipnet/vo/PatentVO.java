@@ -8,6 +8,7 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author lzb
@@ -30,6 +31,8 @@ public class PatentVO {
     private Date apply_date;//申请时间
     private String valid_period;//有效期限
     private Region region;//所属地区
-    private Patent_type patent_type;//专利类别
+    private String patent_type;//专利类别
+
+    private List<String> invitationPoolIdList;//邀请本专利入池的专利池列表
 
 }

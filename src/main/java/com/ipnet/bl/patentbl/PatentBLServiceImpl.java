@@ -90,6 +90,12 @@ public class PatentBLServiceImpl implements PatentBLService {
             if(option!=null || option.isPresent() == false){
                  throw new IDNotExistsException("pool id not exists");
             }
+
+            Optional<Patent> optionalPatent = this.patentDao.findById(ipId);
+            if(option!=null || option.isPresent() == false){
+                 throw new IDNotExistsException("patent id not exists");
+            }
+
             PatentPool pool = (PatentPool) option.get();
             List<String> patentlist=pool.getPatents();
             for(String str : patentlist){
@@ -100,10 +106,7 @@ public class PatentBLServiceImpl implements PatentBLService {
             pool.setPatents(patentlist);
             this.patentpoolDao.saveAndFlush(pool);
 
-            Optional<Patent> optionalPatent = this.patentDao.findById(ipId);
-            if(option!=null || option.isPresent() == false){
-                  throw new IDNotExistsException("patent id not exists");
-             }
+
              Patent realPatent = optionalPatent.get();
              realPatent.setPool_id("");
              this.patentDao.saveAndFlush(realPatent);
@@ -129,13 +132,17 @@ public class PatentBLServiceImpl implements PatentBLService {
         if (!this.patentDao.existsById(patentId)){
             throw new IDNotExistsException("patent id not exists");
         }
-
         Patent patent = this.getPatentById(patentId);
         PatentPool pool = this.patentpoolDao.findById(patentPoolId).get();
         if(!pool.isFull()){
             flag = true;
+            //修改patent
             patent.deleteInvitationFromPool(patentPoolId);
+            patent.setPool_id(patentPoolId);
+            //修改pool
             pool.addPatent(patentId);
+            this.patentpoolDao.saveAndFlush(pool);
+            this.patentDao.saveAndFlush(patent);
         }
         return flag;
     }
@@ -164,12 +171,29 @@ public class PatentBLServiceImpl implements PatentBLService {
     @Override
     public List<PatentVO> getPatentList(String userId){
          List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
-        List<PatentVO> voList = patentList.stream()
+         if(patentList.size() == 0 ||patentList == null){
+             return null;
+         }
+         List<PatentVO> voList = patentList.stream()
                 .filter(patent -> patent!=null)
                 .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
                 .collect(Collectors.toList());
-        return voList;
+         return voList;
     }
+
+    @Override
+    public List<PatentVO> searchRelatedPatents(){
+         List<Patent> patentList = this.patentDao.searchRelatedPatents("");
+         if(patentList.size() == 0 ||patentList == null){
+            return null;
+         }
+         List<PatentVO> voList = patentList.stream()
+                 .filter(patent -> patent!=null)
+                 .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                 .collect(Collectors.toList());
+         return voList;
+    }
+
     private Patent getPatentById(String patentId) throws IDNotExistsException{
         Optional<Patent> optionalPatent = this.patentDao.findById(patentId);
         if (optionalPatent.isPresent() ==false){
@@ -178,7 +202,6 @@ public class PatentBLServiceImpl implements PatentBLService {
 
         return optionalPatent.get();
     }
-
 
     private void savePatent(Patent patent){
         this.patentDao.saveAndFlush(patent);

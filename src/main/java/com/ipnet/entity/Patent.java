@@ -29,7 +29,9 @@ public class Patent {
     private Date apply_date;//申请时间
     private String valid_period;//有效期限
     private Region region;//所属地区
-    private Patent_type patent_type;//专利类别
+
+    //将Patent_type 枚举类型改为string
+    private String patent_type;//专利类别
 
     @ElementCollection(targetClass = String.class)
     private List<String> invitationPoolIdList;//邀请本专利入池的专利池列表

@@ -3,15 +3,16 @@ package com.ipnet.bl.api;
 import com.ipnet.blservice.apiservice.TokenService;
 import com.ipnet.entity.APIConstant;
 import com.ipnet.entity.Token;
-import net.minidev.json.JSONValue;
-import net.sf.json.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.JSONObject;
 import okhttp3.*;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.UUID;
-
+@Service
 public class TokenServiceBL implements TokenService{
 
     private Token token = new Token();
