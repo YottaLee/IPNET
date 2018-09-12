@@ -142,18 +142,54 @@ function checkRadioInput() {
 function registerMsgByEmailEnterprise() {
     //1-调用后端的方法验证（待定）
     //2-若验证为真，则提示注册成功，跳转到登录后的主页；若为假，则提示失败原因（待定）
-    // ? 验证方法
 
-    alert("call registerMsgByEmailEnterprise");
+    //alert("call registerMsgByEmailEnterprise");
     var content = "";
     var isChecked = checkRadioInput();
 
     if(n_valid == 1 && p_valid == 1 && isChecked == true){
-        content = "请前往邮箱确认！即将跳转 . . .";
-        TINY.box.show(content,0,0,0,0,2);
-        setTimeout(function () {
-            window.location.href = "/ipnet/login_byEmail";  //跳转到登录界面
-        },2000);
+        var emailRegister = {};
+        emailRegister.username = oUsername;
+        emailRegister.password = oPassword;
+        emailRegister.role = oRole;
+        //alert(emailRegister.username + ", " + emailRegister.password + ", " + emailRegister.role);
+
+        $.ajax({
+            url: "/user/emailRegister",
+            type: "POST",
+            async: false,
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(emailRegister),
+            success: function (data) {
+                if (data == "Success"){
+                    content = "发送链接成功，请前往邮箱确认！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/login_byEmail";  //跳转到登录界面
+                    },2000);
+
+                    //确认激活 ...
+
+                }
+                else if(data == "Exist"){
+                    content = "链接已存在，请前往邮箱确认！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/login_byEmail";  //跳转到登录界面
+                    },2000);
+                }
+                else {
+                    content = "未知错误！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+            },
+            error: function () {
+                content = "请求失败！再试一次 . . .";
+                TINY.box.show(content,0,0,0,0,3);
+            }
+        });
+
     }
     else if(n_valid == 1 && p_valid == 1 && isChecked == false){
         content = "请选择注册类型！";
