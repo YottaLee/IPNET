@@ -14,6 +14,11 @@ public class PageController {
         return "/frame/head";
     }
 
+    @RequestMapping("footer")
+    public String footer(){
+        return "/frame/footer";
+    }
+
     @RequestMapping("home")
     public String home(){
         return "home";
@@ -22,6 +27,16 @@ public class PageController {
     @RequestMapping("detail")
     public String detail(){
         return "detail";
+    }
+
+    @RequestMapping("introduce")
+    public String introduce(){
+        return "introduce";
+    }
+
+    @RequestMapping("search_patent")
+    public String search_patent(){
+        return "search_patent";
     }
 
     @RequestMapping("frame")
