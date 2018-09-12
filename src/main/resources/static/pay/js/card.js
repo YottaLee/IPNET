@@ -60,7 +60,9 @@ function atvImg(){
 
             var nums4=d.createElement('span');
             nums4.setAttribute("style","color: black;padding-left: 40px");
-            nums4.innerText="1234";
+            if(i==0) {
+                nums4.innerText = "1234";
+            }
 
             var checked=d.createElement('span');
             checked.setAttribute("style","display:none;top: 10px;left: 280px;position:absolute");
