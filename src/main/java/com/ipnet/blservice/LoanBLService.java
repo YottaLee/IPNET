@@ -21,6 +21,8 @@ public interface LoanBLService {
 
     boolean getIfContract(String loanID,String userID);
 
+    String getLatestLoanID(String patentID);
+
     //LoanApplicationController
     ResultMessage chooseInsurance(String loanID,String url,String insurance);
 

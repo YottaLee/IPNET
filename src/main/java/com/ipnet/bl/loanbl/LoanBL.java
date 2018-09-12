@@ -121,6 +121,21 @@ public class LoanBL implements LoanBLService {
     }
 
     /**
+     * 根据专利号得到最近一次质押号
+     * @param patentID 专利号
+     * @return 最近一次质押号，如果没有质押记录，返回null
+     */
+    @Override
+    public String getLatestLoanID(String patentID){
+        ArrayList<Loan> loans=loanDao.findByPatentIDSortByTime(patentID);
+        if(loans==null || loans.size()==0){
+            return null;
+        }else {
+            return loans.get(0).getLoanID();
+        }
+    }
+
+    /**
      * 存取合同url
      * @param loanID 贷款ID
      * @param userid 用户ID

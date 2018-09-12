@@ -98,4 +98,16 @@ public class LoanAllController {
     public ArrayList<LoanVO> getPatentList(String userId) {
         return loanBLService.getPatentList(userId);
     }
+
+    /**
+     * 根据专利号得到最近一次质押号
+     * @param patentID 专利号
+     * @return 最近一次质押号，如果没有质押记录，返回null
+     */
+    @RequestMapping("/getLatestLoan")
+    @ResponseBody
+    public String getLatestLoanID(String patentID){
+        return loanBLService.getLatestLoanID(patentID);
+    }
+
 }
