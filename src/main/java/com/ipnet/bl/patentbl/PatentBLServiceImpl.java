@@ -164,12 +164,23 @@ public class PatentBLServiceImpl implements PatentBLService {
     @Override
     public List<PatentVO> getPatentList(String userId){
          List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
-        List<PatentVO> voList = patentList.stream()
+         List<PatentVO> voList = patentList.stream()
                 .filter(patent -> patent!=null)
                 .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
                 .collect(Collectors.toList());
-        return voList;
+         return voList;
     }
+
+    @Override
+    public List<PatentVO> searchRelatedPatents(){
+         List<Patent> patentList = this.patentDao.searchRelatedPatents("");
+         List<PatentVO> voList = patentList.stream()
+                 .filter(patent -> patent!=null)
+                 .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                 .collect(Collectors.toList());
+         return voList;
+    }
+
     private Patent getPatentById(String patentId) throws IDNotExistsException{
         Optional<Patent> optionalPatent = this.patentDao.findById(patentId);
         if (optionalPatent.isPresent() ==false){
@@ -178,7 +189,6 @@ public class PatentBLServiceImpl implements PatentBLService {
 
         return optionalPatent.get();
     }
-
 
     private void savePatent(Patent patent){
         this.patentDao.saveAndFlush(patent);
