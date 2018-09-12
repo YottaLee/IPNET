@@ -181,6 +181,7 @@ function registerMsgByEmailPerson() {
         $.ajax({
             url: "/user/emailRegister",
             type: "POST",
+            async: false,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(emailRegister),

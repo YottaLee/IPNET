@@ -178,6 +178,7 @@ function loginMsgEmail(){
         $.ajax({
             url: "/user/emailLogin",
             type: "POST",
+            async: false,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(loginreq),
@@ -223,8 +224,11 @@ function loginMsgEmail(){
                     },2000);
                 }
                 else if(data == "NoUser"){
-                    content = "用户不存在！再试一次 . . .";
-                    TINY.box.show(content,0,0,0,0,3);
+                    content = "用户不存在！请前往注册 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/register_byEmail";
+                    },2000);
                 }
                 else if(data == "PassError"){
                     content = "密码错误！再试一次 . . .";
