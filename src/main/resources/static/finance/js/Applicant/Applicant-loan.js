@@ -38,10 +38,10 @@ $('#submit').on('click', function () {
                 });
 
                 if (data) {
-                    window.location.href = "/finance/Applicant-applicationFinish";
+                    window.location.href = "/ipnet/Applicant-applicationFinish";
                 } else {
                     //跳转到申请评估的界面
-                    window.location.href = "/finance/Applicant-evaluation2";
+                    window.location.href = "/ipnet/Applicant-evaluation2";
                 }
             },
             error: function () {

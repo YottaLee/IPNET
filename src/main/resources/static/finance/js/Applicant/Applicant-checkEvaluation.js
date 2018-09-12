@@ -17,5 +17,5 @@ $.ajax({
 
 $("#submit").on('click',function () {
     storage.removeItem('patentID');
-    window.location.href = "/finance/Person-IP-list";
+    window.location.href = "/ipnet/Person-IP-list";
 });

@@ -39,7 +39,7 @@ $.ajax({
 });
 
 function toIndex() {
-    window.location.href = "/finance/Permit-Contract"
+    window.location.href = "/ipnet/Permit-Contract"
 }
 
 function transaction(patentID) {
@@ -64,9 +64,9 @@ function evaluation(patentID) {
         data: patentID,
         success: function (data) {
             if (data) {
-                window.location.href = "/finance/Applicant-checkEvaluation";
+                window.location.href = "/ipnet/Applicant-checkEvaluation";
             } else {
-                window.location.href = "/finance/Applicant-evaluation2";
+                window.location.href = "/ipnet/Applicant-evaluation2";
             }
         },
         error: function () {
@@ -90,7 +90,7 @@ function loan(patentID) {
                 data: patentID,
                 success: function (data) {
                     if (data) {
-                        window.location.href = "/finance/Applicant-loan2";
+                        window.location.href = "/ipnet/Applicant-loan2";
                     } else {
                        //是否有最新的贷款
                         $.ajax({
@@ -132,9 +132,9 @@ function loan(patentID) {
                                                        },
                                                        success: function (data) {
                                                            if (data)
-                                                               window.location.href = "/finance/All-loan-check";
+                                                               window.location.href = "/ipnet/All-loan-check";
                                                            else
-                                                               window.location.href = "/finance/All-loan-contract";
+                                                               window.location.href = "/ipnet/All-loan-contract";
                                                        }
                                                    });
                                                    break;
@@ -161,7 +161,7 @@ function loan(patentID) {
                                         },
                                         success: function (loanID) {
                                             storage.loanID = loanID;
-                                            window.location.href = "/finance/Applicant-evaluation2";
+                                            window.location.href = "/ipnet/Applicant-evaluation2";
                                         },
                                         error: function () {
 
