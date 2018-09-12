@@ -138,7 +138,7 @@ $(document).ready(function () {
                                     url: data
                                 },
                                 success: function () {
-                                    window.location.href = "All-loan-check.html";
+                                    window.location.href = "/finance/All-loan-check";
                                 },
                                 error: function () {
 
@@ -185,7 +185,7 @@ $(document).ready(function () {
                                         url: data
                                     },
                                     success: function () {
-                                        window.location.href = "All-loan-check.html";
+                                        window.location.href = "/finance/All-loan-check";
                                     },
                                     error: function () {
 

@@ -36,7 +36,7 @@ $('#submit').on('click', function () {
                 money: money
             },
             success: function () {
-                window.location.href = "Bank-applicationFinish.html";
+                window.location.href = "/finance/Bank-applicationFinish";
             },
             error: function () {
                 // alert("Network warning for posting the purpose of the loan")

@@ -40,7 +40,7 @@ $('#submit').on('click', function () {
             ifPass: ifPass
         },
         success: function (data) {
-            window.location.href = "Insurance-checkFinish.html";
+            window.location.href = "/finance/Insurance-checkFinish";
         },
         error: function () {
             // alert("Network warning for posting the purpose of the loan")

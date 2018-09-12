@@ -5,7 +5,8 @@
 // This is just a sample how to initialize plugins or components.
 //
 // - ThemeOn.net -
-var currentFile;
+
+
 $(document).ready(function() {
 
     // DROPZONE.JS
@@ -49,7 +50,7 @@ $(document).ready(function() {
     var previewTemplate = previewNode.parentNode.innerHTML;
     previewNode.parentNode.removeChild(previewNode);
 
-    var uploadBtn = $('#dz-upload-btn');
+    var uplodaBtn = $('#dz-upload-btn');
     var removeBtn = $('#dz-remove-btn');
     var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
         url: "/target-url", // Set the url
@@ -65,7 +66,7 @@ $(document).ready(function() {
 
     myDropzone.on("addedfile", function(file) {
         // Hookup the button
-        uploadBtn.prop('disabled', false);
+        uplodaBtn.prop('disabled', false);
         removeBtn.prop('disabled', false);
     });
 
@@ -86,18 +87,15 @@ $(document).ready(function() {
 
 
     // Setup the buttons for all transfers
-    uploadBtn.on('click', function() {
+    uplodaBtn.on('click', function() {
         //Upload all files
         //myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-        currentFile = myDropzone.getFilesWithStatus(Dropzone.ADDED);
-
     });
 
     removeBtn.on('click', function() {
         myDropzone.removeAllFiles(true);
-        uploadBtn.prop('disabled', true);
+        uplodaBtn.prop('disabled', true);
         removeBtn.prop('disabled', true);
-
     });
 
 });
