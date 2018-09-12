@@ -14,6 +14,16 @@ public class PageController {
         return "home";
     }
 
+    @RequestMapping("detail")
+    public String detail(){
+        return "detail";
+    }
+
+    @RequestMapping("frame")
+    public String frame(){
+        return "frame";
+    }
+
     @RequestMapping("community_home")
     public  String community_home(){
         return "/community/community_home";

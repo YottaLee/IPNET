@@ -117,14 +117,41 @@ $(document).ready(function () {
                         patentID: patentID,
                         url: url
                     },
-                    success:function () {
+                    success: function () {
 
                     },
-                    error:function () {
+                    error: function () {
 
                     }
                 });
+                var patent = "";
+                var holder = "";
+                $.ajax({
+                    url: '/Patent/searchPatentByID',
+                    type: 'GET',
+                    data: {
+                        patentID: patentID
+                    },
+                    success: function (data) {
+                        patent = data.patent_name;
+                        holder = data.patent_holder;
+
+                    },
+                    error: function () {
+
+                    }
+                });
+
                 //跳入向评估公司申请的支付界面
+                var transaction = {
+                    patentID: patentID,
+                    patent: patent,
+                    holoder: holder,
+                    way: "专利评估",
+                    amount: money
+                };
+
+                window.location.href = "../pay.html";
                 //支付成功后判断是否有意向信息
                 $.ajax({
                     url: 'applicant/ifBankChosen',

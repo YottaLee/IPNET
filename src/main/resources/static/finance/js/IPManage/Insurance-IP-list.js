@@ -44,10 +44,10 @@ function check(patent) {
     storage.loanID = patent.loanID;
     var state = patent.loan_state;
     switch (state) {
-        case 3:
+        case 4:
             window.location.href = "Insurance-check2.html";
             break;
-        case 4:
+        case 5:
             $.ajax({
                 type: "GET",
                 url: "all/getIfContract",
@@ -64,7 +64,7 @@ function check(patent) {
                 }
             });
             break;
-        case 7:
+        case 8:
             window.location.href = "Insurance-checkBank.html";
             break;
         default:

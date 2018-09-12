@@ -47,7 +47,7 @@ function check(patent) {
         case 1:
             window.location.href = "Evaluation-report2.html";
             break;//评估
-        case 4:
+        case 5:
             $.ajax({
                 type: "GET",
                 url: "all/getIfContract",
@@ -64,7 +64,7 @@ function check(patent) {
                 }
             });
             break;
-        case 8:
+        case 9:
             window.location.href = "Evaluation-checkBank.html";
             break;
         default:
