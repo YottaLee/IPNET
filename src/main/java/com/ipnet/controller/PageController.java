@@ -9,6 +9,11 @@ public class PageController {
 
     private static String finance = "/finance/";
 
+    @RequestMapping("head")
+    public String head(){
+        return "/frame/head";
+    }
+
     @RequestMapping("home")
     public String home(){
         return "home";
