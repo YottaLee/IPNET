@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * 贷款-保险部分
  */
@@ -40,8 +43,9 @@ public class LoanInsuranceController {
     @ResponseBody
     public ResultMessage insuranceApplication(String loanID, String url,String person, String address, String time, String reason,
                                        String bank, String bankName, String bankID, String insuranceID, int money) {
-        return null;
-      //  return loanBLService.insuranceApplication(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
+        SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd-HHmmss");
+        String insurance_contractid=df.format(new Date())+person;
+        return loanBLService.insuranceApplication(insurance_contractid,loanID,url,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
     }
 
 

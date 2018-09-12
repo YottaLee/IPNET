@@ -7,6 +7,7 @@ import com.ipnet.blservice.UserBLService;
 import com.ipnet.dao.InsuranceDao;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Loan;
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
 import com.ipnet.vo.financevo.InsuranceVO;
@@ -331,8 +332,10 @@ public class LoanBL implements LoanBLService {
 
 
     @Override
-    public ResultMessage insuranceApplication(String insurance_contractid,String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money) {
-        InsuranceVO insurance=null;//new InsuranceVO(insurance_contractid,loanID,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
+    public ResultMessage insuranceApplication(String insurance_contractid,String loanID, String url,String person, String address, String time, String reason,
+                                              String bank, String bankName, String bankID, String insuranceID, int money) {
+
+        InsuranceVO insurance=new InsuranceVO(insurance_contractid,loanID,url, Patent_loan_state.to_be_compensation_by_insurance,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
         insuranceDao.saveAndFlush(insurance);
         return ResultMessage.Success;
     }
@@ -344,6 +347,12 @@ public class LoanBL implements LoanBLService {
         loanDao.save(loan);
         return ResultMessage.Success;
     }
+
+    /**
+     * @Author: Jane
+     * @Description: 获取金融机构的保险申请信息
+     * @Date: 2018/9/12 11:48
+     */
 
     @Override
     public InsuranceVO getInsurance(String loanID) {
@@ -360,6 +369,11 @@ public class LoanBL implements LoanBLService {
         return ResultMessage.Success;
     }
 
+    /**
+     * @Author: Jane
+     * @Description: 获取贷款信息
+     * @Date: 2018/9/12 11:49
+     */
     @Override
     public LoanVO getInfo(String loanID) {
         Loan loan=loanDao.getOne(loanID);
@@ -371,6 +385,8 @@ public class LoanBL implements LoanBLService {
     public LoanVO getApplication(String loanID) {
         Loan loan=loanDao.getOne(loanID);
         LoanVO loanVO=new LoanVO(loan);
+        loanVO.setMoney(loan.getExpect_money());
+        loanVO.setTime(loan.getExpect_time());
         return loanVO;
     }
 
@@ -379,8 +395,10 @@ public class LoanBL implements LoanBLService {
         Loan loan=loanDao.getOne(loanID);
         loan.setBank(bank);
         loan.setBankPass(ifPass);
-//        loan.setAccept(ifInsurance);//By 张萍：这里loan的属性名有点变化，我不知道应该set啥
-        //这里有点疑问
+        loan.setIfInsurance(ifInsurance);
+        loan.setAccept_money(money);
+        loan.setAccept_time(time);
+        loanDao.saveAndFlush(loan);
         return ResultMessage.Success;
     }
 }

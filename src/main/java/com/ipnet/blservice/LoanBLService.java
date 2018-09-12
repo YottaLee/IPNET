@@ -39,7 +39,8 @@ public interface LoanBLService {
     boolean ifBankChosen(String loanID);
 
     //LoanInsuranceController
-    ResultMessage insuranceApplication(String insurance_contractid,String loanID, String person, String address, String time, String reason, String bank, String bankName, String bankID, String insuranceID, int money);
+    ResultMessage insuranceApplication(String insurance_contractid,String loanID, String url,String person, String address, String time, String reason,
+                                       String bank, String bankName, String bankID, String insuranceID, int money);
 
     ResultMessage ifInsurance(String loanID, boolean ifPass);
 
