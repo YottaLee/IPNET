@@ -21,7 +21,6 @@ $(document).ready(function(){
     $("#publish_post").click(function(){
         var post_name=document.getElementById("articleTitle").value;
         var post_intro=document.getElementById("post_intro").value;
-        var post_content=$(".ql-editor").html();
         var post_tags=[];
         var post_id="";
         var tag_elements=$(".tags-selected").find(".tag");
@@ -40,6 +39,23 @@ $(document).ready(function(){
                 alert("fail");
             }
         });
+        var imgs=$(".ql-editor").find("img");
+        for(var i=0;i<imgs.length;i++){
+            var fileName=post_id+i;
+            $.ajax({
+                type : 'POST',
+                url : '/post/changeBaseToUrl',
+                data:{base64:imgs[i].getAttribute("src"),filename:fileName,projectID:post_id},
+                async:false,
+                success:function(data){
+                    imgs[i].setAttribute("src",data);
+                },
+                error:function(data){
+                    alert("fail");
+                }
+            });
+        }
+        var post_content=$(".ql-editor").html();
         var temp_para={post_id:post_id,author:user_name,post_name:post_name,post_tag:post_tags,brief_intro:post_intro,content:post_content};
         $.ajax({
             type : 'POST',
