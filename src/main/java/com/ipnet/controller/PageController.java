@@ -14,6 +14,11 @@ public class PageController {
         return "/frame/head";
     }
 
+    @RequestMapping("head2")
+    public String head2(){
+        return "/frame/another_head";
+    }
+
     @RequestMapping("footer")
     public String footer(){
         return "/frame/footer";

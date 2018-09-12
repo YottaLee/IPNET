@@ -164,7 +164,7 @@ function slidVerification() {
     };
 }
 
-function loginMsg(){
+function loginMsgEmail(){
     //1-调用后端的方法验证（待定）
     //2-若验证为真，则跳转到登录后的主页；若为假，则提示失败原因（待定）
 
@@ -178,6 +178,7 @@ function loginMsg(){
         $.ajax({
             url: "/user/emailLogin",
             type: "POST",
+            async: false,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(loginreq),
@@ -223,11 +224,18 @@ function loginMsg(){
                     },2000);
                 }
                 else if(data == "NoUser"){
-                    content = "用户不存在！再试一次 . . .";
-                    TINY.box.show(content,0,0,0,0,3);
+                    content = "用户不存在！请前往注册 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/register_byEmail";
+                    },2000);
                 }
                 else if(data == "PassError"){
                     content = "密码错误！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+                else if(data == "NotActive"){
+                    content = "请前往激活邮箱后再试一次 . . .";
                     TINY.box.show(content,0,0,0,0,3);
                 }
                 else {
