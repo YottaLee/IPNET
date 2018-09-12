@@ -4,7 +4,8 @@ var d_msg = "";
 var n_valid = 0;
 var p_valid = 0;
 var isVertifySucc = false;  //var d_valid = 0;
-
+var oUsername = "";
+var oPassword = "";
 
 window.onload=function(){
     loginByEmail();
@@ -40,6 +41,7 @@ function loginByEmail(){
             all_msg.innerHTML=n_msg + "<br /><br />";
         }else{
             n_valid = 1;
+            oUsername = this.value;
             n_msg = "";
             all_msg.innerHTML=n_msg + "<br /><br />";
         }
@@ -66,6 +68,7 @@ function loginByEmail(){
         }
         else{
             p_valid = 1;
+            oPassword = this.value;
             p_msg = "";
             all_msg.innerHTML=n_msg + p_msg + "<br /><br />";
         }
@@ -167,13 +170,77 @@ function loginMsg(){
 
     var content = "";
     if(n_valid == 1 && p_valid == 1 && isVertifySucc == true){
-        content = "登录成功！即将跳转 . . .";
-        TINY.box.show(content,0,0,0,0,2);  //该浮层将在2s内消失
-        setTimeout(function () {
-            //跳转到登录后的主页（待定）
+        var loginreq = {
+            username: oUsername,
+            password: oPassword
+        };
 
+        $.ajax({
+            url: "/user/emailLogin",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(loginreq),
+            success: function (data) {
+                if (data == "PersonLogin"){
+                    content = "登录成功！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        //跳转到登录后的主页（待定）
+                        window.location.href = "/ipnet/pc_eWallet";
+                    },2000);
+                }
+                else if(data == "CompanyLogin"){
+                    content = "登录成功！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        //跳转到登录后的主页（待定）
+                        window.location.href = "/ipnet/pc_eWallet";
+                    },2000);
+                }
+                else if(data == "EvaluatorLogin"){
+                    content = "登录成功！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        //跳转到登录后的主页（待定）
+                        window.location.href = "/ipnet/pc_eWallet";
+                    },2000);
+                }
+                else if(data == "FinancialLogin"){
+                    content = "登录成功！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        //跳转到登录后的主页（待定）
+                        window.location.href = "/ipnet/pc_eWallet";
+                    },2000);
+                }
+                else if(data == "InsuranceLogin"){
+                    content = "登录成功！即将跳转 . . .";
+                    TINY.box.show(content,0,0,0,0,2);
+                    setTimeout(function () {
+                        //跳转到登录后的主页（待定）
+                        window.location.href = "/ipnet/pc_eWallet";
+                    },2000);
+                }
+                else if(data == "NoUser"){
+                    content = "用户不存在！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+                else if(data == "PassError"){
+                    content = "密码错误！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+                else {
+                    content = "未知错误！再试一次 . . .";
+                    TINY.box.show(content,0,0,0,0,3);
+                }
+            },
+            error: function () {
+                content = "请求失败！再试一次 . . .";
+                TINY.box.show(content,0,0,0,0,3);
+            }
+        });
 
-        },2000);
     }
     else{
         content = "登录失败！再试一次 . . .";

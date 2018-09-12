@@ -215,7 +215,8 @@ function loginMsg(){
                 }
             },
             error: function () {
-                alert(oUsername + "," + oPassword);
+                alert(loginreq.username + "," + loginreq.password);
+
                 content = "请求失败！再试一次 . . .";
                 TINY.box.show(content,0,0,0,0,3);
             }
