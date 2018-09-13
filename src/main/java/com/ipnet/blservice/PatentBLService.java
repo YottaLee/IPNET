@@ -1,8 +1,10 @@
 package com.ipnet.blservice;
 
 import com.ipnet.enums.Patent_state;
+import com.ipnet.enums.Region;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.PatentVO;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,8 @@ public interface PatentBLService {
 
     List<PatentVO> searchPatentByName(String name);
 
+    List<PatentVO> searchPatent(String info);
+
     Boolean deletePatent(String patentID);
 
     Boolean updatePatentState(Patent_state newState, String patentID) throws IDNotExistsException;
@@ -34,6 +38,8 @@ public interface PatentBLService {
     void sendInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException;
 
      List<PatentVO> searchRelatedPatents();
+
+    List<PatentVO> searchPatentByRegion(Region region);
 
     List<PatentVO> getPatentList(String userId);
 

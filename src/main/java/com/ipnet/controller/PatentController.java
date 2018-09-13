@@ -31,6 +31,16 @@ public class PatentController {
         return service.createPatent(newPatent);
     }
 
+    /**
+     * 模糊搜索
+     * @param info
+     * @return
+     */
+    @RequestMapping("/searchPatent")
+    public @ResponseBody List<PatentVO> searchPatent(@RequestBody String info){
+        return service.searchPatent(info);
+    }
+
     @RequestMapping("/searchPatentByID")
     public @ResponseBody
     PatentVO searchPatentByID(@RequestParam String patentID) {
