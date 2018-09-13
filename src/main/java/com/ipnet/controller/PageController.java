@@ -329,4 +329,9 @@ public class PageController {
     public String loan_detail(){
         return finance+"loan_detail";
     }
+
+    @RequestMapping("Applicant-patentEntry")
+    public String Applicant_patentEntry(){
+        return finance+"Applicant-patentEntry";
+    }
 }

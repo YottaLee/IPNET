@@ -53,6 +53,24 @@ public class PatentController {
         return service.searchPatentByName(name);
     }
 
+    /**
+     * 专利录入
+     * @param patentID 专利号
+     * @param patent 专利
+     * @param holder 持有人
+     * @param url 专利相关文件url
+     * @param applyTime 申请时间
+     * @param type 专利类型
+     * @param district 所属地区
+     * @param profile 简介
+     * @return
+     */
+    @RequestMapping("/entryPatent")
+    @ResponseBody
+    public ResultMessage entryPatent(String patentID, String patent, String holder,String url, String applyTime, String type, String district, String profile) {
+        return null;
+    }
+
     @RequestMapping("/deletePatent")
     public @ResponseBody
     Boolean deletePatent(@RequestParam String patentID) {

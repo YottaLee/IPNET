@@ -45,7 +45,7 @@ $.ajax({
     }
 });
 $('#checkInfo').on('click',function () {
-    window.location.href = "All-loan-check.html";
+    window.location.href = "/ipnet/All-loan-check";
 });
 
 // var patentID = document.getElementById("patentID").innerHTML;
