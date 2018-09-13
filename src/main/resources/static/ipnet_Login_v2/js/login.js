@@ -240,22 +240,22 @@ function jump(userId) {
         success: function (role) {
             switch (role) {
                 case 0:
-                    window.location.href = "/ipnet/home";
+                    window.location.href = "/ipnet/home";//企业
                     break;
                 case 1:
-                    window.location.href = "/ipnet/home";
+                    window.location.href = "/ipnet/home";//个人
                     break;
                 case 2:
-                    window.location.href = "/ipnet/Evaluation-IP-list";
+                    window.location.href = "/ipnet/Evaluation-IP-list";//评估机构
                     break;
                 case 3:
-                    window.location.href = "/ipnet/Bank-IP-list";
+                    window.location.href = "/ipnet/Bank-IP-list";//金融机构
                     break;
                 case 4:
-                    window.location.href = "/ipnet/Insurance-IP-lsit";
+                    window.location.href = "/ipnet/Insurance-IP-lsit";//保险公司
                     break;
                 default:
-                    window.location.href = "/ipnet/home";
+                    window.location.href = "/ipnet/home";//默认
                     break;
             }
         },
