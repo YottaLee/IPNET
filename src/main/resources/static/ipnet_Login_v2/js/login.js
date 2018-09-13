@@ -199,7 +199,7 @@ function loginMsg() {
                     TINY.box.show(content, 0, 0, 0, 0, 2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "/ipnet/pc_eWallet";
+                        window.location.href = "/ipnet/home";
                     }, 2000);
                 }
                 else if (data == "NoUser") {
