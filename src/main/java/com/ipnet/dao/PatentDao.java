@@ -39,7 +39,7 @@ public interface PatentDao extends JpaRepository<Patent,String>{
     List<Patent> searchPatentsByValid_period(@Param("valid_period") String valid_period);
 
     @Query(value = "select p from Patent p where p.apply_date = :region")
-    List<Patent> searchPatentsByRegion(@Param("region") Region region);
+    List<Patent> searchPatentsByRegion(@Param("region") String region);
 
 
 }

@@ -2,7 +2,6 @@ package com.ipnet.bl.patentbl;
 
 import com.ipnet.dao.PatentPoolDao;
 import com.ipnet.entity.PatentPool;
-import com.ipnet.enums.Region;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.PatentVO;
 import com.ipnet.blservice.PatentBLService;
@@ -18,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.ipnet.enums.Patent_state.free;
 
 /**
  * @author lzb
@@ -45,6 +46,19 @@ public class PatentBLServiceImpl implements PatentBLService {
 
     @Override
     public ResultMessage entryPatent(String patentID, String patent, String holder, String url, String applyTime, String type, String district, String profile) {
+        Patent p = new Patent();
+        p.setPatent_id(patentID);
+        p.setPool_id("");
+        p.setPatent_name(patent);
+        p.setPatent_holder(holder);
+        p.setUrl(url);
+        p.setApply_date(applyTime);
+        p.setProfile(profile);
+        p.setPatent_type(type);
+        p.setRegion(district);
+        p.setInvitationPoolIdList(new ArrayList<String>());
+        p.setState(free);
+        p.setValid_period("2");      //有效期限设定;
         return null;
     }
 
@@ -111,7 +125,7 @@ public class PatentBLServiceImpl implements PatentBLService {
     }
 
     @Override
-    public List<PatentVO> searchPatentByRegion(Region region){
+    public List<PatentVO> searchPatentByRegion(String region){
         List<Patent> patentList = this.patentDao.searchPatentsByRegion(region);
         if(patentList.size() == 0 || patentList == null){
             return null;
@@ -261,6 +275,19 @@ public class PatentBLServiceImpl implements PatentBLService {
         Patent patent = this.getPatentById(patentId);
         patent.addInvitationFromPool(patentPoolId);
         this.savePatent(patent);
+    }
+
+    @Override
+    public PatentVO recommendPatent() {
+        int random = (int)(Math.random());
+        List<Patent> patents = this.patentDao.findAll();
+        Patent target = new Patent();
+        if(patents.size() == 0 || patents == null){
+            return null;
+        }
+        target = patents.get(random%patents.size());
+        PatentVO patentVO = (PatentVO) transHelper.transTO(target , PatentVO.class);
+        return  patentVO;
     }
 
     private Patent getPatentById(String patentId) throws IDNotExistsException{

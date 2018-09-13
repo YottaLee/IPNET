@@ -25,6 +25,16 @@ public interface PatentBLService {
 
     List<PatentVO> searchPatentByName(String name);
 
+    List<PatentVO> searchPatentByRegion(String region);
+
+    List<PatentVO> searchPatentsByState(Patent_state state);
+
+    List<PatentVO> searchPatentsByValid_period(String valid_period);
+
+    List<PatentVO> searchPatentByPool(String poolId);
+
+    List<PatentVO> getPatentList(String userId);
+
     List<PatentVO> searchPatent(String info);
 
     Boolean deletePatent(String patentID);
@@ -43,14 +53,6 @@ public interface PatentBLService {
 
      List<PatentVO> searchRelatedPatents();
 
-    List<PatentVO> searchPatentByRegion(Region region);
-
-    List<PatentVO> searchPatentsByState(Patent_state state);
-
-    List<PatentVO> searchPatentsByValid_period(String valid_period);
-
-    List<PatentVO> searchPatentByPool(String poolId);
-
-    List<PatentVO> getPatentList(String userId);
+     PatentVO recommendPatent();
 
 }
