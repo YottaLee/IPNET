@@ -229,7 +229,7 @@ function loginMsg() {
 }
 
 //跳转界面
-function jump(userId) {
+/*function jump(userId) {
     $.ajax({
         url: "user/getUserRole",
         dataType: 'json',
@@ -263,4 +263,4 @@ function jump(userId) {
 
         }
     });
-}
+}*/
