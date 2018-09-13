@@ -2,6 +2,7 @@ package com.ipnet.bl.patentbl;
 
 import com.ipnet.dao.PatentPoolDao;
 import com.ipnet.entity.PatentPool;
+import com.ipnet.enums.Region;
 import com.ipnet.vo.PatentVO;
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.dao.PatentDao;
@@ -12,6 +13,7 @@ import com.ipnet.utility.TransHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,6 +68,19 @@ public class PatentBLServiceImpl implements PatentBLService {
     }
 
     @Override
+    public List<PatentVO> searchPatent(String info) {
+        List<Patent> patentList = this.patentDao.searchPatent(info);
+        if(patentList.size() == 0 ||patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
     public Boolean deletePatent(String patentID) {
         this.patentDao.deleteById(patentID);
         return true;
@@ -89,6 +104,12 @@ public class PatentBLServiceImpl implements PatentBLService {
             if(option!=null || option.isPresent() == false){
                  throw new IDNotExistsException("pool id not exists");
             }
+
+            Optional<Patent> optionalPatent = this.patentDao.findById(ipId);
+            if(option!=null || option.isPresent() == false){
+                 throw new IDNotExistsException("patent id not exists");
+            }
+
             PatentPool pool = (PatentPool) option.get();
             List<String> patentlist=pool.getPatents();
             for(String str : patentlist){
@@ -99,26 +120,12 @@ public class PatentBLServiceImpl implements PatentBLService {
             pool.setPatents(patentlist);
             this.patentpoolDao.saveAndFlush(pool);
 
-            //设置ip的状态
+
+             Patent realPatent = optionalPatent.get();
+             realPatent.setPool_id("");
+             this.patentDao.saveAndFlush(realPatent);
     }
 
-    @Override
-    public PatentVO searchIp(String info){
-        return new PatentVO();
-    }     //info的形式是什么？
-    @Override
-    public boolean applyIpSet(String ipId,String ipSetId) throws IDNotExistsException {
-        boolean flag = false;
-        Optional<PatentPool> option = this.patentpoolDao.findById(ipSetId);
-        if(option!=null || option.isPresent() == false){
-            throw new IDNotExistsException("pool id not exists");
-        }
-        //是否要给patentpool里面加一个申请入池的iplist
-        else {
-            flag = true;
-        }
-        return flag;
-    }
 
     @Override
     public boolean updateIp(PatentVO ipVo){
@@ -133,7 +140,26 @@ public class PatentBLServiceImpl implements PatentBLService {
 
         return flag;
     }
-
+    @Override
+    public boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
+        boolean flag = false;
+        if (!this.patentDao.existsById(patentId)){
+            throw new IDNotExistsException("patent id not exists");
+        }
+        Patent patent = this.getPatentById(patentId);
+        PatentPool pool = this.patentpoolDao.findById(patentPoolId).get();
+        if(!pool.isFull()){
+            flag = true;
+            //修改patent
+            patent.deleteInvitationFromPool(patentPoolId);
+            patent.setPool_id(patentPoolId);
+            //修改pool
+            pool.addPatent(patentId);
+            this.patentpoolDao.saveAndFlush(pool);
+            this.patentDao.saveAndFlush(patent);
+        }
+        return flag;
+    }
     @Override
     public void denyInvitationFromPool(String patentId, String patentPoolId) throws IDNotExistsException {
         if (!this.patentDao.existsById(patentId)){
@@ -156,6 +182,44 @@ public class PatentBLServiceImpl implements PatentBLService {
         this.savePatent(patent);
     }
 
+    @Override
+    public List<PatentVO> getPatentList(String userId){
+         List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
+         if(patentList.size() == 0 ||patentList == null){
+             return null;
+         }
+         List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+         return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchRelatedPatents(){
+         List<Patent> patentList = this.patentDao.searchRelatedPatents("");
+         if(patentList.size() == 0 ||patentList == null){
+            return null;
+         }
+         List<PatentVO> voList = patentList.stream()
+                 .filter(patent -> patent!=null)
+                 .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                 .collect(Collectors.toList());
+         return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchPatentByRegion(Region region){
+        List<Patent> patentList = this.patentDao.searchPatentsByRegion(region);
+        if(patentList.size() == 0 || patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
 
     private Patent getPatentById(String patentId) throws IDNotExistsException{
         Optional<Patent> optionalPatent = this.patentDao.findById(patentId);
@@ -166,8 +230,9 @@ public class PatentBLServiceImpl implements PatentBLService {
         return optionalPatent.get();
     }
 
-
     private void savePatent(Patent patent){
         this.patentDao.saveAndFlush(patent);
     }
+
+
 }

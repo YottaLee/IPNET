@@ -93,7 +93,8 @@ public class UserController {
      */
     @RequestMapping("/phoneLogin")
     public @ResponseBody
-    ResultMessage loginByPhone(LoginReq loginReq){
+    ResultMessage loginByPhone(@RequestBody LoginReq loginReq){
+        System.out.println(loginReq.toString());
         return userBLService.loginPhone(loginReq.getUsername(),loginReq.getPassword());
     }
 
@@ -110,7 +111,7 @@ public class UserController {
      */
     @RequestMapping("/emailLogin")
     public @ResponseBody
-    ResultMessage loginByEmail(LoginReq loginReq){
+    ResultMessage loginByEmail(@RequestBody LoginReq loginReq){
         return userBLService.loginEmail(loginReq.getUsername(),loginReq.getPassword());
     }
 
@@ -128,4 +129,28 @@ public class UserController {
     }
     //查看个人身份信息
     //查看企业身份信息
+
+    //用户是否通过实名认证
+    @RequestMapping("isVerified")
+    public @ResponseBody
+    boolean isVerified(String userID){
+        return userBLService.isVerified(userID);
+    }
+    //用户是否已经绑定手机号
+    @RequestMapping("hasPhone")
+    public @ResponseBody
+    boolean hasTelephone(String userID){
+        return userBLService.hasTelephone(userID);
+    }
+
+    /**
+     * 返回用户的身份
+     * @param userID 用户ID
+     * @return 用户角色
+     */
+    @RequestMapping("/getUserRole")
+    @ResponseBody
+    public Role getUserRole(String userID){
+        return userBLService.getUserRole(userID);
+    }
 }

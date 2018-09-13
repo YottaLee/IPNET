@@ -1,5 +1,7 @@
 package com.ipnet.bl.patentpoolbl;
 
+import com.ipnet.dao.PatentDao;
+import com.ipnet.entity.Patent;
 import com.ipnet.vo.PatentPoolVO;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.bl.patentbl.PatentBLHelper;
@@ -26,6 +28,9 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
 
     @Autowired
     private PatentPoolDao patentPoolDao;
+
+    @Autowired
+    private  PatentDao patentDao;
 
     @Autowired
     private PatentBLHelper patentBLHelper;
@@ -69,35 +74,13 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         return true;
     }
 
-    @Override
-    public Boolean addPatentIntoPool(String poolID, String patentID) throws IDNotExistsException {
-        Optional<PatentPool> optionalPatentPool = this.patentPoolDao.findById(poolID);
-        if (optionalPatentPool == null || optionalPatentPool.isPresent() == false) {
-            throw new IDNotExistsException("pool id not exists");
-        }
-        PatentPool pool = optionalPatentPool.get();
-
-        if (this.patentBLHelper.ifPatentExists(patentID) == false){
-            throw new IDNotExistsException("patent id not exists");
-        }
-
-        List<String> patentIDList = pool.getPatents();
-        patentIDList.add(patentID);
-
-        this.patentPoolDao.saveAndFlush(pool);
-        return true;
-    }
 
     /**
      * @author gy
      * @param ipId
      * @param ipSetId
+     * @expalnmation:该方法放在了patent里面，因为只改变patent的属性，会发生循环依赖
      */
-    @Override
-    public void inviteIpSet(String ipId,String ipSetId){                      //ip需要添加新的属性
-         Optional<PatentPool> optional = this.patentPoolDao.findById(ipSetId);
-
-    }
 
     /**
      * @author gy
@@ -116,4 +99,109 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         }
         return flag;
     }
+
+
+    /**
+     * @author gy
+     * @param ipSetId
+     * @return
+     * @throws IDNotExistsException
+     */
+   @Override
+    public  boolean isFull(String ipSetId) throws IDNotExistsException {
+        Optional<PatentPool> option = this.patentPoolDao.findById(ipSetId);
+        if(option ==null || option.isPresent() == false){
+            throw new IDNotExistsException("pool id not exists");
+        }
+        PatentPool pool = option.get();
+        return pool.isFull();
+    }
+
+    /**
+     * @author gy
+     * @param ipId
+     * @param ipSetId
+     * @return
+     * @throws IDNotExistsException
+     */
+    @Override
+    public boolean applyIpSet(String ipId,String ipSetId) throws IDNotExistsException{
+        boolean flag = false;
+        Optional<PatentPool> option = this.patentPoolDao.findById(ipSetId);
+        if(option ==null || option.isPresent() == false){
+            throw new IDNotExistsException("pool id not exists");
+        }
+        else {
+            PatentPool pool = option.get();
+            pool.addToapplyPatents(ipId);
+            this.patentPoolDao.saveAndFlush(pool);
+            flag = true;
+        }
+        return flag;
+    }
+
+    /**
+     * @author gy
+     * @param ipId
+     * @param ipSetId
+     * @throws IDNotExistsException
+     */
+    @Override
+    public void acceptIpApply(String ipId , String ipSetId) throws  IDNotExistsException{
+        Optional<PatentPool> option = this.patentPoolDao.findById(ipSetId);
+        if(option ==null || option.isPresent() == false){
+            throw new IDNotExistsException("pool id not exists");
+        }
+        if (this.patentBLHelper.ifPatentExists(ipId) == false){
+            throw new IDNotExistsException("patent id not exists");
+        }
+        PatentPool pool = option.get();
+        pool.acceptApply(ipId);
+        this.patentPoolDao.saveAndFlush(pool);
+
+        //个人感觉需要加一个ip的所属专利池的属性
+        Patent patent = this.patentDao.findById(ipId).get();
+        patent.setPool_id(ipSetId);
+        this.patentDao.saveAndFlush(patent);
+    }
+
+    @Override
+    public void denyIpApply(String ipId , String ipSetId) throws IDNotExistsException{
+        if (!this.patentPoolDao.existsById(ipSetId)){
+            throw new IDNotExistsException("pool id not exists");
+        }
+        PatentPool pool = this.patentPoolDao.findById(ipSetId).get();
+        pool.denyApply(ipId);
+        this.patentPoolDao.saveAndFlush(pool);
+    }
+
+    @Override
+    public List<PatentPoolVO> getIPSETList(String userId) throws IDNotExistsException{
+        List<PatentPool> poolists = this.patentPoolDao.searchPatentPoolByOwner(userId);
+        if (poolists == null || poolists.size() == 0) {
+            return null;
+        }
+        return poolists.stream()
+                .filter(patentPool -> patentPool!=null)
+                .map(patentPool -> (PatentPoolVO)this.transHelper.transTO(patentPool,PatentPoolVO.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<PatentPoolVO> getNotFullPools() throws IDNotExistsException {
+        List<PatentPool> poolists = this.patentPoolDao.findAll();
+        for(PatentPool pool : poolists){
+            if(isFull(pool.getId())){
+                poolists.remove(pool);
+            }
+        }
+        if (poolists.size() ==0 || poolists==null){
+            return null;
+        }
+        return poolists.stream()
+                .filter(patentPool -> patentPool!=null)
+                .map(patentPool -> (PatentPoolVO)this.transHelper.transTO(patentPool,PatentPoolVO.class))
+                .collect(Collectors.toList());
+    }
+
 }

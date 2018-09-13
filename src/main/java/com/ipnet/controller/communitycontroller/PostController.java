@@ -49,7 +49,9 @@ public class PostController {
      */
 
     @RequestMapping("/upLoadFile")
-    public String upLoadFile(MultipartFile file) {
+    public @ResponseBody
+    String upLoadFile(MultipartFile file) {
+        System.out.println(file.getOriginalFilename());
         return postBLService.uploadFile(file.getName(), file);
     }
 

@@ -1,0 +1,80 @@
+.mainContainer {
+    border: none;
+}
+.imgMid {
+    vertical-align: middle;
+}
+.t1 {
+    font-size: 20px;
+    font-family: "Microsoft YaHei", Poppins-Regular;
+}
+.t2 {
+    font-size: 15px;
+    font-family: "Microsoft YaHei", Poppins-Regular;
+    text-align: center;
+}
+.t3 {
+    font-size: 18px;
+    font-family: "Microsoft YaHei", Poppins-Regular;
+    margin-bottom: 15px;
+}
+.t4 {
+    font-size: 15px;
+    font-family: "Microsoft YaHei", Poppins-Regular;
+    text-align: center;
+    margin-top: 40px;
+}
+.t5 {
+    font-size: 15px;
+    color: #38a4f0;
+    border-bottom: 1px solid #38a4f0;
+}
+.t6 {
+    font-size: 15px;
+    font-family: "Microsoft YaHei", Poppins-Regular;
+    margin-bottom: 12px;
+}
+.t7 {
+    margin-bottom: 30px;
+}
+.t-btn {
+    margin-top: 40px;
+}
+.idVeri {
+    font-size: 14px;
+    color: #999999;
+    border: 1px solid #c6c8ca;
+    background-color: #CCCCCC;
+    padding: 3px 10px;
+    margin-left: 15%;  /* 20px */
+}
+.btn-balance {
+    background-color: #25a2ff;
+    color: #FFFFFF;
+    border: 1px solid #25a2ff;
+    /*border-radius: 15px;*/
+    padding: 7px 14px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    /*margin-left: 25px;*/
+
+    font-family: "Microsoft YaHei", Poppins-Regular, 'Lato', Calibri, Arial, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 15%;
+    border-radius: 2px;
+}
+.btn-balance:hover {
+    background-color: #258eff;
+    border: 1px solid #258eff;
+}
+.tb-12 {
+    border: 1px;
+    margin-top: 20px;
+    /*align-content: center;*/
+}
+.tb-12-head {
+    font-weight: bold;
+}

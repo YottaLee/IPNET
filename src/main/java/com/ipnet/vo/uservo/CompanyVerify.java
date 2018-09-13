@@ -34,4 +34,5 @@ public class CompanyVerify {
     private String email;//电子邮箱
     private String website;//企业官网
 
+
 }

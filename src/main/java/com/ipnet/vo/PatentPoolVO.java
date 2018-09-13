@@ -34,4 +34,6 @@ public class PatentPoolVO {
 
     private List<String> patents;//专利池内的专利列表
 
+    private List<String> applypatents;
+
 }

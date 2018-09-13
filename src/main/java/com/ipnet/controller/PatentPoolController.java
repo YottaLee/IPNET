@@ -14,47 +14,80 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/PatentPool")
 public class PatentPoolController {
-     @Autowired
-     private PatentPoolBLService service;
+    @Autowired
+    private PatentPoolBLService service;
 
-     @RequestMapping("/createPatentPool")
-     public @ResponseBody  PatentPoolVO createPatentPool(@RequestBody PatentPoolVO newPatentPool){
-          return service.createPatentPool(newPatentPool);
-     }
+    @RequestMapping("/createPatentPool")
+    public @ResponseBody  PatentPoolVO createPatentPool(@RequestBody PatentPoolVO newPatentPool){
+        return service.createPatentPool(newPatentPool);
+    }
 
-     @RequestMapping("/searchPatentPoolByID")
+    @RequestMapping("/searchPatentPoolByID")
     public @ResponseBody PatentPoolVO searchPatentPoolByID(@RequestParam String patentPoolID){
-         return service.searchPatentPoolByID(patentPoolID);
-     }
+        return service.searchPatentPoolByID(patentPoolID);
+    }
 
-     @RequestMapping("/searchPatentPoolByName")
+    @RequestMapping("/searchPatentPoolByName")
     public @ResponseBody
-     List<PatentPoolVO> searchPatentPoolByName(@RequestParam String patentPoolName){
-         return service.searchPatentPoolByName(patentPoolName);
-     }
+    List<PatentPoolVO> searchPatentPoolByName(@RequestParam String patentPoolName){
+        return service.searchPatentPoolByName(patentPoolName);
+    }
 
-     @RequestMapping("/deletePatentPool")
+    @RequestMapping("/deletePatentPool")
     public @ResponseBody Boolean deletePatentPool(@RequestParam String patentPoolID){
-         return service.deletePatentPool(patentPoolID);
-     }
-
-    @RequestMapping("/addPatentIntoPool")
-    public @ResponseBody Boolean addPatentIntoPool(@RequestParam String poolID,@RequestParam String PatentID) throws IDNotExistsException{
-         return  service.addPatentIntoPool(poolID,PatentID);
+        return service.deletePatentPool(patentPoolID);
     }
-
-    @RequestMapping("/inviteIpSet")
-    public @ResponseBody void inviteIpSet(@RequestParam String ipId,@RequestParam String ipSetId){
-          service.inviteIpSet(ipId,ipSetId);
-    }
+//
+//    @RequestMapping("/addPatentIntoPool")
+//    public @ResponseBody Boolean addPatentIntoPool(@RequestParam String poolID,@RequestParam String PatentID) throws IDNotExistsException{
+//        return  service.addPatentIntoPool(poolID,PatentID);
+//    }
 
     @RequestMapping("/updateIpSet")
     public @ResponseBody boolean updateIpSet(@RequestBody PatentPoolVO ipSetVo){
-         return service.updateIpSet(ipSetVo);
+        return service.updateIpSet(ipSetVo);
+    }
+
+    @RequestMapping("/applyIpSet")
+    public @ResponseBody boolean applyIpSet(@RequestParam String ipId,@RequestParam String ipSetId) throws IDNotExistsException{
+        return  service.applyIpSet(ipId , ipSetId);
+    }
+
+    @RequestMapping("/acceptIpApply")
+    public @ResponseBody void acceptIpApply(@RequestParam String ipId , @RequestParam String ipSetId) throws  IDNotExistsException{
+        service.acceptIpApply(ipId , ipSetId);
+    }
+
+    @RequestMapping("/denyIpApply")
+    public @ResponseBody void denyIpApply(@RequestParam String ipId , @RequestParam String ipSetId) throws IDNotExistsException{
+        service.denyIpApply(ipId , ipSetId);
+    }
+
+    @RequestMapping("/isFull")
+    public @ResponseBody boolean isFull(@RequestParam String ipSetId) throws IDNotExistsException{
+        return service.isFull(ipSetId);
+    }
+
+    /**
+     * 获取专利池列表
+     * @param userId 用户ID
+     * @return 专利池列表
+     * @throws IDNotExistsException
+     */
+    @RequestMapping("/getIPSETList")
+
+    public @ResponseBody List<PatentPoolVO> getIPSETList(@RequestParam String userId) throws IDNotExistsException{
+        return service.getIPSETList(userId);
+    }
+
+    @RequestMapping("/getNotFullPools")
+    public  @ResponseBody List<PatentPoolVO> getNotFullPools() throws IDNotExistsException{
+        return service.getNotFullPools();
     }
 }

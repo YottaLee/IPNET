@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="theme-color" content="#3b3e43">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="google-site-verification" content="l6JwXAuzDd2K09z9xYaeZTFjnXVJATmJ7xX1q2_HuEo" />
+    <meta name="baidu-site-verification" content="flB16pdAO9" />
+    <meta name="msvalidate.01" content="43B15631A6176E01B4CC074375AD7AF1" />
+    <meta name="p:domain_verify" content="4ad0f1e10883fcfd6c18da6c6b84e8a0"/>
+    <title>IPNET论坛社区</title>
+    <meta name="description" content="在这里分享与专利交易有关的信息！"/>
+
+    <link rel="stylesheet" href="/community/css/base.css"/>
+    <link rel="stylesheet" href="/community/css/home.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
+    <link href="/home/css/bootstrap.css" rel="stylesheet">
+
+    <style>
+        html{background-color: white}
+        p{color:black}
+        strong{color: black}
+    </style>
+
+</head>
+<body>
+<div class="nav">
+    <div  aria-label="IPNET社区论坛" class="tooltipped tooltipped__s" style="background: url('https://i.imgur.com/R25bUrO.jpg') no-repeat center;height: 48px;width: 48px;background-size: 100% 100%"></div>
+    <div class="nav-tabs">
+        <a href="/ipnet/community_home"><i class="fas fa-globe-asia"></i>发现</a>
+        <a href="/ipnet/community_interest"><i class="fas fa-star"></i>关注</a>
+        <a href="/ipnet/community_new"><i class="fas fa-upload"></i>最新</a>
+        <a onclick="goto_already_publish()"><i class="fas fa-cloud-upload-alt"></i>我发布的</a>
+    </div>
+    <form class="responsive-hide fn-left" target="_blank" action="https://hacpai.com/search">
+        <input class="search" placeholder="输入关键词搜索" type="text" name="key" id="algoliaSearch"
+               value="">
+        <input type="submit" class="fn-none" value=""/>
+    </form>
+    <div class="user-nav">
+        <a class="tooltipped tooltipped__w " aria-label="搜索" id="search">
+            <span class="has-point"></span>
+            <i class="fas fa-search"></i>
+        </a>
+        <a href="/ipnet/community_publish">发帖</a>
+        <a id="aNotifications" class="tooltipped tooltipped__w "
+           href="https://hacpai.com/notifications"
+           aria-label="消息"><span class="has-point"></span>
+            <i class="fas fa-bell"></i>
+        </a>
+        <a href="javascript:void(0)" id="aPersonListPanel" class="tooltipped tooltipped__w"
+           aria-label="您"
+           data-url="https://hacpai.com/member/czf1046277348">
+            <span class="avatar-small" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/52/h/52/interlace/0/q/100" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>
+        </a>
+        <div class="module personalUser-list dropdown-list" id="personListPanel">
+            <ul>
+                <li>
+                    <a href="https://hacpai.com/member/czf1046277348">个人主页</a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com/settings">设置</a>
+                    <a href="javascript:void(0)" id="signOut">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="home__user">
+    <div data-uid="1444373310492">
+        <div class="user__info">
+            <img id="user_photo" class="avatar-big" src="https://img.hacpai.com/avatar/1444373310492_1483665837753.gif?imageView2/1/w/242/h/242/interlace/0/q/100"/>
+            <div class="fn__flex-1">
+                <div class="fn-clear">
+                    <h2 class="fn-inline">
+                        <span id="user_name"></span>
+                        <span class="ft-gray ft-smaller"></span>
+                    </h2>
+                    <div class="fn__right fn__flex-inline">
+                        <button id="interest_user" class="follow btn mid" data-oid="1444373310492" data-type="follow">
+                            <i id="cancel_interest" class="fas fa-star" style="display: none"></i><i id="interest" class="far fa-star" style="display: none"></i>关注
+                        </button>
+                        <span>&nbsp; &nbsp;</span>
+                        <svg class="ft-gray fn__pointer fn__right" id="homeMoreAction">
+                            <use xlink:href="#iconChevronDown"></use>
+                        </svg>
+                        <div class="module dropdown-list">
+                            <ul>
+                                <li>
+                                    <a id="reportBtn" data-id="1444373310492" href="javascript:void(0)">举报</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="ft-fade">-->
+                <!--<span class="ft-gray">1887</span>-->
+                <!--号黑客会员，-->
+                <!--<span class="ft-gray">2015-10-09 14:48:30</span> 加入-->
+                <!--</div>-->
+                <div class="content-reset">
+                </div>
+            </div>
+            <div class="fn-clear user__meta">
+                <a class="user__item tooltipped tooltipped__n">
+                    <i class="fas fa-file-alt"></i><span id="release_num">发帖数：</span>
+                </a>
+                <a class="user__item tooltipped tooltipped__n">
+                    <i class="fas fa-heart"></i><span id="fans_num">粉丝数：</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="wrapper wrapper--home">
+        <div id="home-pjax-container" data-name="virtualpier">
+            <div class="module">
+                <div class="list">
+                    <ul id="post_list">
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1487303561541" target="_self">TGIF 20170217</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/TGIF">TGIF</a>
+                                <span class="ft-smaller ft-gray">&nbsp;•&nbsp;
+                                    <a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1487303561541#comments">
+                                        <span class="article-level3">31</span> 回帖
+                                    </a>&nbsp;•&nbsp;
+                                    <span class="article-level2">294</span>浏览&nbsp;•&nbsp;
+                                    <span>2017-02-17 11:52</span>
+                                </span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1487303561541" target="_self">31</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1483666054295" target="_self">20170106 TGIF</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/TGIF">
+                                    TGIF
+                                </a>
+                                <span class="ft-smaller ft-gray">&nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1483666054295#comments">
+							<span class="article-level2">22</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level1">
+                        155
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2017-01-06 09:27
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1483666054295" target="_self">22</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1480036098114" target="_self">20161125 TGIF</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/TGIF">
+                                    TGIF
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1480036098114#comments">
+							<span class="article-level1">16</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level0">
+                        94
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-11-25 09:08
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1480036098114" target="_self">16</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1478531479570" target="_self">基于阿里云的 maven settings.xml 配置</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/B3log">
+                                    B3log
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/Maven">
+                                    Maven
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1478531479570#comments">
+							<span class="article-level0">0</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level2">
+                        259
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-11-07 23:11
+							</span>
+                            </div>
+                            <div>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1477012287583" target="_self">20161021 TGIF</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/TGIF">
+                                    TGIF
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E6%AF%9B%E4%B8%BB%E5%B8%AD">
+                                    毛主席
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%8F%B0%E9%A3%8E">
+                                    台风
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1477012287583#comments">
+							<span class="article-level1">13</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level1">
+                        181
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-10-21 09:11
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1477012287583" target="_self">13</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1476849225939" target="_self">阅读代码，觉得没意思，如何克服这种疑难杂症</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87">
+                                    疑难杂症
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/programmer">
+                                    程序员
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E9%98%85%E8%AF%BB">
+                                    阅读
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1476849225939#comments">
+							<span class="article-level1">18</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level2">
+                        284
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-10-19 11:53
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1476849225939" target="_self">18</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1474596198934" target="_self">20160923 TGIF</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/TGIF">
+                                    TGIF
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1474596198934#comments">
+							<span class="article-level3">30</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level1">
+                        177
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-09-23 10:03
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1474596198934" target="_self">30</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1472809822458" target="_self">weblogic 验证码 不显示问题 Could not initialize class sun.awt.X11GraphicsEnvironment 解决方案</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/B3log">
+                                    B3log
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E9%97%AE%E9%A2%98">
+                                    问题
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/Weblogic">
+                                    Weblogic
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1472809822458#comments">
+							<span class="article-level0">0</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level0">
+                        86
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-09-02 17:50
+							</span>
+                            </div>
+                            <div>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1472787892285" target="_self">作为程序猿，别人什么行为让你最烦？</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E7%A8%8B%E5%BA%8F%E7%8C%BF">
+                                    程序猿
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1472787892285#comments">
+							<span class="article-level1">15</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level1">
+                        193
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-09-02 11:44
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1472787892285" target="_self">15</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1472628576490" target="_self">jHipster 3.4 创建最流行Java Web应用项目最简单的入门基本教程</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/B3log">
+                                    B3log
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/AngularJS">
+                                    AngularJS
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/jHipster">
+                                    jHipster
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1472628576490#comments">
+							<span class="article-level0">0</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level4">
+                        419
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-08-31 15:29
+							</span>
+                            </div>
+                            <div>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1471833498727" target="_self">开发到测试  各位是如何对自己开发的功能进行测试呢？</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E6%B5%8B%E8%AF%95">
+                                    测试
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/Bug">
+                                    Bug
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%BC%80%E5%8F%91">
+                                    开发
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/programmer">
+                                    程序员
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1471833498727#comments">
+							<span class="article-level1">11</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level1">
+                        159
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-08-22 10:38
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1471833498727" target="_self">11</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1471439729253" target="_self">关于私服：Nexus 搭建</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/B3log">
+                                    B3log
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/nexus">
+                                    nexus
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E4%BB%93%E5%BA%93">
+                                    仓库
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/Maven">
+                                    Maven
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1471439729253#comments">
+							<span class="article-level0">0</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level0">
+                        70
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-08-17 21:15
+							</span>
+                            </div>
+                            <div>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1470361853735" target="_self">听说我很久没发帖了，那么，负能量来一发吧</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/negative-energy">
+                                    负能量
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%8F%91%E5%B8%96">
+                                    发帖
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E4%B8%80%E5%8F%91">
+                                    一发
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%90%AC%E8%AF%B4">
+                                    听说
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1470361853735#comments">
+							<span class="article-level1">16</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level2">
+                        202
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-08-05 09:50
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1470361853735" target="_self">16</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1468218627493" target="_self">跳槽向~ 前辈们给点建议。</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E8%B7%B3%E6%A7%BD">
+                                    跳槽
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E6%B1%82%E5%8A%A9">
+                                    求助
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E8%80%81%E6%9D%BF">
+                                    老板
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/job">
+                                    工作
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1468218627493#comments">
+							<span class="article-level2">24</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level3">
+                        368
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-07-11 14:30
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1468218627493" target="_self">24</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1466670388586" target="_self">IDEA 激活服务器</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/B3log">
+                                    B3log
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E6%BF%80%E6%B4%BB%E6%9C%8D%E5%8A%A1">
+                                    激活服务
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/IDEA">
+                                    IDEA
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E6%9C%8D%E5%8A%A1%E5%99%A8">
+                                    服务器
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1466670388586#comments">
+							<span class="article-level0">0</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level4">
+                        632
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-06-23 16:26
+							</span>
+                            </div>
+                            <div>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1466494538475" target="_self">618后的第三天，你们还好吗？</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%9B%BA%E6%80%81">
+                                    固态
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E9%97%AA%E8%BF%AA">
+                                    闪迪
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/sdd">
+                                    sdd
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E7%9F%A5%E9%81%93">
+                                    知道
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1466494538475#comments">
+							<span class="article-level0">6</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level0">
+                        90
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-06-21 15:35
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1466494538475" target="_self">6</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1466435984692" target="_self">Linux下快速克隆某网站</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/B3log">
+                                    B3log
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/wget">
+                                    wget
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%85%8B%E9%9A%86">
+                                    克隆
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/Linux">
+                                    Linux
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1466435984692#comments">
+							<span class="article-level0">2</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level1">
+                        129
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-06-20 23:19
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1466435984692" target="_self">2</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1463055776333" target="_self">12个JavaScript技巧</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/B3log">
+                                    B3log
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%B0%8F%E6%8A%80%E5%B7%A7">
+                                    小技巧
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1463055776333#comments">
+							<span class="article-level0">3</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level1">
+                        182
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-05-12 20:22
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1463055776333" target="_self">3</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1462418535895" target="_self">大家一起来扯蛋~~</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%8F%8D%E5%BA%94">
+                                    反应
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E7%9F%A5%E9%81%93">
+                                    知道
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E7%9C%8B%E5%88%B0">
+                                    看到
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E6%89%AF">
+                                    扯
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1462418535895#comments">
+							<span class="article-level0">9</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level1">
+                        115
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-05-05 11:22
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1462418535895" target="_self">9</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1460605667742" target="_self">关于先买车或先买房的问题</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E4%B9%B0%E6%88%BF">
+                                    买房
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E5%85%88">
+                                    先
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E8%8B%A5%E6%83%B3">
+                                    若想
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E6%84%8F%E8%A7%81">
+                                    意见
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1460605667742#comments">
+							<span class="article-level2">21</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level4">
+                        1.7K
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-04-14 11:47
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1460605667742" target="_self">21</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <span class="tooltipped tooltipped__w" aria-label="思绪"><svg><use xlink:href="#iconVideo"></use></svg></span>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1460604055692" target="_self">科比再见~</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E6%80%9D%E7%BB%AA">
+                                    思绪
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E7%A7%91%E6%AF%94">
+                                    科比
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1460604055692#comments">
+							<span class="article-level1">13</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level4">
+                        1.7K
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-04-14 11:20
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1460604055692" target="_self">13</a>
+                            </div>
+                        </li>
+                        <li class="fn-flex">
+                            <div class="fn-flex-1 home-flex-space">
+                                <h2>
+                                    <a rel="bookmark" href="https://hacpai.com/article/1458891239760" target="_self">关于英语学习</a>
+                                </h2>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E8%8B%B1%E8%AF%AD">
+                                    英语
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/study">
+                                    学习
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E8%87%AA%E5%AD%A6">
+                                    自学
+                                </a>
+                                <a rel="tag" class="tag" href="https://hacpai.com/tag/%E8%AF%B7%E6%95%99">
+                                    请教
+                                </a>
+                                <span class="ft-smaller ft-gray">
+                    &nbsp;•&nbsp;
+							<a rel="nofollow" class="ft-gray" href="https://hacpai.com/article/1458891239760#comments">
+							<span class="article-level3">30</span> 回帖</a>
+                    &nbsp;•&nbsp;
+							<span class="article-level2">
+                        288
+							</span>
+                            浏览
+                    &nbsp;•&nbsp; 2016-03-25 15:33
+							</span>
+                            </div>
+                            <div>
+                                <a class="count ft-gray" href="https://hacpai.com/article/1458891239760" target="_self">30</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="pagination">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="section-divider textdivider divider6" style="background:url('https://i.imgur.com/rXfMRUl.jpg');">
+    <div class="container" >
+        <h1>CRAFTED IN NAN JING, NanJing University.</h1>
+        <hr>
+        <p>
+            Some Address 地址,
+        </p>
+        <p>
+            +联系方式
+        </p>
+        <p>
+            <a class="icon fab fa-qq" href="#" style="color: rgba(61, 201, 179, 0.8)"></a> | <a class="icon fab fa-weixin" href="#" style="color: rgba(61, 201, 179, 0.8)"></a>
+        </p>
+    </div>
+    <!-- container --></section><!-- section -->
+<div class="container" id="contact" name="contact" style="background-color: white;">
+    <div class="row">
+        <br>
+        <h1 class="centered">欢迎联系我们</h1>
+        <hr>
+        <br>
+        <br>
+        <div class="col-lg-4">
+            <h3>联系方式</h3>
+            <p>
+                <span class="icon fas fa-home"></span> 南京市栖霞区, 南京大学<br/>
+                <span class="icon fas fa-phone"></span> +固话联系方式 <br/>
+                <span class="icon fas fa-mobile-alt"></span> +手机联系方式 <br/>
+                <span class="icon far fa-envelope"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> 邮箱</a><br/>
+                <span class="icon fab fa-qq"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> qq </a><br/>
+                <span class="icon fab fa-weixin"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> 微信 </a><br/>
+            </p>
+        </div>
+        <!-- col -->
+        <div class="col-lg-4">
+            <h3>您的宝贵意见</h3>
+            <p>
+                如果您对我们的业务流程有疑问，或是您对我们的平台的服务有不满意的地方，请将您的邮箱和姓名发送给我们，我们将会第一时间联系您
+            <p>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail1" class="col-lg-4 control-label"></label>
+                    <div class="col-lg-10">
+                        <input type="email" class="form-control" id="inputEmail1" placeholder="邮箱">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="col-lg-4 control-label"></label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="text1" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10">
+                        <button type="submit" class="btn btn-success">Send</button>
+                    </div>
+                </div>
+            </form>
+            <!-- form -->
+            </p>
+        </div>
+        <!-- col -->
+        <div class="col-lg-4">
+            <h3>支持我们</h3>
+            <p>
+                如果您对我们的平台的开发与维护并且您也是资深的技术人员，欢迎您加入我们的团队，一起参与我们团队对该平台的维护与开发工作
+            </p>
+        </div>
+        <!-- col -->
+    </div>
+    <!-- row -->
+</div>
+<!-- container -->
+<div id="footerwrap">
+    <div class="container">
+        <h4>Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+    </div>
+</div>
+</body>
+
+<script src="/common/jquery.js"></script>
+<script src="/community/controller/community_person_controller.js"></script>
+
+</body>
+</html>

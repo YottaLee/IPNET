@@ -6,6 +6,7 @@ package com.ipnet.controller;
 
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.enums.Patent_state;
+import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.PatentVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,56 +16,144 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/Patent")
 public class PatentController {
-       @Autowired
-       private PatentBLService service;
-       @RequestMapping("/createPatent")
-       public @ResponseBody PatentVO createPatent(@RequestBody PatentVO newPatent){
-           return service.createPatent(newPatent);
-       }
+    @Autowired
+    private PatentBLService service;
 
-       @RequestMapping("/searchPatentByID")
-       public @ResponseBody PatentVO searchPatentByID(@RequestParam String patentID){
-           return service.searchPatentByID(patentID);
-       }
+    @RequestMapping("/createPatent")
+    public @ResponseBody
+    PatentVO createPatent(@RequestBody PatentVO newPatent) {
+        return service.createPatent(newPatent);
+    }
 
-       @RequestMapping("/searchPatentByName")
-       public @ResponseBody
-       List<PatentVO> searchPatentByName(@RequestParam String name){
-            return service.searchPatentByName(name);
-       }
+    /**
+     * 模糊搜索
+     * @param info
+     * @return
+     */
+    @RequestMapping("/searchPatent")
+    public @ResponseBody List<PatentVO> searchPatent(@RequestBody String info){
+        return service.searchPatent(info);
+    }
 
-       @RequestMapping("/deletePatent")
-       public @ResponseBody Boolean deletePatent(@RequestParam String patentID){
-            return service.deletePatent(patentID);
-       }
+    @RequestMapping("/searchPatentByID")
+    public @ResponseBody
+    PatentVO searchPatentByID(@RequestParam String patentID) {
+        return service.searchPatentByID(patentID);
+    }
 
-       @RequestMapping("/updatePatentState")
-       public @ResponseBody Boolean updatePatentState(@RequestParam Patent_state newState, @RequestParam String patentID) throws IDNotExistsException{
-             return service.updatePatentState(newState,patentID);
-       }
+    @RequestMapping("/searchPatentByName")
+    public @ResponseBody
+    List<PatentVO> searchPatentByName(@RequestParam String name) {
+        return service.searchPatentByName(name);
+    }
 
-       @RequestMapping("/exitIpSet")
-       public @ResponseBody void exitIpSet(@RequestParam String ipId,@RequestParam String ipSetId) throws IDNotExistsException {
-             service.exitIpSet(ipId,ipSetId);
-       }
+    /**
+     * 专利录入
+     * @param patentID 专利号
+     * @param patent 专利
+     * @param holder 持有人
+     * @param url 专利相关文件url
+     * @param applyTime 申请时间
+     * @param type 专利类型
+     * @param district 所属地区
+     * @param profile 简介
+     * @return
+     */
+    @RequestMapping("/entryPatent")
+    @ResponseBody
+    public ResultMessage entryPatent(String patentID, String patent, String holder,String url, String applyTime, String type, String district, String profile) {
+        return null;
+    }
 
-       @RequestMapping("/searchIp")
-       public @ResponseBody PatentVO searchIp(@RequestParam String info){
-           return service.searchIp(info);
-       }
+    @RequestMapping("/deletePatent")
+    public @ResponseBody
+    Boolean deletePatent(@RequestParam String patentID) {
+        return service.deletePatent(patentID);
+    }
 
-       @RequestMapping("/applyIpSet")
-       public @ResponseBody boolean applyIpSet(@RequestParam String ipId,@RequestParam String ipSetId) throws IDNotExistsException {
-           return service.applyIpSet(ipId,ipSetId);
-       }
+    @RequestMapping("/updatePatentState")
+    public @ResponseBody
+    Boolean updatePatentState(@RequestParam Patent_state newState, @RequestParam String patentID) throws IDNotExistsException {
+        return service.updatePatentState(newState, patentID);
+    }
 
-       @RequestMapping("/updateIp")
-       public  @ResponseBody boolean updateIp(@RequestBody PatentVO ipVo){
-           return service.updateIp(ipVo);
-       }
+    /**
+     * 专利退池
+     * @param ipId
+     * @param ipSetId
+     * @throws IDNotExistsException
+     */
+    @RequestMapping("/exitIpSet")
+    public @ResponseBody
+    void exitIpSet(@RequestParam String ipId, @RequestParam String ipSetId) throws IDNotExistsException {
+        service.exitIpSet(ipId, ipSetId);
+    }
+
+    @RequestMapping("/updateIp")
+    public @ResponseBody
+    boolean updateIp(@RequestBody PatentVO ipVo) {
+        return service.updateIp(ipVo);
+    }
+
+    /**
+     * 专利拒绝入池
+     * @param patentId
+     * @param patentPoolId
+     * @throws IDNotExistsException
+     */
+    @RequestMapping("/denyInvitationFromPool")
+    public @ResponseBody void denyInvitationFromPool(@RequestParam String patentId , @RequestParam String patentPoolId) throws IDNotExistsException{
+         service.denyInvitationFromPool(patentId , patentPoolId);
+    }
+
+    /**
+     * 专利池邀请专利入池
+     * @param patentId
+     * @param patentPoolId
+     * @throws IDNotExistsException
+     */
+    @RequestMapping("/sendInvitationFromPool")
+    public void sendInvitationFromPool(String patentId, String patentPoolId) throws IDNotExistsException{
+         service.sendInvitationFromPool(patentId , patentPoolId);
+    }
+
+    /**
+     * 专利同意入池
+     * @param patentId
+     * @param patentPoolId
+     * @return
+     * @throws IDNotExistsException
+     */
+    @RequestMapping("/acceptInvitationFromPool")
+    boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
+          return service.acceptInvitationFromPool(patentId , patentPoolId);
+    }
+
+    /**
+     * 获取专利列表
+     * @param userId 用户Id
+     * @return 专利列表
+     */
+    @RequestMapping("/getPatentList")
+    @ResponseBody
+    public List<PatentVO> getPatentList(@RequestParam String userId) {
+        return service.getPatentList(userId);
+    }
+
+    /**
+     *
+     *
+     */
+    @RequestMapping("/searchRelatedPatents")
+    @ResponseBody
+    public List<PatentVO> searchRelatedPatents(){
+        return service.searchRelatedPatents();
+    }
+
 }

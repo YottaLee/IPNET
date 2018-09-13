@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="theme-color" content="#3b3e43">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="google-site-verification" content="l6JwXAuzDd2K09z9xYaeZTFjnXVJATmJ7xX1q2_HuEo" />
+    <meta name="baidu-site-verification" content="flB16pdAO9" />
+    <meta name="msvalidate.01" content="43B15631A6176E01B4CC074375AD7AF1" />
+    <meta name="p:domain_verify" content="4ad0f1e10883fcfd6c18da6c6b84e8a0"/>
+    <title>IPNET论坛社区</title>
+    <meta name="description" content="在这里分享与专利交易有关的信息！"/>
+
+    <link rel="stylesheet" href="/community/css/base.css" />
+    <link rel="stylesheet" href="/community/css/index.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
+    <link href="/home/css/bootstrap.css" rel="stylesheet">
+
+    <style>
+        html{background-color: white}
+        p{color:black}
+        strong{color: black}
+    </style>
+
+</head>
+<body>
+<div class="nav">
+    <div  aria-label="IPNET社区论坛" class="tooltipped tooltipped__s" style="background: url('https://i.imgur.com/R25bUrO.jpg') no-repeat center;height: 48px;width: 48px;background-size: 100% 100%"></div>
+    <div class="nav-tabs">
+        <a href="/ipnet/community_home"><i class="fas fa-globe-asia"></i>发现</a>
+        <a href="/ipnet/community_interest"><i class="fas fa-star"></i>关注</a>
+        <a href="/ipnet/community_new"><i class="fas fa-upload"></i>最新</a>
+        <a onclick="goto_already_publish()"><i class="fas fa-cloud-upload-alt"></i>我发布的</a>
+    </div>
+    <form class="responsive-hide fn-left" target="_blank" action="https://hacpai.com/search">
+        <input class="search" placeholder="输入关键词搜索" type="text" name="key" id="algoliaSearch"
+               value="">
+        <input type="submit" class="fn-none" value=""/>
+    </form>
+    <div class="user-nav">
+        <a class="tooltipped tooltipped__w " aria-label="搜索" id="search">
+            <span class="has-point"></span>
+            <i class="fas fa-search"></i>
+        </a>
+        <a href="/ipnet/community_publish">发帖</a>
+        <a id="aNotifications" class="tooltipped tooltipped__w "
+           href="https://hacpai.com/notifications"
+           aria-label="消息"><span class="has-point"></span>
+            <i class="fas fa-bell"></i>
+        </a>
+        <a href="javascript:void(0)" id="aPersonListPanel" class="tooltipped tooltipped__w"
+           aria-label="您"
+           data-url="https://hacpai.com/member/czf1046277348">
+            <span class="avatar-small" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/52/h/52/interlace/0/q/100" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>
+        </a>
+        <div class="module personalUser-list dropdown-list" id="personListPanel">
+            <ul>
+                <li>
+                    <a href="https://hacpai.com/member/czf1046277348">个人主页</a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com/settings">设置</a>
+                    <a href="javascript:void(0)" id="signOut">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="wrapper">
+        <div class="content">
+            <div class="module">
+                <div id="searchbox" class="form">
+                </div>
+                <div class="fn-hr5">
+                </div>
+                <div class="fn-hr5">
+                </div>
+                <div class="fn-hr5">
+                </div>
+                <div class="fn-hr5">
+                </div>
+                <div class="tabs-sub fn-clear">
+					<span class="tabs-sub__item tabs-sub__item--current" data-type="articles" id="post">
+					 <i class="fas fa-envelope"></i>帖子
+					</span>
+                    <span class="tabs-sub__item" data-type="users" id="user">
+					<i class="fas fa-users"></i> 用户
+					</span>
+                </div>
+                <div id="aaStats">
+                    <div>
+                        <div class="ais-root ais-stats">
+                            <div class="ais-body ais-stats--body">
+                                <div>
+                                    已找到
+                                    <strong id="search_number">1</strong>
+                                    个相关结果
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="hits">
+                    <div class="ais-hits" id="search_result">
+                        <div class="ais-hits--item posts">
+                            <a>
+                                <div class="title">
+                                    帖子标题
+                                </div>
+                                <div class="meta">
+                                    标签1 • 标签2 • 标签3
+                                </div>
+                            </a>
+                        </div>
+                        <div class="ais-hits--item users">
+                            <a style="display: flex">
+                                <img class="avatar" src="https://img.hacpai.com/avatar/1353745196354_1515855515308.png?imageView2/1/w/128/h/128/interlace/0/q/100">
+                                <div class="fn__flex-1">
+                                    <div class="title">
+                                        帖子标题
+                                    </div>
+                                    <div class="meta">
+                                        标签1 • 标签2 • 标签3
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="pagination" class="pagination">
+                    <div class="fn__flex">
+                        <div class="fn__flex-1">
+                            <span class="pagination__item pagination__item--current">1</span>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=2">2</a>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=3">3</a>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=4">4</a>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=5">5</a>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=6">6</a>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=7">7</a>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=8">8</a>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=9">9</a>
+                            <a class="pagination__item pagination__item--a" pjax-title="好玩 - 领域 - 黑客派"
+                               href="https://hacpai.com/domain/play?p=10">10</a>
+                        </div>
+                        <span class="pagination__item">
+                            <svg class="ft__fade">
+                                <use xlink:href="#iconChevronLeft"></use>
+                            </svg>
+                        </span>
+                        <a class="pagination__item pagination__item--a tooltipped tooltipped__w"
+                           aria-label="下一页"
+                           href="https://hacpai.com/domain/play?p=2"
+                           pjax-title="好玩 - 领域 - 黑客派">
+                            <svg>
+                                <use xlink:href="#iconChevronRight"></use>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="side">
+            <div class="module personalUser-info" data-percent="6.67">
+                <div class="module-panel">
+                    <ul class="status fn-flex">
+                        <li class="fn-pointer"
+                            onclick="window.location.href = 'https://hacpai.com/member/czf1046277348/following/tags'">
+                            <strong id="interest_user">5</strong>
+                            <span class="ft-gray">关注用户</span>
+                        </li>
+                        <li class="fn-pointer"
+                            onclick="window.location.href = 'https://hacpai.com/member/czf1046277348/following/users'">
+                            <strong id="interest_post">6</strong>
+                            <span class="ft-gray">关注帖子</span>
+                        </li>
+                        <li class="fn-pointer"
+                            onclick="window.location.href = 'https://hacpai.com/member/czf1046277348/following/articles'">
+                            <strong id="current_release">0</strong>
+                            <span class="ft-gray">最近发布</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-left activity-board"></div>
+                <div class="top-right activity-board"></div>
+                <div class="right activity-board"></div>
+                <div class="bottom activity-board"></div>
+                <div class="left activity-board"></div>
+            </div>
+            <div class="module">
+                <div class="module-header">
+                    <h2>
+                        最近浏览
+                    </h2>
+                </div>
+                <div class="module-panel">
+                    <ul class="module-list">
+                        <li>
+                            <a rel="nofollow" href="https://hacpai.com/member/bwing">
+                                <span class="avatar-small slogan tooltipped__user" aria-name="bwing" data-src="https://img.hacpai.com/avatar/1529805476997?imageView2/1/w/52/h/52/format/jpg/interlace/0/q/100" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>
+                            </a>
+                            <a rel="nofollow" class="title" href="https://hacpai.com/article/1534585133065">最近浏览内容1</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="module">
+                <div class="module-header">
+                    <h2>
+                        推荐标签
+                        <a class="fn__right" href="https://hacpai.com/tags">标签</a>
+                    </h2>
+                </div>
+                <div class="module-panel">
+                    <ul class="tag-desc fn-clear">
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E5%8F%91%E6%98%8E%E4%B8%93%E5%88%A9/1140123?fr=aladdin">
+                                <div style="background: url('https://i.imgur.com/wxoi6tB.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                发明实用型专利
+                            </a>
+                            <div>
+                                <div><p>中国专利法规定可以获得专利保护的发明创造有发明、实用新型和外观设计三种，其中发明专利是最主要的一种。</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E5%AE%9E%E7%94%A8%E6%96%B0%E5%9E%8B%E4%B8%93%E5%88%A9/1139963?fr=aladdin">
+                                <div style="background: url('https://i.imgur.com/aMTBxwW.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                实用新型专利
+                            </a>
+                            <div>
+                                <div><p>实用新型专利是三种专利类型（发明、实用新型和外观设计）中的一种，实用新型是指对产品的形状、构造或者其结合所提出的适于实用的新的技术方案。专利法中对实用新型的创造性和技术水平要求较发明专利低，但实用价值大，在这个意义上，实用新型有时会被人们又称小发明或小专利。</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E4%B8%93%E5%88%A9/5875866?fr=aladdin">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                外观设计专利
+                            </a>
+                            <div>
+                                <div><p>外观设计专利（Industrial Design）是指：对产品的形状、图案或其结合以及色彩与形状、图案的结合所做出的富有美感并适于工业应用的新设计。外观设计是指工业品的外观设计，也就是工业品的式样。</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E4%B8%93%E5%88%A9%E6%9D%83%E8%B4%A8%E6%8A%BC/5949532?fr=aladdin">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利权质押
+                            </a>
+                            <div>
+                                <div><p>专利权质押是指债务人或第三人将拥有的专利权担保其债务的履行，当债务人不履行债务的情况下，债权人有权把折价、拍卖或者变卖该专利权所得的价款优先受偿的物权担保行为。</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="http://www.epicc.com.cn/qiyebaoxian/zhuanlibaoxian/">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利执行保险
+                            </a>
+                            <div>
+                                <div><p>保障被保险人就受侵犯的专利权提起法律请求所产生的保障被保险人就受侵犯的专利权提起法律请求所产生的调查费用和法律费用</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="http://www.epicc.com.cn/qiyebaoxian/zhuanlibaoxian/">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                侵犯专利权责任保险
+                            </a>
+                            <div>
+                                <div><p>保障被保险人非故意实施第三者专利权，依法承担的经济赔偿责任，法律费用及合理提出专利无效宣告申请的抗辩费用</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="http://www.epicc.com.cn/qiyebaoxian/zhuanlibaoxian/">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利代理人职业责任保险
+                            </a>
+                            <div>
+                                <div><p>保障被保险人造成委托人经济损失，依法承担的经济赔偿责任及法律费用</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="http://www.epicc.com.cn/qiyebaoxian/zhuanlibaoxian/">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利许可信用保险
+                            </a>
+                            <div>
+                                <div><p>保障专利实施许可合同签署后因被许可人破产或拖欠造成许可费无法收回的风险，借此鼓励高校及其他科研机构对外实施许可，促进科技成果转化</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="http://www.epicc.com.cn/qiyebaoxian/zhuanlibaoxian/">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利质押融资保证保险
+                            </a>
+                            <div>
+                                <div><p>保障通过专利质押方式进行融资而未能按约清偿到期债务的借款本金余额和利息余额赔偿义务</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E4%B8%93%E5%88%A9%E6%B1%A0/10646803?fr=aladdin">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利池
+                            </a>
+                            <div>
+                                <div><p>专利池(Patent Pool):是一种由专利权人组成的专利许可交易平台，平台上专利权人之间进行横向许可，有时也以统一许可条件向第三方开放进行横向和纵向许可，许可费率是由专利权人决定的</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E4%B8%93%E5%88%A9%E6%9D%83%E8%AF%84%E4%BC%B0/6766061">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利评估
+                            </a>
+                            <div>
+                                <div><p>专利权评估是根据特定目的，遵循公允、法定标准和规程，运用适当方法，对专利权进行确认、计价和报告，为资产业务提供价值尺度的行为。</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E4%B8%93%E5%88%A9%E4%BE%B5%E6%9D%83%E8%AF%89%E8%AE%BC/19867894?fr=aladdin">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利侵权诉讼
+                            </a>
+                            <div>
+                                <div><p>专利侵权诉讼是指当专利权人或者利害关系人的专利权被他人侵犯时，在掌握一定证据后向有管辖权的法院提起诉讼，维护自身权益的一种途径</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD%E5%9B%BD%E5%AE%B6%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E5%B1%80/2040691?fromtitle=%E5%9B%BD%E5%AE%B6%E4%B8%93%E5%88%A9%E5%B1%80&fromid=4125213&fr=aladdin">
+                                <div style="background: url('https://i.imgur.com/eGuJiT7.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                国家专利局
+                            </a>
+                            <div>
+                                <div><p>国家知识产权局是是国务院部委管理的国家局，由国家市场监督管理总局管理，行政级别为副部级。
+                                    负责保护知识产权工作，推动知识产权保护体系建设，负责商标、专利、原产地地理标志的注册登记和行政裁决，指导商标、专利执法工作等。</p></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a rel="nofollow" href="https://baike.baidu.com/item/%E4%B8%93%E5%88%A9%E4%BB%A3%E7%90%86/934241">
+                                <div style="background: url('https://i.imgur.com/3z4tIjX.jpg') no-repeat center;background-size: 100% 100%"></div>
+                                专利代理
+                            </a>
+                            <div>
+                                <div><p>专利代理是指在申请专利、进行专利许可证贸易或者解决专利纠纷的过程中，专利申请人（或者专利权人）委派具有专利代理人资格的在专利局正式授权的专利代理机构中工作的人员，作为委托代理人，在委托权限内，以委托人的名义，按照专利法的规定向专利局办理专利申请或其它专利事务所进行的民事法律行为</p></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="module">
+                <div class="module-header">
+                    <h2>
+                        推荐帖子
+                    </h2>
+                </div>
+                <div class="module-panel">
+                    <ul class="module-list">
+                        <li>
+                            <a rel="nofollow"
+                               href="https://hacpai.com/member/senvil">
+                    <span data-src="https://img.hacpai.com/avatar/1474881027331?imageView2/1/w/52/h/52/format/jpg/interlace/0/q/100"
+                          aria-name="senvil"
+                          class="avatar-small slogan tooltipped__user"></span>
+                            </a>
+                            <a class="title" rel="nofollow"
+                               href="https://hacpai.com/article/1506652871331">推荐帖子1</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow"
+                               href="https://hacpai.com/member/arthinking">
+                    <span data-src="https://img.hacpai.com/avatar/1435738368052?imageView2/1/w/52/h/52/format/jpg/interlace/0/q/100"
+                          aria-name="arthinking"
+                          class="avatar-small slogan tooltipped__user"></span>
+                            </a>
+                            <a class="title" rel="nofollow"
+                               href="https://hacpai.com/article/1443876917446">推荐帖子2</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow"
+                               href="https://hacpai.com/member/zhijieqing">
+                    <span data-src="https://img.hacpai.com/avatar/1493188631677?imageView2/1/w/52/h/52/format/jpg/interlace/0/q/100"
+                          aria-name="zhijieqing"
+                          class="avatar-small slogan tooltipped__user"></span>
+                            </a>
+                            <a class="title" rel="nofollow"
+                               href="https://hacpai.com/article/1495376696857">推荐帖子3</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow"
+                               href="https://hacpai.com/member/wohaha">
+                    <span data-src="https://img.hacpai.com/avatar/1436929967862?imageView2/1/w/52/h/52/format/jpg/interlace/0/q/100"
+                          aria-name="wohaha"
+                          class="avatar-small slogan tooltipped__user"></span>
+                            </a>
+                            <a class="title" rel="nofollow"
+                               href="https://hacpai.com/article/1444893109654">推荐帖子4</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow"
+                               href="https://hacpai.com/member/zjhch123">
+                    <span data-src="https://img.hacpai.com/avatar/1459242579529_1488286531925.jpeg?imageView2/1/w/52/h/52/format/jpg/interlace/0/q/100"
+                          aria-name="zjhch123"
+                          class="avatar-small slogan tooltipped__user"></span>
+                            </a>
+                            <a class="title" rel="nofollow"
+                               href="https://hacpai.com/article/1515040627588">推荐帖子5</a>
+                        </li>
+                        <li>
+                            <a rel="nofollow"
+                               href="https://hacpai.com/member/ls0608">
+                    <span data-src="https://img.hacpai.com/avatar/1491632486856?imageView2/1/w/52/h/52/format/jpg/interlace/0/q/100"
+                          aria-name="ls0608"
+                          class="avatar-small slogan tooltipped__user"></span>
+                            </a>
+                            <a class="title" rel="nofollow"
+                               href="https://hacpai.com/article/1496395602063">推荐帖子6</a>
+                        </li>
+                        <li class="last">
+                            <a rel="nofollow"
+                               href="https://hacpai.com/member/zhuangyan">
+                    <span data-src="https://img.hacpai.com/user-thumbnail.png?imageView2/1/w/52/h/52/format/jpg/interlace/0/q/100"
+                          aria-name="zhuangyan"
+                          class="avatar-small slogan tooltipped__user"></span>
+                            </a>
+                            <a class="title" rel="nofollow"
+                               href="https://hacpai.com/article/1427443640681">推荐帖子7</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="section-divider textdivider divider6" style="background:url('https://i.imgur.com/rXfMRUl.jpg');">
+    <div class="container" >
+        <h1>CRAFTED IN NAN JING, NanJing University.</h1>
+        <hr>
+        <p>
+            Some Address 地址,
+        </p>
+        <p>
+            +联系方式
+        </p>
+        <p>
+            <a class="icon fab fa-qq" href="#" style="color: rgba(61, 201, 179, 0.8)"></a> | <a class="icon fab fa-weixin" href="#" style="color: rgba(61, 201, 179, 0.8)"></a>
+        </p>
+    </div>
+    <!-- container --></section><!-- section -->
+<div class="container" id="contact" name="contact" style="background-color: white;">
+    <div class="row">
+        <br>
+        <h1 class="centered">欢迎联系我们</h1>
+        <hr>
+        <br>
+        <br>
+        <div class="col-lg-4">
+            <h3>联系方式</h3>
+            <p>
+                <span class="icon fas fa-home"></span> 南京市栖霞区, 南京大学<br/>
+                <span class="icon fas fa-phone"></span> +固话联系方式 <br/>
+                <span class="icon fas fa-mobile-alt"></span> +手机联系方式 <br/>
+                <span class="icon far fa-envelope"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> 邮箱</a><br/>
+                <span class="icon fab fa-qq"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> qq </a><br/>
+                <span class="icon fab fa-weixin"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> 微信 </a><br/>
+            </p>
+        </div>
+        <!-- col -->
+        <div class="col-lg-4">
+            <h3>您的宝贵意见</h3>
+            <p>
+                如果您对我们的业务流程有疑问，或是您对我们的平台的服务有不满意的地方，请将您的邮箱和姓名发送给我们，我们将会第一时间联系您
+            <p>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail1" class="col-lg-4 control-label"></label>
+                    <div class="col-lg-10">
+                        <input type="email" class="form-control" id="inputEmail1" placeholder="邮箱">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="col-lg-4 control-label"></label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="text1" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10">
+                        <button type="submit" class="btn btn-success">Send</button>
+                    </div>
+                </div>
+            </form>
+            <!-- form -->
+            </p>
+        </div>
+        <!-- col -->
+        <div class="col-lg-4">
+            <h3>支持我们</h3>
+            <p>
+                如果您对我们的平台的开发与维护并且您也是资深的技术人员，欢迎您加入我们的团队，一起参与我们团队对该平台的维护与开发工作
+            </p>
+        </div>
+        <!-- col -->
+    </div>
+    <!-- row -->
+</div>
+<!-- container -->
+<div id="footerwrap">
+    <div class="container">
+        <h4>Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+    </div>
+</div>
+</body>
+
+<script src="/common/jquery.js"></script>
+<script src="/community/controller/community_search_controller.js"></script>
+
+</html>

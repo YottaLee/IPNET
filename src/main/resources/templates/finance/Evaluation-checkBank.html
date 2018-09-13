@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>审核理赔申请</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="/finance/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="/finance/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="/finance/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="/finance/css/demo/nifty-demo.min.css" rel="stylesheet">
+
+
+    <!--Font Awesome [ OPTIONAL ]-->
+    <link href="/finance/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+
+
+    <!--Bootstrap Validator [ OPTIONAL ]-->
+    <link href="/finance/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+
+
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <link href="/finance/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+
+
+    <!--X-editable [ OPTIONAL ]-->
+    <link href="/finance/plugins/x-editable/css/bootstrap-editable.css" rel="stylesheet">
+
+
+    <!--Font Awesome [ OPTIONAL ]-->
+    <link href="/finance/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!--Dropzone [ OPTIONAL ]-->
+    <link href="/finance/plugins/dropzone/dropzone.min.css" rel="stylesheet">
+
+
+
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
+
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="/finance/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="/finance/plugins/pace/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="/finance/js/jquery-2.2.4.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="/finance/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="/finance/js/nifty.min.js"></script>
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="/finance/js/demo/nifty-demo.min.js"></script>
+
+
+    <!--Bootstrap Wizard [ OPTIONAL ]-->
+    <script src="/finance/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+
+
+    <!--Bootstrap Validator [ OPTIONAL ]-->
+    <script src="/finance/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+
+
+    <!--Form Wizard [ SAMPLE ]-->
+    <script src="/finance/js/demo/form-wizard.js"></script>
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="/finance/js/demo/nifty-demo.min.js"></script>
+
+
+    <!--Bootstrap Table Sample [ SAMPLE ]-->
+    <script src="/finance/js/demo/tables-bs-table.js"></script>
+
+
+    <!--X-editable [ OPTIONAL ]-->
+    <script src="/finance/plugins/x-editable/js/bootstrap-editable.min.js"></script>
+
+
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <script src="/finance/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+
+
+    <!--Bootstrap Table Extension [ OPTIONAL ]-->
+    <script src="/finance/plugins/bootstrap-table/extensions/editable/bootstrap-table-editable.js"></script>
+
+
+    <!--Dropzone [ OPTIONAL ]-->
+    <script src="/finance/plugins/dropzone/dropzone.min.js"></script>
+
+    <!--Form File Upload [ SAMPLE ]-->
+    <script src="/finance/js/demo/form-file-upload.js"></script>
+
+    <!--=================================================
+
+    REQUIRED
+    You must include this in your project.
+
+
+    RECOMMENDED
+    This category must be included but you may modify which plugins or components which should be included in your project.
+
+
+    OPTIONAL
+    Optional plugins. You may choose whether to include it in your project or not.
+
+
+    DEMONSTRATION
+    This is to be removed, used for demonstration purposes only. This category must not be included in your project.
+
+
+    SAMPLE
+    Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
+
+
+    Detailed information and more samples can be found in the document.
+
+    =================================================-->
+
+
+</head>
+
+<!--TIPS-->
+<!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
+<body>
+<div class="top col-md-12" style="height: 56px;background: #3b3e43">
+    <img src="https://i.imgur.com/jwJTKCL.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <span style="color: white;font-size: 15px">IPNET支付交易中心</span>
+</div>
+<div id="container" class="">
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+
+            <!--Page Title-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <div id="page-title">
+                <h1 class="page-header text-overflow"></h1>
+
+                <!--Searchbox-->
+                <div class="searchbox">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="查询..">
+                        <span class="input-group-btn">
+                                <button class="text-muted" type="button"><i class="demo-pli-magnifi-glass"></i></button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End page title-->
+
+
+            <!--Breadcrumb-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--<ol class="breadcrumb">-->
+            <!--<li><a href="#">Home</a></li>-->
+            <!--<li><a href="#">Tables</a></li>-->
+            <!--<li class="active">Bootstrap Tables</li>-->
+            <!--</ol>-->
+            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <!--End breadcrumb-->
+
+
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <hr class="new-section-sm bord-no">
+                        <h4 class="text-main pad-btm bord-btm">审核</h4>
+                        <div class="panel">
+
+                            <!-- Bubble Numbers Form Wizard -->
+
+
+                            <!--Form-->
+                            <form class="form-horizontal">
+                                <div class="panel-body">
+                                    <div class="tab-content">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <h3>审核专利质押贷款保证保险理赔申请</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>专利号</td>
+                                                            <td id="patentID"  colspan="5"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>投保单位名称</td>
+                                                            <td id="patent"  colspan="2"></td>
+                                                            <td>投保人单位联系地址及电话</td>
+                                                            <td id="holder" colspan="2"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>出险时间</td>
+                                                            <td id="loan-money" colspan="5"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>出险原因</td>
+                                                            <td id="reason" colspan="5"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>开户行</td>
+                                                            <td id="bank" colspan="1"></td>
+                                                            <td>户名</td>
+                                                            <td id="bank-name" colspan="1"></td>
+                                                            <td>账号</td>
+                                                            <td id="bank-id" colspan="1"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>保单号</td>
+                                                            <td id="insurance-id" colspan="5"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>申请金额</td>
+                                                            <td id="money" colspan="5"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <a id="fileURL" download="专利质押融资贷款保证保险理赔申请书.zip">专利质押融资贷款保证保险理赔申请书</a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <div class="checkbox">
+                                                            <input id="check-pass" class="magic-checkbox"
+                                                                   type="checkbox">
+                                                            <label for="check-pass">是否愿意理赔</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--<div class="panel-footer text-right">-->
+                        <button id="submit" class="btn btn-success">提交上链</button>
+                        <!--===================================================-->
+                        <!-- End Bubble Numbers Form Wizard -->
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!--===================================================-->
+            <!--End page content-->
+
+
+        </div>
+        <!--===================================================-->
+        <!--END CONTENT CONTAINER-->
+    </div>
+
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+
+
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+<div id="footerwrap">
+    <div class="container">
+        <h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+    </div>
+</div>
+<script src="/finance/js/Evaluation/Evaluation-checkBank.js"></script>
+</body>
+</html>
+

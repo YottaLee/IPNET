@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专利管理</title>
+
+
+    <!--STYLESHEET-->
+    <!--=================================================-->
+
+    <!--Open Sans Font [ OPTIONAL ]-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="/finance/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="/finance/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="/finance/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="/finance/css/demo/nifty-demo.min.css" rel="stylesheet">
+
+
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
+
+
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="/finance/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="/finance/plugins/pace/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="/finance/js/jquery-2.2.4.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="/finance/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="/finance/js/nifty.min.js"></script>
+
+
+
+
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="/finance/js/demo/nifty-demo.min.js"></script>
+
+
+
+
+
+    <!--=================================================
+
+    REQUIRED
+    You must include this in your project.
+
+
+    RECOMMENDED
+    This category must be included but you may modify which plugins or components which should be included in your project.
+
+
+    OPTIONAL
+    Optional plugins. You may choose whether to include it in your project or not.
+
+
+    DEMONSTRATION
+    This is to be removed, used for demonstration purposes only. This category must not be included in your project.
+
+
+    SAMPLE
+    Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
+
+
+    Detailed information and more samples can be found in the document.
+
+    =================================================-->
+
+
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="/finance/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="/finance/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="/finance/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+
+
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="/finance/css/demo/nifty-demo.min.css" rel="stylesheet">
+
+
+
+    <!--Font Awesome [ OPTIONAL ]-->
+    <link href="/finance/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
+
+
+    <!--Bootstrap Validator [ OPTIONAL ]-->
+    <link href="/finance/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
+
+
+
+
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="/finance/plugins/pace/pace.min.css" rel="stylesheet">
+    <script src="/finance/plugins/pace/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="/finance/js/jquery-2.2.4.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="/finance/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="/finance/js/nifty.min.js"></script>
+
+
+
+
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="/finance/js/demo/nifty-demo.min.js"></script>
+
+
+    <!--Bootstrap Validator [ OPTIONAL ]-->
+    <script src="/finance/plugins/bootstrap-validator/bootstrapValidator.min.js"></script>
+
+
+    <!--Masked Input [ OPTIONAL ]-->
+    <script src="/finance/plugins/masked-input/jquery.maskedinput.min.js"></script>
+
+
+    <!--Form validation [ SAMPLE ]-->
+    <script src="/finance/js/demo/form-validation.js"></script>
+
+</head>
+<body>
+<!--END NAVBAR-->
+<div class="top col-md-12" style="height: 56px;background: #3b3e43">
+    <img src="https://i.imgur.com/jwJTKCL.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <span style="color: white;font-size: 15px">IPNET支付交易中心</span>
+</div>
+<div class="boxed">
+
+    <!--CONTENT CONTAINER-->
+    <!--===================================================-->
+    <div id="content-container">
+
+
+
+
+
+
+        <!--Page content-->
+        <!--===================================================-->
+        <div id="page-content">
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">专利池列表</h3>
+                </div>
+
+                <!--Data Table-->
+                <!--===================================================-->
+                <div class="panel-body">
+                    <div class="pad-btm form-inline">
+                        <div class="row">
+                            <div class="col-sm-6 table-toolbar-left">
+                                <button id="demo-btn-addrow" class="btn btn-purple"><i class="demo-pli-add"></i> Add</button>
+                            </div>
+                            <div class="col-sm-6 table-toolbar-right">
+                                <div class="form-group">
+                                    <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>专利池名</th>
+                                <th>专利池号</th>
+                                <th>申请日期</th>
+                                <!--<th>截止日期</th>-->
+                                <th>池内专利数</th>
+                                <!--<th>状态</th>-->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <div id="ipset_list">
+                                <script>
+                                    var script = document.createElement("script");
+                                    script.type = "text/javascript";
+                                    script.src = "/finance/js/IPManage/IPSET-list.js";
+                                    document.body.appendChild(script);
+                                </script>
+                            </div>
+                            <tr>
+                                <td><a class="btn-link" href="#"> Order #53431</a></td>
+                                <td>1111</td>
+                                <td><span class="text-muted"><i class="demo-pli-clock"></i>2014.01.01</span></td>
+                                <td>2015.01.01</td>
+                                <td>
+                                    <div class="label label-table label-success">5</div>
+                                </td>
+                                <td>已满</td>
+                            </tr>
+                            <tr>
+                                <td><a class="btn-link" href="#"> Order #53432</a></td>
+                                <td>2222</td>
+                                <td><span class="text-muted"><i class="demo-pli-clock"></i> Oct 24, 2014</span></td>
+                                <td>$245.30</td>
+                                <td>
+                                    <div class="label label-table label-info">2</div>
+                                </td>
+                                <td><i class="demo-pli-mine"></i>到期</td>
+                            </tr>
+                            <tr>
+                                <td><a class="btn-link" href="#"> Order #53433</a></td>
+                                <td>Lucy Doe</td>
+                                <td><span class="text-muted"><i class="demo-pli-clock"></i> Oct 24, 2014</span></td>
+                                <td>$38.00</td>
+                                <td>
+                                    <div class="label label-table label-info">4</div>
+                                </td>
+                                <td><i class="demo-pli-mine"></i> CGX0089934571</td>
+                            </tr>
+                            <tr>
+                                <td><a class="btn-link" href="#"> Order #53434</a></td>
+                                <td>Teresa L. Doe</td>
+                                <td><span class="text-muted"><i class="demo-pli-clock"></i> Oct 15, 2014</span></td>
+                                <td>$77.99</td>
+                                <td>
+                                    <div class="label label-table label-info">5</div>
+                                </td>
+                                <td><i class="demo-pli-mine"></i> CGX0089734574</td>
+                            </tr>
+                            <tr>
+                                <td><a class="btn-link" href="#"> Order #53435</a></td>
+                                <td>Teresa L. Doe</td>
+                                <td><span class="text-muted"><i class="demo-pli-clock"></i> Oct 12, 2014</span></td>
+                                <td>$18.00</td>
+                                <td>
+                                    <div class="label label-table label-success">7</div>
+                                </td>
+                                <td>-</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--===================================================-->
+                <!--End Data Table-->
+
+            </div>
+
+
+        </div>
+        <!--===================================================-->
+        <!--End page content-->
+
+
+    </div>
+    <!--===================================================-->
+    <!--END CONTENT CONTAINER-->
+</div>
+<div id="footerwrap">
+    <div class="container">
+        <h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+    </div>
+</div>
+
+<script src="/finance/js/IPManage/IPSET-list.js"></script>
+</body>
+</html>

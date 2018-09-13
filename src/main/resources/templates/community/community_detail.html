@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="theme-color" content="#3b3e43">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="google-site-verification" content="l6JwXAuzDd2K09z9xYaeZTFjnXVJATmJ7xX1q2_HuEo" />
+    <meta name="baidu-site-verification" content="flB16pdAO9" />
+    <meta name="msvalidate.01" content="43B15631A6176E01B4CC074375AD7AF1" />
+    <meta name="p:domain_verify" content="4ad0f1e10883fcfd6c18da6c6b84e8a0"/>
+    <title>IPNET论坛社区</title>
+    <meta name="description" content="在这里分享与专利交易有关的信息！"/>
+    <link rel="stylesheet" href="/community/css/base.css"/>
+    <link rel="stylesheet" href="/community/css/index.css"/>
+    <link rel="stylesheet" href="/community/css/themes/quill.snow.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
+    <link href="/home/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        #editor-container {
+            height: 200px;
+        }
+        html{background-color: white}
+        p{color:black}
+        strong{color: black}
+        .share {
+            position: fixed;
+            top: 50%;
+            left: 120px;
+            width: 30px;
+            font-size: 22px;
+            color: #616161;
+            text-align: center;
+            margin-top: -117px;
+            z-index: 42;
+            /*display: none*/
+        }
+
+        .share .article-clipboard {
+            position: absolute;
+            top: -100000px
+        }
+
+        .share svg {
+            height: 22px;
+            width: 22px
+        }
+
+        .share>span {
+            display: block;
+            margin-bottom: 10px
+        }
+
+        .article .share #qrCode {
+            position: absolute;
+            top: 82px;
+            left: 35px;
+            border: 5px solid #eee;
+            z-index: 1;
+            height: 90px;
+            border-radius: 3px;
+            width: 90px
+        }
+
+        .share .article__thank .ft-13 {
+            margin-top: -3px;
+            display: block
+        }
+    </style>
+    <script src="/community/dist/quill.js"></script>
+
+</head>
+<body>
+<div class="nav">
+    <div  aria-label="IPNET社区论坛" class="tooltipped tooltipped__s" style="background: url('https://i.imgur.com/R25bUrO.jpg') no-repeat center;height: 48px;width: 48px;background-size: 100% 100%"></div>
+    <div class="nav-tabs">
+        <a href="/ipnet/community_home" class="current"><i class="fas fa-globe-asia"></i>发现</a>
+        <a href="/ipnet/community_interest"><i class="fas fa-star"></i>关注</a>
+        <a href="/ipnet/community_new"><i class="fas fa-upload"></i>最新</a>
+        <a onclick="goto_already_publish()"><i class="fas fa-cloud-upload-alt"></i>我发布的</a>
+    </div>
+    <form class="responsive-hide fn-left" target="_blank" action="https://hacpai.com/search">
+        <input class="search" placeholder="输入关键词搜索" type="text" name="key" id="algoliaSearch"
+               value="">
+        <input type="submit" class="fn-none" value=""/>
+    </form>
+    <div class="user-nav">
+        <a class="tooltipped tooltipped__w " aria-label="搜索" id="search">
+            <span class="has-point"></span>
+            <i class="fas fa-search"></i>
+        </a>
+        <a href="/ipnet/community_publish">发帖</a>
+        <a id="aNotifications" class="tooltipped tooltipped__w "
+           href="https://hacpai.com/notifications"
+           aria-label="消息"><span class="has-point"></span>
+            <i class="fas fa-bell"></i>
+        </a>
+        <a href="javascript:void(0)" id="aPersonListPanel" class="tooltipped tooltipped__w"
+           aria-label="您"
+           data-url="https://hacpai.com/member/czf1046277348">
+            <span class="avatar-small" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/52/h/52/interlace/0/q/100" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>
+        </a>
+        <div class="module personalUser-list dropdown-list" id="personListPanel">
+            <ul>
+                <li>
+                    <a href="https://hacpai.com/member/czf1046277348">个人主页</a>
+                </li>
+                <li>
+                    <a href="https://hacpai.com/settings">设置</a>
+                    <a href="javascript:void(0)" id="signOut">登出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="article-body" style="padding: 20px 0;flex: 1">
+    <div class="wrapper" style="display: block;max-width: 768px">
+        <div class="article-info fn-flex">
+            <a rel="author" href="https://hacpai.com/member/amorist">
+                <div aria-name="amorist" class="avatar-mid tooltipped__user" id="user_photo">
+                </div>
+            </a>
+            <div class="fn-flex-1 fn-ellipsis ft-smaller">
+				<span class="ft-gray">
+				<a rel="author" href="https://hacpai.com/member/amorist" aria-name="amorist" class="ft-a-title tooltipped__user" id="user_name">用户名称</a>
+				</span>
+                <br/>
+                <span class="ft-gray"></span>
+                <br/>
+                <span class="ft-gray">
+				<a rel="nofollow" class="ft-gray" href="#comments">
+				<span class="article-level0" id="reply_num"></span> 回帖</a>
+                    &nbsp;•&nbsp;
+				<span class="article-level0" id="see_num"></span>浏览&nbsp;•&nbsp;
+				<time class="tooltipped tooltipped__n" id="publish_time"></time>
+				</span>
+            </div>
+        </div>
+        <h1 class="article-title" itemprop="name" id="post_name" style="font-size: 28px;font-weight: 400;padding-top: 15px;text-align: center">
+            文章标题
+        </h1>
+        <div class="content-reset article-content" data-link="https://hacpai.com/article/1535076511412" data-author="amorist" id="post_content">
+
+        </div>
+        <div class="article-tail">
+            <div class="fn-flex">
+                <div class="fn-flex-1" id="tags_list">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="wrapper" id="articleCommentsPanel" style="display: block;max-width: 768px">
+        <div class="module comments" id="comments">
+            <div class="comments-header module-header">
+                <span class="article-cmt-cnt">（回帖数量） 回帖</span>
+            </div>
+            <div class="list">
+                <div class="pagination pagination--top">
+                </div>
+                <div class="comment__reply fn-flex">
+                    <span class="avatar" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/80/h/80/interlace/0/q/100" style="background-image: url('https://i.imgur.com/ova4597.png');background-size: 100% 100%"></span>
+                    <span class="reply__text fn-flex-1 commentToggle">请输入回帖内容
+                            ...
+					</span>
+                </div>
+                <ul id="remark_list">
+                    <!--<li id="1535336693203" class="">-->
+                        <!--<div class="fn-flex">-->
+                            <!--<div>-->
+                                <!--<a rel="nofollow" href="https://hacpai.com/member/Jane1221">-->
+                                    <!--<div class="avatar tooltipped__user" aria-name="Jane1221" data-src="https://img.hacpai.com/avatar/1535332977065?imageView2/1/w/80/h/80/interlace/0/q/100">-->
+                                    <!--</div>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <!--<div class="fn-flex-1">-->
+                                <!--<div class="comment-get-comment list">-->
+                                    <!--<ul>-->
+                                        <!--<li class="cmt-selected">-->
+                                            <!--<div class="fn-flex">-->
+                                                <!--<div>-->
+                                                    <!--<a rel="nofollow" href="https://hacpai.com/member/Jane1221">-->
+                                                        <!--<div class="avatar tooltipped__user" aria-name="Jane1221" style="background-image: url('https://img.hacpai.com/avatar/1535332977065?imageView2/1/w/80/h/80/interlace/0/q/100');"></div>-->
+                                                    <!--</a>-->
+                                                <!--</div>-->
+                                                <!--<div class="fn-flex-1">-->
+                                                    <!--<div class="fn-clear comment-info">-->
+                                                        <!--<span class="fn-left ft-smaller">-->
+                                                            <!--<a rel="nofollow" aria-name="czf1046277348" href="https://hacpai.com/member/czf1046277348" class="ft-a-title tooltipped__user">用户名</a>-->
+                                                            <!--<span class="ft-fade">•-->
+                                                                <!--<time aria-label="2018-08-27 10:22:09" class="tooltipped tooltipped__n">回复时间</time>-->
+                                                            <!--</span>-->
+                                                        <!--</span>-->
+                                                        <!--<span class="fn-right">-->
+                                                            <!--<span class="tooltipped tooltipped__n ft-a-title articleCommentCloseBtn" aria-label="关闭">-->
+                                                                <!--<svg>-->
+                                                                    <!--<use xlink:href="#iconClose"></use>-->
+                                                                <!--</svg>-->
+                                                            <!--</span>-->
+                                                        <!--</span>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="content-reset comment" data-author="czf1046277348" data-link="https://hacpai.com/article/1535076511412#1535336529051">-->
+                                                        <!--<p>回复内容</p>-->
+                                                    <!--</div>-->
+
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                                <!--<div class="fn-clear comment-info">-->
+								    <!--<span class="fn-left ft-smaller">-->
+								        <!--<a rel="nofollow" aria-name="Jane1221" href="https://hacpai.com/member/Jane1221" class="ft-a-title tooltipped__user">回复用户1</a>-->
+								        <!--<span class="ft-fade">•-->
+								            <!--<time aria-label="2018-08-27 10:24:53" class="tooltipped tooltipped__n">回复时间</time>-->
+								        <!--</span>-->
+                                        <!--<span class="articleCommentThankCnt"></span>-->
+                                        <!--<span class="cmt-via ft-fade hover-show fn-hidden" data-ua="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134"></span>-->
+                                    <!--</span>-->
+                                    <!--<span class="fn-right">&nbsp; &nbsp;-->
+                                        <!--<span class="fn-pointer ft-a-title tooltipped tooltipped__nw articleCommentOriginalBtn" aria-label="查看原回复" data-ooid="1535336529051"><svg class="icon-reply-to"><use xlink:href="#reply-to"></use></svg>-->
+                                            <!--<div class="avatar-small" data-src="https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/80/h/80/interlace/0/q/100">-->
+
+                                            <!--</div>-->
+                                        <!--</span>-->
+                                    <!--</span>-->
+                                <!--</div>-->
+                                <!--<div class="content-reset comment" data-author="Jane1221" data-link="https://hacpai.com/article/1535076511412#1535336693203">-->
+                                    <!--<p>回复内容</p>-->
+                                <!--</div>-->
+                                <!--<div class="comment-action">-->
+                                    <!--<div class="ft-fade fn-clear">-->
+                                        <!--<span class="fn-right action-btns">-->
+                                            <!--<span class="tooltipped tooltipped__n fn-hidden hover-show articleCommentGoodBtn" aria-label="0 赞同" data-cnt="0" data-grant="true" data-vote="false"><svg class="icon-thumbs-up"><use xlink:href="#iconChevronUp"></use></svg></span> &nbsp;&nbsp;-->
+                                            <!--<span class="tooltipped tooltipped__n fn-hidden fn__none hover-show articleCommentBadBtn" aria-label="0 反对" data-cnt="0" data-grant="false" data-vote="false"><svg class="icon-thumbs-down"><use xlink:href="#iconChevronDown"></use></svg></span>&nbsp;&nbsp;-->
+                                            <!--<span class="ft-smaller fn-pointer articleCommentShowEditorBtn" data-avatar="https://img.hacpai.com/avatar/1535332977065?imageView2/1/w/80/h/80/interlace/0/q/100" data-name="Jane1221">回复</span>-->
+                                        <!--</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="comment-replies list">-->
+                                        <!--<ul>-->
+                                            <!--<li>-->
+                                                <!--<div class="fn-flex">-->
+                                                    <!--<div>-->
+                                                        <!--<a href="https://hacpai.com/member/Jane1221" rel="nofollow">-->
+                                                            <!--<div class="avatar tooltipped__user" style="background-image: url('https://img.hacpai.com/avatar/1535332977065?imageView2/1/w/80/h/80/interlace/0/q/100');" aria-name="Jane1221"></div>-->
+                                                        <!--</a>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="fn-flex-1">-->
+                                                        <!--<div class="fn-clear comment-info">-->
+                                                            <!--<span class="fn-left ft-smaller">-->
+                                                                <!--<a class="ft-a-title tooltipped__user" href="https://hacpai.com/member/Jane1221" rel="nofollow" aria-name="Jane1221">回帖人姓名</a>-->
+                                                                <!--<span class="ft-fade">•-->
+                                                                    <!--<time class="tooltipped tooltipped__n" aria-label="2018-08-27 10:24:53">回帖时间</time>-->
+                                                                <!--</span>-->
+                                                            <!--</span>-->
+                                                            <!--<span class="fn-right">-->
+                                                                <!--<span class="tooltipped tooltipped__n ft-a-title articleCommentReferBtn" aria-label="关闭">-->
+                                                                    <!--<svg>-->
+                                                                        <!--<use xlink:href="#iconClose"></use>-->
+                                                                    <!--</svg>-->
+                                                                <!--</span>-->
+                                                            <!--</span>-->
+                                                        <!--</div>-->
+                                                        <!--<div class="content-reset comment" data-author="Jane1221" data-link="https://hacpai.com/article/1535076511412#1535336693203">-->
+                                                            <!--<p>回复内容</p>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <li id="1535103617201" class=" cmt-selected">
+                        <div class="fn-flex">
+                            <div>
+                                <a rel="nofollow" href="https://hacpai.com/member/Vanessa">
+                                    <div class="avatar tooltipped__user user_photo" aria-name="Vanessa" data-src="https://img.hacpai.com/avatar/1353745196544_1530582712751.?imageView2/1/w/80/h/80/interlace/0/q/100">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="fn-flex-1">
+                                <div class="comment-get-comment list">
+                                </div>
+                                <div class="fn-clear comment-info">
+								<span class="fn-left ft-smaller">
+								<a rel="nofollow" aria-name="Vanessa" href="https://hacpai.com/member/Vanessa" class="ft-a-title tooltipped__user">Vanessa</a>
+								<span class="ft-fade">•
+								<time aria-label="2018-08-24 17:40:17" class="tooltipped tooltipped__n">2 天前</time>
+								</span>
+								<span class="articleCommentThankCnt">
+								</span>
+								<span class="cmt-via ft-fade hover-show fn-hidden" data-ua="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"></span>
+								</span>
+                                    <span class="fn-right">
+								</span>
+                                </div>
+                                <div class="content-reset comment" data-author="Vanessa" data-link="https://hacpai.com/article/1535076511412#1535103617201">
+                                    <p>
+                                        莫非应用也是他一点一点写的？
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="pagination">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="heatBar">
+    <i class="heat tooltipped tooltipped__w" style="width:0px" aria-label="帖子活跃度"></i>
+</div>
+<div class="share">
+    <!--<span id="thankArticle" aria-label="感谢" class="tooltipped tooltipped__e article__thank icon-link" data-oid="1535076511412" data-grant="true" data-cnt="0"><svg><use xlink:href="#iconHeart"></use></svg><span class="ft-13">&nbsp;</span></span>-->
+    <!--<div id="qrCode" class="fn-none" data-avatar="https://img.hacpai.com/avatar/1453895874455_1521467490550.jpg?imageView2/1/w/242/h/242/interlace/0/q/100" data-shareurl="https://hacpai.com/article/1535076511412?r=czf1046277348">-->
+    <!--</div>-->
+    <span class="tooltipped tooltipped__e" aria-label="share to wechat" data-type="wechat"><svg class="icon-wechat"><use xlink:href="#iconWechat"></use></svg></span>
+    <span class="tooltipped tooltipped__e" aria-label="share to weibo" data-type="weibo"><svg class="icon-weibo"><use xlink:href="#iconWeibo"></use></svg></span>
+    <span class="tooltipped tooltipped__e" aria-label="share to twitter" data-type="twitter"><svg class="icon-twitter"><use xlink:href="#iconTwitter"></use></svg></span>
+    <span class="tooltipped tooltipped__e" aria-label="share to google" data-type="google"><svg class="icon-google"><use xlink:href="#iconGoogle"></use></svg></span>
+    <span class="tooltipped tooltipped__e" data-type="copy" aria-label="复制" id="shareClipboard"><svg class="icon-link"><use xlink:href="#iconLink"></use></svg></span>
+    <input type="text" class="article-clipboard" value="https://hacpai.com/article/1535076511412?r=czf1046277348"/>
+</div>
+<div class="editor-panel">
+    <div class="editor-bg">
+    </div>
+    <div class="editor-content">
+        <div class="fn-clear">
+            <div class="fn-flex">
+                <div id="replyUseName" class="fn-flex-1 fn-ellipsis">
+                </div>
+                <span class="tooltipped tooltipped__w fn-pointer editor-hide commentToggle" aria-label="取消"><svg><use xlink:href="#iconChevronDown"></use></svg></span>
+            </div>
+            <div class="article-comment-content">
+                <div id="commentContent" data-placeholder="请输入回帖内容" style="display: none">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mt50">
+                            <div id="standalone-container">
+                                <div id="toolbar-container">
+                                    <span class="ql-formats">
+                                <button class="ql-bold tooltipped tooltipped__n" aria-label="字体加粗"></button>
+                                <button class="ql-italic tooltipped tooltipped__n" aria-label="字体倾斜"></button>
+                                <button class="ql-underline tooltipped tooltipped__n" aria-label="添加下划线"></button>
+                                <button class="ql-strike tooltipped tooltipped__n" aria-label="添加删除线"></button>
+                            </span>
+                                    <span class="ql-formats">
+                                <select class="ql-color tooltipped tooltipped__n" aria-label="字体颜色"></select>
+                                <select class="ql-background tooltipped tooltipped__n" aria-label="字体填充色"></select>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-script tooltipped tooltipped__n" aria-label="上标" value="sub"></button>
+                                <button class="ql-script tooltipped tooltipped__n" aria-label="下标" value="super"></button>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-header tooltipped tooltipped__n" aria-label="大标题" value="1"></button>
+                                <button class="ql-header tooltipped tooltipped__n" aria-label="小标题" value="2"></button>
+                                <button class="ql-blockquote tooltipped tooltipped__n" aria-label="引用"></button>
+                                <button class="ql-code-block tooltipped tooltipped__n" aria-label="整行填充"></button>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-list tooltipped tooltipped__n" aria-label="有序列表" value="ordered"></button>
+                                <button class="ql-list tooltipped tooltipped__n" aria-label="无序列表" value="bullet"></button>
+                                <button class="ql-indent tooltipped tooltipped__n" aria-label="整体左移" value="-1"></button>
+                                <button class="ql-indent tooltipped tooltipped__n" aria-label="整体右移" value="+1"></button>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-direction tooltipped tooltipped__n" aria-label="左右对齐" value="rtl"></button>
+                                <select class="ql-align tooltipped tooltipped__n" aria-label="对齐方式"></select>
+                            </span>
+                                    <span class="ql-formats">
+                                <button class="ql-link tooltipped tooltipped__n" aria-label="添加链接"></button>
+                                <button class="ql-image tooltipped tooltipped__n" aria-label="添加图片"></button>
+                                <button class="ql-video tooltipped tooltipped__n" aria-label="添加音频"></button>
+                                        <!--<button class="ql-formula" title=""></button>-->
+                            </span>
+                                </div>
+                                <div id="editor-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-submit">
+                    <!--<label>仅楼主可见<input type="checkbox" id="commentVisible"></label>-->
+                    <div class="fn__right">
+                        &nbsp;
+                        &nbsp;
+                        <button class="green" id="articleCommentSubmitBtn" data-haspermission="true">提交</button>
+                        &nbsp;
+                        &nbsp;
+                        <span class="fn-pointer ft-a-title commentToggle">取消</span>
+                        &nbsp;
+                        &nbsp;
+                    </div>
+                    <div class="tip fn-right" id="addCommentTip" style="display: none">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section-divider textdivider divider6" style="background:url('https://i.imgur.com/rXfMRUl.jpg');">
+    <div class="container" >
+        <h1>CRAFTED IN NAN JING, NanJing University.</h1>
+        <hr>
+        <p>
+            Some Address 地址,
+        </p>
+        <p>
+            +联系方式
+        </p>
+        <p>
+            <a class="icon fab fa-qq" href="#" style="color: rgba(61, 201, 179, 0.8)"></a> | <a class="icon fab fa-weixin" href="#" style="color: rgba(61, 201, 179, 0.8)"></a>
+        </p>
+    </div>
+    <!-- container --></section><!-- section -->
+<div class="container" id="contact" name="contact" style="background-color: white;">
+    <div class="row">
+        <br>
+        <h1 class="centered">欢迎联系我们</h1>
+        <hr>
+        <br>
+        <br>
+        <div class="col-lg-4">
+            <h3>联系方式</h3>
+            <p>
+                <span class="icon fas fa-home"></span> 南京市栖霞区, 南京大学<br/>
+                <span class="icon fas fa-phone"></span> +固话联系方式 <br/>
+                <span class="icon fas fa-mobile-alt"></span> +手机联系方式 <br/>
+                <span class="icon far fa-envelope"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> 邮箱</a><br/>
+                <span class="icon fab fa-qq"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> qq </a><br/>
+                <span class="icon fab fa-weixin"></span><a href="#" style="color: rgba(61, 201, 179, 0.8)"> 微信 </a><br/>
+            </p>
+        </div>
+        <!-- col -->
+        <div class="col-lg-4">
+            <h3>您的宝贵意见</h3>
+            <p>
+                如果您对我们的业务流程有疑问，或是您对我们的平台的服务有不满意的地方，请将您的邮箱和姓名发送给我们，我们将会第一时间联系您
+            <p>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="inputEmail1" class="col-lg-4 control-label"></label>
+                    <div class="col-lg-10">
+                        <input type="email" class="form-control" id="inputEmail1" placeholder="邮箱">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="text1" class="col-lg-4 control-label"></label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="text1" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10">
+                        <button type="submit" class="btn btn-success">Send</button>
+                    </div>
+                </div>
+            </form>
+            <!-- form -->
+            </p>
+        </div>
+        <!-- col -->
+        <div class="col-lg-4">
+            <h3>支持我们</h3>
+            <p>
+                如果您对我们的平台的开发与维护并且您也是资深的技术人员，欢迎您加入我们的团队，一起参与我们团队对该平台的维护与开发工作
+            </p>
+        </div>
+        <!-- col -->
+    </div>
+    <!-- row -->
+</div>
+<!-- container -->
+<div id="footerwrap">
+    <div class="container">
+        <h4>Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+    </div>
+</div>
+
+<script>
+    var Label = {
+        markedAvailable: true,
+        searchTimeTipLabel: '⚡️ 已找到 <strong>{count}</strong> 个相关结果（用时 <strong>{time}ms</strong>）',
+        searchEmptyLabel: '暂时没有 [${key}] 相关的数据 :(',
+        statUserLabel: '用户',
+        tagLabel: '标签',
+        articleLabel: '帖子',
+        updateNameTipLabel: '（修改用户名需消耗 {point} 积分）',
+        certainLabel: '确定',
+        deactivateAccountLabel: '永久停用账号',
+        tipLabel: '提示',
+        reportContentLabel: '请说明举报理由',
+        miscLabel: '其他',
+        reportSuccLabel: '举报成功',
+        spamADLabel: '垃圾广告',
+        pornographicLabel: '低俗色情',
+        violationOfRegulationsLabel: '违法违规',
+        allegedlyInfringingLabel: '涉嫌侵权',
+        personalAttacksLabel: '人身攻击',
+        posingAccountLabel: '冒充账号',
+        spamADAccountLabel: '垃圾广告账号',
+        personalInfoViolationLabel: '个人信息违规',
+        reportLabel: '举报',
+        noMessageLabel: '无消息',
+        invalidQnAOfferPointLabel: '悬赏积分必须大于等于 20',
+        submitLabel: '提交',
+        nextStepLabel: '下一步',
+        breezemoonLabel: '清风明月',
+        breezemoonDescriptionLabel: '只与清风、明月为伴。',
+        invalidUserNameLabel: '用户名仅允许使用数字或字母',
+        finshLabel: '完成',
+        invalidEmailLabel: '邮箱地址格式有误',
+        confirmPwdErrorLabel: '密码输入不一致',
+        captchaErrorLabel: '验证码错误',
+        imgMaxSize: 5242880,
+        fileMaxSize: 10485760,
+        miniPostfix: '.min',
+        messageLabel: '消息',
+        desktopNotificationTemplateLabel: '你有 ${count} 条未读消息',
+        invalidPasswordLabel: '密码格式有误（数字及字母组合，长度 6-16）',
+        loginNameErrorLabel: '登录名称长度 1-256',
+        followLabel: '关注',
+        unfollowLabel: '取消关注',
+        symphonyLabel: '黑客派',
+        visionLabel: '黑客与画家',
+        cmtLabel: '回帖',
+        collectLabel: '收藏',
+        uncollectLabel: '取消收藏',
+        copyLabel: '复制',
+        copiedLabel: '已复制',
+        servePath: 'https://hacpai.com',
+        staticServePath: 'https://static.hacpai.com',
+        isLoggedIn: true,
+        funNeedLoginLabel: '登录后才能使用该功能',
+        notificationCommentedLabel: '收到的回帖',
+        notificationReplyLabel: '收到的回复',
+        notificationAtLabel: '提及我的',
+        notificationFollowingLabel: '我关注的',
+        pointLabel: '积分',
+        sameCityLabel: '同城',
+        systemLabel: '系统',
+        walletLabel: '钱包',
+        newFollowerLabel: '新关注者',
+        makeAsReadLabel: '标记为已读',
+        commaLabel: '，',
+        canDragLabel: '可拖拽',
+        staticResourceVersion: '1535194155082',
+        setEmotionLabel: '设置常用表情',
+        year: '2018',
+        mouseEffects: false,
+        killBrowserLabel: '<div class="fn__clear content-reset">为了让浏览器更好的发展，人类更加的进步，拥有更好的体验，让我们放弃使用那些过时、不安全的浏览器。<p>你可以下载：</p><ul class="fn__left"><li><a href="http://www.google.com/chrome" target="_blank" rel="noopener">谷歌浏览器</a></li><li><a href="http://www.mozilla.com/" target="_blank" rel="noopener">火狐</a></li><li><a href="http://se.360.cn/" target="_blank" rel="noopener">360</a> 或者 <a href="https://www.baidu.com/s?wd=%E6%B5%8F%E8%A7%88%E5%99%A8" target="_blank" rel="noopener">其它浏览器</a></li></ul><img class="fn__right" alt="Kill IE6" title="Kill IE6" src="/images/kill-browser.png"></div>',
+        killBrowserTitleLabel: '让我们放弃使用那些过时、不安全的浏览器吧！',
+        activityStartEatingSnakeTipLabel: '玩一局需要 【{point}】积分，确定开始么？',
+        activityStartGobangTipLabel: '玩一局需要 【{point}】积分，确定开始么？',
+        activityAskForDrawLabel: '对方请求和棋，是否同意？',
+        newVersionAvailableLabel: '新版本可用',
+        colonLabel: '：',
+        upToDateLabel: '已是最新版',
+        amountNotEmpty: '数额不能为空',
+        updateFailLabel: '更新失败',
+        updateSuccLabel: '更新成功',
+        transferSuccLabel: '转账成功',
+        invalidUserURLLabel: '链接需要符合 URL（协议://地址），最大长度 100',
+        tagsErrorLabel: '最多包含 4 个标签，每个标签长度 1-9，请勿包含特殊符号',
+        invalidUserQQLabel: 'QQ 号必须为数字，最大长度 12',
+        invalidUserIntroLabel: '个性签名最大长度 255',
+        invalidUserB3KeyLabel: 'B3 Key 最大长度 20',
+        invalidUserB3ClientURLLabel: 'B3 客户端接口最大长度 150',
+        invalidUserNicknameLabel: '昵称最大长度 20',
+        previewLabel: '预览',
+        unPreviewLabel: '取消预览',
+        invalidPhoneLabel: '手机号有误',
+        uploadLabel: '上传',
+        addBoldLabel: '添加粗体',
+        addItalicLabel: '添加斜体',
+        insertQuoteLabel: '插入引用',
+        addBulletedLabel: '添加无序列表',
+        addNumberedListLabel: '添加有序列表',
+        addLinkLabel: '添加链接',
+        undoLabel: '撤销',
+        redoLabel: '恢复',
+        helpLabel: '帮助',
+        fullscreenLabel: '全屏',
+        uploadFileLabel: '上传文件',
+        insertEmojiLabel: '插入表情',
+        articleTitleErrorLabel: '帖子标题长度 1-255',
+        articleContentErrorLabel: '帖子内容长度 4-{maxArticleContentLength}',
+        recordDeniedLabel: '授权后才可以使用音频',
+        recordDeviceNotFoundLabel: '录音设备加载失败',
+        audioRecordingLabel: '[录音中]',
+        uploadingLabel: '[上传中请稍候]',
+        articleRewardPointErrorLabel: '打赏区积分必须为正整数',
+        discussionLabel: '小黑屋',
+        commonAtUser: 'true',
+        commentErrorLabel: '回帖内容长度 1-2000',
+        thankSentLabel: '谢意已传达~',
+        notAllowCmtLabel: '该帖已关闭回帖',
+        upLabel: '赞同',
+        downLabel: '反对',
+        removedLabel: '相关数据已被删除',
+        stickConfirmLabel: '确定要消费 100 积分来置顶该帖子吗？',
+        noRevisionLabel: '权限不足或内容没有发生过改变。',
+        thankedLabel: '已感谢',
+        thankLabel: '感谢',
+        isAdminLoggedIn: false,
+        adminLabel: '管理',
+        thankSelfLabel: '老王，你家的瓜熟了~',
+        replyLabel: '回复',
+        referenceLabel: '引用',
+        goCommentLabel: '跳转到回帖',
+        commonUpdateCommentPermissionLabel: '更新回帖',
+        noPermissionLabel: '你目前是<span class="ft-green">新手</span>，还不能使用该功能 <img align="absmiddle" alt=":flushed:" class="emoji" src="https://static.hacpai.com/emoji/graphics/flushed.png" title=":flushed:"><br><span class="ft-smaller">了解<a href="https://hacpai.com/article/1482057214675" target="_blank">社区信任体系</a></span>',
+        rewardLabel: '打赏',
+        closeLabel: '关闭',
+        invalidAppRoleLabel: '角色有误',
+        cancelLabel: '取消',
+        notificationCmtIds: '1535103617201',
+        articleAuthorName: 'amorist',
+        userCommentViewMode: 1,
+        thankArticleConfirmLabel: '确定赠送 20 积分给该帖作者以表谢意？',
+        rewardConfirmLabel: '确定要打赏 0 积分给该帖子作者？',
+        articleTitle: '有人把 Windows 95 写进了 Electron 支持多平台',
+        articleChannel: 'wss://hacpai.com:/article-channel?articleId=1535076511412&articleType=0&userId=1533003378805',
+        articleType: 0,
+        csrfToken: 'a07oGKF9q7c3',
+        articleOId: '1535076511412',
+        confirmRemoveLabel: '确定删除么？',
+        qiniuUploadToken: 'tnY1Na7LCoBAqmTmpHsWVuYlPC040SY__sOqLwD3:633zEFORPs-d3fUTP81Lf87ad1c=:eyJzY29wZSI6InN5bXBob255IiwiZGVhZGxpbmUiOjE1MzUzMzc0Mjd9',
+        qiniuDomain: 'https://img.hacpai.com',
+        userNotifyStatus: '0',
+        chatRoomChannelURL: 'wss://hacpai.com:/chat-room-channel',
+        currentUserName: 'czf1046277348',
+        currentUserId: '1533003378805',
+        userKeyboardShortcutsStatus: '1',
+        userChannelURL: 'wss://hacpai.com:/user-channel?&userId=1533003378805',
+        algoliaAppId: 'RORM6JWE5I',
+        algoliaSearchKey: '71dbdd62005849ec443fbb8aa973a131',
+    }
+</script>
+
+<script src="/common/jquery.js"></script>
+<script src="/community/js/lib/algolia/algolia.min.js"></script>
+<script type="text/javascript" src="/community/js/compress/article.js"></script>
+<script type="text/javascript" src="/community/controller/community_detail_controller.js"></script>
+
+<script>
+    var quill = new Quill('#editor-container', {
+        modules: {
+            formula: true,
+            syntax: true,
+            toolbar: '#toolbar-container'
+        },
+        placeholder: 'Compose an epic...',
+        theme: 'snow'
+    });
+</script>
+
+</body>
+</html>
