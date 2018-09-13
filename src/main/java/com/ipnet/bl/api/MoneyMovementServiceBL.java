@@ -2,7 +2,7 @@ package com.ipnet.bl.api;
 
 import com.ipnet.blservice.apiservice.MoneyMovementService;
 import com.ipnet.entity.APIConstant;
-import com.ipnet.entity.Transaction;
+import com.ipnet.entity.Combinations;
 import lombok.Data;
 import net.sf.json.JSONArray;
 import org.json.simple.JSONValue;
@@ -48,14 +48,14 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
     }
 
     @Override
-    public List<Transaction>  CombinationsAccountandPayee(String username ,String password) throws IOException {
+    public List<Combinations>  CombinationsAccountandPayee(String username , String password) throws IOException {
         String jsonstr = retrieveDestacc(username,password);
         net.sf.json.JSONObject object = net.sf.json.JSONObject.fromObject(jsonstr);
-        List<Transaction> combiantions = new ArrayList<Transaction>();
+        List<Combinations> combiantions = new ArrayList<Combinations>();
         if(object.has("payeeSourceAccountCombinations")){
             JSONArray arrays = object.getJSONArray("payeeSourceAccountCombinations");
             for(int i = 0; i < arrays.size(); i++){
-                Transaction transaction = new Transaction();
+                Combinations transaction = new Combinations();
                 String t = arrays.getString(i);
                 net.sf.json.JSONObject inner = net.sf.json.JSONObject.fromObject(t);
                 if(inner.has("payeeId")){

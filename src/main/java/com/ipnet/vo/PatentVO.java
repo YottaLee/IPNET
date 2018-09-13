@@ -33,6 +33,8 @@ public class PatentVO {
     private Region region;//所属地区
     private String patent_type;//专利类别
 
+    private  String url;    //图片的url
+
     private List<String> invitationPoolIdList;//邀请本专利入池的专利池列表
 
 }

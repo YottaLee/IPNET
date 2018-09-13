@@ -29,6 +29,7 @@ public class Patent {
     private Date apply_date;//申请时间
     private String valid_period;//有效期限
     private Region region;//所属地区
+    private String url; //图片的url
 
     //将Patent_type 枚举类型改为string
     private String patent_type;//专利类别

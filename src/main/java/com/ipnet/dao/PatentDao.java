@@ -35,7 +35,7 @@ public interface PatentDao extends JpaRepository<Patent,String>{
     @Query(value = "select p from Patent p where p.state = :state")
     List<Patent> searchPatentsByState(@Param("state") Patent_state state);
 
-    @Query(value = "select p from Patent p where p.state = :valid_period")
+    @Query(value = "select p from Patent p where p.valid_period = :valid_period")
     List<Patent> searchPatentsByValid_period(@Param("valid_period") String valid_period);
 
     @Query(value = "select p from Patent p where p.apply_date = :region")

@@ -3,6 +3,7 @@ package com.ipnet.bl.patentbl;
 import com.ipnet.dao.PatentPoolDao;
 import com.ipnet.entity.PatentPool;
 import com.ipnet.enums.Region;
+import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.PatentVO;
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.dao.PatentDao;
@@ -43,6 +44,11 @@ public class PatentBLServiceImpl implements PatentBLService {
     }
 
     @Override
+    public ResultMessage entryPatent(String patentID, String patent, String holder, String url, String applyTime, String type, String district, String profile) {
+        return null;
+    }
+
+    @Override
     public PatentVO searchPatentByID(String patentID) {
         Optional<Patent> optionalPatent = this.patentDao.findById(patentID);
         if (optionalPatent.isPresent() ==false){
@@ -52,12 +58,87 @@ public class PatentBLServiceImpl implements PatentBLService {
         return resultVO;
     }
 
-
-
     @Override
     public List<PatentVO> searchPatentByName(String name) {
         List<Patent> patentList = this.patentDao.searchPatentByPatentName(name);
         if (patentList == null || patentList.size()==0){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
+    public List<PatentVO> getPatentList(String userId){
+        List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
+        if(patentList.size() == 0 ||patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchRelatedPatents(){
+        List<Patent> patentList = this.patentDao.searchRelatedPatents("");
+        if(patentList.size() == 0 ||patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchPatentByPool(String poolId) {
+        List<Patent> patentList = this.patentDao.searchRelatedPatents(poolId);
+        if(patentList.size() == 0 ||patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchPatentByRegion(Region region){
+        List<Patent> patentList = this.patentDao.searchPatentsByRegion(region);
+        if(patentList.size() == 0 || patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+    @Override
+    public List<PatentVO> searchPatentsByState(Patent_state state){
+        List<Patent> patentList = this.patentDao.searchPatentsByState(state);
+        if(patentList.size() == 0 || patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchPatentsByValid_period(String valid_period){
+        List<Patent> patentList = this.patentDao.searchPatentsByValid_period(valid_period);
+        if(patentList.size() == 0 || patentList == null){
             return null;
         }
         List<PatentVO> voList = patentList.stream()
@@ -180,45 +261,6 @@ public class PatentBLServiceImpl implements PatentBLService {
         Patent patent = this.getPatentById(patentId);
         patent.addInvitationFromPool(patentPoolId);
         this.savePatent(patent);
-    }
-
-    @Override
-    public List<PatentVO> getPatentList(String userId){
-         List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
-         if(patentList.size() == 0 ||patentList == null){
-             return null;
-         }
-         List<PatentVO> voList = patentList.stream()
-                .filter(patent -> patent!=null)
-                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
-                .collect(Collectors.toList());
-         return voList;
-    }
-
-    @Override
-    public List<PatentVO> searchRelatedPatents(){
-         List<Patent> patentList = this.patentDao.searchRelatedPatents("");
-         if(patentList.size() == 0 ||patentList == null){
-            return null;
-         }
-         List<PatentVO> voList = patentList.stream()
-                 .filter(patent -> patent!=null)
-                 .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
-                 .collect(Collectors.toList());
-         return voList;
-    }
-
-    @Override
-    public List<PatentVO> searchPatentByRegion(Region region){
-        List<Patent> patentList = this.patentDao.searchPatentsByRegion(region);
-        if(patentList.size() == 0 || patentList == null){
-            return null;
-        }
-        List<PatentVO> voList = patentList.stream()
-                .filter(patent -> patent!=null)
-                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
-                .collect(Collectors.toList());
-        return voList;
     }
 
     private Patent getPatentById(String patentId) throws IDNotExistsException{

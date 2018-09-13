@@ -6,6 +6,7 @@ package com.ipnet.controller;
 
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.enums.Patent_state;
+import com.ipnet.enums.Region;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.PatentVO;
@@ -31,6 +32,7 @@ public class PatentController {
         return service.createPatent(newPatent);
     }
 
+
     /**
      * 模糊搜索
      * @param info
@@ -40,6 +42,7 @@ public class PatentController {
     public @ResponseBody List<PatentVO> searchPatent(@RequestBody String info){
         return service.searchPatent(info);
     }
+
 
     @RequestMapping("/searchPatentByID")
     public @ResponseBody
@@ -53,6 +56,38 @@ public class PatentController {
         return service.searchPatentByName(name);
     }
 
+    @RequestMapping("/")
+    public @ResponseBody
+    List<PatentVO> searchPatentByPool(@RequestParam String poolId) {
+        return service.searchPatentByPool(poolId);
+    }
+
+    /**
+     * 获取专利列表
+     * @param userId 用户Id   //即根据专利拥有者获得专利
+     * @return 专利列表
+     */
+    @RequestMapping("/getPatentList")
+    @ResponseBody
+    public List<PatentVO> getPatentList(@RequestParam String userId) {
+        return service.getPatentList(userId);
+    }
+
+    @RequestMapping("/searchPatentsByState")
+    public @ResponseBody
+    List<PatentVO> searchPatentsByState(@RequestParam Patent_state state){
+        return  service.searchPatentsByState(state);
+    }
+
+    @RequestMapping("/searchPatentByRegion")
+    public @ResponseBody  List<PatentVO> searchPatentByRegion(@RequestParam Region region){
+        return service.searchPatentByRegion(region);
+    }
+
+    @RequestMapping("/searchPatentsByValid_period")
+    public @ResponseBody  List<PatentVO> searchPatentsByValid_period(@RequestParam String valid_period){
+        return service.searchPatentsByValid_period(valid_period);
+    }
     /**
      * 专利录入
      * @param patentID 专利号
@@ -131,24 +166,15 @@ public class PatentController {
      * @throws IDNotExistsException
      */
     @RequestMapping("/acceptInvitationFromPool")
-    boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
+    public boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
           return service.acceptInvitationFromPool(patentId , patentPoolId);
     }
 
-    /**
-     * 获取专利列表
-     * @param userId 用户Id
-     * @return 专利列表
-     */
-    @RequestMapping("/getPatentList")
-    @ResponseBody
-    public List<PatentVO> getPatentList(@RequestParam String userId) {
-        return service.getPatentList(userId);
-    }
+
 
     /**
-     *
-     *
+     * 推荐相关专利;
+     * @return
      */
     @RequestMapping("/searchRelatedPatents")
     @ResponseBody
