@@ -26,4 +26,16 @@ public class UploadController {
         return aliService.uploadFile(path,file);
     }
 
+    /**
+     * 上传专利图片
+     * @param file
+     * @return
+     */
+    @RequestMapping("/image")
+    public @ResponseBody
+    String uploadImage(MultipartFile file){
+        System.out.println("Success upload image!!!!!!!!!!!!!!!!!!! ");
+        return null;
+    }
+
 }

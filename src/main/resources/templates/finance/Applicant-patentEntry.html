@@ -70,6 +70,10 @@
     <link href="/home/css/animate-custom.css" rel="stylesheet">
 
 
+    <link rel="stylesheet" type="text/css" href="/finance/css/htmleaf-demo.css">
+    <link rel="stylesheet" href="/finance/css/ssi-uploader.css"/>
+
+
     <!--JAVASCRIPT-->
     <!--=================================================-->
 
@@ -80,6 +84,7 @@
 
     <!--jQuery [ REQUIRED ]-->
     <script src="/finance/js/jquery-2.2.4.min.js"></script>
+
 
 
     <!--BootstrapJS [ RECOMMENDED ]-->
@@ -251,7 +256,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-1 control-label">专利简介</label>
-                                                <div class="col-sm-10">
+                                                <div class="col-sm-11">
                                                     <textarea id="profile" placeholder="" class="form-control"></textarea>
                                                 </div>
                                             </div>
@@ -259,6 +264,16 @@
                                     </div>
                                 </div>
                             </form>
+                            <div class="htmleaf-container">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3>上传专利图片</h3>
+                                            <input type="file" multiple id="ssi-upload"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <!--===================================================-->
                             <!--End Horizontal Form-->
                             <div class="form-group">
@@ -354,5 +369,9 @@
 </div>
 
 </body>
+<script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/finance/js/jquery-2.2.4.min.js"><\/script>')</script>
+
+<script src="/finance/js/ssi-uploader.js"></script>
 <script src="/finance/js/Applicant/Applicant-patentEntry.js"></script>
 </html>
