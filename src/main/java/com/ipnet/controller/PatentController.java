@@ -6,7 +6,6 @@ package com.ipnet.controller;
 
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.enums.Patent_state;
-import com.ipnet.enums.Region;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.PatentVO;
@@ -56,7 +55,7 @@ public class PatentController {
         return service.searchPatentByName(name);
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/searchPatentByPool")
     public @ResponseBody
     List<PatentVO> searchPatentByPool(@RequestParam String poolId) {
         return service.searchPatentByPool(poolId);
@@ -80,7 +79,7 @@ public class PatentController {
     }
 
     @RequestMapping("/searchPatentByRegion")
-    public @ResponseBody  List<PatentVO> searchPatentByRegion(@RequestParam Region region){
+    public @ResponseBody  List<PatentVO> searchPatentByRegion(@RequestParam String region){
         return service.searchPatentByRegion(region);
     }
 
@@ -103,7 +102,7 @@ public class PatentController {
     @RequestMapping("/entryPatent")
     @ResponseBody
     public ResultMessage entryPatent(String patentID, String patent, String holder,String url, String applyTime, String type, String district, String profile) {
-        return null;
+        return service.entryPatent(patentID , patent, holder, url ,applyTime , type, district, profile);
     }
 
     @RequestMapping("/deletePatent")
@@ -180,6 +179,11 @@ public class PatentController {
     @ResponseBody
     public List<PatentVO> searchRelatedPatents(){
         return service.searchRelatedPatents();
+    }
+
+    @RequestMapping("/recommendPatent")
+    public @ResponseBody PatentVO recommendPatent(){
+        return service.recommendPatent();
     }
 
 }
