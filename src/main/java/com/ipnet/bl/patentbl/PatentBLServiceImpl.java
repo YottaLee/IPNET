@@ -2,6 +2,7 @@ package com.ipnet.bl.patentbl;
 
 import com.ipnet.dao.PatentPoolDao;
 import com.ipnet.entity.PatentPool;
+import com.ipnet.enums.Region;
 import com.ipnet.vo.PatentVO;
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.dao.PatentDao;
@@ -57,6 +58,19 @@ public class PatentBLServiceImpl implements PatentBLService {
     public List<PatentVO> searchPatentByName(String name) {
         List<Patent> patentList = this.patentDao.searchPatentByPatentName(name);
         if (patentList == null || patentList.size()==0){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchPatent(String info) {
+        List<Patent> patentList = this.patentDao.searchPatent(info);
+        if(patentList.size() == 0 ||patentList == null){
             return null;
         }
         List<PatentVO> voList = patentList.stream()
@@ -192,6 +206,19 @@ public class PatentBLServiceImpl implements PatentBLService {
                  .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
                  .collect(Collectors.toList());
          return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchPatentByRegion(Region region){
+        List<Patent> patentList = this.patentDao.searchPatentsByRegion(region);
+        if(patentList.size() == 0 || patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
     }
 
     private Patent getPatentById(String patentId) throws IDNotExistsException{

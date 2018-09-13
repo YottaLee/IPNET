@@ -57,7 +57,7 @@ $('#submit').on('click', function () {
             ifPass: ifPass
         },
         success: function (data) {
-            window.location.href = "/finance/Insurance-IP-list"
+            window.location.href = "/ipnet/Insurance-IP-list"
                //回到保险公司主界面
         },
         error: function () {

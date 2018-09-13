@@ -324,5 +324,14 @@ public class PageController {
     public String Person_IPSET_list(){
         return finance+"Person-IPSET-list";
     }
+    
+    @RequestMapping("loan_detail")
+    public String loan_detail(){
+        return finance+"loan_detail";
+    }
 
+    @RequestMapping("Applicant-patentEntry")
+    public String Applicant_patentEntry(){
+        return finance+"Applicant-patentEntry";
+    }
 }

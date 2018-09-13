@@ -31,6 +31,16 @@ public class PatentController {
         return service.createPatent(newPatent);
     }
 
+    /**
+     * 模糊搜索
+     * @param info
+     * @return
+     */
+    @RequestMapping("/searchPatent")
+    public @ResponseBody List<PatentVO> searchPatent(@RequestBody String info){
+        return service.searchPatent(info);
+    }
+
     @RequestMapping("/searchPatentByID")
     public @ResponseBody
     PatentVO searchPatentByID(@RequestParam String patentID) {
@@ -41,6 +51,24 @@ public class PatentController {
     public @ResponseBody
     List<PatentVO> searchPatentByName(@RequestParam String name) {
         return service.searchPatentByName(name);
+    }
+
+    /**
+     * 专利录入
+     * @param patentID 专利号
+     * @param patent 专利
+     * @param holder 持有人
+     * @param url 专利相关文件url
+     * @param applyTime 申请时间
+     * @param type 专利类型
+     * @param district 所属地区
+     * @param profile 简介
+     * @return
+     */
+    @RequestMapping("/entryPatent")
+    @ResponseBody
+    public ResultMessage entryPatent(String patentID, String patent, String holder,String url, String applyTime, String type, String district, String profile) {
+        return null;
     }
 
     @RequestMapping("/deletePatent")
