@@ -1,7 +1,6 @@
 package com.ipnet.bl.evaluationbl;
 
 import com.ipnet.blservice.EvaluationBLService;
-import com.ipnet.blservice.LoanBLService;
 import com.ipnet.dao.EvaluationDao;
 import com.ipnet.entity.Evaluation;
 import com.ipnet.enums.ResultMessage;
@@ -17,8 +16,6 @@ import java.util.Date;
 public class EvaluationBL implements EvaluationBLService {
     @Autowired
     private EvaluationDao evaluationDao;
-    @Autowired
-    private LoanBLService loanBLService;
 
     /**
      * 提交专利评估报告
@@ -113,15 +110,4 @@ public class EvaluationBL implements EvaluationBLService {
             return false;
         }
     }
-
-    /**
-     * 存取评估机构是否同意理赔
-     * @param loanID 贷款号
-     * @param insuranceID 保单号
-     * @param ifPass 是否同意
-     * @return ResultMessage
-     */
-//    public ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass) {
-//        return loanBLService.ifEvaluationCompensate(loanID,insuranceID,ifPass);
-//    }
 }

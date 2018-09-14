@@ -74,17 +74,5 @@ public class EvaluationController {
         return evaluationBLService.ifValue(patentID);
     }
 
-    /**
-     * 存取评估机构是否同意理赔
-     * @param loanID 贷款号
-     * @param insuranceID 保单号
-     * @param ifPass 是否同意
-     * @return ResultMessage
-     */
-//    @RequestMapping("/ifCompensate")
-//    @ResponseBody
-//    public ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass) {
-//        return evaluationBLService.ifCompensate(loanID,insuranceID,ifPass);
-//    }
 
 }
