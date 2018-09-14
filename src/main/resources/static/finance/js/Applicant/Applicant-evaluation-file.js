@@ -1,5 +1,5 @@
 var storage = window.localStorage;
-var loanID = storage.loanID;
+var loanID = storage.getItem('loan_id');
 
 // Form-File-Upload.js
 // ====================================================================
@@ -120,8 +120,8 @@ $(document).ready(function () {
                     success: function () {
 
                     },
-                    error: function () {
-
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                     }
                 });
                 var patent = "";
@@ -137,8 +137,8 @@ $(document).ready(function () {
                         holder = data.patent_holder;
 
                     },
-                    error: function () {
-
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                     }
                 });
 
@@ -146,12 +146,13 @@ $(document).ready(function () {
                 var transaction = {
                     patentID: patentID,
                     patent: patent,
-                    holoder: holder,
-                    way: "专利评估",
-                    amount: money
+                    payer: holder,//付款方
+                    payee: getEvaluationId(),//收款方
+                    way: "专利评估",//评估机构只有一个
+                    money: money
                 };
 
-                window.location.href = "../pay.html";
+                window.location.href = "/ipnet/pay";
                 //支付成功后判断是否有意向信息
                 $.ajax({
                     url: 'applicant/ifBankChosen',
@@ -192,4 +193,19 @@ $(document).ready(function () {
     });
 
 });
+
+
+//获取评估机构的用户ID
+function getEvaluationId() {
+    $.ajax({
+        type: "GET",
+        url: "evaluation/getEvaluationId",
+        success: function (data) {
+            return data;
+        },
+        error: function () {
+            // alert("Network warning for posting the purpose of the loan")
+        }
+    });
+}
 
