@@ -99,6 +99,7 @@ $(document).ready(function () {
 
     myDropzone.on("success",function(data){
         //上传成功触发的事件
+        url = data;
         console.log(data);
     });
     myDropzone.on("error",function (file,data) {
@@ -111,9 +112,9 @@ $(document).ready(function () {
         if (file.accepted){
             $.each(data,function (key,val) {
                 message = message + val[0] + ';';
-            })
+            });
             //控制器层面的错误提示，file.accepted = true的时候；
-            alert(message);
+            alertFile(message);
         }
     });
 

@@ -32,8 +32,8 @@ $.ajax({
         document.getElementById("ip_list").innerHTML = patentList;
 
     },
-    error: function () {
-        // alert("Network warning for posting the purpose of the loan")
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 
@@ -45,11 +45,11 @@ function transaction(patentID) {
     //判断一下该专利是否在闲置过程中
     var state = searchIPState(patentID);
     if (state == 0) {
-        storage.patentID = patentID;
+        storage.setItem('patent_id',patentID);
         //跳转到交易界面
     }
     else {
-        alert(stateToText(state));
+        alertFile(stateToText(state));
     }
 }
 
@@ -59,7 +59,6 @@ function evaluation(patentID) {
         // 判断一下该专利是否有评估结果，没有就跳转到评估报告申请界面
         type: "GET",
         url: "applicant/ifValue",
-        dataType: "json",
         data: patentID,
         success: function (data) {
             if (data) {
@@ -68,8 +67,8 @@ function evaluation(patentID) {
                 window.location.href = "/ipnet/Applicant-evaluation2";
             }
         },
-        error: function () {
-            // alert("Network warning");
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
 
@@ -90,7 +89,7 @@ function loan(patentID) {
                 success: function (data) {
                     if (data) {
                         window.location.href = "/ipnet/Applicant-loan2";
-                    } else {
+                    // } else {
                         //是否有最新的贷款
                         $.ajax({
                             type: "GET",
@@ -105,7 +104,6 @@ function loan(patentID) {
                                     $.ajax({
                                         type: "GET",
                                         url: "bank/getInfo",
-                                        dataType: "json",
                                         data: {
                                             loanID: loanID
                                         },
@@ -119,14 +117,24 @@ function loan(patentID) {
                                                     payForEvaluation(patentID);
                                                     break;
                                                 case 3:
-                                                case 4:
                                                     window.location.href = "/ipnet/loan_detail"//贷款详情
                                                     break;
+                                                case 4:
+                                                    window.location.href = "/ipnet/Applicant-loan2"//申请贷款
+                                                    break;
                                                 case 5:
+                                                    window.location.href = "/ipnet/loan_detail"//贷款详情
+                                                    break;
+                                                case 6:
+                                                    window.location.href = "/ipnet/Applicant-chooseInsurance2"//选择保险公司
+                                                    break;
+                                                case 7:
+                                                    window.location.href = "/ipnet/loan_detail"//贷款详情
+                                                    break;
+                                                case 8:
                                                     $.ajax({
                                                         type: "GET",
                                                         url: "all/getIfContract",
-                                                        dataType: "json",
                                                         data: {
                                                             loanID: loanID,
                                                             userid: userId
@@ -139,13 +147,14 @@ function loan(patentID) {
                                                         }
                                                     });
                                                     break;
-                                                case 6:
-                                                    window.location.href = "/ipnet/loan_detail" //专利持有人贷款详情
+                                                case 9:
+                                                    payForInsurance(loanID);
                                                     break;
                                                 case 7:
                                                 case 8:
                                                 case 9://无法对该专利进行操作
-                                                    break;
+                                                default:break;
+
 
                                             }
                                         }
@@ -165,15 +174,15 @@ function loan(patentID) {
                                             storage.setItem('loan_id', loanID);
                                             window.location.href = "/ipnet/Applicant-evaluation2";
                                         },
-                                        error: function () {
-
+                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                                         }
                                     });
                                 }
 
                             },
-                            error: function () {
-
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                             }
                         });
 
@@ -199,13 +208,12 @@ function searchIPState(patentID) {
     $.ajax({
         type: "GET",
         url: "/Patent/searchPatentByID",
-        dataType: "json",
         data: patentID,
         success: function (data) {
             state = data.state;
         },
-        error: function () {
-
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
     return state;
@@ -246,8 +254,8 @@ function payForEvaluation(patentID) {
             holder = data.patent_holder;
 
         },
-        error: function () {
-
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
 
@@ -260,8 +268,8 @@ function payForEvaluation(patentID) {
         success: function (data) {
             money = data.money;
         },
-        error: function () {
-
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
 
@@ -273,5 +281,9 @@ function payForEvaluation(patentID) {
         way: "专利评估",
         money: money
     };
-    window.location.href = "pay";
+    window.location.href = "/ipnet/pay";
+}
+
+function payForInsurance(loanID){
+
 }

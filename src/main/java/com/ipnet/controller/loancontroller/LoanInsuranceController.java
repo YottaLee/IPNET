@@ -3,6 +3,7 @@ package com.ipnet.controller.loancontroller;
 import com.ipnet.blservice.LoanBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.ClaimVO;
+import com.ipnet.vo.financevo.InsuranceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +19,16 @@ import java.util.Date;
 @RequestMapping("insurance/")
 public class LoanInsuranceController {
 
-
-
+    /**
+     * 获取保险信息
+     * @param loanID 贷款号
+     * @return 保险信息
+     */
+    @RequestMapping("/getInsurance")
+    @ResponseBody
+    public InsuranceVO getInsurance(String loanID) {
+        return null;
+    }
 
 //    @Autowired
 //    private LoanBLService loanBLService;
