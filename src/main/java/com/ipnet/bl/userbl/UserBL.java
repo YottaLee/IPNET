@@ -40,9 +40,6 @@ public class UserBL implements UserBLService{
     @Autowired
     private MD5Util md5Util;
 
-    @Autowired
-    private TransHelper transHelper;
-
     @Value("${spring.mail.username}")
     private String fromEmail;
     @Value("${constant.codeKey}")
@@ -76,8 +73,7 @@ public class UserBL implements UserBLService{
           hash--哈希值(之前后端传到前端的)
           code--用户填写的验证码
     */
-    @Override
-    public ResultMessage verifyCode(Map<String, String> info) {
+    private ResultMessage verifyCode(Map<String, String> info) {
         String requestHash=info.get("hash");
 
         String time=info.get("time");
