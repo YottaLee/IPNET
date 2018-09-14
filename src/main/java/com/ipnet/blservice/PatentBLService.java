@@ -21,7 +21,7 @@ public interface PatentBLService {
 
     PatentVO searchPatentByID(String patentID);
 
-    ResultMessage entryPatent(String patentID, String patent, String holder, String url, String applyTime, String type, String district, String profile);
+    ResultMessage entryPatent(String patentID, String patent, String userId, String holder, String url, String applyTime, String type, String district, String profile);
 
     List<PatentVO> searchPatentByName(String name);
 

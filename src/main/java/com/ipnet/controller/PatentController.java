@@ -102,8 +102,8 @@ public class PatentController {
      */
     @RequestMapping("/entryPatent")
     @ResponseBody
-    public ResultMessage entryPatent(String patentID, String patent, String holder,String url,String fileURL, String applyTime, String type, String district, String profile) {
-        return service.entryPatent(patentID , patent, holder, url ,applyTime , type, district, profile);
+    public ResultMessage entryPatent(String patentID, String patent, String userId , String holder,String url,String fileURL, String applyTime, String type, String district, String profile) {
+        return service.entryPatent(patentID , patent, userId ,holder, url ,applyTime , type, district, profile);
     }
 
     @RequestMapping("/deletePatent")

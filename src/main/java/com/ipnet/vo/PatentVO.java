@@ -27,6 +27,7 @@ public class PatentVO {
     private String pool_id; //专利池号
     private String patent_name;//专利名称
     private String patent_holder;//专利持有者
+    private String userId;        //用户Id
     private Patent_state state;//专利状态
 
     //换成string类型
