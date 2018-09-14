@@ -56,7 +56,6 @@ public class Loan {
     private String financesign;//财政局盖章url
 
     //后续保险理赔问题暂定
-    private boolean toClaim;//保险公司是否同意理赔
 
 
 

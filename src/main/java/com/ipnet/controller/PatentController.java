@@ -31,6 +31,7 @@ public class PatentController {
         return service.createPatent(newPatent);
     }
 
+
     /**
      * 模糊搜索
      * @param info
@@ -40,6 +41,7 @@ public class PatentController {
     public @ResponseBody List<PatentVO> searchPatent(@RequestBody String info){
         return service.searchPatent(info);
     }
+
 
     @RequestMapping("/searchPatentByID")
     public @ResponseBody
@@ -53,12 +55,45 @@ public class PatentController {
         return service.searchPatentByName(name);
     }
 
+    @RequestMapping("/searchPatentByPool")
+    public @ResponseBody
+    List<PatentVO> searchPatentByPool(@RequestParam String poolId) {
+        return service.searchPatentByPool(poolId);
+    }
+
+    /**
+     * 获取专利列表
+     * @param userId 用户Id   //即根据专利拥有者获得专利
+     * @return 专利列表
+     */
+    @RequestMapping("/getPatentList")
+    @ResponseBody
+    public List<PatentVO> getPatentList(@RequestParam String userId) {
+        return service.getPatentList(userId);
+    }
+
+    @RequestMapping("/searchPatentsByState")
+    public @ResponseBody
+    List<PatentVO> searchPatentsByState(@RequestParam Patent_state state){
+        return  service.searchPatentsByState(state);
+    }
+
+    @RequestMapping("/searchPatentByRegion")
+    public @ResponseBody  List<PatentVO> searchPatentByRegion(@RequestParam String region){
+        return service.searchPatentByRegion(region);
+    }
+
+    @RequestMapping("/searchPatentsByValid_period")
+    public @ResponseBody  List<PatentVO> searchPatentsByValid_period(@RequestParam String valid_period){
+        return service.searchPatentsByValid_period(valid_period);
+    }
     /**
      * 专利录入
      * @param patentID 专利号
      * @param patent 专利
      * @param holder 持有人
-     * @param url 专利相关文件url
+     * @param url 专利相关图片url
+     * @param fileURL 文件url
      * @param applyTime 申请时间
      * @param type 专利类型
      * @param district 所属地区
@@ -67,8 +102,8 @@ public class PatentController {
      */
     @RequestMapping("/entryPatent")
     @ResponseBody
-    public ResultMessage entryPatent(String patentID, String patent, String holder,String url, String applyTime, String type, String district, String profile) {
-        return null;
+    public ResultMessage entryPatent(String patentID, String patent, String holder,String url,String fileURL, String applyTime, String type, String district, String profile) {
+        return service.entryPatent(patentID , patent, holder, url ,applyTime , type, district, profile);
     }
 
     @RequestMapping("/deletePatent")
@@ -131,29 +166,25 @@ public class PatentController {
      * @throws IDNotExistsException
      */
     @RequestMapping("/acceptInvitationFromPool")
-    boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
+    public boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
           return service.acceptInvitationFromPool(patentId , patentPoolId);
     }
 
-    /**
-     * 获取专利列表
-     * @param userId 用户Id
-     * @return 专利列表
-     */
-    @RequestMapping("/getPatentList")
-    @ResponseBody
-    public List<PatentVO> getPatentList(@RequestParam String userId) {
-        return service.getPatentList(userId);
-    }
+
 
     /**
-     *
-     *
+     * 推荐相关专利;
+     * @return
      */
     @RequestMapping("/searchRelatedPatents")
     @ResponseBody
     public List<PatentVO> searchRelatedPatents(){
         return service.searchRelatedPatents();
+    }
+
+    @RequestMapping("/recommendPatent")
+    public @ResponseBody List<PatentVO> recommendPatent(){
+        return service.recommendPatent();
     }
 
 }

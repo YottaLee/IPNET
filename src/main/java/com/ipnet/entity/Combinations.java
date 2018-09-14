@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.ArrayList;
 
 @Data
-public class Transaction {
+public class Combinations {
     private String payeeId;
     private ArrayList<String> accountIds;
 }

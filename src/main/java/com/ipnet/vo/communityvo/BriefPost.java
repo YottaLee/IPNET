@@ -16,7 +16,7 @@ public class BriefPost {
     private String post_name;
     private ArrayList<Post_tag> post_tag;
     private String brief_intro;
-    private Date publish_time;
+    private String publish_time;
     private long visits;
     private long remark_num;
 

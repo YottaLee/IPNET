@@ -2,7 +2,7 @@ package com.ipnet.bl.api;
 
 import com.ipnet.blservice.apiservice.MoneyMovementService;
 import com.ipnet.entity.APIConstant;
-import com.ipnet.entity.Transaction;
+import com.ipnet.entity.Combinations;
 import lombok.Data;
 import net.sf.json.JSONArray;
 import org.json.simple.JSONValue;
@@ -48,14 +48,14 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
     }
 
     @Override
-    public List<Transaction>  CombinationsAccountandPayee(String username ,String password) throws IOException {
+    public List<Combinations>  CombinationsAccountandPayee(String username , String password) throws IOException {
         String jsonstr = retrieveDestacc(username,password);
         net.sf.json.JSONObject object = net.sf.json.JSONObject.fromObject(jsonstr);
-        List<Transaction> combiantions = new ArrayList<Transaction>();
+        List<Combinations> combiantions = new ArrayList<Combinations>();
         if(object.has("payeeSourceAccountCombinations")){
             JSONArray arrays = object.getJSONArray("payeeSourceAccountCombinations");
             for(int i = 0; i < arrays.size(); i++){
-                Transaction transaction = new Transaction();
+                Combinations transaction = new Combinations();
                 String t = arrays.getString(i);
                 net.sf.json.JSONObject inner = net.sf.json.JSONObject.fromObject(t);
                 if(inner.has("payeeId")){
@@ -101,9 +101,8 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
 
         Response response = client.newCall(request).execute();
         JSONObject jsonObject = (JSONObject) JSONValue.parse(response.body().string());
-//        String controlFlowId = jsonObject.get("controlFlowId").toString();
-        //return controlFlowId;
-        return jsonObject.toString();
+      String controlFlowId = jsonObject.get("controlFlowId").toString();
+        return controlFlowId;
     }
 
     @Override
@@ -113,7 +112,7 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
 
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\"controlFlowId\":\""+controlFlowId+"\"}");
-        // RequestBody body = RequestBody.create(mediaType, "{\"controlFlowId\":\" "+controlFlowId+"\"}");    45534b7438634c567a566777354c5861486d59616c4665467a624e61724c73574b4c50494f386664306d6f3d
+        //RequestBody body = RequestBody.create(mediaType, "{\"controlFlowId\":\"45534b7438634c567a566777354c5861486d59616c4665467a624e61724c73574b4c50494f386664306d6f3d\"}");
         Request request = new Request.Builder()
                 .url("https://sandbox.apihub.citi.com/gcb/api/v1/moneyMovement/internalDomesticTransfers")
                 .post(body)

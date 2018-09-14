@@ -32,6 +32,7 @@ public class PatentPool {
 
     //新添加
     private int amount; //池子容量
+    private String profile; //专利池简介
 
     @ElementCollection(targetClass = String.class)
     private List<String> managers;//专利池的管理团队

@@ -13,8 +13,7 @@ public interface UserBLService {
     //个人用户手机验证码注册
     //获取短信验证码，返回发送的验证码；若手机号已被注册，返回"Exist"
     Map<String,String> getMessageCode(String telephone);
-    //验证码验证
-    ResultMessage verifyCode(Map<String,String> info);
+
     //个人用户手机号注册
     ResultMessage registerByPhone(Map<String,String> request);
 
