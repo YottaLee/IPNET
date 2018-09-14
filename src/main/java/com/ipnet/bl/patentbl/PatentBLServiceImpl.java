@@ -59,6 +59,7 @@ public class PatentBLServiceImpl implements PatentBLService {
         p.setInvitationPoolIdList(new ArrayList<String>());
         p.setState(free);
         p.setValid_period("2");      //有效期限设定;
+        this.patentDao.saveAndFlush(p);
         return null;
     }
 
