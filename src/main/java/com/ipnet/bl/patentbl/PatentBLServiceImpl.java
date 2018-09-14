@@ -45,7 +45,7 @@ public class PatentBLServiceImpl implements PatentBLService {
     }
 
     @Override
-    public ResultMessage entryPatent(String patentID, String patent, String holder, String url, String applyTime, String type, String district, String profile) {
+    public ResultMessage entryPatent(String patentID, String patent, String userId, String holder, String url, String applyTime, String type, String district, String profile) {
         Patent p = new Patent();
         p.setPatent_id(patentID);
         p.setPool_id("");
@@ -59,6 +59,7 @@ public class PatentBLServiceImpl implements PatentBLService {
         p.setInvitationPoolIdList(new ArrayList<String>());
         p.setState(free);
         p.setValid_period("2");      //有效期限设定;
+        this.patentDao.saveAndFlush(p);
         return null;
     }
 
