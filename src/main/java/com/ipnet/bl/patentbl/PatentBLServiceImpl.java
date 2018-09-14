@@ -278,16 +278,23 @@ public class PatentBLServiceImpl implements PatentBLService {
     }
 
     @Override
-    public PatentVO recommendPatent() {
+    public List<PatentVO> recommendPatent() {
         int random = (int)(Math.random());
         List<Patent> patents = this.patentDao.findAll();
-        Patent target = new Patent();
+        List<Patent> patentList= new ArrayList<Patent>();
         if(patents.size() == 0 || patents == null){
             return null;
         }
-        target = patents.get(random%patents.size());
-        PatentVO patentVO = (PatentVO) transHelper.transTO(target , PatentVO.class);
-        return  patentVO;
+        for(int i = 0 ; i <= random%patents.size(); i++){   //推荐的个数
+             int randIndex = (int)(Math.random());
+             patentList.add(patents.get(randIndex%patents.size()));
+        }
+
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return  voList;
     }
 
     private Patent getPatentById(String patentId) throws IDNotExistsException{

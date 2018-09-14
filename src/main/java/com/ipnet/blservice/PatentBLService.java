@@ -53,6 +53,6 @@ public interface PatentBLService {
 
      List<PatentVO> searchRelatedPatents();
 
-     PatentVO recommendPatent();
+    List<PatentVO> recommendPatent();
 
 }

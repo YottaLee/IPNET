@@ -182,7 +182,7 @@ public class PatentController {
     }
 
     @RequestMapping("/recommendPatent")
-    public @ResponseBody PatentVO recommendPatent(){
+    public @ResponseBody List<PatentVO> recommendPatent(){
         return service.recommendPatent();
     }
 
