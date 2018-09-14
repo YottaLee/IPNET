@@ -101,9 +101,8 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
 
         Response response = client.newCall(request).execute();
         JSONObject jsonObject = (JSONObject) JSONValue.parse(response.body().string());
-//        String controlFlowId = jsonObject.get("controlFlowId").toString();
-        //return controlFlowId;
-        return jsonObject.toString();
+      String controlFlowId = jsonObject.get("controlFlowId").toString();
+        return controlFlowId;
     }
 
     @Override
@@ -113,7 +112,7 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
 
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\"controlFlowId\":\""+controlFlowId+"\"}");
-        // RequestBody body = RequestBody.create(mediaType, "{\"controlFlowId\":\" "+controlFlowId+"\"}");    45534b7438634c567a566777354c5861486d59616c4665467a624e61724c73574b4c50494f386664306d6f3d
+        //RequestBody body = RequestBody.create(mediaType, "{\"controlFlowId\":\"45534b7438634c567a566777354c5861486d59616c4665467a624e61724c73574b4c50494f386664306d6f3d\"}");
         Request request = new Request.Builder()
                 .url("https://sandbox.apihub.citi.com/gcb/api/v1/moneyMovement/internalDomesticTransfers")
                 .post(body)

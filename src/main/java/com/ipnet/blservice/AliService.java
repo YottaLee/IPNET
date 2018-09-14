@@ -12,4 +12,6 @@ public interface AliService {
 
     //原样上传文件
     String uploadFile(String path, MultipartFile file);
+
+    String uploadBase64File(String path,String base64);
 }
