@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Contract {
+public class  Contract {
     private String contract_id;
     private String partyA;
     private String partyB;

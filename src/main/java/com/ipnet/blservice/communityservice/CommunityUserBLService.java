@@ -9,7 +9,7 @@ import com.ipnet.vo.communityvo.RecordVO;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface CommunityUserBLService {
+public interface  CommunityUserBLService {
 
     //模糊查找，根据关键词搜素用户
     List<BriefUser> searchByKeyword(String keyword);
