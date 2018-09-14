@@ -2,6 +2,7 @@ package com.ipnet.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("ipnet")
@@ -32,6 +33,11 @@ public class PageController {
     @RequestMapping("detail")
     public String detail(){
         return "detail";
+    }
+
+    @RequestMapping("file")
+    public String file(){
+        return "file";
     }
 
     @RequestMapping("introduce")

@@ -92,7 +92,8 @@ public class PatentController {
      * @param patentID 专利号
      * @param patent 专利
      * @param holder 持有人
-     * @param url 专利相关文件url
+     * @param url 专利相关图片url
+     * @param fileURL 文件url
      * @param applyTime 申请时间
      * @param type 专利类型
      * @param district 所属地区
@@ -101,7 +102,7 @@ public class PatentController {
      */
     @RequestMapping("/entryPatent")
     @ResponseBody
-    public ResultMessage entryPatent(String patentID, String patent, String holder,String url, String applyTime, String type, String district, String profile) {
+    public ResultMessage entryPatent(String patentID, String patent, String holder,String url,String fileURL, String applyTime, String type, String district, String profile) {
         return service.entryPatent(patentID , patent, holder, url ,applyTime , type, district, profile);
     }
 
