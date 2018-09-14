@@ -1,9 +1,7 @@
 package com.ipnet.controller.loancontroller;
 
-import com.ipnet.blservice.LoanBLService;
-import com.ipnet.enums.Patent_loan_state;
+import com.ipnet.blservice.loanblservice.LoanAllBLSerivce;
 import com.ipnet.enums.ResultMessage;
-import com.ipnet.vo.PatentVO;
 import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 public class LoanAllController {
 
     @Autowired
-    private LoanBLService loanBLService;
+    private LoanAllBLSerivce loanBLService;
 
     /**
      * 获取该合同的所有方信息

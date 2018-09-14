@@ -2,45 +2,29 @@ package com.ipnet.bl.loanbl;
 
 import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.blservice.EvaluationBLService;
-import com.ipnet.blservice.LoanBLService;
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.blservice.UserBLService;
-import com.ipnet.dao.ClaimDao;
+import com.ipnet.blservice.loanblservice.LoanAllBLSerivce;
+import com.ipnet.dao.InsuranceDao;
 import com.ipnet.dao.LoanDao;
-import com.ipnet.entity.Claim;
 import com.ipnet.entity.Loan;
-import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
-import com.ipnet.vo.financevo.ClaimVO;
-import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class LoanBL implements LoanBLService {
+public class LoanAllBL implements LoanAllBLSerivce{
+
 
     @Autowired
     private LoanDao loanDao;
     @Autowired
-    private ClaimDao claimDao;
-    @Autowired
     private UserBLService userBLService;
-    @Autowired
-    private PatentBLService patentBLService;
-    @Autowired
-    private EvaluationBLService evaluationBLService;
-    @Autowired
-    private PatentHelper patentHelper;
-
-    //LoanAllController
-
     /**
      * 获取该合同的所有方信息
      * @param loanID 贷款号
@@ -205,8 +189,8 @@ public class LoanBL implements LoanBLService {
                 loans=loanDao.findAllSortByTime();
                 break;
             case Insurance:
-               loans=loanDao.findByInsuranceSortByTime(userID);
-               break;
+                loans=loanDao.findByInsuranceSortByTime(userID);
+                break;
             case Financial:
                 loans=loanDao.findByBankSortByTime(userID);
                 break;
@@ -220,180 +204,5 @@ public class LoanBL implements LoanBLService {
             result.add(vo);
         }
         return result;
-    }
-
-    //LoanApplicationController
-
-    /**
-     * 将该专利的质押贷款保证保险申请提供给保险公司
-     *
-     * @param loanID    贷款号
-     * @param url       专利质押保险投保单url
-     * @param insurance 选择的保险公司
-     * @return ResultMessage
-     */
-    @Override
-    public ResultMessage chooseInsurance(String loanID, String url,String insurance) {
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        if(loanOptional.isPresent()){
-            Loan loan=loanOptional.get();
-            loan.setInsurance(insurance);
-            loan.setPolicy(url);
-            loanDao.saveAndFlush(loan);
-            return ResultMessage.Success;
-        }
-        return ResultMessage.Fail;
-    }
-
-    /**
-     * 获取保险申请文件的url
-     * @param loanID 贷款号
-     * @return url
-     */
-    @Override
-    public String getPolicy(String loanID){
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        return loanOptional.map(Loan::getPolicy).orElse(null);
-    }
-
-    /**
-     * 存取该专利贷款意向结果
-     *
-     * @param loanID 贷款号
-     * @param url 意向申请的文件路径
-     * @param money  意向金额
-     * @param time   意向期限
-     * @param bank   金融机构
-     * @return ResultMessage
-     */
-    @Override
-    public ResultMessage chooseBank(String loanID, String url,double money, String time, String bank) {
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        if(loanOptional.isPresent()){
-            Loan loan=loanOptional.get();
-            loan.setBank(bank);
-            loan.setExpect_money(money);
-            loan.setExpect_time(time);
-            loan.setApplication(url);
-            loanDao.saveAndFlush(loan);
-            return ResultMessage.Success;
-        }
-        return ResultMessage.Fail;
-    }
-
-    /**
-     * 获取贷款意向文件的url
-     * @param loanID 贷款号
-     * @return url
-     */
-    @Override
-    public String getApplicationToBank(String loanID){
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        return loanOptional.map(Loan::getApplication).orElse(null);
-    }
-
-    /**
-     * 存取该专利已经有贷款申请，可借此机会生成loanID
-     * @param userID 用户ID
-     * @param patentID 专利号
-     * @return 返回loanID
-     */
-    @Override
-    public String saveLoanApply(String userID,String patentID) {
-        String loanID=patentID;
-        String time=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        loanID=loanID+time;
-        Loan loan=new Loan();
-        loan.setLoanID(loanID);
-        loan.setPatentID(patentID);
-        loan.setPerson(userID);
-        loan.setTime(time);
-        String patentName= null;
-        try {
-            patentName = patentHelper.receivePatentName(patentID);
-        } catch (IDNotExistsException e) {
-            e.printStackTrace();
-        }
-        loan.setPatent(patentName);
-        loanDao.save(loan);
-        return loanID;
-    }
-
-    /**
-     * 判断该专利是否已经拥有评估结果
-     * @param patentID 专利号
-     * @return boolean
-     */
-    @Override
-    public boolean ifValue(String patentID) {
-        return evaluationBLService.ifValue(patentID);
-    }
-
-    /**
-     * 判断该专利是否已经填写贷款意向信息
-     * @param loanID 贷款号
-     * @return boolean
-     */
-    @Override
-    public boolean ifBankChosen(String loanID) {
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        return loanOptional.map(loan -> loan.getBank().equals("")||loan.getBank()==null).orElse(false);
-    }
-
-
-    @Override
-    public ResultMessage ifInsurance(String loanID, boolean ifPass) {
-        Loan loan=loanDao.getOne(loanID);
-        loan.setInsurancePass(ifPass);
-        loanDao.save(loan);
-        return ResultMessage.Success;
-    }
-
-    /**
-     * @Author: Jane
-     * @Description: 获取金融机构的理赔信息
-     * @Date: 2018/9/12 11:48
-     */
-
-
-    @Override
-    public ResultMessage Compensate(String loanID, String claimID) {
-//        Claim claim=claimDao.getOne(claimID);
-//        claim.setToClaim(ifPass);
-//        claimDao.saveAndFlush(claim);
-        return ResultMessage.Success;
-    }
-
-    /**
-     * @Author: Jane
-     * @Description: 获取贷款信息
-     * @Date: 2018/9/12 11:49
-     */
-    @Override
-    public LoanVO getInfo(String loanID) {
-        Loan loan=loanDao.getOne(loanID);
-        LoanVO loanVO=new LoanVO(loan);
-        return loanVO;
-    }
-
-    @Override
-    public LoanVO getApplication(String loanID) {
-        Loan loan=loanDao.getOne(loanID);
-        LoanVO loanVO=new LoanVO(loan);
-        loanVO.setMoney(loan.getExpect_money());
-        loanVO.setTime(loan.getExpect_time());
-        return loanVO;
-    }
-
-    @Override
-    public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
-        Loan loan=loanDao.getOne(loanID);
-        loan.setBank(bank);
-        loan.setBankPass(ifPass);
-        loan.setIfInsurance(ifInsurance);
-        loan.setAccept_money(money);
-        loan.setAccept_time(time);
-        loanDao.saveAndFlush(loan);
-        return ResultMessage.Success;
     }
 }
