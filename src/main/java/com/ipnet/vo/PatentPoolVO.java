@@ -27,6 +27,9 @@ public class PatentPoolVO {
     private String description;//专利池简介
     private Date createTime;//专利池的创建时间
 
+    private int amount; //池子容量
+    private String profile; //专利池简介
+
 
     private List<String> managers;//专利池的管理团队
 
