@@ -11,9 +11,9 @@ public interface RecBLService {
 
     ResultMessage buyPatentRec(String patent_id,int points);
 
-    ResultMessage buyRequireRec(String patent_id,int points);
+    ResultMessage buyRequireRec(String person_id, String require,String detail,int points);
 
-    ResultMessage buyManagerRec(String patent_id,int points);
+    ResultMessage buyManagerRec(String manager_id,int points);
 
     ArrayList<PatentRecVO> getPatentRecList();
 

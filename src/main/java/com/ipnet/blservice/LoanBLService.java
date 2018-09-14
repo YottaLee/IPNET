@@ -38,15 +38,10 @@ public interface LoanBLService {
 
     boolean ifBankChosen(String loanID);
 
-    //LoanInsuranceController
-    ResultMessage insuranceApplication(String loanID, String url,String person, String address, String time, String reason,
-                                       String bank, String bankName, String bankID, String insuranceID);
-
     ResultMessage ifInsurance(String loanID, boolean ifPass);
 
-    ClaimVO getInsurance(String loanID);
 
-    ResultMessage ifCompensate(String loanID, String claimID, boolean ifPass);
+    ResultMessage Compensate(String loanID, String claimID);
 
     //LoanBankController
     LoanVO getInfo(String loanID);

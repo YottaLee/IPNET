@@ -13,7 +13,6 @@ public enum Patent_loan_state {
     to_be_paid_by_bank,//待银行付款给质押人 9
     loaning,//质押中 10
     overdue,//逾期 11
-    to_be_compensation_by_insurance,//待保险公司赔付 12
-    to_be_compensation_by_evaluation,//待评估机构赔付 13
+    to_be_compensation//待赔付 12
 
 }

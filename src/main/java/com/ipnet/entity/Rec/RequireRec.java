@@ -1,6 +1,9 @@
 package com.ipnet.entity.Rec;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,6 +13,8 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "require_rec")
+@AllArgsConstructor
+@NoArgsConstructor
 public class RequireRec {
 
     @Id

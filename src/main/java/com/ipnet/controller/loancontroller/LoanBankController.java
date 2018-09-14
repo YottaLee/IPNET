@@ -60,15 +60,6 @@ public class LoanBankController {
         return submitApplication(loanID,bank,ifPass,ifInsurance,money,time);
     }
 
-    /**
-     * 获取选择放贷银行的贷款信息
-     * @param patentID
-     * @return
-     */
-//    @RequestMapping("/getBankList")
-//    @ResponseBody
-//    public ArrayList<Loan> getBankList(String patentID){
-//        return null;
-//    }
+
 
 }

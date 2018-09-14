@@ -342,15 +342,6 @@ public class LoanBL implements LoanBLService {
 
 
     @Override
-    public ResultMessage insuranceApplication(String loanID, String url,String person, String address, String time, String reason,
-                                              String bank, String bankName, String bankID, String insuranceID) {
-
-//        ClaimVO insurance=new ClaimVO(insuranceID,loanID,url, Patent_loan_state.to_be_compensation_by_insurance,person,address,time,reason,bank,bankName,bankID);
-
-        return ResultMessage.Success;
-    }
-
-    @Override
     public ResultMessage ifInsurance(String loanID, boolean ifPass) {
         Loan loan=loanDao.getOne(loanID);
         loan.setInsurancePass(ifPass);
@@ -360,19 +351,13 @@ public class LoanBL implements LoanBLService {
 
     /**
      * @Author: Jane
-     * @Description: 获取金融机构的保险申请信息
+     * @Description: 获取金融机构的理赔信息
      * @Date: 2018/9/12 11:48
      */
 
-    @Override
-    public ClaimVO getInsurance(String loanID) {
-//        ClaimVO claimVO =insuranceDao.getOne(loanID);
-//        return claimVO;
-        return null;
-    }
 
     @Override
-    public ResultMessage ifCompensate(String loanID, String claimID, boolean ifPass) {
+    public ResultMessage Compensate(String loanID, String claimID) {
 //        Claim claim=claimDao.getOne(claimID);
 //        claim.setToClaim(ifPass);
 //        claimDao.saveAndFlush(claim);
