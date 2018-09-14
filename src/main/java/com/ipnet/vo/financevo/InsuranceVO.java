@@ -26,6 +26,7 @@ public class InsuranceVO {
     private String patentID;//专利ID
     private String patent;//专利名称
     private String person; //专利持有人
+    private String userId;//专利持有人ID
     private String url;//投保申请的url
     private String bank; //银行名称
     private String insuranceCompany;//保险公司名称

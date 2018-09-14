@@ -87,6 +87,7 @@ $(document).ready(function () {
 
 
     $('#submit').on('click', function () {
+        var patentID = storage.getItem('patent_id');
 
         var file = myDropzone.getFilesWithStatus(Dropzone.ADDED);
         var fileName = document.getElementById("fileName").innerHTML;
@@ -138,7 +139,7 @@ $(document).ready(function () {
                         console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                     }
                 });
-
+                var money = 20000;//评估费用为20000
                 //跳入向评估公司申请的支付界面
                 var transaction = {
                     patentID: patentID,
@@ -146,8 +147,12 @@ $(document).ready(function () {
                     payer: holder,//付款方
                     payee: getEvaluationId(),//收款方
                     way: "专利评估",//评估机构只有一个
-                    money: money
+                    money: money//评估费用
                 };
+
+                storage.setItem('transaction',transaction);
+
+             //支付评估费用
 
                 window.location.href = "/ipnet/pay";
                 //支付成功后判断是否有意向信息
@@ -155,7 +160,6 @@ $(document).ready(function () {
                     url: 'applicant/ifBankChosen',
                     type: 'GET',
                     data: loanID,
-                    dataType: 'json',
                     success: function (data) {
                         if (data) {
                             window.location.href = "/ipnet/Applicant-loan2";
@@ -166,14 +170,14 @@ $(document).ready(function () {
                         }
 
                     },
-                    error: function () {
-
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                     }
                 })
 
             },
-            error: function () {
-
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
             }
         }).done(function (res) {
         }).fail(function (res) {
@@ -200,8 +204,8 @@ function getEvaluationId() {
         success: function (data) {
             return data;
         },
-        error: function () {
-            // alert("Network warning for posting the purpose of the loan")
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
 }
