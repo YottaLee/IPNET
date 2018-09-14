@@ -163,31 +163,5 @@ $(document).ready(function () {
 
 });
 
-function uploadFile() {
-    //   var chooseType = $('#tagType').val();
-    var isUpload = true;
-    var formData = new FormData();
-
-    formData.append('file', $('#file')[0].files[0]);
-    formData.append('name', 'das');
-    $.ajax({
-        url: '/upload/file',
-        type: 'POST',
-        cache: false,
-        data:
-            formData
-        ,
-        success:function (data) {
-            console.log(data);
-        },
-        processData: false,
-        contentType: false
-    }).done(function (res) {
-    }).fail(function (res) {
-    });
-
-
-};
-
 
 

@@ -499,7 +499,7 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                url: 'upload/image',//thisS.options.url,
+                url: '/upload/image',//thisS.options.url,
                 success:function (imageURL) {
                     uploadImageURL = imageURL;
                 },

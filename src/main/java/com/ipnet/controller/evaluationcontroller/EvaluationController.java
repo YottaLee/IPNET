@@ -36,8 +36,9 @@ public class EvaluationController {
      */
     @RequestMapping("/submitReport")
     @ResponseBody
-    public ResultMessage submitReport(String patentID,String url, int evaluation,double money) {
-        return evaluationBLService.submitReport(patentID,url,evaluation,money);
+    public ResultMessage submitReport(String patentID,String url,String rule,String tech, int evaluation,String result, double money) {
+        return null;
+       // return evaluationBLService.submitReport(patentID,url,evaluation,money);
     }
 
     /**

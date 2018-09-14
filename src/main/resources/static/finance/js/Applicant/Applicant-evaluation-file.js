@@ -102,10 +102,7 @@ $(document).ready(function () {
             url: '/upload/file',
             type: 'POST',
             cache: false,
-            data: {
-                path: path,
-                file: formData
-            },
+            data:  formData,
             processData: false,
             contentType: false,
             success: function (url) {
