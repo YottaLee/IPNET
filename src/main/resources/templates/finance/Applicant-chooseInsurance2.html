@@ -69,6 +69,11 @@
     <link href="/finance/plugins/dropzone/dropzone.min.css" rel="stylesheet">
 
 
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
+
+
     <!--JAVASCRIPT-->
     <!--=================================================-->
 
@@ -186,6 +191,11 @@
 <!--TIPS-->
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
+<div class="top col-md-12" style="height: 56px;background: #3b3e43">
+    <img src="https://i.imgur.com/jwJTKCL.png"
+         style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <span style="color: white;font-size: 15px">IPNET支付交易中心</span>
+</div>
 <div id="container" class="">
 
 
@@ -230,7 +240,6 @@
             <div id="page-content">
                 <div class="row">
                     <div class="col-lg-12">
-                        <hr class="new-section-sm bord-no">
                         <h3 class="text-main pad-btm bord-btm">投保</h3>
                         <div class="panel">
 
@@ -248,25 +257,18 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <div class="panel">
-                                                        <div class="panel-heading">
-                                                            <h3 class="panel-title">购买保险提醒</h3>
-                                                        </div>
-                                                        <div class="panel-body">
-                                                            <div class="col-sm-12">
-                                                                <p>您的贷款已被金融机构审核通过，根据金融机构要求，您需要购买专利质押贷款保证保险，请选择保险公司</p>
-                                                            </div>
-                                                            <label class="col-sm-1 control-label">意向保险</label>
-                                                            <div class="col-sm-11">
-                                                                <select id="demo-chosen-select"
-                                                                        data-placeholder="选择保险..."
-                                                                        tabindex="2" style="width: 100%">
-                                                                    <option value="平安保险">平安保险</option>
-                                                                    <option value="太平洋保险">太平洋保险</option>
-                                                                    <option value="c保险">c保险</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-sm-12">
+                                                        <p>您的贷款已被金融机构审核通过，根据金融机构要求，您需要购买专利质押贷款保证保险，请选择保险公司</p>
+                                                    </div>
+                                                    <label class="col-sm-1 control-label">意向保险</label>
+                                                    <div class="col-sm-11">
+                                                        <select id="demo-chosen-select"
+                                                                data-placeholder="选择保险..."
+                                                                tabindex="2" style="width: 100%">
+                                                            <option value="平安保险">平安保险</option>
+                                                            <option value="太平洋保险">太平洋保险</option>
+                                                            <option value="c保险">c保险</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -310,7 +312,8 @@
                                                         <img class="dz-img" data-dz-thumbnail>
                                                     </div>
                                                     <div class="media-body">
-                                                        <p id="fileName" class="text-main text-bold mar-no text-overflow"
+                                                        <p id="fileName"
+                                                           class="text-main text-bold mar-no text-overflow"
                                                            data-dz-name></p>
                                                         <span class="dz-error text-danger text-sm"
                                                               data-dz-errormessage></span>
@@ -368,7 +371,14 @@
 <!-- END OF CONTAINER -->
 
 
-
+<div id="footerwrap">
+    <div class="container">
+        <h4><img src="https://i.imgur.com/qrRDHYM.png"
+                 style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href=""
+                                                                                                              style="color: rgba(61, 201, 179, 0.8)">NJU
+            IDigger</a> - Copyright 2018</h4>
+    </div>
+</div>
 <!--===================================================-->
 <!-- END SETTINGS -->
 <script src="/finance/js/Applicant/Applicant-chooseInsurance.js"></script>

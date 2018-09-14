@@ -40,7 +40,7 @@ $('#submit').on('click', function () {
             ifPass: ifPass
         },
         success: function (data) {
-            window.location.href = "/finance/Evaluation-reportFinish";
+            window.location.href = "/ipnet/Evaluation-reportFinish";
         },
         error: function () {
             // alert("Network warning for posting the purpose of the loan")

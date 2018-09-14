@@ -1,5 +1,5 @@
-var n_msg="";
-var p_msg="";
+var n_msg = "";
+var p_msg = "";
 var d_msg = "";
 var n_valid = 0;
 var p_valid = 0;
@@ -7,15 +7,15 @@ var isVertifySucc = false;  //var d_valid = 0;
 var oUsername = "";
 var oPassword = "";
 
-window.onload=function(){
-    var aInput=document.getElementsByTagName('input');
-    var oUser=aInput[0];
-    var oPwd=aInput[1];
+window.onload = function () {
+    var aInput = document.getElementsByTagName('input');
+    var oUser = aInput[0];
+    var oPwd = aInput[1];
 
-    var aP=document.getElementsByTagName('p');
-    var all_msg=aP[0];
-    n_msg="";
-    p_msg="";
+    var aP = document.getElementsByTagName('p');
+    var all_msg = aP[0];
+    n_msg = "";
+    p_msg = "";
     d_msg = "";
     n_valid = 0;
     p_valid = 0;
@@ -25,28 +25,28 @@ window.onload=function(){
 
     //用户名检测
 
-    oUser.onfocus=function(){
+    oUser.onfocus = function () {
         oUser.removeAttribute("placeholder");
     }
 
-    oUser.onkeyup=function(){
+    oUser.onkeyup = function () {
 
     }
 
-    oUser.onblur=function(){
+    oUser.onblur = function () {
         var tel = /1[3|4|5|7|8][0-9]\d{8}$/;
         n_valid = 0;
-        if(this.value==""){
+        if (this.value == "") {
             n_msg = "手机号不可为空";
-            all_msg.innerHTML=n_msg + "<br /><br />";
-        }else if(!tel.test(this.value)){
+            all_msg.innerHTML = n_msg + "<br /><br />";
+        } else if (!tel.test(this.value)) {
             n_msg = "手机号不正确  ";
-            all_msg.innerHTML=n_msg + "<br /><br />";
-        }else{
+            all_msg.innerHTML = n_msg + "<br /><br />";
+        } else {
             n_valid = 1;
             oUsername = this.value;
             n_msg = "";
-            all_msg.innerHTML=n_msg + "<br /><br />";
+            all_msg.innerHTML = n_msg + "<br /><br />";
         }
 
         /*if(n_valid == 1 && p_valid == 1){
@@ -59,28 +59,28 @@ window.onload=function(){
 
     //密码检测
 
-    oPwd.onfocus=function(){
-        if(n_valid == 0){
-            if(oUser.value == ""){
+    oPwd.onfocus = function () {
+        if (n_valid == 0) {
+            if (oUser.value == "") {
                 n_msg = "手机号不可为空";
             }
             all_msg.innerHTML = n_msg + "<br /><br />";
         }
         oPwd.removeAttribute("placeholder");
     }
-    oPwd.onblur=function(){
-        if(n_valid == 0){
+    oPwd.onblur = function () {
+        if (n_valid == 0) {
             all_msg.innerHTML = n_msg + "<br /><br />";
         }
-        else if(n_valid == 1 && this.value==""){
+        else if (n_valid == 1 && this.value == "") {
             p_msg = "密码不可为空";
             all_msg.innerHTML = p_msg + "<br /><br />";
         }
-        else{
+        else {
             p_valid = 1;
             oPassword = this.value;
             p_msg = "";
-            all_msg.innerHTML=n_msg + p_msg + "<br /><br />";
+            all_msg.innerHTML = n_msg + p_msg + "<br /><br />";
         }
         //oPwd.setAttribute("placeholder");
         //oPwd.style.placeholder='请输入确认密码';
@@ -134,15 +134,16 @@ window.onload=function(){
     　　changedTouches：表示自上次触摸以来发生了什么改变的Touch对象的数组。
         */
         var left = (event.clientX || event.changedTouches[0].clientX) - dragHandler.clientWidth / 2;
-        if(left < 0) {
+        if (left < 0) {
             left = 0;
-        } else if(left > maxHandlerOffset) {
+        } else if (left > maxHandlerOffset) {
             left = maxHandlerOffset;
             verifySucc();
         }
         dragHandler.style.left = left + "px";
         dragBg.style.width = dragHandler.style.left;
     }
+
     function onDragHandlerMouseUp(event) {
         document.removeEventListener("mousemove", onDragHandlerMouseMove);
         document.removeEventListener("mouseup", onDragHandlerMouseUp);
@@ -173,15 +174,18 @@ window.onload=function(){
 
 }
 
-function loginMsg(){
+function loginMsg() {
     //1-调用后端的方法验证（待定）
     //2-若验证为真，则跳转到登录后的主页；若为假，则提示失败原因（待定）
 
     var content = "";
-    if(n_valid == 1 && p_valid == 1 && isVertifySucc == true){
-        var loginreq = {};
-        loginreq.username = oUsername;
-        loginreq.password = oPassword;
+    if (n_valid == 1 && p_valid == 1 && isVertifySucc == true) {
+        /*loginreq.username = oUsername;
+        loginreq.password = oPassword;*/
+        var loginreq = {
+            username: oUsername,
+            password: oPassword
+        };
 
         $.ajax({
             url: "/user/phoneLogin",
@@ -190,37 +194,73 @@ function loginMsg(){
             dataType: "json",
             data: JSON.stringify(loginreq),
             success: function (data) {
-                if (data == "PersonLogin"){
+                if (data == "PersonLogin") {
                     content = "登录成功！即将跳转 . . .";
-                    TINY.box.show(content,0,0,0,0,2);
+                    TINY.box.show(content, 0, 0, 0, 0, 2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "/ipnet/pc_eWallet";
-                    },2000);
+                        window.location.href = "/ipnet/home";
+                    }, 2000);
                 }
-                else if(data == "NoUser"){
+                else if (data == "NoUser") {
                     content = "用户不存在！再试一次 . . .";
-                    TINY.box.show(content,0,0,0,0,3);
+                    TINY.box.show(content, 0, 0, 0, 0, 3);
                 }
-                else if(data == "PassError"){
+                else if (data == "PassError") {
                     content = "密码错误！再试一次 . . .";
-                    TINY.box.show(content,0,0,0,0,3);
+                    TINY.box.show(content, 0, 0, 0, 0, 3);
                 }
                 else {
                     content = "未知错误！再试一次 . . .";
-                    TINY.box.show(content,0,0,0,0,3);
+                    TINY.box.show(content, 0, 0, 0, 0, 3);
                 }
             },
             error: function () {
-                alert("req.username:" + loginreq.username);
                 content = "请求失败！再试一次 . . .";
-                TINY.box.show(content,0,0,0,0,3);
+                TINY.box.show(content, 0, 0, 0, 0, 3);
             }
         });
 
     }
-    else{
+    else {
         content = "登录失败！再试一次 . . .";
-        TINY.box.show(content,0,0,0,0,3);
+        TINY.box.show(content, 0, 0, 0, 0, 3);
     }
 }
+
+//跳转界面
+/*function jump(userId) {
+    $.ajax({
+        url: "user/getUserRole",
+        dataType: 'json',
+        type: 'GET',
+        data: {
+            userID: userId
+        },
+        success: function (role) {
+            switch (role) {
+                case 0:
+                    window.location.href = "/ipnet/home";//企业
+                    break;
+                case 1:
+                    window.location.href = "/ipnet/home";//个人
+                    break;
+                case 2:
+                    window.location.href = "/ipnet/Evaluation-IP-list";//评估机构
+                    break;
+                case 3:
+                    window.location.href = "/ipnet/Bank-IP-list";//金融机构
+                    break;
+                case 4:
+                    window.location.href = "/ipnet/Insurance-IP-lsit";//保险公司
+                    break;
+                default:
+                    window.location.href = "/ipnet/home";//默认
+                    break;
+            }
+        },
+        error: function () {
+
+        }
+    });
+}*/

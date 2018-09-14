@@ -69,5 +69,5 @@ $("#demo-btn-addrow").on('click',function () {
 
 function checkDetail(patentPoolID){
     storage.patentPoolID = patentPoolID;
-    window.location.href = "/finance/Person-IP-list";
+    window.location.href = "/ipnet/Person-IP-list";
 }
