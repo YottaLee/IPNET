@@ -13,6 +13,6 @@ public class AccountController {
 
     @RequestMapping("/MoneyMove")
     public @ResponseBody boolean MoneyMove(@RequestParam String srcAccount , @RequestParam String destAccount ,@RequestParam double amount) throws IDNotExistsException{
-         return service.MoneyMove(srcAccount , destAccount , amount);
+         return service.MoneyMove(srcAccount , destAccount ,amount);
     }
 }
