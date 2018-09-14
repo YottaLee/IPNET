@@ -18,6 +18,8 @@ public class Claim {
     private Patent_loan_state loan_state;//专利贷款状态
     private String person; //银行名称 默认唯一
 
+    private String evaluate_id;
+    private String insurance_id;
     private double government_money;
     private double evaluate_moey;
     private double insurance_money;

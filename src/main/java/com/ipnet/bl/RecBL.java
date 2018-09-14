@@ -6,15 +6,19 @@ import com.ipnet.dao.RequireRecDao;
 import com.ipnet.entity.Rec.PatentOrManagerRec;
 import com.ipnet.entity.Rec.RequireRec;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.recvo.ManagerRecVO;
 import com.ipnet.vo.recvo.PatentRecVO;
 import com.ipnet.vo.recvo.RequireRecVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+@Service
 public class RecBL implements RecBLService {
 
     @Autowired
@@ -54,17 +58,33 @@ public class RecBL implements RecBLService {
     }
 
     @Override
-    public ArrayList<PatentRecVO> getPatentRecList() {
-        return null;
+    public ArrayList<PatentRecVO> getPatentRecList() throws IDNotExistsException {
+        List<PatentOrManagerRec> patentOrManagerRecs=patentOrManagerRecDao.findPatentOrManagerRecsByType(0);
+        ArrayList<PatentRecVO> patentRecVOS=new ArrayList<>();
+        for(PatentOrManagerRec patentOrManagerRec:patentOrManagerRecs){
+            patentRecVOS.add(new PatentRecVO(patentOrManagerRec));
+        }
+        return patentRecVOS;
+
     }
 
     @Override
     public ArrayList<RequireRecVO> getRequireRecList() {
-        return null;
+        List<RequireRec> requireRecs=  requireRecDao.findAll();
+        ArrayList<RequireRecVO> requireRecVOS=new ArrayList<>();
+        for(RequireRec requireRec:requireRecs){
+            requireRecVOS.add(new RequireRecVO(requireRec));
+        }
+        return requireRecVOS;
     }
 
     @Override
-    public ArrayList<ManagerRecVO> getManagerRecList() {
-        return null;
+    public ArrayList<ManagerRecVO> getManagerRecList() throws IDNotExistsException {
+        List<PatentOrManagerRec> patentOrManagerRecs=patentOrManagerRecDao.findPatentOrManagerRecsByType(1);
+        ArrayList<ManagerRecVO> managerRecVOS=new ArrayList<>();
+        for(PatentOrManagerRec patentOrManagerRec:patentOrManagerRecs){
+            managerRecVOS.add(new ManagerRecVO(patentOrManagerRec));
+        }
+        return managerRecVOS;
     }
 }

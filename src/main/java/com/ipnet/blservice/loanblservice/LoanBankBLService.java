@@ -1,23 +1,16 @@
-package com.ipnet.blservice;
-
-import java.util.ArrayList;
+package com.ipnet.blservice.loanblservice;
 
 import com.ipnet.enums.ResultMessage;
-import com.ipnet.vo.financevo.ClaimVO;
 import com.ipnet.vo.financevo.LoanVO;
 
-public interface LoanBLService {
+public interface LoanBankBLService {
 
-
-    ResultMessage ifInsurance(String loanID, boolean ifPass);
-
-
-    ResultMessage Compensate(String loanID, String claimID);
-
-    //LoanBankController
+    //获取贷款信息
     LoanVO getInfo(String loanID);
 
+    //获取贷款意向
     LoanVO getApplication(String loanID);
 
+    //银行提交通过意见
     ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time);
 }
