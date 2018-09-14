@@ -4,13 +4,14 @@ import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.blservice.LoanBLService;
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.blservice.UserBLService;
-import com.ipnet.dao.InsuranceDao;
+import com.ipnet.dao.ClaimDao;
 import com.ipnet.dao.LoanDao;
+import com.ipnet.entity.Claim;
 import com.ipnet.entity.Loan;
 import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
-import com.ipnet.vo.financevo.InsuranceVO;
+import com.ipnet.vo.financevo.ClaimVO;
 import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class LoanBL implements LoanBLService {
     @Autowired
     private LoanDao loanDao;
     @Autowired
-    private InsuranceDao insuranceDao;
+    private ClaimDao claimDao;
     @Autowired
     private UserBLService userBLService;
     @Autowired
@@ -332,11 +333,11 @@ public class LoanBL implements LoanBLService {
 
 
     @Override
-    public ResultMessage insuranceApplication(String insurance_contractid,String loanID, String url,String person, String address, String time, String reason,
-                                              String bank, String bankName, String bankID, String insuranceID, int money) {
+    public ResultMessage insuranceApplication(String loanID, String url,String person, String address, String time, String reason,
+                                              String bank, String bankName, String bankID, String insuranceID) {
 
-        InsuranceVO insurance=new InsuranceVO(insurance_contractid,loanID,url, Patent_loan_state.to_be_compensation_by_insurance,person,address,time,reason,bank,bankName,bankID,insuranceID,money);
-        insuranceDao.saveAndFlush(insurance);
+//        ClaimVO insurance=new ClaimVO(insuranceID,loanID,url, Patent_loan_state.to_be_compensation_by_insurance,person,address,time,reason,bank,bankName,bankID);
+
         return ResultMessage.Success;
     }
 
@@ -355,17 +356,17 @@ public class LoanBL implements LoanBLService {
      */
 
     @Override
-    public InsuranceVO getInsurance(String loanID) {
-        InsuranceVO insuranceVO=insuranceDao.getOne(loanID);
-        return insuranceVO;
+    public ClaimVO getInsurance(String loanID) {
+//        ClaimVO claimVO =insuranceDao.getOne(loanID);
+//        return claimVO;
+        return null;
     }
 
     @Override
-    public ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass) {
-        Loan loan=loanDao.getOne(loanID);
-        loan.setInsurance(insuranceID);
-        loan.setToClaim(ifPass);
-        loanDao.save(loan);
+    public ResultMessage ifCompensate(String loanID, String claimID, boolean ifPass) {
+//        Claim claim=claimDao.getOne(claimID);
+//        claim.setToClaim(ifPass);
+//        claimDao.saveAndFlush(claim);
         return ResultMessage.Success;
     }
 

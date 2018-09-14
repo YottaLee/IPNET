@@ -25,7 +25,7 @@ public class Post {
     private Post_state post_state;
     private String content_url;
     private String brief_intro;
-    private Date publish_time;
+    private String publish_time;
     private long visits;
     private long remark_num;
     private long interest_num;//关注数

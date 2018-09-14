@@ -19,9 +19,11 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.beans.SimpleBeanInfo;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -106,7 +108,9 @@ public class PostBL implements PostBLService {
         post.setPost_tag(post_tag);
         post.setBrief_intro(brief_intro);
         post.setContent_url(content_url);
-        post.setPublish_time(new Date());
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String day=df.format(new Date());
+        post.setPublish_time(day);
         post.setVisits(0);
         post.setRemark_num(0);
         post.setRemark_content(new ArrayList<>());
