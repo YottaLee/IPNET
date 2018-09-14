@@ -112,7 +112,7 @@ $(document).ready(function () {
         if (suffix == 'jpg' || suffix == 'png' || suffix == 'gif') {
             if (file.length == 1) {
                 if (role == 0 || role == 1)
-                    alert("请上传知识产权局和财政局的签字");
+                    alertFile("请上传知识产权局和财政局的签字");
                 else {
                     var path = loanID + "/质押贷款保险合同/" + userId + "." + suffix;
                     var formData = new FormData();
@@ -138,7 +138,7 @@ $(document).ready(function () {
                                     url: data
                                 },
                                 success: function () {
-                                    window.location.href = "All-loan-check.html";
+                                    window.location.href = "/ipnet/All-loan-check";
                                 },
                                 error: function () {
 
@@ -153,10 +153,10 @@ $(document).ready(function () {
                 }
             }
             else if (file.length != 2) {
-                alert("请上传正确数目的文件");
+                alertFile('请先上传正确数目的文件!');
             } else {
                 if (role >= 2)
-                    alert("请上传正确数目的文件");
+                    alertFile('请先上传正确数目的文件!');
                 else {
                     var firm = [];
                     firm[0] = loanID + "/质押贷款保险合同/知识产权局." + suffix;
@@ -185,7 +185,7 @@ $(document).ready(function () {
                                         url: data
                                     },
                                     success: function () {
-                                        window.location.href = "All-loan-check.html";
+                                        window.location.href = "/ipnet/All-loan-check";
                                     },
                                     error: function () {
 
@@ -203,7 +203,7 @@ $(document).ready(function () {
             }
         }
         else {
-            alert("请上传图片文件");
+            alertFile('请上传图片文件!');
             myDropzone.removeAllFiles(true);
             uploadBtn.prop('disabled', true);
             removeBtn.prop('disabled', true);
@@ -219,4 +219,20 @@ $(document).ready(function () {
     });
 
 });
+
+function alertFile(str) {
+
+    $.alert({
+        title: str,
+        content: '',
+        confirmButton: '我知道了',
+        confirmButtonClass: 'btn-primary',
+        icon: 'fa fa-info',
+        animation: 'zoom',
+        confirm: function () {
+
+        }
+    });
+
+}
 

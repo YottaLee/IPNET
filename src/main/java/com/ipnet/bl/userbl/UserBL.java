@@ -40,9 +40,6 @@ public class UserBL implements UserBLService{
     @Autowired
     private MD5Util md5Util;
 
-    @Autowired
-    private TransHelper transHelper;
-
     @Value("${spring.mail.username}")
     private String fromEmail;
     @Value("${constant.codeKey}")
@@ -76,8 +73,7 @@ public class UserBL implements UserBLService{
           hash--哈希值(之前后端传到前端的)
           code--用户填写的验证码
     */
-    @Override
-    public ResultMessage verifyCode(Map<String, String> info) {
+    private ResultMessage verifyCode(Map<String, String> info) {
         String requestHash=info.get("hash");
 
         String time=info.get("time");
@@ -258,7 +254,7 @@ public class UserBL implements UserBLService{
         message.setSubject("测试邮件");
 
         //发送邮件
-        String sb = "点击下面链接激活账号，48小时生效，否则重新注册账号，链接只能使用一次，请尽快激活！\n" + "http://localhost:8000/user/register?email=" +
+        String sb = "点击下面链接激活账号，48小时生效，否则重新注册账号，链接只能使用一次，请尽快激活！\n" + "http://localhost:8000/user/checkEmail?email=" +
                 toEmail +
                 "&code=" +
                 code;

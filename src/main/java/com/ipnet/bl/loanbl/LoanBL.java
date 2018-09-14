@@ -1,5 +1,6 @@
 package com.ipnet.bl.loanbl;
 
+import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.blservice.LoanBLService;
 import com.ipnet.blservice.PatentBLService;
@@ -12,6 +13,7 @@ import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
 import com.ipnet.vo.financevo.ClaimVO;
+import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,8 @@ public class LoanBL implements LoanBLService {
     private PatentBLService patentBLService;
     @Autowired
     private EvaluationBLService evaluationBLService;
+    @Autowired
+    private PatentHelper patentHelper;
 
     //LoanAllController
 
@@ -304,7 +308,12 @@ public class LoanBL implements LoanBLService {
         loan.setPatentID(patentID);
         loan.setPerson(userID);
         loan.setTime(time);
-        String patentName="";//patentBLService.getPatentName(patentID);
+        String patentName= null;
+        try {
+            patentName = patentHelper.receivePatentName(patentID);
+        } catch (IDNotExistsException e) {
+            e.printStackTrace();
+        }
         loan.setPatent(patentName);
         loanDao.save(loan);
         return loanID;

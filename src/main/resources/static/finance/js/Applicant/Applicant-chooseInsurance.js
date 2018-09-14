@@ -20,7 +20,7 @@ $('#submit').on('click', function () {
             },
             success: function (data) {
                 if (data == 3)
-                    window.location.href = "Applicant-chooseFinish.html";
+                    window.location.href = "/ipnet/Applicant-chooseFinish";
                 else
                     alert(data);
             },

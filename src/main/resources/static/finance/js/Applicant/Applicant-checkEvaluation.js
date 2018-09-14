@@ -6,8 +6,8 @@ $.ajax({
     dataType: "json",
     data: patentID,
     success: function (data) {
-        document.getElementById("patentID").innerHTML = patentID;
-        document.getElementById("pur-evaluation").innerHTML = data.evaluation;
+      //  document.getElementById("patentID").innerHTML = patentID;
+        document.getElementById("evaluation").innerHTML = str(data.evaluation)+"¥";
         document.getElementById("value").href = data.url;
     },
     error: function () {
@@ -17,5 +17,5 @@ $.ajax({
 
 $("#submit").on('click',function () {
     storage.removeItem('patentID');
-    window.location.href = "Person-IP-list.html";
+    window.location.href = "/ipnet/Person-IP-list";
 });

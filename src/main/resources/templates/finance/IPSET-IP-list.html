@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | Nifty - Admin Template</title>
+    <title>专利池内专利管理</title>
 
 
     <!--STYLESHEET-->
@@ -29,7 +29,9 @@
     <link href="/finance/css/demo/nifty-demo.min.css" rel="stylesheet">
 
 
-
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
 
 
 
@@ -96,6 +98,10 @@
 
 </head>
 <body>
+<div class="top col-md-12" style="height: 56px;background: #3b3e43">
+    <img src="https://i.imgur.com/jwJTKCL.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <span style="color: white;font-size: 15px">IPNET支付交易中心</span>
+</div>
 <div id="container" class="effect aside-float aside-bright mainnav-lg">
 
 
@@ -117,7 +123,7 @@
                             <!-- Simple profile -->
                             <div class="text-center pad-all bord-btm">
                                 <div class="pad-ver">
-                                    <img src="img/profile-photos/1.png" class="img-lg img-border img-circle" alt="Profile Picture">
+                                    <img src="/finance/img/profile-photos/1.png" class="img-lg img-border img-circle" alt="Profile Picture">
                                 </div>
                                 <h4 class="text-lg text-overflow mar-no">专利池</h4>
                                 <p class="text-sm text-muted">ln's IPset1</p>
@@ -161,9 +167,17 @@
                                         <h3 class="panel-title">相关专利</h3>
                                     </div>
                                     <div class="list-group bg-trans">
+                                        <div id="related-ip-list">
+                                            <script>
+                                                var script = document.createElement("script");
+                                                script.type = "text/javascript";
+                                                script.src = "/finance/js/IPManage/IPSET-list.js";
+                                                document.body.appendChild(script);
+                                            </script>
+                                        </div>
                                         <a href="#" class="list-group-item">
                                             <div class="media-left pos-rel">
-                                                <img class="img-circle img-xs" src="img/profile-photos/2.png" alt="Profile Picture">
+                                                <img class="img-circle img-xs" src="/finance/img/profile-photos/2.png" alt="Profile Picture">
                                                 <i class="badge badge-success badge-stat badge-icon pull-left"></i>
                                             </div>
                                             <div class="media-body">
@@ -173,7 +187,7 @@
                                         </a>
                                         <a href="#" class="list-group-item">
                                             <div class="media-left pos-rel">
-                                                <img class="img-circle img-xs" src="img/profile-photos/7.png" alt="Profile Picture">
+                                                <img class="img-circle img-xs" src="/finance/img/profile-photos/7.png" alt="Profile Picture">
                                             </div>
                                             <div class="media-body">
                                                 <p class="mar-no">专利3</p>
@@ -182,7 +196,7 @@
                                         </a>
                                         <a href="#" class="list-group-item">
                                             <div class="media-left pos-rel">
-                                                <img class="img-circle img-xs" src="img/profile-photos/1.png" alt="Profile Picture">
+                                                <img class="img-circle img-xs" src="/finance/img/profile-photos/1.png" alt="Profile Picture">
                                                 <i class="badge badge-info badge-stat badge-icon pull-left"></i>
                                             </div>
                                             <div class="media-body">
@@ -192,7 +206,7 @@
                                         </a>
                                         <a href="#" class="list-group-item">
                                             <div class="media-left pos-rel">
-                                                <img class="img-circle img-xs" src="img/profile-photos/4.png" alt="Profile Picture">
+                                                <img class="img-circle img-xs" src="/finance/img/profile-photos/4.png" alt="Profile Picture">
                                             </div>
                                             <div class="media-body">
                                                 <p class="mar-no">专利5</p>
@@ -376,7 +390,11 @@
 </div>
 <!--===================================================-->
 <!-- END OF CONTAINER -->
-
+<div id="footerwrap">
+    <div class="container">
+        <h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+    </div>
+</div>
 
 
 <!-- SETTINGS - DEMO PURPOSE ONLY -->

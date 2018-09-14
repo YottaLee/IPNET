@@ -386,7 +386,7 @@
 }
 
 .article h1.article-title {
-    word-break: break-word;
+    /*word-break: break-word;*/
     font-size: 28px;
     font-weight: 400;
     padding-top: 15px;
@@ -696,7 +696,7 @@ label.cmt-anonymous {
 
 .article-list .abstract-img {
     width: 180px;
-    background-image: url("../../../images/index-bg.svg");
+    /*background-image: url("../../../images/index-bg.svg");*/
     background-color: rgba(0,0,0,.02);
     background-size: cover;
     background-repeat: no-repeat;
@@ -1023,7 +1023,7 @@ label.cmt-anonymous {
 }
 
 .tag-info .avatar {
-    background-image: url(../../../images/index-bg.svg);
+    /*background-image: url(../../../images/index-bg.svg);*/
     height: 72px;
     width: 72px;
     background-color: transparent
@@ -1083,7 +1083,7 @@ code .atn,code .atv,code .dec,code .lit,code .pln,code .pun,code .tag,code .typ 
     border: 1px solid #eee;
     border-radius: 5px;
     background-color: #fff;
-    background-image: url(../../../images/m-char.png);
+    /*background-image: url(../../../images/m-char.png);*/
     background-size: cover
 }
 
@@ -1163,7 +1163,7 @@ code .atn,code .atv,code .dec,code .lit,code .pln,code .pun,code .tag,code .typ 
 
 .index__top .preview {
     display: block;
-    background-image: url("../../../images/index-bg.svg");
+    /*background-image: url("../../../images/index-bg.svg");*/
     background-color: rgba(0,0,0,.02);
     background-size: cover;
     background-repeat: no-repeat;
@@ -1190,7 +1190,7 @@ code .atn,code .atv,code .dec,code .lit,code .pln,code .pun,code .tag,code .typ 
 
 .index__recent .preview {
     display: block;
-    background-image: url("../../../images/index-bg.svg");
+    /*background-image: url("../../../images/index-bg.svg");*/
     background-color: rgba(0,0,0,.02);
     background-size: cover;
     background-repeat: no-repeat;
@@ -1232,7 +1232,7 @@ code .atn,code .atv,code .dec,code .lit,code .pln,code .pun,code .tag,code .typ 
 .index__login .bg {
     background-size: contain;
     background-position: 50%;
-    background-image: url(../images/index.png);
+    /*background-image: url(../images/index.png);*/
     background-repeat: no-repeat
 }
 
@@ -1272,7 +1272,7 @@ code .atn,code .atv,code .dec,code .lit,code .pln,code .pun,code .tag,code .typ 
     margin-top: -48px;
     height: 60px;
     width: 60px;
-    background-image: url("../../../images/index-bg.svg");
+    /*background-image: url("../../../images/index-bg.svg");*/
     background-color: rgba(0,0,0,.02);
     background-size: cover;
     background-repeat: no-repeat;
@@ -1471,7 +1471,7 @@ code .atn,code .atv,code .dec,code .lit,code .pln,code .pun,code .tag,code .typ 
 }
 
 .chainbook__code-img,.tags__page .avatar {
-    background-image: url("../../../images/index-bg.svg")
+    /*background-image: url("../../../images/index-bg.svg")*/
 }
 
 .tags__page .pagination--top {

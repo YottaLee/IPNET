@@ -39,7 +39,7 @@ $.ajax({
 });
 
 function toIndex() {
-    window.location.href = "Permit-Contract.html"
+    window.location.href = "/ipnet/Permit-Contract"
 }
 
 function transaction(patentID) {
@@ -64,9 +64,9 @@ function evaluation(patentID) {
         data: patentID,
         success: function (data) {
             if (data) {
-                window.location.href = "Applicant-checkEvaluation.html";
+                window.location.href = "/ipnet/Applicant-checkEvaluation";
             } else {
-                window.location.href = "Applicant-evaluation2.html";
+                window.location.href = "/ipnet/Applicant-evaluation2";
             }
         },
         error: function () {
@@ -90,7 +90,7 @@ function loan(patentID) {
                 data: patentID,
                 success: function (data) {
                     if (data) {
-                        window.location.href = "Applicant-loan2.html";
+                        window.location.href = "/ipnet/Applicant-loan2";
                     } else {
                        //是否有最新的贷款
                         $.ajax({
@@ -132,9 +132,9 @@ function loan(patentID) {
                                                        },
                                                        success: function (data) {
                                                            if (data)
-                                                               window.location.href = "All-loan-check.html";
+                                                               window.location.href = "/ipnet/All-loan-check";
                                                            else
-                                                               window.location.href = "All-loan-contract.html";
+                                                               window.location.href = "/ipnet/All-loan-contract";
                                                        }
                                                    });
                                                    break;
@@ -161,7 +161,7 @@ function loan(patentID) {
                                         },
                                         success: function (loanID) {
                                             storage.loanID = loanID;
-                                            window.location.href = "Applicant-evaluation2.html";
+                                            window.location.href = "/ipnet/Applicant-evaluation2";
                                         },
                                         error: function () {
 
@@ -232,6 +232,7 @@ function stateToText(state) {
 function payForEvaluation(patentID) {
     var patent = "";
     var holder = "";
+    var money = 0;
     $.ajax({
         url: '/Patent/searchPatentByID',
         type: 'GET',
@@ -248,13 +249,27 @@ function payForEvaluation(patentID) {
         }
     });
 
+    $.ajax({
+        url: '/evaluation/getEvaluation',
+        type: 'GET',
+        data: {
+            patentID: patentID
+        },
+        success: function (data) {
+            money = data.money;
+        },
+        error: function () {
+
+        }
+    });
+
     //跳入向评估公司申请的支付界面
     var transaction = {
         patentID: patentID,
         patent: patent,
         holder: holder,
         way: "专利评估",
-        amount: money
+        money: money
     };
-    window.location.href = "../pay.html";
+    window.location.href = "pay";
 }

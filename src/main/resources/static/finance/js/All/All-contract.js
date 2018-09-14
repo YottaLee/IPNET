@@ -45,7 +45,7 @@ $.ajax({
     }
 });
 $('#checkInfo').on('click',function () {
-    window.location.href = "All-loan-check.html";
+    window.location.href = "/ipnet/All-loan-check";
 });
 
 // var patentID = document.getElementById("patentID").innerHTML;
@@ -71,7 +71,7 @@ $('#submit').on('click', function () {
             //     case 3:
             //     case 4:
             // }
-            window.location.href = "All-loan-check.html";
+            window.location.href = "/ipnet/All-loan-check";
         },
         error: function () {
             // alert("Network warning for posting the purpose of the loan")

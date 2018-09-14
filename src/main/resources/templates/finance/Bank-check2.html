@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Tables | Nifty - Admin Template</title>
+    <title>审核质押贷款申请</title>
 
 
     <!--STYLESHEET-->
@@ -53,6 +53,11 @@
 
     <!--Dropzone [ OPTIONAL ]-->
     <link href="/finance/plugins/dropzone/dropzone.min.css" rel="stylesheet">
+
+
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
 
 
     <!--JAVASCRIPT-->
@@ -155,6 +160,10 @@
 <!--TIPS-->
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
+<div class="top col-md-12" style="height: 56px;background: #3b3e43">
+    <img src="https://i.imgur.com/jwJTKCL.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <span style="color: white;font-size: 15px">IPNET支付交易中心</span>
+</div>
 <div id="container" class="">
 
     <!--NAVBAR-->
@@ -188,6 +197,7 @@
             <!--End page title-->
 
             <div id="page-content">
+                <h3>审核专利质押融资贷款申请</h3>
                 <div class="panel">
                     <form class="form-horizontal">
                         <div class="panel-body">
@@ -196,28 +206,23 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <div class="col-md-12">
-                                                <h3>审核专利质押融资贷款申请</h3>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <table class="table table-bordered">
                                                 <tbody>
                                                 <tr >
-                                                    <td>专利号</td>
-                                                    <td id="patentID"></td>
+                                                    <td>专利名称</td>
+                                                    <td id="patentID">基于大数据AI的图像自动化标注技术</td>
                                                     <td>专利持有人</td>
-                                                    <td id="holder"></td>
+                                                    <td id="holder">pxy</td>
                                                 </tr>
                                                 <tr>
                                                     <td>专利持有人意向贷款</td>
-                                                    <td id="pur-money"></td>
+                                                    <td id="pur-money">80000</td>
                                                     <td>专利持有人意向期限</td>
-                                                    <td id="pur-time"></td>
+                                                    <td id="pur-time">1年</td>
                                                 </tr>
                                                 <tr>
                                                     <td>评估机构经济价值评估</td>
-                                                    <td id="pur-evaluation" colspan="3"></td>
+                                                    <td id="pur-evaluation" colspan="3">74428</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -297,7 +302,11 @@
 <!--===================================================-->
 <!-- END OF CONTAINER -->
 
-
+<div id="footerwrap">
+    <div class="container">
+        <h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+    </div>
+</div>
 <script src="/finance/js/Bank/Bank-check.js"></script>
 
 </body>

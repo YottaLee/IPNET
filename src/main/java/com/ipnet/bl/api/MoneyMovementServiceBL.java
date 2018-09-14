@@ -2,7 +2,9 @@ package com.ipnet.bl.api;
 
 import com.ipnet.blservice.apiservice.MoneyMovementService;
 import com.ipnet.entity.APIConstant;
+import com.ipnet.entity.Combinations;
 import lombok.Data;
+import net.sf.json.JSONArray;
 import org.json.simple.JSONValue;
 import org.json.simple.JSONObject;
 import okhttp3.*;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -39,8 +43,43 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
 
         Response response = client.newCall(request).execute();
         String responseBodyString = response.body().string();
-        System.out.println("retrieveDestacc "+responseBodyString);
+        System.out.println(responseBodyString);
         return responseBodyString;
+    }
+
+    @Override
+    public List<Combinations>  CombinationsAccountandPayee(String username , String password) throws IOException {
+        String jsonstr = retrieveDestacc(username,password);
+        net.sf.json.JSONObject object = net.sf.json.JSONObject.fromObject(jsonstr);
+        List<Combinations> combiantions = new ArrayList<Combinations>();
+        if(object.has("payeeSourceAccountCombinations")){
+            JSONArray arrays = object.getJSONArray("payeeSourceAccountCombinations");
+            for(int i = 0; i < arrays.size(); i++){
+                Combinations transaction = new Combinations();
+                String t = arrays.getString(i);
+                net.sf.json.JSONObject inner = net.sf.json.JSONObject.fromObject(t);
+                if(inner.has("payeeId")){
+                    transaction.setPayeeId(inner.get("payeeId").toString());        // payeeId
+                    System.out.println(inner.get("payeeId").toString());
+                }
+                if(inner.has("sourceAccountIds")){
+                    ArrayList<String> accountIds = new ArrayList<String>();
+                    JSONArray accIds = inner.getJSONArray("sourceAccountIds");
+                    for(int j = 0;j < accIds.size(); j++){
+                        String o = accIds.getString(j);
+                        net.sf.json.JSONObject account = net.sf.json.JSONObject.fromObject(o);
+                        if(account.has("sourceAccountId")){
+                            accountIds.add(account.getString("sourceAccountId"));
+                            System.out.println(account.getString("sourceAccountId"));
+                        }
+                    }
+                    //
+                    transaction.setAccountIds(accountIds);
+                    combiantions.add(transaction);
+                }
+            }
+        }
+        return combiantions;
     }
 
     @Override
@@ -62,8 +101,9 @@ public class MoneyMovementServiceBL implements MoneyMovementService{
 
         Response response = client.newCall(request).execute();
         JSONObject jsonObject = (JSONObject) JSONValue.parse(response.body().string());
-        String controlFlowId = jsonObject.get("controlFlowId").toString();
-        return controlFlowId;
+//        String controlFlowId = jsonObject.get("controlFlowId").toString();
+        //return controlFlowId;
+        return jsonObject.toString();
     }
 
     @Override

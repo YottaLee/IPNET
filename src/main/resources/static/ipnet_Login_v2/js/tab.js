@@ -20,7 +20,7 @@ function nTabs(appro, thisObj, Num){
     } else if(appro == "registerPerson" && Num == 0){
         tabRegisterPerson(0);
     } else if(appro == "registerEnterprise" && Num == 1){
-        tabRegisterEmail(2);
+        tabRegisterEnterprise();
     }
 }
 

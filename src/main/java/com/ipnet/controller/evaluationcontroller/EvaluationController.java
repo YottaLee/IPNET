@@ -21,20 +21,19 @@ public class EvaluationController {
      * @param url 上传评估报告的文件路径
      * @param evaluation 经济评估价值
      * @param money 评估费用
-     * @return
+     * @return ResultMessage
      */
     @RequestMapping("/submitReport")
     @ResponseBody
-    public ResultMessage submitReport(String patentID,String url, int evaluation,int money) {
-        return null;
-       // return evaluationBLService.submitReport(patentID,url,evaluation);
+    public ResultMessage submitReport(String patentID,String url, int evaluation,double money) {
+        return evaluationBLService.submitReport(patentID,url,evaluation,money);
     }
 
     /**
      * 申请评估
      * @param patentID 专利号
      * @param url 申请评估文件的路径
-     * @return
+     * @return ResultMessage
      */
     @RequestMapping("/apply")
     @ResponseBody
@@ -53,6 +52,11 @@ public class EvaluationController {
         return evaluationBLService.getEvaluationApplicationURL(patentID);
     }
 
+    /**
+     * 获取该专利评估的信息
+     * @param patentID 专利号
+     * @return EvaluationVO
+     */
     @RequestMapping("/getEvaluation")
     @ResponseBody
     public EvaluationVO getEvaluation(String patentID) {
@@ -61,7 +65,6 @@ public class EvaluationController {
 
     /**
      * 判断该专利是否已经拥有评估结果
-     *
      * @param patentID 专利号
      * @return boolean
      */
@@ -73,16 +76,15 @@ public class EvaluationController {
 
     /**
      * 存取评估机构是否同意理赔
-     *
      * @param loanID 贷款号
      * @param insuranceID 保单号
      * @param ifPass 是否同意
-     * @return
+     * @return ResultMessage
      */
-    @RequestMapping("/ifCompensate")
-    @ResponseBody
-    public ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass) {
-        return null;
-    }
+//    @RequestMapping("/ifCompensate")
+//    @ResponseBody
+//    public ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass) {
+//        return evaluationBLService.ifCompensate(loanID,insuranceID,ifPass);
+//    }
 
 }

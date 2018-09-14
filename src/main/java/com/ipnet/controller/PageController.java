@@ -9,6 +9,21 @@ public class PageController {
 
     private static String finance = "/finance/";
 
+    @RequestMapping("head")
+    public String head(){
+        return "/frame/head";
+    }
+
+    @RequestMapping("head2")
+    public String head2(){
+        return "/frame/another_head";
+    }
+
+    @RequestMapping("footer")
+    public String footer(){
+        return "/frame/footer";
+    }
+
     @RequestMapping("home")
     public String home(){
         return "home";
@@ -17,6 +32,16 @@ public class PageController {
     @RequestMapping("detail")
     public String detail(){
         return "detail";
+    }
+
+    @RequestMapping("introduce")
+    public String introduce(){
+        return "introduce";
+    }
+
+    @RequestMapping("search_patent")
+    public String search_patent(){
+        return "search_patent";
     }
 
     @RequestMapping("frame")
@@ -299,5 +324,14 @@ public class PageController {
     public String Person_IPSET_list(){
         return finance+"Person-IPSET-list";
     }
+    
+    @RequestMapping("loan_detail")
+    public String loan_detail(){
+        return finance+"loan_detail";
+    }
 
+    @RequestMapping("Applicant-patentEntry")
+    public String Applicant_patentEntry(){
+        return finance+"Applicant-patentEntry";
+    }
 }

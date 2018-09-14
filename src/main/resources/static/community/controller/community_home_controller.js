@@ -18,23 +18,21 @@ $(document).ready(function(){
             "                            <div class=\"fn-flex ais-hits--item\">\n" +
             "                                <div class=\"fn-flex-1 article-list__panel\">\n" +
             "                                    <div class=\"fn__flex\">\n" +
-            "                                        <a rel=\"nofollow\" href=\"https://hacpai.com/member/czf1046277348\">\n" +
-            "                                            <div class=\"touxiang avatar tooltipped__user\" aria-name=\"czf1046277348\" data-src=\"https://img.hacpai.com/avatar/1533003378805_1535160098840.png?imageView2/1/w/80/h/80/interlace/0/q/100\"></div>\n" +
+            "                                        <a rel=\"nofollow\">\n" +
+            "                                            <div class=\"touxiang avatar tooltipped__user\"></div>\n" +
             "                                        </a>\n" +
             "                                        <div class=\"fn__flex-1 tag_list\">\n" +
             "                                            <span class='tags' style='cursor: pointer'></span>\n"+
             "                                            <span class=\"ft__smaller ft__fade\">• &nbsp;&nbsp;\n" +
-            "                                                <a class=\"ft-gray\" href=\"https://hacpai.com/article/1535076511412#comments\" target=\"_self\">\n" +
+            "                                                <a class=\"ft-gray\" target=\"_self\">\n" +
             "                                                    <span class=\"article-level0\">"+article_lists[i].remark_num+"人</span> 回帖\n" +
             "                                                </a>&nbsp;\n" +
-            "                                                <a class=\"ft-gray\" href=\"https://hacpai.com/article/1535076511412\" target=\"_self\">\n" +
+            "                                                <a class=\"ft-gray\" target=\"_self\">\n" +
             "                                                    <span class=\"article-level0\">"+article_lists[i].visits+"人</span> 浏览\n" +
             "                                                </a>&nbsp;\n" +
             "                                            </span>\n" +
             "                                            <h2 class=\"article-list__title fn__ellipsis\">\n" +
-            "                                                <a data-id=\"1535160513461\" data-type=\"0\" rel=\"bookmark\"\n" +
-            "                                                   href=\"https://hacpai.com/article/1535160513461\"\n" +
-            "                                                   target=\"_self\">"+article_lists[i].post_name+"</a>\n" +
+            "                                                <a data-id=\"1535160513461\" data-type=\"0\" rel=\"bookmark\" target=\"_self\">"+article_lists[i].post_name+"</a>\n" +
             "                                            </h2>\n" +
             "                                        </div>\n" +
             "                                    </div>\n" +
@@ -46,6 +44,16 @@ $(document).ready(function(){
             "                            </div>\n" +
             "                        </li>";
         $("#article_list").append(new_element);
+        $("#"+i).click(function(){
+           var id=$(this).getAttribute("id");
+           localStorage.setItem("post_detail_id",article_lists[id].post_id);
+           window.location.href="community_detail";
+        });
+        $("#"+i).find("touxiang").click(function(){
+            var id=$(this).getAttribute("id");
+            localStorage.setItem("user_detail_id",article_lists[id].author);
+            window.location.href="community_person";
+        });
         for(var j=0;j<article_lists[i].post_tag.length;j++){
             var new_tag="<a rel=\"tag\" class=\"tag\">"+article_lists[i].post_tag[j]+"</a>&nbsp;";
             $("#"+i).find(".tags").append(new_tag);

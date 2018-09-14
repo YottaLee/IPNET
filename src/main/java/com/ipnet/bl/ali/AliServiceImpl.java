@@ -95,7 +95,7 @@ public class AliServiceImpl implements AliService {
     public String uploadFile(String path, MultipartFile file) {
         try {
             InputStream inputStream=file.getInputStream();
-            return this.uploadStreamToOss(inputStream,path);
+            return this.uploadStreamToOss(inputStream,path+fileSeparator+file.getOriginalFilename());
         } catch (IOException e) {
             e.printStackTrace();
         }
