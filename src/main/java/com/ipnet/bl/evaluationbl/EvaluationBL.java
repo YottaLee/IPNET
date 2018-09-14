@@ -17,8 +17,6 @@ import java.util.Date;
 public class EvaluationBL implements EvaluationBLService {
     @Autowired
     private EvaluationDao evaluationDao;
-    @Autowired
-    private LoanBLService loanBLService;
 
     /**
      * 提交专利评估报告

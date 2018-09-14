@@ -5,7 +5,6 @@ import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.blservice.UserBLService;
 import com.ipnet.blservice.loanblservice.LoanAllBLSerivce;
-import com.ipnet.dao.InsuranceDao;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Loan;
 import com.ipnet.enums.ResultMessage;
