@@ -187,6 +187,20 @@ function loginMsg() {
             password: oPassword
         };
 
+        if(!window.localStorage){
+            alert("浏览器不支持localStorage");
+        } else{
+            var storage=window.localStorage;
+
+            //写入a字段 storage["a"]=1;  console.log(typeof storage["a"]);
+            //写入b字段 storage.b=1;  console.log(typeof storage["b"]);
+            //写入c字段 storage.setItem("c",3);  console.log(typeof storage["c"]);
+            //第一种方法读取 var a=storage.a;  console.log(a);
+            //第二种方法读取 var b=storage["b"];  console.log(b);
+            //第三种方法读取 var c=storage.getItem("c");  console.log(c);
+            storage.setItem("user_id",oUsername);
+        }
+
         $.ajax({
             url: "/user/phoneLogin",
             type: "POST",

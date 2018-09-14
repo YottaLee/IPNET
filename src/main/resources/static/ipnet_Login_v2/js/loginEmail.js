@@ -175,6 +175,13 @@ function loginMsgEmail(){
             password: oPassword
         };
 
+        if(!window.localStorage){
+            alert("浏览器不支持localStorage");
+        } else{
+            var storage=window.localStorage;
+            storage.setItem("user_id",oUsername);
+        }
+
         $.ajax({
             url: "/user/emailLogin",
             type: "POST",
