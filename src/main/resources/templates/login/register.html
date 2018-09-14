@@ -48,7 +48,7 @@
                     Welcome to IPNET
                 </span>
                 <span class="login100-form-title p-b-48">
-                    <i class="zmdi zmdi-font"></i>
+                    <img src="https://i.imgur.com/jwJTKCL.png" alt="IPNET LOGO" height="35%" width="35%"/>
                 </span>
 
                 <!--<div class="wrap-input100 validate-input">
@@ -129,8 +129,8 @@
                             </div>
                         </div>
                         <div class="none" id=myTab_Content1><!-- 企业/机构注册 -->
-                        </div></div></div>
-                            <!--<div class="star">
+                        <!--</div></div></div>-->
+                            <div class="star">
                                 <div>
                                     <p class="register-msg" id="err_msg2" style="text-align: right"></p>
                                 </div>
@@ -151,30 +151,30 @@
                                 <div>
                                     <p>类型选择：</p>
                                     <form id="register_type" action="">
-                                        <input type="radio" name="enterpriseType" id="non-third" value="Non-thirdParty"><span class="txtRadio">非第三方机构</span>
-                                        <input type="radio" name="enterpriseType" id="financial" value="FinancialInstitution" style="margin-left: 60px;"><span class="txtRadio">金融机构</span><br />
-                                        <input type="radio" name="enterpriseType" id="insurance" value="InsuranceInstitute"><span class="txtRadio">保险机构</span>
-                                        <input type="radio" name="enterpriseType" id="evaluating" value="EvaluatingInstitution" style="margin-left: 87px;"><span class="txtRadio">评估机构</span>
+                                        <input type="radio" name="enterpriseType" id="non-third" value="CompanyUser"><span class="txtRadio">非第三方机构</span>
+                                        <input type="radio" name="enterpriseType" id="financial" value="Financial" style="margin-left: 60px;"><span class="txtRadio">金融机构</span><br />
+                                        <input type="radio" name="enterpriseType" id="insurance" value="Insurance"><span class="txtRadio">保险机构</span>
+                                        <input type="radio" name="enterpriseType" id="evaluating" value="Evaluator" style="margin-left: 87px;"><span class="txtRadio">评估机构</span>
                                     </form>
                                 </div>
 
                                 <div class="container-login100-form-btn" style="margin-top: 30px;">
                                     <div class="wrap-login100-form-btn">
                                         <div class="login100-form-bgbtn"></div>
-                                        <a class="login100-form-btn" href="#">
-                                            <button id="register_btn2" disabled="disabled" onclick="registerMsgByEmail();">注册</button>
+                                        <a class="login100-form-btn" href="#" id="register_btn2" onclick="registerMsgEnterprise();">
+                                            注册<!-- disabled="disabled" -->
                                         </a>
                                     </div>
                                 </div>
-                                !--<script type="text/javascript">
+                                <!--<script type="text/javascript">
                                     T$('register_btn2').onclick = function(){
                                         registerMsgByEmail();  // 方法registerMsg()的定义见于js/registerEmail.js
                                     }
-                                </script>--
+                                </script>-->
 
                                 <div class="text-center p-t-115">
-                                    !--<a class="txt1" href="registerByEmail.html">[邮箱注册]</a>
-                                    <br /><br />--
+                                    <!--<a class="txt1" href="registerByEmail.html">[邮箱注册]</a>
+                                    <br /><br />-->
                                     <span class="txt1">
 							            已有账号？
                                     </span>
@@ -187,7 +187,6 @@
                         </div>
                     </div>
                 </div>
-                -->
 
                 <!--<div class="zxx_list_title"><b>自动隐藏</b><button class="login100-form-btn" id="click_test4">效果预览</button></div>--.>
                 <!--<div class="zxx_list_title"><b>自动隐藏</b><a class="ml20" href="#zhangxinxu" id="click_test4">效果预览</a></div>

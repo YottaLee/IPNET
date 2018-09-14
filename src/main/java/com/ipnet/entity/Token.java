@@ -6,7 +6,6 @@ import org.json.simple.JSONObject;
 import okhttp3.*;
 import org.apache.commons.codec.binary.Base64;
 
-import javax.persistence.Entity;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;

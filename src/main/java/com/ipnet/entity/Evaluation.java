@@ -30,9 +30,11 @@ public class Evaluation {
     //此次评估经手人
     private String agent;
     //评估结果经济价值
-    private double money;
+    private double evaluation;
     //评估报告url
     private String report;
+    //此次评估费用
+    private double money;
 
     //评估是否已经结束
     private boolean over;

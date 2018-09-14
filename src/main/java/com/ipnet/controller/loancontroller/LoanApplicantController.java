@@ -1,6 +1,7 @@
 package com.ipnet.controller.loancontroller;
 
-import com.ipnet.blservice.LoanBLService;
+
+import com.ipnet.blservice.loanblservice.LoanApplicantBLService;
 import com.ipnet.enums.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LoanApplicantController {
 
     @Autowired
-    private LoanBLService loanBLService;
+    private LoanApplicantBLService loanBLService;
 
     /**
      * 将该专利的质押贷款保证保险申请提供给保险公司
@@ -71,7 +72,7 @@ public class LoanApplicantController {
 
     /**
      * 存取该专利已经有贷款申请，可借此机会生成loanID
-     * @Param userID 用户ID
+     * @param userID 用户ID
      * @param patentID 专利号
      * @return 返回loanID
      */

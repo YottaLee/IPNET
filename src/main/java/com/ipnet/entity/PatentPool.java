@@ -32,6 +32,7 @@ public class PatentPool {
 
     //新添加
     private int amount; //池子容量
+    private String profile; //专利池简介
 
     @ElementCollection(targetClass = String.class)
     private List<String> managers;//专利池的管理团队
@@ -61,9 +62,9 @@ public class PatentPool {
     }
     public  void acceptApply(String ipId){
         denyApply(ipId);
-        patents.add(ipId);
+        this.patents.add(ipId);
     }
      public boolean isFull(){
-        return (patents.size() > amount);
+        return (this.patents.size() > this.amount);
      }
 }

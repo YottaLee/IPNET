@@ -54,6 +54,11 @@
     <link href="/finance/plugins/dropzone/dropzone.min.css" rel="stylesheet">
 
 
+    <link href="/home/css/main.css" rel="stylesheet">
+    <link href="/home/css/icomoon.css" rel="stylesheet">
+    <link href="/home/css/animate-custom.css" rel="stylesheet">
+
+
     <!--JAVASCRIPT-->
     <!--=================================================-->
 
@@ -149,10 +154,79 @@
 
 
 </head>
+<style>
+    .atvImg-rendered-layer {
+        background-size: 100% 100%
+    }
+
+    table#miyazaki {
+        margin: 0 auto;
+        border-collapse: collapse;
+        font-family: Agenda-Light, sans-serif;
+        font-weight: 100;
+        background: #333;
+        color: #fff;
+        text-rendering: optimizeLegibility;
+        border-radius: 5px;
+    }
+
+    table#miyazaki thead th {
+        font-weight: 600;
+    }
+
+    table#miyazaki thead th, table#miyazaki tbody td {
+        padding: .8rem;
+        font-size: 1.4rem;
+    }
+
+    table#miyazaki tbody td {
+        padding: .8rem;
+        font-size: 1.4rem;
+        color: #444;
+        background: #eee;
+    }
+
+    table#miyazaki tbody tr:not(:last-child) {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+
+    @media screen and (max-width: 600px) {
+        table#miyazaki caption {
+            background-image: none;
+        }
+
+        table#miyazaki thead {
+            display: none;
+        }
+
+        table#miyazaki tbody td {
+            display: block;
+            padding: .6rem;
+        }
+
+        table#miyazaki tbody tr td:first-child {
+            background: #666;
+            color: #fff;
+        }
+
+        table#miyazaki tbody td:before {
+            content: attr(data-th);
+            font-weight: bold;
+            display: inline-block;
+            width: 6rem;
+        }
+    }
+</style>
 
 <!--TIPS-->
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
+<div class="top col-md-12" style="height: 56px;background: #3b3e43">
+    <img src="https://i.imgur.com/jwJTKCL.png"
+         style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <span style="color: white;font-size: 15px">IPNET支付交易中心</span>
+</div>
 <div id="container" class="">
 
     <div class="boxed">
@@ -180,57 +254,94 @@
             <!--End page title-->
 
             <div id="page-content">
+                <h3 class="text-main pad-btm bord-btm">评估报告</h3>
                 <div class="panel">
                     <form class="form-horizontal">
                         <div class="panel-body">
                             <div class="tab-content">
 
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <h3>评估报告</h3>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-6 col-lg-2">
+                                    <div class="col-sm-12">
 
-                                                <!--Tile-->
-                                                <!--===================================================-->
+                                        <div class="form-group">
+
+                                            <div class="col-sm-3">
                                                 <div class="panel panel-info panel-colorful">
                                                     <div class="panel-body text-center">
                                                         <i class="demo-pli-coin icon-5x"></i>
                                                     </div>
                                                     <div class="pad-all text-center">
                                                         <p class="text-semibold text-lg mar-no">专利价值</p>
-                                                        <p id="evaluation"class="h1 text-light text-semibold mar-no">$7,428</p>
+                                                        <p id="evaluation" class="h1 text-light text-semibold mar-no">
+                                                            ¥74,428</p>
                                                         <!--<p class="text-sm text-overflow pad-top">-->
-                                                            <!--<span class="label label-dark">22,675</span> Total Earning-->
+                                                        <!--<span class="label label-dark">22,675</span> Total Earning-->
                                                         <!--</p>-->
                                                     </div>
                                                 </div>
-                                                <!--===================================================-->
-
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <table class="table table-bordered">
+
+                                            <div class="col-sm-6">
+                                                <!--<div class="panel">-->
+                                                <!--<table id="miyazaki">-->
+                                                    <!--<thead>-->
+                                                    <!--<tr>-->
+                                                        <!--<th>专利名称</th>-->
+                                                        <!--<th>技术价值评估</th>-->
+                                                        <!--<th>经济价值评估</th>-->
+                                                        <!--<th>评估结论</th>-->
+                                                    <!--</tr>-->
+                                                    <!--</thead>-->
+                                                    <!--<tbody>-->
+                                                    <!--<tr>-->
+                                                        <!--<td>基于大数据AI的图像自动化标注技术</td>-->
+                                                        <!--<td>科技含量较高，运用到当今热门的fast-rcnn算法作为图像识别技术</td>-->
+                                                        <!--<td>投入市场可达74428元</td>-->
+                                                        <!--<td>在当前规模宏大市场可用于无人车等领域，具有巨大的实用性价值</td>-->
+                                                    <!--</tr>-->
+                                                <!--</table>-->
+                                                <table class="table table-bordered">
                                                 <tbody>
                                                 <tr>
-                                                    <td>专利号</td>
-                                                    <td id="patentID"></td>
+                                                <td>专利名称</td>
+                                                <td id="patentID">基于大数据AI的图像自动化标注技术</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>评估机构经济价值评估</td>
-                                                    <td id="pur-evaluation"></td>
+                                                    <td>评估原则</td>
+                                                    <td id="puation">由人工智能专家团队共同审核</td>
+                                                </tr>
+                                                <tr>
+                                                <td>技术价值评估</td>
+                                                <td id="pur-evaluation">科技含量较高，运用到当今热门的fast-rcnn算法作为图像识别技术</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>经济价值评估</td>
+                                                    <td id="">投入市场可达74428元</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>评估结论</td>
+                                                    <td >在当前规模宏大市场可用于无人车等领域，具有巨大的实用性价值</td>
                                                 </tr>
                                                 </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <a id="value" download="专利评估报告材料.zip">专利评估报告材料</a>
+                                                </table>
                                             </div>
+
+
+                                        </div>
+
+
+                                        <!--Tile-->
+                                        <!--===================================================-->
+
+                                        <!--===================================================-->
+
+                                    </div>
+                                    <!--<div class="form-group">-->
+
+                                    <!--</div>-->
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
+                                            <a id="value" download="专利评估报告材料.zip">专利评估报告材料</a>
                                         </div>
                                     </div>
                                 </div>
@@ -270,6 +381,14 @@
 <!--===================================================-->
 
 
+</div>
+<div id="footerwrap">
+    <div class="container">
+        <h4><img src="https://i.imgur.com/qrRDHYM.png"
+                 style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href=""
+                                                                                                              style="color: rgba(61, 201, 179, 0.8)">NJU
+            IDigger</a> - Copyright 2018</h4>
+    </div>
 </div>
 <!--===================================================-->
 <!-- END OF CONTAINER -->

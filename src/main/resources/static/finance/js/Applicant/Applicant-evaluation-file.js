@@ -160,11 +160,11 @@ $(document).ready(function () {
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            window.location.href = "Applicant-loan2.html";
+                            window.location.href = "/ipnet/Applicant-loan2";
                         }
                         else {
                             storage.removeItem("patentID");
-                            window.location.href = "Person-IP-list.html";
+                            window.location.href = "/ipnet/Person-IP-list";
                         }
 
                     },

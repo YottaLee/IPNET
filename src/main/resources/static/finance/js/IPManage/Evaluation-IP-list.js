@@ -45,7 +45,7 @@ function check(patent) {
     var state = patent.loan_state;
     switch (state) {
         case 1:
-            window.location.href = "/finance/Evaluation-report2";
+            window.location.href = "/ipnet/Evaluation-report2";
             break;//评估
         case 5:
             $.ajax({
@@ -58,14 +58,14 @@ function check(patent) {
                 },
                 success: function (data) {
                     if (data)
-                        window.location.href = "/finance/All-loan-check";
+                        window.location.href = "/ipnet/All-loan-check";
                     else
-                        window.location.href = "/finance/All-loan-contract";
+                        window.location.href = "/ipnet/All-loan-contract";
                 }
             });
             break;
         case 9:
-            window.location.href = "/finance/Evaluation-checkBank";
+            window.location.href = "/ipnet/Evaluation-checkBank";
             break;
         default:
             //专利详情界面
