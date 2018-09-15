@@ -27,12 +27,12 @@ public class LoanInsuranceController {
 
     /**
      * 获取保险信息
-     * @param id 贷款号
+     * @param loanid 贷款号
      * @return 保险信息
      */
     @RequestMapping("/getInsurance")
-    public @ResponseBody InsuranceVO getInsurance(@RequestParam String id) throws IDNotExistsException {
-        return loanInsuranceBLService.getInsurance(id);
+    public @ResponseBody InsuranceVO getInsurance(@RequestParam String loanid) throws IDNotExistsException {
+        return loanInsuranceBLService.getInsurance(loanid);
     }
 
     /**
@@ -47,6 +47,7 @@ public class LoanInsuranceController {
         return loanInsuranceBLService.ifInsurance(id,ifPass);
     }
 
+    //id 保险机构的id
     //保险机构查看保险列表
     @RequestMapping("/showListForInsurance")
     public @ResponseBody ArrayList<InsuranceVO> showListForInsurance(@RequestParam String id) throws IDNotExistsException {
