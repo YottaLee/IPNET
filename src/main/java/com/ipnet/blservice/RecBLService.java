@@ -1,6 +1,7 @@
 package com.ipnet.blservice;
 
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.recvo.ManagerRecVO;
 import com.ipnet.vo.recvo.PatentRecVO;
 import com.ipnet.vo.recvo.RequireRecVO;
@@ -15,9 +16,9 @@ public interface RecBLService {
 
     ResultMessage buyManagerRec(String manager_id,int points);
 
-    ArrayList<PatentRecVO> getPatentRecList();
+    ArrayList<PatentRecVO> getPatentRecList() throws IDNotExistsException;
 
     ArrayList<RequireRecVO> getRequireRecList();
 
-    ArrayList<ManagerRecVO> getManagerRecList();
+    ArrayList<ManagerRecVO> getManagerRecList() throws IDNotExistsException;
 }
