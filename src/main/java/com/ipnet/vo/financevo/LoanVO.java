@@ -12,13 +12,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-
-
-/**
- * 贷款
- * @author Panxy
- */
-
 public class LoanVO {
     private String loanID; //贷款ID
     private String patentID;//专利ID
@@ -35,12 +28,12 @@ public class LoanVO {
         this.loanID=loan.getLoanID();
         this.patentID=loan.getPatentID();
         this.patent=loan.getPatent();
-        this.person=loan.getPerson();
         this.bank=loan.getBank();
         this.money=loan.getActual_money();
         this.time=loan.getActual_time();
         this.evaluation=loan.getEvaluation();
         this.loan_state=loan.getState();
+        this.userId=loan.getPerson();
     }
 
 }

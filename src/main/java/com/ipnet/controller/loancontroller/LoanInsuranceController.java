@@ -40,7 +40,7 @@ public class LoanInsuranceController {
      *
      * @param id 贷款号
      * @param ifPass   保险公司是否愿意投保
-     * @return
+     * @return ResultMessage
      */
     @RequestMapping("/ifInsurance")
     public @ResponseBody ResultMessage ifInsurance(@RequestParam String id,@RequestParam boolean ifPass){
