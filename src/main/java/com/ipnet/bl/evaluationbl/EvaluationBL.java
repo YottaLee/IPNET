@@ -3,8 +3,10 @@ package com.ipnet.bl.evaluationbl;
 import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.blservice.UserBLService;
+import com.ipnet.blservice.loanblservice.LoanAllBLService;
 import com.ipnet.dao.EvaluationDao;
 import com.ipnet.entity.Evaluation;
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.EvaluationVO;
@@ -23,6 +25,8 @@ public class EvaluationBL implements EvaluationBLService {
     private UserBLService userBLService;
     @Autowired
     private PatentHelper patentHelper;
+    @Autowired
+    private LoanAllBLService loanAllBLService;
 
     /**
      * 获取平台唯一的评估机构name
@@ -75,6 +79,7 @@ public class EvaluationBL implements EvaluationBLService {
         newEvaluation.setSpecification(url);
         newEvaluation.setOver(false);
         evaluationDao.save(newEvaluation);
+        loanAllBLService.changeStateByPatentID(patentID,Patent_loan_state.to_be_pay_value);
         return ResultMessage.Success;
     }
 
