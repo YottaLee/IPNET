@@ -20,7 +20,7 @@ public interface ElectronicWalletBLService {
     //查看银行卡信息
     List<CreditCard> getCreditCardInfo(String userId);
     //绑定银行卡
-    ResultMessage setCreditCard(String userId,String card,String card_code);
+    ResultMessage setCreditCard(String userId,String card,String card_code,String bank);
     //银行卡解绑
     ResultMessage cancelCreditCard(String uerId,String card);
     //查看积分

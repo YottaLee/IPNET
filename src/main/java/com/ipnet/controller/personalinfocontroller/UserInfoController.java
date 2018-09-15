@@ -148,8 +148,8 @@ public class UserInfoController {
     //绑定银行卡
     @RequestMapping("/setCreditCard")
     public @ResponseBody
-    ResultMessage setCreditCard(String userId,String card,String card_code){
-        return electronicWalletBLService.setCreditCard(userId,card,card_code);
+    ResultMessage setCreditCard(String userId,String card,String card_code,String bank){
+        return electronicWalletBLService.setCreditCard(userId,card,card_code,bank);
     }
     //银行卡解绑
     @RequestMapping("/cancelCreditCard")
