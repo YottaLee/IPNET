@@ -153,10 +153,10 @@
             closeAnimation: 'right',
             opacity: 0.5,
             confirm: function () {
-                if(current_card==""){
+                if(current_pay_card==""||current_receive_card==""){
                     $.alert({
-                        title: '请先选择付款银行卡!',
-                        content: '您还未选择付款的银行卡，请先选中银行卡',
+                        title: '请先选择银行卡!',
+                        content: '您还未选择付款或收款的银行卡，请先选中银行卡',
                         confirmButton: '我知道了',
                         confirmButtonClass: 'btn-primary',
                         icon: 'fa fa-info',
@@ -167,7 +167,16 @@
                     });
                 }else {
                     $.ajax({
+                        type : 'POST',
+                        url : '/MoneyMove',
+                        data:{},
+                        async:false,
+                        success:function(){
 
+                        },
+                        error:function(){
+
+                        }
                     });
                     $.alert({
                         title: '付款成功!',
