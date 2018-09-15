@@ -48,7 +48,7 @@ $(document).ready(function(){
     $.ajax({
         type : 'POST',
         url : '/userInfo/getAllAccountId',
-        data:{userId:user_id},
+        data:{userId:pay_order.payer_id},
         async:false,
         success:function(data){
             for(var i=0;i<data.length;i++){
@@ -66,7 +66,7 @@ $(document).ready(function(){
     $.ajax({
         type : 'POST',
         url : '/userInfo/getAllAccountId',
-        data:{userId:pay_order.payee},
+        data:{userId:pay_order.payee_id},
         async:false,
         success:function(data){
             for(var i=0;i<data.length;i++){
