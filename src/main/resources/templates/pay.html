@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/pay/css/rippler.css">
 <script type="text/javascript" src="/common/jquery.js"></script>
 <script type="text/javascript" src="/pay/js/jquery.rippler.js"></script>
+<script type="text/javascript" src="/pay/js/pay_controller.js"></script>
 <script type="text/javascript" src="/common/jquery-confirm.js"></script>
 <script type="text/javascript" src="/common/bootstrap.min.js"></script>
 
@@ -75,54 +76,44 @@
             <table id="miyazaki">
                 <thead>
                 <tr>
-                    <th>专利号</th><th>专利名称</th><th>专利持有人</th><th>交易时间</th><th>交易性质</th><th>交易金额</th><th>查看合同详情</th>
+                    <th>专利号</th><th>专利名称</th><th>支付方</th><th>被支付方</th><th>交易时间</th><th>交易性质</th><th>交易金额</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>123456</td>
-                    <td>一种新型瓷砖购买技术</td>
-                    <td>czf</td>
-                    <td>20180910</td>
-                    <td>专利使用权购买</td>
-                    <td>￥16000</td>
-                    <td style="text-align: center"><i class="fas fa-eye"></i></td>
+                    <td id="patent_id"></td>
+                    <td id="patent_name"></td>
+                    <td id="payer"></td>
+                    <td id="payee"></td>
+                    <td id="time"></td>
+                    <td id="way"></td>
+                    <td id="money"></td>
+                    <!--<td style="text-align: center"><i class="fas fa-eye"></i></td>-->
                 </tr>
             </table>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 newspaper-x-content newspaper-x-with-sidebar">
+        <div class="col-md-12 newspaper-x-content newspaper-x-with-sidebar" id="pay_card_list">
             <h3 class="widget-title"><span>选择支付银行卡：</span></h3>
-            <div class="cover atvImg">
-                <div class="atvImg-layer" data-img="https://i.imgur.com/jLrkHwm.png" ></div>
-            </div>
-
-            <div class="cover atvImg">
-                <div class="atvImg-layer" data-img="https://i.imgur.com/eNBURFm.png"></div>
-            </div>
-
-            <div class="cover atvImg">
-                <div class="atvImg-layer" data-img="https://i.imgur.com/D6vVnNu.png"></div>
-            </div>
-
-            <div class="cover atvImg">
-                <div class="atvImg-layer" data-img="https://i.imgur.com/yJwuW4a.png"></div>
-            </div>
-
-            <div class="cover atvImg">
-                <div class="atvImg-layer" data-img="https://i.imgur.com/HhqUdsx.png"></div>
-            </div>
-            <div class="col-md-8" style="margin-left: auto;margin-right: auto">
-                <button class="btn btn-default rippler rippler-inverse confirm_pay" href="#"  style="background: #a6bbea">
-                    <span><i class="fas fa-check"></i></span>&nbsp;支付
-                </button>
-                <button class="btn btn-default rippler rippler-inverse cancel_pay" href="#"  style="background: #eadbaa;margin-left: 50px">
-                    <span><i class="fas fa-check"></i></span>&nbsp;取消
-                </button>
-            </div>
 
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 newspaper-x-content newspaper-x-with-sidebar" id="receive_card_list">
+            <h3 class="widget-title"><span>选择收款银行卡：</span></h3>
+
+        </div>
+    </div>
+
+    <div class="col-md-8" style="margin-left: auto;margin-right: auto">
+        <button class="btn btn-default rippler rippler-inverse confirm_pay" href="#"  style="background: #a6bbea">
+            <span><i class="fas fa-check"></i></span>&nbsp;支付
+        </button>
+        <button class="btn btn-default rippler rippler-inverse cancel_pay" href="#"  style="background: #eadbaa;margin-left: 50px">
+            <span><i class="fas fa-check"></i></span>&nbsp;取消
+        </button>
     </div>
 
     <!--<div id="footerwrap">-->
@@ -140,7 +131,12 @@
 <script src="/pay/js/card.js"></script>
 
 <script>
+
+    var current_pay_card="";
+    var current_receive_card="";
+
     $(".atvImg").click(function(){
+        current_pay_card=$(this).find(".card_number").getAttribute("data-number");
         $(this).find(".checked").show();
         $(this).siblings().find(".checked").hide();
     })
@@ -157,17 +153,34 @@
             closeAnimation: 'right',
             opacity: 0.5,
             confirm: function () {
-                $.alert({
-                    title: '付款成功!',
-                    content: '您已成功付款，此次交易成功',
-                    confirmButton: '我知道了',
-                    confirmButtonClass: 'btn-primary',
-                    icon: 'fa fa-info',
-                    animation: 'zoom',
-                    confirm:function(){
+                if(current_card==""){
+                    $.alert({
+                        title: '请先选择付款银行卡!',
+                        content: '您还未选择付款的银行卡，请先选中银行卡',
+                        confirmButton: '我知道了',
+                        confirmButtonClass: 'btn-primary',
+                        icon: 'fa fa-info',
+                        animation: 'zoom',
+                        confirm: function () {
 
-                    }
-                });
+                        }
+                    });
+                }else {
+                    $.ajax({
+
+                    });
+                    $.alert({
+                        title: '付款成功!',
+                        content: '您已成功付款，此次交易成功',
+                        confirmButton: '我知道了',
+                        confirmButtonClass: 'btn-primary',
+                        icon: 'fa fa-info',
+                        animation: 'zoom',
+                        confirm: function () {
+
+                        }
+                    });
+                }
             }
         });
     });

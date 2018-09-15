@@ -42,3 +42,10 @@ spring:
 constant:
   codeLength: 6
   codeKey: keyyek
+
+IPIRatio:
+  RMBRatio: 1
+  IPPointRatio: 1
+  profitRatio: 1
+  memberRatio: 1
+  userRatio: 1

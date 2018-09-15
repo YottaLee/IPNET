@@ -155,17 +155,17 @@ nav.bootsnav.navbar-full .navbar-collapse .nav-full::-webkit-scrollbar {
     width: 0;
 }
 
-nav.bootsnav.navbar-full .navbar-collapse .nav-full::-moz-scrollbar {
-    width: 0;
-}
+/*nav.bootsnav.navbar-full .navbar-collapse .nav-full::-moz-scrollbar {*/
+    /*width: 0;*/
+/*}*/
 
-nav.bootsnav.navbar-full .navbar-collapse .nav-full::-ms-scrollbar {
-    width: 0;
-}
+/*nav.bootsnav.navbar-full .navbar-collapse .nav-full::-ms-scrollbar {*/
+    /*width: 0;*/
+/*}*/
 
-nav.bootsnav.navbar-full .navbar-collapse .nav-full::-o-scrollbar {
-    width: 0;
-}
+/*nav.bootsnav.navbar-full .navbar-collapse .nav-full::-o-scrollbar {*/
+    /*width: 0;*/
+/*}*/
 
 
 nav.bootsnav.navbar-full .navbar-collapse ul.nav{
@@ -530,7 +530,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
     
     nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{
         font-family: 'FontAwesome';
-        content: "\f0d7";
+        content: "\f068";
         margin-left: 5px;
         margin-top: 2px;
     }
