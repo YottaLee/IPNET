@@ -12,6 +12,10 @@ import com.ipnet.entity.contract.Account;
 import com.ipnet.utility.IDNotExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,21 +56,78 @@ public class AccountBLServiceImpl implements AccountBLService {
     }
 
     @Override
+    public void addAccount(String accountId, double amount, String userId) {
+         Account account = new Account();
+         account.setAcountId(accountId);
+         account.setBalance(amount);
+         account.setUserId(userId);
+         this.accountDao.saveAndFlush(account);
+    }
+
+    @Override
     public List<Integer> getRMBSum() {
          List<Transaction> transactions = this.transactionLogService.getAllTransactions();
-
-        return null;
+         List<Integer> Sum = new ArrayList<Integer>();
+         Date current  = new Date();
+         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+         String now = df.format(current);
+         int[] result = {0,0,0,0,0,0};
+         for(Transaction transaction : transactions){
+              if(isInpriod(now,transaction.getTranscation_time())){
+                     result[getIndex(now,transaction.getTranscation_time())] += transaction.getAmount();
+              }
+         }
+         for(int i = 0;i < 6;i++){
+             Sum.add(result[i]);
+         }
+        return Sum;
     }
 
     @Override
     public List<Integer> getIPPointsSum() {
         List<Transaction> transactions = this.transactionLogService.getAllTransactions();
-        return null;
+        List<Integer> Sum = new ArrayList<Integer>();
+        Date current  = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+        String now = df.format(current);
+        int[] result = {0,0,0,0,0,0};
+        for(Transaction transaction : transactions){
+            if(isInpriod(now,transaction.getTranscation_time())){
+                result[getIndex(now,transaction.getTranscation_time())] += transaction.getIPPoint();
+            }
+        }
+        for(int i = 0;i < 6;i++){
+            Sum.add(result[i]);
+        }
+        return Sum;
     }
 
     @Override
     public List<Double> getProfitSum() {
         List<Transaction> transactions = this.transactionLogService.getAllTransactions();
         return null;
+    }
+
+    public static boolean isInpriod(String currentDate , String targetDate){
+          boolean flag = false;
+          if((currentDate.substring(0,4).equals(targetDate.substring(0,4)))&&(Integer.parseInt(currentDate.substring(4,6))-Integer.parseInt(targetDate.substring(4,6))) <= 5){
+              flag = true;
+          }
+          if((Integer.parseInt(currentDate.substring(0,4))-Integer.parseInt(targetDate.substring(0,4))== 1) && (Integer.parseInt(currentDate.substring(4,6))+12-Integer.parseInt(targetDate.substring(4,6))) <= 5) {
+              flag = true;
+         }
+
+          return flag;
+    }
+
+    public static int getIndex(String currentDate , String targetDate) {
+         if(currentDate.substring(0,4).equals(targetDate.substring(0,4))){
+             return (Integer.parseInt(currentDate.substring(0,6))-Integer.parseInt(targetDate.substring(0,6)));
+        }
+         return (Integer.parseInt(currentDate.substring(4,6))+12-Integer.parseInt(targetDate.substring(4,6)));
+    }
+    public static void  main(String args[]){
+         System.out.println(isInpriod("2018011522","2017081922"));
+        System.out.println(getIndex("2018011522","2017081922"));
     }
 }

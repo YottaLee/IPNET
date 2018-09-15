@@ -22,5 +22,5 @@ public class Transaction {
     private double amount;   //交易金额
     private String transcation_time;//交易时间
     private String patent_id;//交易专利号
-
+    private int IPPoint;    //ip豆
 }
