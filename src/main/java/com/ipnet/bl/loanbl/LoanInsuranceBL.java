@@ -15,8 +15,8 @@ public class LoanInsuranceBL implements LoanInsuranceBLService{
     @Autowired
     private InsuranceDao insuranceDao;
     @Override
-    public InsuranceVO getInsurance(String id) throws IDNotExistsException {
-        Insurance insurance=insuranceDao.getOne(id);
+    public InsuranceVO getInsurance(String loanid) throws IDNotExistsException {
+        Insurance insurance=insuranceDao.getInsurance(loanid);
         InsuranceVO insuranceVO=new InsuranceVO(insurance);
         return insuranceVO;
     }

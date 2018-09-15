@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface LoanInsuranceBLService {
 
     //获取保险信息
-    InsuranceVO getInsurance(String id) throws IDNotExistsException;
+    InsuranceVO getInsurance(String loanid) throws IDNotExistsException;
 
     //是否愿意投保
     ResultMessage ifInsurance(String id, boolean ifPass);
