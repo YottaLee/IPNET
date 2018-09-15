@@ -114,6 +114,7 @@ public class UserBL implements UserBLService{
             newUser.setTelephone(phoneNum);
             newUser.setRegisterTime(new Date());
             newUser.setVerified(false);
+            newUser.setActive(true);
 
             personalUserDao.save(newUser);
             //自动为用户生成社区用户的实体
@@ -175,11 +176,11 @@ public class UserBL implements UserBLService{
             newCompanyUser.setPassword(register.getPassword());
             newCompanyUser.setActive(false);
 
-            SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Calendar c=Calendar.getInstance();
-            String currentTime=sf.format(c.getTime());
+            //SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //Calendar c=Calendar.getInstance();
+            //String currentTime=sf.format(c.getTime());
 
-            newCompanyUser.setRegisterTime(currentTime);
+            newCompanyUser.setRegisterTime(new Date());
             newCompanyUser.setEmail(register.getUsername());
             newCompanyUser.setRole(register.getRole());
 
@@ -414,14 +415,56 @@ public class UserBL implements UserBLService{
         }
         return null;
     }
+
+    /**
+     * 最近六个月的IP成员数
+     * @return 每个月的数量
+     */
     @Override
     public List<Integer> getMemberSum() {
-        return null;
+        Calendar c=Calendar.getInstance();
+
+        Integer[] temp=new Integer[6];
+        temp[5]=personalUserDao.count(new Date());
+        for(int i=0;i<5;i++){
+            c.add(Calendar.MONTH,-1);
+            Date date=c.getTime();
+            temp[4-i]=personalUserDao.count(date);
+        }
+
+        Calendar c2=Calendar.getInstance();
+        temp[5]=companyUserDao.countUser(new Date())+temp[5];
+        for(int i=0;i<5;i++){
+            c2.add(Calendar.MONTH,-1);
+            Date d=c2.getTime();
+            temp[4-i]=companyUserDao.countUser(d)+temp[4-i];
+        }
+        return Arrays.asList(temp);
     }
 
+    /**
+     * 最近六个月的IPNet总用户数
+     * @return 每个月的数量
+     */
     @Override
     public List<Integer> getUserSum() {
-        return null;
+        Integer[] temp=new Integer[6];
+        temp[5]=personalUserDao.count(new Date());
+        Calendar c=Calendar.getInstance();
+        for(int i=0;i<5;i++){
+            c.add(Calendar.MONTH,-1);
+            Date date=c.getTime();
+            temp[4-i]=personalUserDao.count(date);
+        }
+
+        Calendar c2=Calendar.getInstance();
+        temp[5]=companyUserDao.countAll(new Date())+temp[5];
+        for(int i=0;i<5;i++){
+            c2.add(Calendar.MONTH,-1);
+            Date d=c2.getTime();
+            temp[4-i]=companyUserDao.countAll(d)+temp[4-i];
+        }
+        return Arrays.asList(temp);
     }
 
 

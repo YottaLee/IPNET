@@ -212,6 +212,12 @@ public class LoanAllBL implements LoanAllBLService {
 
     @Override
     public ResultMessage changeState(String loanID, Patent_loan_state state){
+        Optional<Loan> loanOptional=loanDao.findById(loanID);
+        if(loanOptional.isPresent()){
+            Loan loan=loanOptional.get();
+            loan.setState(state);
+            loanDao.saveAndFlush(loan);
+        }
         return null;
     }
 }

@@ -52,7 +52,7 @@ public class CompanyUser {
     private ArrayList<Identity> identities;//身份认证
 
     private String description;//自我描述
-    private String registerTime;//注册日期
+    private Date registerTime;//注册日期
 
     private boolean isActive;//用户的激活状态
     private String activeCode;//用户的激活码
