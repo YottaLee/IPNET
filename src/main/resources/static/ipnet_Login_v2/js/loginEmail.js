@@ -175,6 +175,13 @@ function loginMsgEmail(){
             password: oPassword
         };
 
+        if(!window.localStorage){
+            alert("浏览器不支持localStorage");
+        } else{
+            var storage=window.localStorage;
+            storage.setItem("user_id",oUsername);
+        }
+
         $.ajax({
             url: "/user/emailLogin",
             type: "POST",
@@ -188,7 +195,7 @@ function loginMsgEmail(){
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "/ipnet/pc_eWallet";
+                        window.location.href = "/ipnet/home";
                     },2000);
                 }
                 else if(data == "CompanyLogin"){
@@ -196,7 +203,7 @@ function loginMsgEmail(){
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "/ipnet/pc_eWallet";
+                        window.location.href = "/ipnet/home";
                     },2000);
                 }
                 else if(data == "EvaluatorLogin"){
@@ -204,7 +211,7 @@ function loginMsgEmail(){
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "/ipnet/pc_eWallet";
+                        window.location.href = "/ipnet/Evaluation-IP-list";
                     },2000);
                 }
                 else if(data == "FinancialLogin"){
@@ -212,7 +219,7 @@ function loginMsgEmail(){
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "/ipnet/pc_eWallet";
+                        window.location.href = "/ipnet/Bank-IP-list";
                     },2000);
                 }
                 else if(data == "InsuranceLogin"){
@@ -220,7 +227,7 @@ function loginMsgEmail(){
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "/ipnet/pc_eWallet";
+                        window.location.href = "/ipnet/Insurance-IP-list";
                     },2000);
                 }
                 else if(data == "NoUser"){

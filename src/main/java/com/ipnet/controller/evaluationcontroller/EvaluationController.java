@@ -16,6 +16,17 @@ public class EvaluationController {
     private EvaluationBLService evaluationBLService;
 
     /**
+     * 获取平台唯一的评估机构ID
+     * @return
+     */
+    @RequestMapping("/getEvaluationId")
+    @ResponseBody
+    public String getEvaluationId() {
+        return null;
+        //return evaluationBLService.submitReport(patentID,url,evaluation,money);
+    }
+
+    /**
      * 提交专利评估报告
      * @param patentID 专利号
      * @param url 上传评估报告的文件路径
@@ -25,8 +36,9 @@ public class EvaluationController {
      */
     @RequestMapping("/submitReport")
     @ResponseBody
-    public ResultMessage submitReport(String patentID,String url, int evaluation,double money) {
-        return evaluationBLService.submitReport(patentID,url,evaluation,money);
+    public ResultMessage submitReport(String patentID,String url,String rule,String tech, int evaluation,String result, double money) {
+        return null;
+       // return evaluationBLService.submitReport(patentID,url,evaluation,money);
     }
 
     /**

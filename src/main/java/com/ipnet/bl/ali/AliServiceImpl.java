@@ -16,10 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Base64;
 
 @Service
@@ -87,19 +84,31 @@ public class AliServiceImpl implements AliService {
         Base64.Decoder decoder = Base64.getDecoder();
         byte[] bytes1 = decoder.decode(base64);
         ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes1);
-        int sepatator=filename.lastIndexOf(".");
-        return this.uploadStreamToOss(inputStream,projectID+fileSeparator+filename.substring(0,sepatator)+"."+type);
+//        int sepatator=filename.lastIndexOf(".");
+        return this.uploadStreamToOss(inputStream,projectID+fileSeparator+filename+"."+type);
     }
 
     @Override
-    public String uploadFile(String path, MultipartFile file) {
+    public String uploadFile( MultipartFile file) {
         try {
             InputStream inputStream=file.getInputStream();
-            return this.uploadStreamToOss(inputStream,path);
+            String fileName = file.getOriginalFilename();
+            return this.uploadStreamToOss(inputStream,fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public String uploadBase64File(String path, String base64) {
+        Base64.Decoder decoder=Base64.getDecoder();
+        byte[] bytes=decoder.decode(base64);
+        ByteArrayInputStream inputStream=new ByteArrayInputStream(bytes);
+//        FileOutputStream out = new FileOutputStream("C:/Users/ENVY 13-ad110tu/Desktop/test.docx");
+//        out.write(bytes);
+//        out.close();
+        return this.uploadStreamToOss(inputStream,path);
     }
 
     private String uploadStreamToOss(InputStream inputStream, String fileName) {

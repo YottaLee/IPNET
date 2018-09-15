@@ -1,5 +1,5 @@
 var storage = window.localStorage;
-var loanID = storage.loanID;
+var loanID = storage.getItem('loan_id');
 
 // Form-File-Upload.js
 // ====================================================================
@@ -87,6 +87,7 @@ $(document).ready(function () {
 
 
     $('#submit').on('click', function () {
+        var patentID = storage.getItem('patent_id');
 
         var file = myDropzone.getFilesWithStatus(Dropzone.ADDED);
         var fileName = document.getElementById("fileName").innerHTML;
@@ -102,10 +103,7 @@ $(document).ready(function () {
             url: '/upload/file',
             type: 'POST',
             cache: false,
-            data: {
-                path: path,
-                file: formData
-            },
+            data:  formData,
             processData: false,
             contentType: false,
             success: function (url) {
@@ -120,8 +118,8 @@ $(document).ready(function () {
                     success: function () {
 
                     },
-                    error: function () {
-
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                     }
                 });
                 var patent = "";
@@ -137,45 +135,49 @@ $(document).ready(function () {
                         holder = data.patent_holder;
 
                     },
-                    error: function () {
-
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                     }
                 });
-
+                var money = 20000;//评估费用为20000
                 //跳入向评估公司申请的支付界面
                 var transaction = {
                     patentID: patentID,
                     patent: patent,
-                    holoder: holder,
-                    way: "专利评估",
-                    amount: money
+                    payer: holder,//付款方
+                    payee: getEvaluationId(),//收款方
+                    way: "专利评估",//评估机构只有一个
+                    money: money//评估费用
                 };
 
-                window.location.href = "../pay.html";
+                storage.setItem('transaction',transaction);
+
+             //支付评估费用
+
+                window.location.href = "/ipnet/pay";
                 //支付成功后判断是否有意向信息
                 $.ajax({
                     url: 'applicant/ifBankChosen',
                     type: 'GET',
                     data: loanID,
-                    dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            window.location.href = "Applicant-loan2.html";
+                            window.location.href = "/ipnet/Applicant-loan2";
                         }
                         else {
                             storage.removeItem("patentID");
-                            window.location.href = "Person-IP-list.html";
+                            window.location.href = "/ipnet/Person-IP-list";
                         }
 
                     },
-                    error: function () {
-
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                     }
                 })
 
             },
-            error: function () {
-
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
             }
         }).done(function (res) {
         }).fail(function (res) {
@@ -192,4 +194,19 @@ $(document).ready(function () {
     });
 
 });
+
+
+//获取评估机构的用户ID
+function getEvaluationId() {
+    $.ajax({
+        type: "GET",
+        url: "evaluation/getEvaluationId",
+        success: function (data) {
+            return data;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+    });
+}
 

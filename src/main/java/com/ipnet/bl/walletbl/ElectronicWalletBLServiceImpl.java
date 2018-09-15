@@ -71,7 +71,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     }
 
     @Override
-    public ResultMessage setCreditCard(String userId, String card, String card_code) {
+    public ResultMessage setCreditCard(String userId, String card, String card_code,String bank) {
         PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser.equals(null))
             return ResultMessage.Fail;

@@ -40,7 +40,7 @@ public class PostController {
     @RequestMapping(value = "/changeBaseToUrl")
     public @ResponseBody
     String uploadPicture(@RequestParam String base64, @RequestParam String filename, @RequestParam String projectID) {
-        return aliService.uploadPicture(projectID, filename + ".jpg", base64);
+        return aliService.uploadPicture(projectID, filename, base64);
     }
 
     /**

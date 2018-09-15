@@ -5,6 +5,7 @@ import com.ipnet.blservice.personalservice.ElectronicWalletBLService;
 import com.ipnet.blservice.personalservice.SecurityBLService;
 import com.ipnet.blservice.personalservice.UserInfoBLService;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.UserType;
 import com.ipnet.vo.CreditCard;
 import com.ipnet.vo.uservo.AccountInfoVo;
 import com.ipnet.vo.uservo.CompanyUserSaveVo;
@@ -47,8 +48,8 @@ public class UserInfoController {
     //身份信息查看
     @RequestMapping("/getUser")
     public @ResponseBody
-    UserInfoVo getUserInfo(String userid){
-        return userBLService.getUserInfo(userid);
+    UserInfoVo getUserInfo(String userid,UserType userType){
+        return userBLService.getUserInfo(userid,userType);
     }
 
     //账户信息查看
@@ -148,8 +149,8 @@ public class UserInfoController {
     //绑定银行卡
     @RequestMapping("/setCreditCard")
     public @ResponseBody
-    ResultMessage setCreditCard(String userId,String card,String card_code){
-        return electronicWalletBLService.setCreditCard(userId,card,card_code);
+    ResultMessage setCreditCard(String userId,String card,String card_code,String bank){
+        return electronicWalletBLService.setCreditCard(userId,card,card_code,bank);
     }
     //银行卡解绑
     @RequestMapping("/cancelCreditCard")

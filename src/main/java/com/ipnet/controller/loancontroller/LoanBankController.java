@@ -1,6 +1,7 @@
 package com.ipnet.controller.loancontroller;
 
-import com.ipnet.blservice.LoanBLService;
+import com.ipnet.bl.loanbl.LoanBankBL;
+import com.ipnet.blservice.loanblservice.LoanBankBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class LoanBankController {
 
     @Autowired
-    private LoanBLService loanBLService;
+    private LoanBankBLService loanBankBLService;
     /**
      * 获取贷款信息
      * @param loanID 贷款号
@@ -28,7 +29,7 @@ public class LoanBankController {
     @RequestMapping("/getInfo")
     @ResponseBody
     public LoanVO getInfo(String loanID) {
-        return loanBLService.getInfo(loanID);
+        return loanBankBLService.getInfo(loanID);
     }
 
 
@@ -41,7 +42,7 @@ public class LoanBankController {
     @RequestMapping("/getApplication")
     @ResponseBody
     public LoanVO getApplication(String loanID) {
-        return loanBLService.getApplication(loanID);
+        return loanBankBLService.getApplication(loanID);
     }
 
     /**
@@ -57,18 +58,9 @@ public class LoanBankController {
     @RequestMapping("/submitApplication")
     @ResponseBody
     public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
-        return submitApplication(loanID,bank,ifPass,ifInsurance,money,time);
+        return loanBankBLService.submitApplication(loanID,bank,ifPass,ifInsurance,money,time);
     }
 
-    /**
-     * 获取选择放贷银行的贷款信息
-     * @param patentID
-     * @return
-     */
-//    @RequestMapping("/getBankList")
-//    @ResponseBody
-//    public ArrayList<Loan> getBankList(String patentID){
-//        return null;
-//    }
+
 
 }

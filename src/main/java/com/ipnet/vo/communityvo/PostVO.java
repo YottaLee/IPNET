@@ -18,7 +18,7 @@ public class PostVO {
     private String post_name;
     private ArrayList<Post_tag> post_tag;
     private String content;
-    private Date publish_time;
+    private String publish_time;
     private long visits;
     private long remark_num;
     private long interest_num;//关注数

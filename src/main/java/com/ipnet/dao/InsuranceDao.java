@@ -1,12 +1,13 @@
 package com.ipnet.dao;
 
-import com.ipnet.vo.financevo.InsuranceVO;
+import com.ipnet.entity.Insurance;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
 
-import javax.persistence.Table;
+import java.util.ArrayList;
 
-@Repository
-@Table(name="insurance")
-public interface InsuranceDao extends JpaRepository<InsuranceVO, String> {
+public interface InsuranceDao extends JpaRepository<Insurance,String>{
+
+    @Query("select i from Insurance i where i.insurance_id=?1")
+    ArrayList<Insurance> getInsuranceList(String insurance_id);
 }

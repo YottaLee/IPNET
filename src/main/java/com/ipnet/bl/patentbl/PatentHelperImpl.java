@@ -22,4 +22,34 @@ public class PatentHelperImpl implements PatentHelper{
         Patent patent = optionalPatent.get();
         return patent.getPatent_name();
     }
+
+    @Override
+    public String receivePatentURL(String patentId) throws IDNotExistsException {
+        Optional<Patent> optionalPatent = this.patentDao.findById(patentId);
+        if(optionalPatent.isPresent()==false || optionalPatent == null){
+            throw new IDNotExistsException("patent id not exists");
+        }
+        Patent patent = optionalPatent.get();
+        return patent.getUrl();
+    }
+
+    @Override
+    public String receivePatentProfile(String patentId) throws IDNotExistsException {
+        Optional<Patent> optionalPatent = this.patentDao.findById(patentId);
+        if(optionalPatent.isPresent()==false || optionalPatent == null){
+            throw new IDNotExistsException("patent id not exists");
+        }
+        Patent patent = optionalPatent.get();
+        return patent.getProfile();
+    }
+
+    @Override
+    public String receivePatentType(String patentId) throws IDNotExistsException {
+        Optional<Patent> optionalPatent = this.patentDao.findById(patentId);
+        if(optionalPatent.isPresent()==false || optionalPatent == null){
+            throw new IDNotExistsException("patent id not exists");
+        }
+        Patent patent = optionalPatent.get();
+        return patent.getPatent_type();
+    }
 }

@@ -187,6 +187,20 @@ function loginMsg() {
             password: oPassword
         };
 
+        if(!window.localStorage){
+            alert("浏览器不支持localStorage");
+        } else{
+            var storage=window.localStorage;
+
+            //写入a字段 storage["a"]=1;  console.log(typeof storage["a"]);
+            //写入b字段 storage.b=1;  console.log(typeof storage["b"]);
+            //写入c字段 storage.setItem("c",3);  console.log(typeof storage["c"]);
+            //第一种方法读取 var a=storage.a;  console.log(a);
+            //第二种方法读取 var b=storage["b"];  console.log(b);
+            //第三种方法读取 var c=storage.getItem("c");  console.log(c);
+            storage.setItem("user_id",oUsername);
+        }
+
         $.ajax({
             url: "/user/phoneLogin",
             type: "POST",
@@ -199,7 +213,7 @@ function loginMsg() {
                     TINY.box.show(content, 0, 0, 0, 0, 2);
                     setTimeout(function () {
                         //跳转到登录后的主页（待定）
-                        window.location.href = "/ipnet/pc_eWallet";
+                        window.location.href = "/ipnet/home";
                     }, 2000);
                 }
                 else if (data == "NoUser") {
@@ -229,7 +243,7 @@ function loginMsg() {
 }
 
 //跳转界面
-function jump(userId) {
+/*function jump(userId) {
     $.ajax({
         url: "user/getUserRole",
         dataType: 'json',
@@ -240,22 +254,22 @@ function jump(userId) {
         success: function (role) {
             switch (role) {
                 case 0:
-                    window.location.href = "/ipnet/home";
+                    window.location.href = "/ipnet/home";//企业
                     break;
                 case 1:
-                    window.location.href = "/ipnet/home";
+                    window.location.href = "/ipnet/home";//个人
                     break;
                 case 2:
-                    window.location.href = "/ipnet/Evaluation-IP-list";
+                    window.location.href = "/ipnet/Evaluation-IP-list";//评估机构
                     break;
                 case 3:
-                    window.location.href = "/ipnet/Bank-IP-list";
+                    window.location.href = "/ipnet/Bank-IP-list";//金融机构
                     break;
                 case 4:
-                    window.location.href = "/ipnet/Insurance-IP-lsit";
+                    window.location.href = "/ipnet/Insurance-IP-lsit";//保险公司
                     break;
                 default:
-                    window.location.href = "/ipnet/home";
+                    window.location.href = "/ipnet/home";//默认
                     break;
             }
         },
@@ -263,4 +277,4 @@ function jump(userId) {
 
         }
     });
-}
+}*/
