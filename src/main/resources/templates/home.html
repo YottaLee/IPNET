@@ -29,6 +29,7 @@
             vertical-align: -0.1em !important;
             background: none !important;
             padding: 0 !important;
+            background-size: 100% 100%;
         }
     </style>
     <link rel='stylesheet' id='contact-form-7-css' href='/home/css/styles.css' type='text/css' media='all'/>
@@ -56,9 +57,7 @@
     <script type="text/javascript" src="/frame/head/js/bootsnav.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/frame/head/css/bootsnav.css">
-
-    <!--<link rel="stylesheet" href="/community/css/base.css"/>-->
-    <!--<link rel="stylesheet" href="/community/css/index.css"/>-->
+    <link rel="stylesheet" type="text/css" href="/frame/head/css/user_nav.css">
 
     <style type="text/css">
         .navbar-brand{
@@ -134,9 +133,9 @@
     <header id="masthead" class="site-header" role="banner">
         <div class="demo" style="padding-top: 0px;height: 80px;">
             <div class="container" style="width: 100%;height: 80px;background: #3b3e43;">
-                <div class="row" style="height: 50px">
+                <div class="row" style="height: 50px;">
                     <div class="col-md-12" style="height: 50px;">
-                        <nav class="navbar navbar-default navbar-mobile bootsnav" style="background: #3b3e43">
+                        <nav class="navbar navbar-default navbar-mobile bootsnav nav" style="background: #3b3e43">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                                     <i class="fa fa-bars"></i>
@@ -148,7 +147,7 @@
                                     <li><a href="#" style="color: white;">主页</a></li>
                                     <li><a href="#" style="color: white;">专利交易</a></li>
                                     <li class="dropdown">
-                                        <a href="/ipnet/Person-IP-list" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">专利管理</a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">专利管理</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="#" style="color: white;">个人专利管理</a></li>
                                             <li><a href="#" style="color: white;">专利池管理</a></li>
@@ -164,30 +163,15 @@
                                     <li><a href="#" style="color: white;">个人中心</a></li>
                                     <li><a href="#" style="color: white;">IPNET社区</a></li>
                                 </ul>
+                                <a id="aNotifications" class="tooltipped tooltipped__w " aria-label="消息" style="position: absolute;left: 1100px;margin-top: 26px">
+                                    <span class="has-point"></span>
+                                    <i class="fas fa-bell" style="color: white;font-size: 22px"></i>
+                                </a>
+                                <a href="javascript:void(0)" id="aPersonListPanel" class="tooltipped tooltipped__w" aria-label="您" style="position: absolute;left: 1140px;height: 27px;width: 27px;margin-top: 23px">
+                                    <span class="avatar-small" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>
+                                </a>
+                                <span style="position: absolute;left: 1170px;color: white;margin-top: 24px">Mike</span>
                             </div>
-                            <!--<div class="user-nav">-->
-                                <!--<a id="aNotifications" class="tooltipped tooltipped__w "-->
-                                   <!--href="https://hacpai.com/notifications"-->
-                                   <!--aria-label="消息"><span class="has-point"></span>-->
-                                    <!--<i class="fas fa-bell"></i>-->
-                                <!--</a>-->
-                                <!--<a href="javascript:void(0)" id="aPersonListPanel" class="tooltipped tooltipped__w"-->
-                                   <!--aria-label="您"-->
-                                   <!--data-url="https://hacpai.com/member/czf1046277348">-->
-                                    <!--<span class="avatar-small" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>-->
-                                <!--</a>-->
-                                <!--<div class="module personalUser-list dropdown-list" id="personListPanel">-->
-                                    <!--<ul>-->
-                                        <!--<li>-->
-                                            <!--<a href="https://hacpai.com/member/czf1046277348">个人主页</a>-->
-                                        <!--</li>-->
-                                        <!--<li>-->
-                                            <!--<a href="">设置</a>-->
-                                            <!--<a href="javascript:void(0)" id="signOut">登出</a>-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
-                                <!--</div>-->
-                            <!--</div>-->
                         </nav>
                     </div>
                 </div>
@@ -306,11 +290,11 @@
         <div id="newspaper_x_header_module-2" class="widget newspaper_x_widgets">
             <div class="newspaper-x-recent-posts container">
                 <ul>
-                    <li class="blazy" id="newspaper-x-recent-post-0" data-src="https://i.imgur.com/XUuzcVo.png" style="background-image:url('https://i.imgur.com/XUuzcVo.png')">
+                    <li class="blazy" id="newspaper-x-recent-post-0" data-src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/QQ%E5%9B%BE%E7%89%8720180915143322.jpg" style="background-image:url('https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/QQ%E5%9B%BE%E7%89%8720180915143322.jpg')">
                     </li>
-                    <li class="blazy" id="newspaper-x-recent-post-1" data-src="https://i.imgur.com/rhNR9aK.png" style="background-image:url('https://i.imgur.com/rhNR9aK.png')">
+                    <li class="blazy" id="newspaper-x-recent-post-1" data-src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/QQ%E5%9B%BE%E7%89%8720180915143331.jpg" style="background-image:url('https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/QQ%E5%9B%BE%E7%89%8720180915143331.jpg')">
                     </li>
-                    <li class="blazy" id="newspaper-x-recent-post-2" data-src="https://i.imgur.com/ZliTF7s.png" style="background-image:url('https://i.imgur.com/ZliTF7s.png')">
+                    <li class="blazy" id="newspaper-x-recent-post-2" data-src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/QQ%E5%9B%BE%E7%89%8720180915143339.jpg" style="background-image:url('https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/QQ%E5%9B%BE%E7%89%8720180915143339.jpg')">
                     </li>
                 </ul>
             </div>
@@ -327,45 +311,57 @@
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="newspaper-x-blog-post-layout-c">
                                 <div class="newspaper-x-image">
-                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                        <img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                    <img width="550" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/150805165806.gif" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                 </div>
                                 <div class="newspaper-x-title">
                                     <h4>
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">专利名称</a>
+                                        新型过滤杯
                                     </h4>
                                 </div>
-                                <span class="newspaper-x-category">
-							        <a href="https://colorlib.com/newspaper-x/category/news/">发明实用型专利</a>
-						        </span>&nbsp;&nbsp;&nbsp;
-                                <span class="newspaper-x-category">
-							        <a href="https://colorlib.com/newspaper-x/category/news/">专利类别</a>
-						        </span>
+                                <span class="">持有人：王铮</span>&nbsp;&nbsp;&nbsp;
+                                <span class="newspaper-x-category">实用新型专利</span>
                                 <div class="newspaper-x-content">
-                                    专利简介<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
+                                    该杯子具有将一个杯子分开为二个独立杯子，分别给二个人使用；还可以将一个杯子同时装二种不同饮料，一个人同时使用，并且可以根据个人的需要作为过滤杯使用的，功能强大...</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="newspaper-x-blog-post-layout-c">
                                 <div class="newspaper-x-image">
-                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                        <img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                    <img width="550" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/Y20082017414900041.gif" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                 </div>
                                 <div class="newspaper-x-title">
-                                    <h4>
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">专利名称</a>
-                                    </h4>
+                                    <h4>新型牙刷</h4>
                                 </div>
-                                <span class="newspaper-x-category">
-							        <a href="https://colorlib.com/newspaper-x/category/news/">发明实用型专利</a>
-						        </span>&nbsp;&nbsp;&nbsp;
-                                <span class="newspaper-x-category">
-							        <a href="https://colorlib.com/newspaper-x/category/news/">专利类别</a>
-						        </span>
-                                <div class="newspaper-x-content">
-                                    专利简介<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
+                                <span class="">持有人：吴顺顺</span>&nbsp;&nbsp;&nbsp;
+                                <span class="newspaper-x-category">实用新型专利</span>
+                                <div class="newspaper-x-content">一种可以刷到牙齿反面的牙刷，其中包括牙刷杆，牙刷杆的前端连接有牙刷板，其特征是：牙刷板的内侧面带有牙刷毛。...</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="newspaper-x-blog-post-layout-c">
+                                <div class="newspaper-x-image">
+                                    <img width="550" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/HSA00000535290500011.gif" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                 </div>
+                                <div class="newspaper-x-title">
+                                    <h4>自洁眼镜</h4>
+                                </div>
+                                <span class="">持有人：王童</span>&nbsp;&nbsp;&nbsp;
+                                <span class="newspaper-x-category">实用新型专利</span>
+                                <div class="newspaper-x-content">本实用新型公开了一种眼镜，包括眼镜本体(1)，所述眼镜本体(1)的镜腿(2)内设有镜片脏污的擦除装置。该眼镜可随时擦除眼镜上的脏污且又不会给眼镜佩戴者造成额外负担。 ...</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="newspaper-x-blog-post-layout-c">
+                                <div class="newspaper-x-image">
+                                    <img width="550" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/Y20052005901300061.gif" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
+                                </div>
+                                <div class="newspaper-x-title">
+                                    <h4>新型雨伞</h4>
+                                </div>
+                                <span class="">持有人：于坤</span>&nbsp;&nbsp;&nbsp;
+                                <span class="newspaper-x-category">实用新型专利</span>
+                                <div class="newspaper-x-content">通过从雨伞主体向下设置的伞裙来遮挡从侧面而来的雨水，因而即使在雨势较大、两个或多个人使用时或者其他恶劣的环境下，雨水也无法打倒使用者的身上，具有良好的防水效果。 ...</div>
                             </div>
                         </div>
                     </div>
@@ -373,137 +369,126 @@
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="newspaper-x-blog-post-layout-c">
                                 <div class="newspaper-x-image">
-                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                        <img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                    <img width="550" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/HDA0001020059030000011.gif" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                 </div>
                                 <div class="newspaper-x-title">
-                                    <h4>
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">专利名称</a>
-                                    </h4>
+                                    <h4>新型防尘手机壳</h4>
                                 </div>
-                                <span class="newspaper-x-category">
-							        <a href="https://colorlib.com/newspaper-x/category/news/">发明实用型专利</a>
-						        </span>&nbsp;&nbsp;&nbsp;
-                                <span class="newspaper-x-category">
-							        <a href="https://colorlib.com/newspaper-x/category/news/">专利类别</a>
-						        </span>
-                                <div class="newspaper-x-content">
-                                    专利简介<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
-                                </div>
+                                <span class="">持有人：陈资格</span>&nbsp;&nbsp;&nbsp;
+                                <span class="newspaper-x-category">实用新型专利</span>
+                                <div class="newspaper-x-content">本实用新型公开一种手机壳，包括收容一手机的壳体，所述壳体包括扣合于手机的侧壁的框体、以及边缘连接所述框体的面板，所述面板正对所述手机的显示屏...</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="newspaper-x-blog-post-layout-c">
                                 <div class="newspaper-x-image">
-                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                        <img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                    <img width="550" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/HDA0000517143680000011.gif" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                 </div>
                                 <div class="newspaper-x-title">
-                                    <h4>
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">专利名称</a>
-                                    </h4>
+                                    <h4>新型电脑显示屏</h4>
                                 </div>
-                                <span class="newspaper-x-category">
-							        <a href="https://colorlib.com/newspaper-x/category/news/">发明实用型专利</a>
-						        </span>&nbsp;&nbsp;&nbsp;
-                                <span class="newspaper-x-category">
-							        <a href="https://colorlib.com/newspaper-x/category/news/">专利类别</a>
-						        </span>
-                                <div class="newspaper-x-content">
-                                    专利简介<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
+                                <span class="">持有人：利亚德光电股份有限公司 </span>&nbsp;&nbsp;&nbsp;
+                                <span class="newspaper-x-category">实用新型专利</span>
+                                <div class="newspaper-x-content">本实用新型提供了一种显示屏。显示屏包括显示屏箱体、设置在显示屏箱体内部的多个显示单元和与显示屏箱体固定连接的支撑部件，其中，每个显示单元通过磁吸的方式分别与支撑部件可拆卸地连接。根据本实用新型的显示屏，该显示屏便于制造、安装及维护。...</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="newspaper-x-blog-post-layout-c">
+                                <div class="newspaper-x-image">
+                                    <img width="550" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/111123092452.gif" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                 </div>
+                                <div class="newspaper-x-title">
+                                    <h4>新型感应鼠标</h4>
+                                </div>
+                                <span class="">持有人：王春华</span>&nbsp;&nbsp;&nbsp;
+                                <span class="newspaper-x-category">实用新型专利</span>
+                                <div class="newspaper-x-content">本实用新型公开了一种鼠标，包括鼠标主体，感应器设于鼠标主体前端，开关设于鼠标主体顶端。本实用新型可解决如何使其开启较为方便的技术问题...</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="newspaper-x-blog-post-layout-c">
+                                <div class="newspaper-x-image">
+                                    <img width="550" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/A20061006197900051.gif" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
+                                </div>
+                                <div class="newspaper-x-title">
+                                    <h4>改良设计键盘</h4>
+                                </div>
+                                <span class="">持有人：鸿海精密工业股份有限公司</span>&nbsp;&nbsp;&nbsp;
+                                <span class="newspaper-x-category">实用新型专利</span>
+                                <div class="newspaper-x-content">相较现有技术，所述数字键盘可装设于所述容置区内，并在其一侧设一把手，节省了键盘的占用空间，对数字键盘的取用更加方便...</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--<div id="newspaper_x_banner-5" class="newspaper-x-type-image widget widget_newspaper_x_banner">-->
-                <!--<div class="newspaper-x-image-banner">-->
-                <!--<img width="729" height="90" src="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/banner.png" class="attachment- size-" alt="" srcset="https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/banner.png 729w, https://colorlib.com/newspaper-x/wp-content/uploads/sites/15/2017/05/banner-300x37.png 300w" sizes="(max-width: 729px) 100vw, 729px"/>-->
-                <!--</div>-->
-                <!--</div>-->
                 <div id="newspaper_x_widget_posts_b-3" class="widget newspaper_x_widgets">
                     <h3 class="widget-title"><span>最热需求</span></h3>
                     <div class="row newspaper-x-layout-b-row">
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="newspaper-x-blog-post-layout-c">
                                 <div class="newspaper-x-image">
-                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                        <img width="550" height="360" src="https://i.imgur.com/lGrL5LY.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                    <img width="360" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/u%3D1884048700%2C295740080%26fm%3D26%26gp%3D0.jpg" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""  style="width: 138px;height: 138px;"/>
                                 </div>
                                 <div class="newspaper-x-title">
-                                    <h4>
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">需求名称</a>
-                                    </h4>
+                                    <h4>新型双开门冰箱</h4>
                                 </div>
-                                <span class="newspaper-x-author">
-							        <a href="/author/raibercristian ">发布时间</a>
-							    </span>
-                                <span class="newspaper-x-date">2017.10.5</span>
-                                <div class="newspaper-x-content">
-                                    需求详情<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
+                                <div class="newspaper-x-title">
+                                    <span class="newspaper-x-author">求购者姓名：</span>
+                                    <span class="newspaper-x-date">Verus</span>
                                 </div>
+                                <span class="newspaper-x-author">发布时间：</span>
+                                <span class="newspaper-x-date">2018.9.2</span>
+                                <div class="newspaper-x-content">需要本专利所满足的要求是：结构简单，使用时，使用者可以双手同时取放物品，减少开关冰箱门的次数，可以节约用电。使用方便。 ...</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="newspaper-x-blog-post-layout-c">
                                 <div class="newspaper-x-image">
-                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                        <img width="550" height="360" src="https://i.imgur.com/lGrL5LY.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                    <img width="360" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/u%3D566813940%2C2618417108%26fm%3D26%26gp%3D0.jpg" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""  style="width: 138px;height: 138px;"/>
                                 </div>
                                 <div class="newspaper-x-title">
-                                    <h4>
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">需求名称</a>
-                                    </h4>
-                                </div>
-                                <span class="newspaper-x-author">
-							        <a href="/author/raibercristian ">发布时间</a>
-							    </span>
-                                <span class="newspaper-x-date">2017.10.5</span>
-                                <div class="newspaper-x-content">
-                                    需求详情<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row newspaper-x-layout-b-row">
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="newspaper-x-blog-post-layout-c">
-                                <div class="newspaper-x-image">
-                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                        <img width="550" height="360" src="https://i.imgur.com/lGrL5LY.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                    <h4>新型电视</h4>
                                 </div>
                                 <div class="newspaper-x-title">
-                                    <h4>
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">需求名称</a>
-                                    </h4>
+                                    <span class="newspaper-x-author">求购者姓名</span>
+                                    <span class="newspaper-x-date">fizz</span>
                                 </div>
-                                <span class="newspaper-x-author">
-							        <a href="/author/raibercristian ">发布时间</a>
-							    </span>
-                                <span class="newspaper-x-date">2017.10.5</span>
-                                <div class="newspaper-x-content">
-                                    需求详情<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
-                                </div>
+                                <span class="newspaper-x-author">发布时间</span>
+                                <span class="newspaper-x-date">2018.9.3</span>
+                                <div class="newspaper-x-content">需要本专利实现在电视机壳体上设置遥控器存放装置，固定电视机遥控器的放置位置，而且存放、拿取都需要很方便，能够大大减少电视机遥控器因外发生破损的现象，提高遥控器的使用寿命 ...</div>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="newspaper-x-blog-post-layout-c">
                                 <div class="newspaper-x-image">
-                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                        <img width="550" height="360" src="https://i.imgur.com/lGrL5LY.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                    <img width="360" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/u%3D2139419588%2C3878504118%26fm%3D26%26gp%3D0.jpg" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""  style="width: 138px;height: 138px;"/>
                                 </div>
                                 <div class="newspaper-x-title">
-                                    <h4>
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">需求名称</a>
-                                    </h4>
+                                    <h4>新型灯泡</h4>
                                 </div>
-                                <span class="newspaper-x-author">
-							        <a href="/author/raibercristian ">发布时间</a>
-							    </span>
-                                <span class="newspaper-x-date">2017.10.5</span>
-                                <div class="newspaper-x-content">
-                                    需求详情<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
+                                <div class="newspaper-x-title">
+                                    <span class="newspaper-x-author">求购者姓名</span>
+                                    <span class="newspaper-x-date">Ezreal</span>
                                 </div>
+                                <span class="newspaper-x-author">发布时间</span>
+                                <span class="newspaper-x-date">2018.9.4</span>
+                                <div class="newspaper-x-content">需要专利满足，使用者更换灯泡时有明确的手持部位，操作方便、容易，更换灯泡操作更加安全...</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="newspaper-x-blog-post-layout-c">
+                                <div class="newspaper-x-image">
+                                    <img width="360" height="360" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/u%3D309865034%2C4208451592%26fm%3D26%26gp%3D0.jpg" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""  style="width: 138px;height: 138px;"/>
+                                </div>
+                                <div class="newspaper-x-title">
+                                    <h4>新型电风扇</h4>
+                                </div>
+                                <div class="newspaper-x-title">
+                                    <span class="newspaper-x-author">求购者姓名</span>
+                                    <span class="newspaper-x-date">Trundle</span>
+                                </div>
+                                <span class="newspaper-x-author">发布时间</span>
+                                <span class="newspaper-x-date">2018.9.6</span>
+                                <div class="newspaper-x-content">需要研发的专利满足电风扇本体底部设有一个可调节高度的伸缩装置，能够调节电风扇的高度...</div>
                             </div>
                         </div>
                     </div>
@@ -519,82 +504,68 @@
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="newspaper-x-blog-post-layout-c">
                                     <div class="newspaper-x-image">
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                            <img width="550" height="360" src="https://i.imgur.com/gGPGuoi.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                        <img width="550" height="360" style="width: 138px;height: 138px;" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/u%3D1527748071%2C2999906645%26fm%3D26%26gp%3D0.jpg" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                     </div>
                                     <div class="newspaper-x-title">
-                                        <h4>
-                                            <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">运营商名称</a>
-                                        </h4>
+                                        <h4>Mike</h4>
                                     </div>
                                     <span class="newspaper-x-author">
-							        <a href="/author/raibercristian ">当前正在运营</a>
+							        <a href="">当前正在运营</a>
 							    </span>
-                                    <span class="newspaper-x-date">50个专利</span>
+                                    <span class="newspaper-x-date">5个专利</span>
                                     <div class="newspaper-x-content">
-                                        运营商介绍<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
+                                        Mike是专利运营界的金牌顾问，从业经验丰富，当前是专利代理行业内的精英人员
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="newspaper-x-blog-post-layout-c">
                                     <div class="newspaper-x-image">
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                            <img width="550" height="360" src="https://i.imgur.com/gGPGuoi.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                        <img width="550" height="360" style="width: 138px;height: 138px;" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/u%3D1774311269%2C2540032969%26fm%3D26%26gp%3D0.jpg" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                     </div>
                                     <div class="newspaper-x-title">
-                                        <h4>
-                                            <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">运营商名称</a>
-                                        </h4>
+                                        <h4>Hellen</h4>
                                     </div>
                                     <span class="newspaper-x-author">
-							        <a href="/author/raibercristian ">当前正在运营</a>
+							        <a href="">当前正在运营</a>
 							    </span>
-                                    <span class="newspaper-x-date">50个专利</span>
+                                    <span class="newspaper-x-date">12个专利</span>
                                     <div class="newspaper-x-content">
-                                        运营商介绍<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row newspaper-x-layout-b-row">
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="newspaper-x-blog-post-layout-c">
-                                    <div class="newspaper-x-image">
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                            <img width="550" height="360" src="https://i.imgur.com/gGPGuoi.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
-                                    </div>
-                                    <div class="newspaper-x-title">
-                                        <h4>
-                                            <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">运营商名称</a>
-                                        </h4>
-                                    </div>
-                                    <span class="newspaper-x-author">
-							        <a href="/author/raibercristian ">当前正在运营</a>
-							    </span>
-                                    <span class="newspaper-x-date">50个专利</span>
-                                    <div class="newspaper-x-content">
-                                        运营商介绍<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
+                                        Hellen是专利运营界的金牌顾问，从业经验丰富，当前是专利代理行业内的精英人员
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="newspaper-x-blog-post-layout-c">
                                     <div class="newspaper-x-image">
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">
-                                            <img width="550" height="360" src="https://i.imgur.com/gGPGuoi.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />                        </a>
+                                        <img width="550" height="360" style="width: 138px;height: 138px;" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/u%3D2055124039%2C1913930021%26fm%3D26%26gp%3D0.jpg" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
                                     </div>
                                     <div class="newspaper-x-title">
-                                        <h4>
-                                            <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">运营商名称</a>
-                                        </h4>
+                                        <h4>Jack</h4>
                                     </div>
                                     <span class="newspaper-x-author">
-							        <a href="/author/raibercristian ">当前正在运营</a>
+							        <a href="">当前正在运营</a>
 							    </span>
-                                    <span class="newspaper-x-date">50个专利</span>
+                                    <span class="newspaper-x-date">15个专利</span>
                                     <div class="newspaper-x-content">
-                                        运营商介绍<a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-consectetur-justo-5/">...</a>
+                                        Jack是专利运营界的金牌顾问，从业经验丰富，当前是专利代理行业内的精英人员
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="newspaper-x-blog-post-layout-c">
+                                    <div class="newspaper-x-image">
+                                        <img width="550" height="360" style="width: 138px;height: 138px;" src="https://ipnet10.oss-cn-beijing.aliyuncs.com/%E5%9B%BE%E7%89%87/%E9%A6%96%E9%A1%B5%E6%8E%A8%E8%8D%90%E6%98%BE%E7%A4%BA%E7%94%A8%E5%9B%BE%E7%89%87/u%3D863057984%2C4209957920%26fm%3D26%26gp%3D0.jpg" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt="" />
+                                    </div>
+                                    <div class="newspaper-x-title">
+                                        <h4>Tryndamere</h4>
+                                    </div>
+                                    <span class="newspaper-x-author">
+							        <a href="">当前正在运营</a>
+							    </span>
+                                    <span class="newspaper-x-date">19个专利</span>
+                                    <div class="newspaper-x-content">
+                                        Tryndamere是专利运营界的金牌顾问，从业经验丰富，当前是专利代理行业内的精英人员
                                     </div>
                                 </div>
                             </div>
@@ -610,20 +581,15 @@
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="newspaper-x-image">
-                                                <a href="https://colorlib.com/newspaper-x/2017/05/10/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit/">
-                                                    <img width="550" height="360" src="https://i.imgur.com/Hr2utjy.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                                <img width="550" height="360" src="https://i.imgur.com/XUuzcVo.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
                                             </div>
                                         </div>
                                         <div class="col-sm-7 col-xs-12 card-info">
                                             <div class="newspaper-x-title">
-                                                <h4>
-                                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit/">公司动态介绍</a>
-                                                </h4>
+                                                <h4>IPNET平台正式上线投入运营</h4>
                                             </div>
-                                            <span class="newspaper-x-author">
-									            <a href="/author/raibercristian ">时间</a>
-									        </span>
-                                            <span class="newspaper-x-date">2017.10.5</span>
+                                            <span class="newspaper-x-author">时间</span>
+                                            <span class="newspaper-x-date">2018.9.1</span>
                                         </div>
                                     </div>
                                 </div>
@@ -633,20 +599,17 @@
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="newspaper-x-image">
-                                                <a href="https://colorlib.com/newspaper-x/2017/05/10/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit/">
-                                                    <img width="550" height="360" src="https://i.imgur.com/Hr2utjy.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                                <img width="550" height="360" src="https://i.imgur.com/rhNR9aK.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/>
                                             </div>
                                         </div>
                                         <div class="col-sm-7 col-xs-12 card-info">
                                             <div class="newspaper-x-title">
-                                                <h4>
-                                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit/">公司动态介绍</a>
-                                                </h4>
+                                                <h4>IPNET平台发放各种优惠好礼等您来理</h4>
                                             </div>
                                             <span class="newspaper-x-author">
-									            <a href="/author/raibercristian ">时间</a>
+									            <a href="">时间</a>
 									        </span>
-                                            <span class="newspaper-x-date">2017.10.5</span>
+                                            <span class="newspaper-x-date">2018.9.3</span>
                                         </div>
                                     </div>
                                 </div>
@@ -658,20 +621,17 @@
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="newspaper-x-image">
-                                                <a href="https://colorlib.com/newspaper-x/2017/05/10/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit/">
-                                                    <img width="550" height="360" src="https://i.imgur.com/Hr2utjy.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                                <img width="550" height="360" src="https://i.imgur.com/ZliTF7s.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/>
                                             </div>
                                         </div>
                                         <div class="col-sm-7 col-xs-12 card-info">
                                             <div class="newspaper-x-title">
-                                                <h4>
-                                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit/">公司动态介绍</a>
-                                                </h4>
+                                                <h4>IPNET平台交易额和用户注册量突破新指标</h4>
                                             </div>
                                             <span class="newspaper-x-author">
-									            <a href="/author/raibercristian ">时间</a>
+									            <a href="">时间</a>
 									        </span>
-                                            <span class="newspaper-x-date">2017.10.5</span>
+                                            <span class="newspaper-x-date">2018.9.4</span>
                                         </div>
                                     </div>
                                 </div>
@@ -681,20 +641,17 @@
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12">
                                             <div class="newspaper-x-image">
-                                                <a href="https://colorlib.com/newspaper-x/2017/05/10/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit/">
-                                                    <img width="550" height="360" src="https://i.imgur.com/Hr2utjy.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                                <img width="550" height="360" src="https://i.imgur.com/ZliTF7s.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/>
                                             </div>
                                         </div>
                                         <div class="col-sm-7 col-xs-12 card-info">
                                             <div class="newspaper-x-title">
-                                                <h4>
-                                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit/">公司动态介绍</a>
-                                                </h4>
+                                                <h4>IPNET平台运营一切顺利，未来可期</h4>
                                             </div>
                                             <span class="newspaper-x-author">
-									            <a href="/author/raibercristian ">时间</a>
+									            <a href="">时间</a>
 									        </span>
-                                            <span class="newspaper-x-date">2017.10.5</span>
+                                            <span class="newspaper-x-date">2018.9.10</span>
                                         </div>
                                     </div>
                                 </div>
@@ -781,7 +738,7 @@
     <!-- container -->
     <div id="footerwrap">
         <div class="container">
-            <h4>Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+            <h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
         </div>
     </div>
 </div>
