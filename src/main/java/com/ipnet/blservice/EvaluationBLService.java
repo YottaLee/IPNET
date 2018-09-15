@@ -5,7 +5,7 @@ import com.ipnet.vo.financevo.EvaluationVO;
 
 public interface EvaluationBLService {
 
-    ResultMessage submitReport(String patentID,String url, int evaluation,double money);
+    ResultMessage submitReport(String patentID,String url,String rule,String tech, double evaluation,String result, double money);
 
     ResultMessage applyEvaluation(String patentID, String url);
 
@@ -15,6 +15,6 @@ public interface EvaluationBLService {
 
     boolean ifValue(String patentID);
 
-    //ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass);
+    String getEvaluator();
 
 }

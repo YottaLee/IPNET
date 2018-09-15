@@ -10,7 +10,6 @@ import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
 import com.ipnet.utility.MD5Util;
-import com.ipnet.utility.TransHelper;
 import com.ipnet.vo.uservo.CompanyVerify;
 import com.ipnet.vo.uservo.EmailRegister;
 import com.ipnet.vo.uservo.PersonVerify;
@@ -225,28 +224,6 @@ public class UserBL implements UserBLService{
         return ResultMessage.Fail;
     }
 
-    /**private boolean sendEmail2(String toEmail,String code){
-        MimeMessage message = mailSender.createMimeMessage();
-        String register_link = "http://localhost:8000/user/email=" +toEmail+ "/code=" +code;
-        //创建邮件正文
-        Context context = new Context();
-        context.setVariable("register_link", register_link);
-        TemplateEngine templateEngine=new SpringTemplateEngine();
-        String emailContent = templateEngine.process("UserRegisterTemplate", context);
-        try {
-            //true表示需要创建一个multipart message
-            MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom(this.fromEmail);
-            helper.setTo(toEmail);
-            helper.setSubject("Ipnet注册验证");
-            helper.setText(emailContent, true);
-            mailSender.send(message);
-            return true;
-        } catch (MessagingException e) {
-            return false;
-        }
-    }*/
-
     private boolean sendEmail(String toEmail,String code) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
@@ -338,6 +315,11 @@ public class UserBL implements UserBLService{
     }
 
     @Override
+    public String getEvaluationName(){
+        return companyUserDao.getEvaluationName();
+    }
+
+    @Override
     public boolean personVerify(PersonVerify personVerify) {
         Optional<PersonalUser> person= personalUserDao.findById(personVerify.getId());
         if(person.isPresent()){
@@ -421,5 +403,16 @@ public class UserBL implements UserBLService{
         return image;
     }
 
+    @Override
+    public String getXingMing(String userID){
+        Optional<PersonalUser> person= personalUserDao.findById(userID);
+        Optional<CompanyUser> company= companyUserDao.findById(userID);
+        if(person.isPresent()){
+            return person.get().getName();
+        }else if(company.isPresent()){
+            return company.get().getImage();
+        }
+        return null;
+    }
 
 }

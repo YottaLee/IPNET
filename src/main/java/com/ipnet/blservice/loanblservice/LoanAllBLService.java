@@ -5,7 +5,7 @@ import com.ipnet.vo.financevo.LoanVO;
 
 import java.util.ArrayList;
 
-public interface LoanAllBLSerivce {
+public interface LoanAllBLService {
 
     ArrayList<String> getContract(String loanID);
 

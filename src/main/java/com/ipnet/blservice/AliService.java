@@ -1,6 +1,5 @@
 package com.ipnet.blservice;
 
-
 import org.springframework.web.multipart.MultipartFile;
 
 public interface AliService {
@@ -12,6 +11,9 @@ public interface AliService {
 
     //原样上传文件
     String uploadFile( MultipartFile file);
+
+    //原样上传图片
+    String uploadImage(MultipartFile file);
 
     String uploadBase64File(String path,String base64);
 }

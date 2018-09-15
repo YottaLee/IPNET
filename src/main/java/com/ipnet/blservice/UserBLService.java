@@ -36,6 +36,12 @@ public interface UserBLService {
 
     Role getUserRole(String userID);
 
+    //获取唯一一家评估机构的名字
+    String getEvaluationName();
+
+    //根据用户ID获得姓名
+    String getXingMing(String userID);
+
     //用户实名身份认证
     boolean personVerify(PersonVerify personVerify);
     //企业信息实名认证
