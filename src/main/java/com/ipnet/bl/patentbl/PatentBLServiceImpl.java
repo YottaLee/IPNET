@@ -90,6 +90,7 @@ public class PatentBLServiceImpl implements PatentBLService {
     public List<PatentVO> getPatentList(String userId){
         List<Patent> patentList = this.patentDao.searchPatentsByUserId(userId);
         if(patentList.size() == 0 ||patentList == null){
+            System.out.println("list为空");
             return null;
         }
         List<PatentVO> voList = patentList.stream()
