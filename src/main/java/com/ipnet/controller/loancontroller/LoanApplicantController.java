@@ -106,6 +106,17 @@ public class LoanApplicantController {
         return loanBLService.ifBankChosen(loanID);
     }
 
+    /**
+     * 改变贷款状态，将贷款状态从待评估中转变成申请贷款中
+     * @param loanID 贷款ID
+     * @return
+     */
+    @RequestMapping("/changeEvaluationState")
+    @ResponseBody
+    public ResultMessage changeEvaluationState(String loanID) {
+        return null;
+    }
+
 
 
 }

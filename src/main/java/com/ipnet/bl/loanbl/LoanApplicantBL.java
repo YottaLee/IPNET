@@ -119,7 +119,7 @@ public class LoanApplicantBL implements LoanApplicantBLService{
         }
         loan.setPatent(patentName);
         loan.setState(Patent_loan_state.to_be_value);
-        loanDao.save(loan);
+        loanDao.saveAndFlush(loan);
         return loanID;
     }
 

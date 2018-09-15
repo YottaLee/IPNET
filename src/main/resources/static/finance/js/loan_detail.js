@@ -3,9 +3,11 @@ var loanID = storage.getItem('loan_id');
 $.ajax({
     type: 'GET',
     url: '/bank/getInfo',
-    data: loanID,
+    data: {
+        loanID: loanID
+    },
     success: function (data) {
-        document.getElementById("patentID").innerHTML = patentID;
+        document.getElementById("patentID").innerHTML = data.patentID;
         document.getElementById("patent").innerHTML = data.patent;
         document.getElementById("holder").innerHTML = data.person;
         document.getElementById("bank").innerHTML = data.bank;
@@ -18,27 +20,28 @@ $.ajax({
     }
 });
 
-$("#exit").on('click',function () {
+$("#exit").on('click', function () {
     storage.removeItem('loan_id');
     var userId = storage.getItem('user_id');
     $.ajax({
         type: "GET",
         url: "/user/getUserRole",
-        dataType: "json",
-        data: userId,
+        data: {
+            userId: userId
+        },
         success: function (data) {
             switch (data) {
-                case 0:
-                case 1:
+                case "CompanyUser":
+                case "PersonalUser":
                     window.location.href = "/ipnet/Person-IP-list";
                     break;
-                case 2:
+                case "Evaluator":
                     window.location.href = "/ipnet/Evaluation-IP-list";
                     break;//评估机构界面
-                case 3:
+                case "Financial":
                     window.location.href = "/ipnet/Bank-IP-list";
                     break;//金融机构界面
-                case 4:
+                case "Insurance":
                     window.location.href = "/ipnet/Insurance-IP-list";
                     break;//保险公司界面
             }
