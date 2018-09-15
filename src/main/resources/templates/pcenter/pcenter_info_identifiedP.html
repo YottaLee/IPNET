@@ -57,6 +57,7 @@
     <!-- 新添加 -->
     <link href="/ipnet_Login_v2/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" type="text/css" href="/ipnet_Login_v2/css/css_eWallet/wallet.css">
+    <script src="/ipnet_Login_v2/js/js_PersonalCenter/info_identifiedP.js"></script>
 
     <!--<script type='text/javascript' src='https://colorlib.com/newspaper-x/wp-content/plugins/google-analytics-premium/assets/js/frontend.min.js?ver=7.0.19'></script>
     <script type='text/javascript' src='https://colorlib.com/newspaper-x/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
@@ -280,19 +281,19 @@
                             <div class="t3">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <div class="t7" style="margin-top: 10px;">
+                                        <div class="t7" id="nickname" style="margin-top: 10px;">
                                             用户名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：
                                         </div>
-                                        <div class="t7">
+                                        <div class="t7" id="registerTime">
                                             注册时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：
                                         </div>
                                         <!--<div class="t7">
                                             自我描述&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：
                                         </div>-->
-                                        <div class="t7">
+                                        <div class="t7" id="IPnum">
                                             持有专利数&nbsp;&nbsp;&nbsp;：
                                         </div>
-                                        <div class="t7">
+                                        <div class="t7" id="IPSETnum">
                                             持有专利池数：
                                         </div>
                                     </div>
@@ -315,17 +316,17 @@
                             <div class="t3">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <img src="/ipnet_Login_v2/images/person.jpg" alt="IDcard">
+                                        <img src="/ipnet_Login_v2/images/person.jpg" alt="IDcard"><!-- 待修改 -->
                                     </div>
                                     <div class="col-xs-6">
                                         <div style="margin-left: 60%; margin-bottom: 20px"><button class="btn-balance">重新编辑</button></div>
-                                        <div class="t7">
+                                        <div class="t7" id="name">
                                             姓名
                                         </div>
-                                        <div class="t7">
+                                        <div class="t7" id="gender">
                                             性别
                                         </div>
-                                        <div class="t7">
+                                        <div class="t7" id="phone">
                                             手机号
                                         </div>
                                     </div>
@@ -334,18 +335,18 @@
                             <div class="t3">
                                 <div class="row">
                                     <div class="col-xs-6">
-                                        <div class="t7">
+                                        <div class="t7" id="company">
                                             所在企业
                                         </div>
-                                        <div class="t7">
+                                        <div class="t7" id="profession">
                                             从事行业
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
-                                        <div class="t7">
+                                        <div class="t7" id="region">
                                             所在地区
                                         </div>
-                                        <div class="t7">
+                                        <div class="t7" id="statement">
                                             自我描述
                                         </div>
                                     </div>

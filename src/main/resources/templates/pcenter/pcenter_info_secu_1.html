@@ -68,6 +68,7 @@
             $(inputname).ftext();
         });
     </script>
+    <script src="/ipnet_Login_v2/js/js_PersonalCenter/info_secu_1.js"></script>
 
     <!--<script type='text/javascript' src='https://colorlib.com/newspaper-x/wp-content/plugins/google-analytics-premium/assets/js/frontend.min.js?ver=7.0.19'></script>
     <script type='text/javascript' src='https://colorlib.com/newspaper-x/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
@@ -247,13 +248,14 @@
                                     <div class="col-xs-12" style="padding: 4%; border: 1px solid #d8d8d8; margin: 5px 10px;">
                                         <form action="" id="form_info_s" class="form2">
                                             <div class="col-xs-12">
-                                                <input type="text" name="s_info" data-animation="clean-slide" id="name" data-label="用户名" data-label-bg="#82cff0"
+                                                <input type="text" name="s_info" data-animation="clean-slide" id="nickname" data-label="用户名" data-label-bg="#82cff0"
                                                        data-label-color="#fff" data-mask=""/>
+                                                <div id="msg_nickname"></div>
                                                 <br /><br /><br />
                                             </div>
                                             <div class="col-xs-12">
-                                                <button value="取消" class="btn-balance">取消</button>
-                                                <button value="确定" class="btn-balance">确定</button>
+                                                <button value="取消" class="btn-balance" onclick="window.location.href = '/ipnet/pc_info_security'">取消</button>
+                                                <button value="确定" class="btn-balance" onclick="modifyNickname()">确定</button>
                                             </div>
                                         </form>
                                     </div>
