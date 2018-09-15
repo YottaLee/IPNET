@@ -99,7 +99,8 @@ $(document).ready(function () {
 
     myDropzone.on("success",function(data){
         //上传成功触发的事件
-        url = data;
+        var storage = window.localStorage;
+        storage.setItem('fileURL',data);
         console.log(data);
     });
     myDropzone.on("error",function (file,data) {

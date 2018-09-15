@@ -1,6 +1,7 @@
 //获取专利列表
 var storage = window.localStorage;
 var userId = storage.getItem('user_id');
+console.log(userId);
 $.ajax({
     type: "GET",
     url: "Patent/getPatentList",
@@ -45,7 +46,7 @@ function transaction(patentID) {
     //判断一下该专利是否在闲置过程中
     var state = searchIPState(patentID);
     if (state == 0) {
-        storage.setItem('patent_id',patentID);
+        storage.setItem('patent_id', patentID);
         //跳转到交易界面
     }
     else {
@@ -89,7 +90,7 @@ function loan(patentID) {
                 success: function (data) {
                     if (data) {
                         window.location.href = "/ipnet/Applicant-loan2";
-                    // } else {
+                        // } else {
                         //是否有最新的贷款
                         $.ajax({
                             type: "GET",
@@ -150,10 +151,14 @@ function loan(patentID) {
                                                 case 9:
                                                     payForInsurance(loanID);
                                                     break;
-                                                case 7:
-                                                case 8:
-                                                case 9://无法对该专利进行操作
-                                                default:break;
+                                                case 10:
+                                                case 11:
+                                                case 12:
+                                                case 13:
+                                                    window.location.href = "/ipnet/loan_detail"//贷款详情
+                                                    break;
+                                                default:
+                                                    break;
 
 
                                             }
@@ -189,15 +194,15 @@ function loan(patentID) {
 
                     }
                 },
-                error: function () {
-                    // alert("Network warning");
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                 }
             });
             break;
         case 3:
             break;
         default:
-            alert(stateToText(state));
+            alertFile(stateToText(state));
     }
 
 }
@@ -281,9 +286,29 @@ function payForEvaluation(patentID) {
         way: "专利评估",
         money: money
     };
+
     window.location.href = "/ipnet/pay";
 }
 
-function payForInsurance(loanID){
+function payForInsurance(loanID) {
+    $.ajax({
+        url: "/insurance/getInsurance",
+        type: 'GET',
+        data: loanID,//保险ID存疑
+        success: function (data) {
+            var transaction = {
+                patentID: data.patentID,
+                patent: data.patent,
+                payer: data.person,
+                payee: data.insuranceCompany,
+                way: "专利质押贷款保证保险",
+                money: data.money
+            };
 
+            window.location.href = "/ipnet/pay";
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+    })
 }
