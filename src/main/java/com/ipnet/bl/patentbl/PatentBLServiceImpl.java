@@ -49,6 +49,7 @@ public class PatentBLServiceImpl implements PatentBLService {
         Patent p = new Patent();
         p.setPatent_id(patentID);
         p.setPool_id("");
+        p.setUserId(userId);
         p.setPatent_name(patent);
         p.setPatent_holder(holder);
         p.setUrl(url);

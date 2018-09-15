@@ -165,7 +165,7 @@ $(document).ready(function () {
                             window.location.href = "/ipnet/Applicant-loan2";
                         }
                         else {
-                            storage.removeItem("patentID");
+                            storage.removeItem("patent_id");
                             window.location.href = "/ipnet/Person-IP-list";
                         }
 

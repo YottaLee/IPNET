@@ -94,6 +94,7 @@ public class LoanAllController {
     @RequestMapping("/getPatentList")
     @ResponseBody
     public ArrayList<LoanVO> getPatentList(String userId) {
+
         return loanBLService.getPatentList(userId);
     }
 

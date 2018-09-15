@@ -4,9 +4,12 @@ var userId = storage.getItem('user_id');
 console.log(userId);
 $.ajax({
     type: "GET",
-    url: "Patent/getPatentList",
-    data: userId,
+    url: "/Patent/getPatentList",
+    data: {
+        userId: userId
+    },
     success: function (data) {
+        console.log(data);
         var patentList = "";
         for (var i = 0, len = data.length; i < len; i++) {
             patentList += "<td><a class=\"btn-link\" href=\"#\">" + data[i].patent_name + "</a></td>\n" +

@@ -35,7 +35,7 @@ public class UploadController {
      * @param file
      * @return String
      */
-    @RequestMapping("/image")
+    @RequestMapping("image")
     public @ResponseBody
     String uploadImage(@RequestBody MultipartFile file) {
         System.out.println("Success upload image!!!!!!!!!!!!!!!!!!! ");

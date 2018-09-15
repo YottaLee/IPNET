@@ -94,19 +94,17 @@ $(document).ready(function () {
         var fileName = document.getElementById("fileName").innerHTML;
         var formData = new FormData();
         var splitArr = fileName.split(".");
-        var path = patentID + "/专利评估报告." + splitArr[splitArr.length - 1];
+        // var path = patentID + "/专利评估报告." + splitArr[splitArr.length - 1];
         // formData.append('name', patentID + "-专利评估报告");
         formData.append('file', file);
         $.ajax({
             url: '/upload/file',
             type: 'POST',
             cache: false,
-            data: {
-                path: path,
-                file: formData
-            },
-            success:function (data) {
-                url = data;
+            data: formData,
+            success: function (data) {
+                var storage = window.localStorage;
+                storage.setItem("fileURL", data);
             },
             processData: false,
             contentType: false
