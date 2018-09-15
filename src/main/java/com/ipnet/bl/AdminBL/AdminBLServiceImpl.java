@@ -47,6 +47,18 @@ public class AdminBLServiceImpl implements AdminBLService {
     }
 
     @Override
+    public IPIFactor getFactorRatio() {
+        IPIFactor factor = new IPIFactor();
+        double sum = this.IPPointRatio + this.memberRatio + this.userRatio + this.profitRatio + this.RMBRatio;
+        factor.setIPPointRatio(this.IPPointRatio / sum);
+        factor.setMemberRatio(this.memberRatio / sum);
+        factor.setProfitRatio(this.profitRatio / sum);
+        factor.setUserRatio(this.userRatio / sum);
+        factor.setRMBRatio(this.RMBRatio / sum);
+        return factor;
+    }
+
+    @Override
     public double getIPIIndex() {
         double result = this.IPPointRatio * this.getIPPointsSum().get(this.getIPPointsSum().size() - 1)
                 + this.RMBRatio * this.getRMBSum().get(this.getRMBSum().size() - 1)
