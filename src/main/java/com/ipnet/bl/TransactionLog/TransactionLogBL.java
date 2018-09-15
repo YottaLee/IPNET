@@ -31,7 +31,8 @@ public class TransactionLogBL implements TransactionLogService{
         this.transactionDao.saveAndFlush(transaction);
     }
 
-    public List<Transaction> getAll() {
+    @Override
+    public List<Transaction> getAllTransactions() {
         List<Transaction> transactions = this.transactionDao.findAll();
         if(transactions.size() == 0 || transactions ==null){
             return null;

@@ -7,6 +7,7 @@ package com.ipnet.bl.Accountbl;
 import com.ipnet.blservice.AccountBLService;
 import com.ipnet.blservice.TransactionLogService;
 import com.ipnet.dao.AccountDao;
+import com.ipnet.entity.Transaction;
 import com.ipnet.entity.contract.Account;
 import com.ipnet.utility.IDNotExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,16 +53,20 @@ public class AccountBLServiceImpl implements AccountBLService {
 
     @Override
     public List<Integer> getRMBSum() {
+         List<Transaction> transactions = this.transactionLogService.getAllTransactions();
+
         return null;
     }
 
     @Override
     public List<Integer> getIPPointsSum() {
+        List<Transaction> transactions = this.transactionLogService.getAllTransactions();
         return null;
     }
 
     @Override
     public List<Double> getProfitSum() {
+        List<Transaction> transactions = this.transactionLogService.getAllTransactions();
         return null;
     }
 }

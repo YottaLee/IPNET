@@ -88,7 +88,7 @@ public class PatentBLServiceImpl implements PatentBLService {
 
     @Override
     public List<PatentVO> getPatentList(String userId){
-        List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
+        List<Patent> patentList = this.patentDao.searchPatentsByUserId(userId);
         if(patentList.size() == 0 ||patentList == null){
             return null;
         }
