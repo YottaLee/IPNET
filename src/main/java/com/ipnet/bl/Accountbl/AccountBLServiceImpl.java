@@ -1,22 +1,31 @@
 package com.ipnet.bl.Accountbl;
 
+/**
+ * gy
+ */
+
 import com.ipnet.blservice.AccountBLService;
+import com.ipnet.blservice.TransactionLogService;
 import com.ipnet.dao.AccountDao;
 import com.ipnet.entity.contract.Account;
 import com.ipnet.utility.IDNotExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
+
 
 @Service
 public class AccountBLServiceImpl implements AccountBLService {
      @Autowired
      private AccountDao accountDao;
 
-    @Override
-    public boolean MoneyMove(String srcAccount, String destAccount, double amount) throws IDNotExistsException {
+     @Autowired
+     private TransactionLogService transactionLogService;
+
+     @Override
+    public boolean MoneyMove(String srcAccount, String destAccount, double amount ,String paytype , String patentId) throws IDNotExistsException {
         boolean flag = false;
         Optional<Account> srcaccountOptional = this.accountDao.findById(srcAccount);
         Optional<Account> destaccountOptional = this.accountDao.findById(destAccount);
@@ -36,6 +45,7 @@ public class AccountBLServiceImpl implements AccountBLService {
             destAcc.setBalance(desAmount+amount);
             this.accountDao.saveAndFlush(srcAcc);
             this.accountDao.saveAndFlush(destAcc);
+            this.transactionLogService.addTransactionLog(srcAcc.getUserId() ,destAcc.getUserId() , srcAcc.getAcountId() , destAcc.getAcountId() , patentId , amount);
         }
         return flag;
     }

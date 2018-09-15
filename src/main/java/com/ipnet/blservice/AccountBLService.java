@@ -5,7 +5,7 @@ import com.ipnet.utility.IDNotExistsException;
 import java.util.List;
 
 public interface AccountBLService {
-    boolean MoneyMove(String srcAccount , String destAccount , double amount) throws IDNotExistsException;
+    boolean MoneyMove(String srcAccount , String destAccount , double amount ,String paytype , String patentId) throws IDNotExistsException;
 
     /**
      * 最近六个月的人民币总和，按日期排序
