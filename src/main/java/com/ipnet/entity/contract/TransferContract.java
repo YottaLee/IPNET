@@ -16,7 +16,7 @@ import java.util.Date;
 public class TransferContract extends Contract {
     @Id
     private String id;
-    
+
     private Date time;
     private String address;
 
