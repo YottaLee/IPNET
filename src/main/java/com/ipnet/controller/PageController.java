@@ -47,7 +47,7 @@ public class PageController {
 
     @RequestMapping("search_patent")
     public String search_patent(){
-        return "search_patent";
+        return "search_product";
     }
 
     @RequestMapping("frame")
