@@ -6,6 +6,7 @@ import com.ipnet.vo.uservo.CompanyVerify;
 import com.ipnet.vo.uservo.EmailRegister;
 import com.ipnet.vo.uservo.PersonVerify;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserBLService {
@@ -49,4 +50,19 @@ public interface UserBLService {
 
     //获取用户的头像的url
     String getImageUrl(String username);
+
+
+    /**
+     * 最近六个月的IP成员数
+     * @return
+     */
+    List<Integer> getMemberSum();
+
+    /**
+     * 最近六个月的IPNet总用户数
+     * @return
+     */
+    List<Integer> getUserSum();
+
+
 }

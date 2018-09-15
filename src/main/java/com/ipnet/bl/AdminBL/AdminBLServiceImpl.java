@@ -1,6 +1,9 @@
 package com.ipnet.bl.AdminBL;
 
 import com.ipnet.blservice.AdminBLService;
+import com.ipnet.blservice.UserBLService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,16 +15,42 @@ import java.util.List;
 @Service
 public class AdminBLServiceImpl implements AdminBLService {
 
-    private IPIFactorWeigh ipiFactorWeigh = new IPIFactorWeigh();
+    @Value("${IPIRatio.RMBRatio}")
+    private double RMBRatio;
+    @Value("${IPIRatio.IPPointRatio}")
+    private double IPPointRatio;
+    @Value("${IPIRatio.profitRatio}")
+    private double profitRatio;
+    @Value("${IPIRatio.memberRatio}")
+    private double memberRatio;
+    @Value("${IPIRatio.userRatio}")
+    private double userRatio;
+
+    private double IPIIndex;
+
+    @Autowired
+    private UserBLService userBLService;
 
     @Override
     public double setIPIIndexWeigh(int RMB, int IPPoints, int profit, int memberNum, int userNum) {
-        return 0;
+        this.RMBRatio = RMB;
+        this.IPPointRatio = IPPoints;
+        this.profitRatio = profit;
+        this.memberRatio = memberNum;
+        this.userRatio = userNum;
+
+        return this.getIPIIndex();
     }
 
     @Override
     public double getIPIIndex() {
-        return 0;
+        double result = this.IPPointRatio * this.getIPPointsSum().get(this.getIPPointsSum().size() - 1)
+                + this.RMBRatio * this.getRMBSum().get(this.getRMBSum().size() - 1)
+                + this.profitRatio * this.getProfitSum().get(this.getProfitSum().size() - 1)
+                + this.userRatio * this.getUserSum().get(this.getUserSum().size() - 1)
+                + this.memberRatio * this.getMemberSum().get(this.getMemberSum().size() - 1);
+        this.IPIIndex = result;
+        return this.IPIIndex;
     }
 
     @Override
@@ -41,11 +70,11 @@ public class AdminBLServiceImpl implements AdminBLService {
 
     @Override
     public List<Integer> getMemberSum() {
-        return null;
+        return this.userBLService.getUserSum();
     }
 
     @Override
     public List<Integer> getUserSum() {
-        return null;
+        return this.userBLService.getUserSum();
     }
 }
