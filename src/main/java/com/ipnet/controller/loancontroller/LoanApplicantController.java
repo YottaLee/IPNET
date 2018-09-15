@@ -114,7 +114,7 @@ public class LoanApplicantController {
     @RequestMapping("/changeEvaluationState")
     @ResponseBody
     public ResultMessage changeEvaluationState(String loanID) {
-        return null;
+        return loanBLService.changeEvaluationState(loanID);
     }
 
 
