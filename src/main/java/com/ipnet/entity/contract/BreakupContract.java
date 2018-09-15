@@ -3,9 +3,9 @@ package com.ipnet.entity.contract;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.ArrayList;
 
 @Data
