@@ -3,13 +3,18 @@ package com.ipnet.entity.contract;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class BreakupContract extends Contract{
+    @Id
+    private String id;
 
     private int money3;
     private String time1;

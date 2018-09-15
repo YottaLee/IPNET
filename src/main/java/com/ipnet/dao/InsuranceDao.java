@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 public interface InsuranceDao extends JpaRepository<Insurance,String>{
 
+    @Query("select i from Insurance i where i.loan_id=?1 and i.ifPass=TRUE ")
+    Insurance getInsurance(String loan_id);
+
     @Query("select i from Insurance i where i.insurance_id=?1")
     ArrayList<Insurance> getInsuranceList(String insurance_id);
 }

@@ -414,5 +414,15 @@ public class UserBL implements UserBLService{
         }
         return null;
     }
+    @Override
+    public List<Integer> getMemberSum() {
+        return null;
+    }
+
+    @Override
+    public List<Integer> getUserSum() {
+        return null;
+    }
+
 
 }

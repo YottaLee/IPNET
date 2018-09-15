@@ -1,5 +1,6 @@
 package com.ipnet.blservice;
 
+import com.ipnet.bl.AdminBL.IPIFactor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +26,14 @@ public interface AdminBLService {
 
 
     /**
-     *
+     * 返回各个因子所占比例
      * @return
+     */
+    IPIFactor getFactorRatio();
+
+    /**
+     *
+     * @return IPI指数计算结果
      */
     double getIPIIndex();
 
@@ -36,12 +43,28 @@ public interface AdminBLService {
      */
     List<Integer> getRMBSum();
 
+    /**
+     * 最近六个月的IP豆总和
+     * @return
+     */
     List<Integer> getIPPointsSum();
 
+    /**
+     * 最近六个月的利润总和
+     * @return
+     */
     List<Double> getProfitSum();
 
+    /**
+     * 最近六个月的IP成员数量总和
+     * @return
+     */
     List<Integer> getMemberSum();
 
+    /**
+     * 最近六个月的平台总用户数量总和
+     * @return
+     */
     List<Integer> getUserSum();
 
 

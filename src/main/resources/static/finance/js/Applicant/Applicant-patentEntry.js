@@ -1,6 +1,9 @@
-var uploadImageURL = "";
+
 $('#submit').on('click', function () {
-    if (url == "" || uploadImageURL == "")
+    var storage = window.localStorage;
+    var url = storage.getItem('fileURL');
+    var uploadImageURL = storage.getItem('uploadImageURL');
+    if (url == null || uploadImageURL == null)
         alertFile("请先上传文件");
     else {
 
@@ -11,8 +14,8 @@ $('#submit').on('click', function () {
         var type = $("#demo-chosen-select").val();
         var district = $("#district").val();
         var profile = $("#profile").val();
-        var storage = window.localStorage;
         var userId = storage.getItem('user_id');
+        console.log(userId);
         // console.log(type);
 
         $.ajax({
@@ -31,6 +34,8 @@ $('#submit').on('click', function () {
                 profile: profile
             },
             success: function (data) {
+                storage.removeItem('fileURL');
+                storage.removeItem('uploadImageURL');
                 infoFile("已提交");
                 setTimeout(function () {
                     window.location.href = "/ipnet/home";
@@ -44,5 +49,5 @@ $('#submit').on('click', function () {
 
 });
 
-$('#ssi-upload').ssi_uploader({url: '/upload/image', maxFileSize: 1, allowed: ['jpg', 'gif', 'png', 'pdf']});
+$('#ssi-upload').ssi_uploader({url: '/upload/image', maxFileSize: 5, allowed: ['jpg', 'gif', 'png', 'pdf']});
 

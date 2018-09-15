@@ -4,13 +4,19 @@ package com.ipnet.entity.contract;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class AgentContract extends Contract{
+    @Id
+    private String id;
+
     private String transferor;//转让方
     private String transferor_repre;//法定代表人
     private String acquiring_party;//受让方

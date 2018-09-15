@@ -1,6 +1,7 @@
 package com.ipnet.blservice.personalservice;
 
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.UserType;
 import com.ipnet.vo.uservo.AccountInfoVo;
 import com.ipnet.vo.uservo.CompanyUserSaveVo;
 import com.ipnet.vo.uservo.PersonalUserSaveVo;
@@ -15,7 +16,7 @@ public interface UserInfoBLService {
     //修改企业用户
     ResultMessage saveCompanyUserInfo(CompanyUserSaveVo companyUserSaveVo);
     //身份信息查看
-    UserInfoVo getUserInfo(String userId);
+    UserInfoVo getUserInfo(String userId, UserType userType);
     //账户信息查看
     AccountInfoVo getAccountInfo (String userId);
     //查看是否完成验证

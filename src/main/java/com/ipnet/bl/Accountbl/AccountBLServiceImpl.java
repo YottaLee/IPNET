@@ -7,6 +7,7 @@ import com.ipnet.utility.IDNotExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,5 +38,20 @@ public class AccountBLServiceImpl implements AccountBLService {
             this.accountDao.saveAndFlush(destAcc);
         }
         return flag;
+    }
+
+    @Override
+    public List<Integer> getRMBSum() {
+        return null;
+    }
+
+    @Override
+    public List<Integer> getIPPointsSum() {
+        return null;
+    }
+
+    @Override
+    public List<Double> getProfitSum() {
+        return null;
     }
 }
