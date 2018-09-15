@@ -69,6 +69,6 @@ public class BuyAndSellBL implements TranscationBlService {
             case Breakup:
             case Transfer:
         }
-        return ResultMessage.Fail;
+        return ResultMessage.Fail ;
     }
 }

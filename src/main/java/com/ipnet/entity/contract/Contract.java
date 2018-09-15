@@ -11,9 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class  Contract {
-    @Id
     private String contract_id;
     private String partyA;
     private String partyB;
