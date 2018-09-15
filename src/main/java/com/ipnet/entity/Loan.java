@@ -18,7 +18,7 @@ public class Loan {
     private String loanID;
     private String patentID;//专利ID
     private String patent;//专利名称
-    private String person; //专利持有人
+    private String person; //专利持有人ID
 
     private String time;//质押申请时间
     private int evaluation; //评估经济价值结果
@@ -43,19 +43,20 @@ public class Loan {
     private String contractid;//质押保险合同ID
 
     private boolean ownerPass;//专利持有者同意
-//    private String ownersign;//专利持有人同意签字照url
+
     private boolean bankPass;//银行方同意
     private boolean ifInsurance;//是否同意让专利持有人购买专利质押贷款保证保险
     private String banksign;//银行方面同意签字照url
+
     private boolean insurancePass;//保险公司方同意
     private String insurancesign;//保险机构同意签字照url
+
     private boolean evaluationPass;//评估机构方同意
     private String evaluationsign;//评估机构同意签字照url
 
     private String iposign;//知识产权局的盖章照url
     private String financesign;//财政局盖章url
 
-    //后续保险理赔问题暂定
 
 
 

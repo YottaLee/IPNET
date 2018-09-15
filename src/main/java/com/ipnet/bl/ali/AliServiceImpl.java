@@ -92,14 +92,25 @@ public class AliServiceImpl implements AliService {
     public String uploadFile( MultipartFile file) {
         try {
             InputStream inputStream=file.getInputStream();
-            String path = "";
-            return this.uploadStreamToOss(inputStream,path);
+            String fileName ="file"+fileSeparator+file.getOriginalFilename();
+            return this.uploadStreamToOss(inputStream,fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    @Override
+    public String uploadImage(MultipartFile file){
+        try {
+            InputStream inputStream=file.getInputStream();
+            String fileName = "image"+fileSeparator+file.getOriginalFilename();
+            return this.uploadStreamToOss(inputStream,fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public String uploadBase64File(String path, String base64) {
         Base64.Decoder decoder=Base64.getDecoder();

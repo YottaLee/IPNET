@@ -51,7 +51,7 @@
             background: #0e0e11;
         }
     </style>
-    <<link rel='stylesheet' id='owl.carousel-css' href='/home/css/carousel.min.css' type='text/css' media='all'/>
+    <link rel='stylesheet' id='owl.carousel-css' href='/home/css/carousel.min.css' type='text/css' media='all'/>
     <link rel='stylesheet' id='owl.carousel-theme-css' href='/home/css/default.css' type='text/css' media='all'/>
     <script src="/common/jquery.js"></script>
     <script type='text/javascript' src='/home/js/frontend.min.js'></script>
@@ -62,72 +62,148 @@
     <link href="/home/css/animate-custom.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/home/css/head.css">
 
+    <link rel="stylesheet" type="text/css" href="/frame/head/css/bootsnav.css">
+    <style type="text/css">
+        .navbar-brand{
+            padding: 29px 15px;
+            height: auto;
+        }
+        nav.navbar.bootsnav{
+            border: none;
+            margin-bottom: 150px;
+        }
+        .navbar-nav{
+            float: left;
+        }
+        nav.navbar.bootsnav ul.nav > li > a{
+            color: #474747;
+            text-transform: uppercase;
+            padding: 30px;
+        }
+        nav.navbar.bootsnav ul.nav > li:hover{
+            background: #474747;
+        }
+        .nav > li:after{
+            content: "";
+            width: 0;
+            height: 5px;
+            background: #34c9dd;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: all 0.5s ease 0s;
+        }
+        .nav > li:hover:after{
+            width: 100%;
+        }
+        nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{
+            content: "+";
+            font-family: 'FontAwesome';
+            font-size: 16px;
+            font-weight: 500;
+            position: absolute;
+            top: 35%;
+            right: 10%;
+            transition: all 0.4s ease 0s;
+        }
+        nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{
+            content: "\f105";
+            transform: rotate(90deg);
+        }
+        .dropdown-menu.multi-dropdown{
+            position: absolute;
+            left: -100% !important;
+        }
+        .dropdown-menu li{
+            background: #3b3e43;
+        }
+        nav.navbar.bootsnav li.dropdown ul.dropdown-menu{
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+        @media only screen and (max-width:990px){
+            nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after,
+            nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{ content: " "; }
+            .dropdown-menu.multi-dropdown{ left: 0 !important; }
+            nav.navbar.bootsnav ul.nav > li:hover{ background: transparent; }
+            nav.navbar.bootsnav ul.nav > li > a{ margin: 0; }
+        }
+    </style>
+
+    <link rel="stylesheet" href="/common/jquery-confirm.css">
+    <script type="text/javascript" src="/common/jquery-confirm.js"></script>
+
 </head>
 <body class="post-template-default single single-post postid-108 single-format-standard wp-custom-logo">
 <div id="page" class="site">
-    <header id="masthead" class="site-header" role="banner">
-        <nav id="site-navigation" class="main-navigation" role="navigation">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="fa fa-bars"></span></button>
-                        <div class="menu-primary-menu-container">
-                            <ul id="primary-menu" class="menu">
-                                <li id="menu-item-127" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-127"><a href="https://colorlib.com/newspaper-x">Home</a></li>
-                                <li id="menu-item-128" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-128"><a href="https://colorlib.com/newspaper-x/category/news/">News</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-129" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-129"><a href="https://colorlib.com/newspaper-x/category/the-world/">The World</a>
-                                            <ul class="sub-menu">
-                                                <li id="menu-item-136" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-136"><a href="#">World News</a></li>
-                                                <li id="menu-item-137" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-137"><a href="#">World Events</a></li>
-                                            </ul>
-                                        </li>
-                                        <li id="menu-item-130" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-130"><a href="https://colorlib.com/newspaper-x/category/events/">Events</a></li>
-                                        <li id="menu-item-131" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-131"><a href="https://colorlib.com/newspaper-x/category/editorial/">Editorial</a></li>
+
+    <div class="demo" style="padding-top: 0px;height: 80px;">
+        <div class="container" style="width: 100%;height: 80px;background: #3b3e43;">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default navbar-mobile bootsnav" style="background: #3b3e43">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-menu" >
+                            <img src="https://i.imgur.com/jwJTKCL.png" style="margin-top: 11px;margin-bottom: 11px;position: absolute;left: 20px;height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+                            <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp" style="left: 100px;position: absolute">
+                                <li><a href="#" style="color: white;">主页</a></li>
+                                <li><a href="#" style="color: white;">专利交易</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">专利管理</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" style="color: white;">个人专利管理</a></li>
+                                        <li><a href="#" style="color: white;">专利池管理</a></li>
                                     </ul>
                                 </li>
-                                <li id="menu-item-135" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-135"><a href="https://colorlib.com/newspaper-x/blog/">Blog</a></li>
-                                <li id="menu-item-140" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140"><a href="https://colorlib.com/newspaper-x/contact/">Contact</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">专利金融服务</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" style="color: white;">专利评估</a></li>
+                                        <li><a href="#" style="color: white;">专利质押</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#" style="color: white;">个人中心</a></li>
+                                <li><a href="#" style="color: white;">IPNET社区</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </nav>
                 </div>
             </div>
-        </nav><!-- #site-navigation -->
-    </header><!-- #masthead -->
-    <div id="content" class="site-content container">
+        </div>
+    </div>
+
+    <!-- #masthead -->
+    <div id="content" class="site-content container" style="margin-top: 0px">
         <div class="row">
             <div id="primary" class="content-area col-md-12 col-sm-8 col-xs-12 newspaper-x-sidebar">
                 <main id="main" class="site-main" role="main">
-                    <div class="newspaper-x-breadcrumbs">
-                        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://colorlib.com/newspaper-x"><span itemprop="title">Home </span></a></span><span class="newspaper-x-breadcrumb-sep">/</span><span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://colorlib.com/newspaper-x/blog/"><span itemprop="title">Blog</span></a></span><span class="newspaper-x-breadcrumb-sep">/</span><span class="breadcrumb-leaf">Sed purus velit, finibus non semper  nonut am utas</span>
-                    </div>
                     <article id="post-108" class="post-108 post type-post status-publish format-standard has-post-thumbnail hentry category-editorial">
                         <header class="entry-header">
                             <div class="newspaper-x-image">
-                                <img width="700" height="490" src="https://i.imgur.com/mKJEdFv.jpg" class="attachment-newspaper-x-single-post size-newspaper-x-single-post wp-post-image" alt=""/>
+                                <div style="width:400px;height: 360px;margin-right: auto;margin-left: auto">
+                                <img width="400" height="360" id="patent_photo" src="https://i.imgur.com/mKJEdFv.jpg" class="attachment-newspaper-x-single-post size-newspaper-x-single-post wp-post-image" alt="" style="width: 400px;height: 360px;margin-left: auto;margin-right: auto"/>
+                                </div>
                             </div>
                             <div class="newspaper-x-post-meta">
                                 <div>
-						<span class="newspaper-x-category">
-						<a href="https://colorlib.com/newspaper-x/category/news/">发明实用型专利</a>
-						</span>&nbsp;&nbsp;&nbsp;
-                                    <span class="newspaper-x-category">
-						<a href="https://colorlib.com/newspaper-x/category/news/">家具专利</a>
-						</span>
+						<span class="newspaper-x-category" id="patent_type"></span>&nbsp;&nbsp;&nbsp;
                                 </div>
                             </div>
                             <!-- .entry-meta -->
-                            <h2 class="entry-title">CN20180405&nbsp;&nbsp;&nbsp;一种瓷质砖及其生产方法</h2>
+                            <h2 class="entry-title" id="patent_name">CN20180405&nbsp;&nbsp;&nbsp;一种瓷质砖及其生产方法</h2>
                         </header><!-- .entry-header -->
 
                         <h4>著录项目</h4>
 
                         <span class="newspaper-x-category">
-                            <a href="https://colorlib.com/newspaper-x/category/news/"><i class="fas fa-star"></i>加入专利购物车</a>
+                            <i class="fas fa-shopping-cart"></i>购买专利使用权
 						</span>&nbsp;&nbsp;&nbsp;
-                        <span class="newspaper-x-category">
-						     <a href="https://colorlib.com/newspaper-x/category/news/"><i class="fas fa-shopping-cart"></i>购买专利</a>
+                        <span class="newspaper-x-category"  id="want_buy">
+						     <i class="fas fa-shopping-cart"></i>购买专利所有权
 						</span>
 
                         <!-- .entry-content -->
@@ -138,22 +214,22 @@
                                     <div class="col-md-4">
                                         <!-- Short Description -->
                                         <p>
-                                            <span style="color: black;font-weight: bold">申请号：&nbsp;</span>
-                                            <span>CN20180806</span>
+                                            <span style="color: black;font-weight: bold">专利号：&nbsp;</span>
+                                            <span id="patent_number"></span>
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <!-- Short Description -->
                                         <p>
-                                            <span style="color: black;font-weight: bold">公开（公告）号：&nbsp;</span>
-                                            <span>CN20180806</span>
+                                            <span style="color: black;font-weight: bold">专利池号：&nbsp;</span>
+                                            <span id="patent_pool_id"></span>
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <!-- Short Description -->
                                         <p>
-                                            <span style="color: black;font-weight: bold">公开（公告）日：&nbsp;</span>
-                                            <span>20180806</span>
+                                            <span style="color: black;font-weight: bold">专利持有者：&nbsp;</span>
+                                            <span id="patent_owner"></span>
                                         </p>
                                     </div>
                                 </div>
@@ -161,31 +237,22 @@
                                     <div class="col-md-4">
                                         <!-- Short Description -->
                                         <p>
-                                            <span style="color: black;font-weight: bold">申请日：&nbsp;</span>
-                                            <span>20180806</span>
+                                            <span style="color: black;font-weight: bold">申请时间：&nbsp;</span>
+                                            <span id="apply_time"></span>
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <!-- Short Description -->
                                         <p>
-                                            <span style="color: black;font-weight: bold">发明（设计）人：&nbsp;</span>
-                                            <span>明</span>
+                                            <span style="color: black;font-weight: bold">有效期限：&nbsp;</span>
+                                            <span id="enable_time"></span>
                                         </p>
                                     </div>
                                     <div class="col-md-4">
                                         <!-- Short Description -->
                                         <p>
-                                            <span style="color: black;font-weight: bold">申请人：&nbsp;</span>
-                                            <span>明</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row" style="width: 100%">
-                                    <div class="col-md-4">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">申请地址：&nbsp;</span>
-                                            <span>北京海淀区</span>
+                                            <span style="color: black;font-weight: bold">专利状态：&nbsp;</span>
+                                            <span id="patent_state"></span>
                                         </p>
                                     </div>
                                 </div>
@@ -193,17 +260,8 @@
                                     <div class="col-md-4">
                                         <!-- Short Description -->
                                         <p>
-                                            <span style="color: black;font-weight: bold">扩展同族公开号：&nbsp;</span>
-                                            <span>...</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row" style="width: 100%">
-                                    <div class="col-md-4">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">同族专利公开号：&nbsp;</span>
-                                            <span>...</span>
+                                            <span style="color: black;font-weight: bold">所属地区：&nbsp;</span>
+                                            <span id="patent_region"></span>
                                         </p>
                                     </div>
                                 </div>
@@ -217,44 +275,23 @@
                         <!-- .entry-content -->
                         <div class="entry-footer">
                             <!-- Author description -->
-                            <div style="padding-left: 5%;padding-right: 5%;border: 1px solid #ebebeb;margin: 36px 0;">
+                            <div style="padding-left: 5%;padding-right: 5%;border: 1px solid #ebebeb;margin: 36px 0;height: 300px;">
                                 <div class="row col-md-12" style="width: 100%">
                                     <div class="col-md-12">
                                         <!-- Short Description -->
                                         <p>
-                                            <span style="color: black;font-weight: bold">摘要：&nbsp;</span>
+                                            <span style="color: black;font-weight: bold">专利详情简介：&nbsp;</span>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="row col-md-12" style="width: 100%">
                                     <div class="col-md-12">
                                         <!-- Short Description -->
-                                        <p>
+                                        <p id="patent_intro">
                                             介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
                                             介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
                                             介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
                                             介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row" style="width: 100%">
-                                    <div class="col-md-12">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">翻译：&nbsp;</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row" style="width: 100%">
-                                    <div class="col-md-12">
-                                        <!-- Short Description -->
-                                        <p>
-                                            introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce
-                                            introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce
-                                            introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce
-                                            introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce
-                                            introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce
-                                            introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce introduce
                                         </p>
                                     </div>
                                 </div>
@@ -263,90 +300,123 @@
                             <!-- .Author description -->
                         </div><!-- .entry-footer -->
 
-                        <h4>分类号</h4>
-
-                        <div class="entry-footer">
-                            <!-- Author description -->
-                            <div style="padding-left: 5%;padding-right: 5%;border: 1px solid #ebebeb;margin: 36px 0;min-height: 67px">
-                                <div class="row col-md-12" style="width: 100%">
-                                    <div class="col-md-6">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">主分类号：&nbsp;</span>
-                                            <span style="color: black;font-weight: bold">。。。</span>
-                                        </p>
+                        <div class="newspaper-x-related-posts">
+                            <div class="row">
+                                <div class="col-lg-11 col-sm-10 col-xs-12 newspaper-x-related-posts-title">
+                                    <h3><span>打包内其他专利</span></h3>
+                                </div>
+                                <div class="newspaper-x-carousel-navigation hidden-xs text-right">
+                                    <ul class="newspaper-x-carousel-arrows clearfix">
+                                        <li><a href="#" class="newspaper-x-owl-prev fa fa-angle-left"></a></li>
+                                        <li><a href="#" class="newspaper-x-owl-next fa fa-angle-right"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--/.row-->
+                            <div class="owlCarousel owl-carousel owl-theme" data-slider-id="108" id="owlCarousel-108" data-slider-items="3" data-slider-speed="400" data-slider-auto-play="1" data-slider-navigation="false">
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">IPS分类号：&nbsp;</span>
-                                            <span style="color: black;font-weight: bold">。。。</span>
-                                        </p>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
                                     </div>
                                 </div>
-                                <!-- end .author-bio-social -->
-                            </div>
-                            <!-- .Author description -->
-                        </div><!-- .entry-footer -->
-
-                        <h4>引证科技文献</h4>
-
-                        <!-- .entry-content -->
-                        <div class="entry-footer">
-                            <!-- Author description -->
-                            <div style="padding-left: 5%;padding-right: 5%;border: 1px solid #ebebeb;margin: 36px 0;min-height: 67px">
-                                <div class="row col-md-12" style="width: 100%">
-                                    <div class="col-md-6">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">CN2012838232&nbsp;</span>
-                                        </p>
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
                                     </div>
-                                    <div class="col-md-6">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">CN237182381236&nbsp;</span>
-                                        </p>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
                                     </div>
                                 </div>
-                                <!-- end .author-bio-social -->
-                            </div>
-                            <!-- .Author description -->
-                        </div><!-- .entry-footer -->
-
-                        <h4>其他著录项</h4>
-
-                        <!-- .entry-content -->
-                        <div class="entry-footer">
-                            <!-- Author description -->
-                            <div style="padding-left: 5%;padding-right: 5%;border: 1px solid #ebebeb;margin: 36px 0;min-height: 67px">
-                                <div class="row col-md-12" style="width: 100%">
-                                    <div class="col-md-4">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">国家代码：&nbsp;</span>
-                                            <span style="color: black;font-weight: bold">。。。</span>
-                                        </p>
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
                                     </div>
-                                    <div class="col-md-4">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">代理人：&nbsp;</span>
-                                            <span style="color: black;font-weight: bold">。。。</span>
-                                        </p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <!-- Short Description -->
-                                        <p>
-                                            <span style="color: black;font-weight: bold">代理机构：&nbsp;</span>
-                                            <span style="color: black;font-weight: bold">。。。</span>
-                                        </p>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
                                     </div>
                                 </div>
-                                <!-- end .author-bio-social -->
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
+                                    </div>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
+                                    </div>
+                                </div>
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
+                                    </div>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
+                                    </div>
+                                </div>
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
+                                    </div>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
+                                    </div>
+                                </div>
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
+                                    </div>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
+                                    </div>
+                                </div>
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-atimu/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/maecenas-tincidunt-posuere-quam-eu-atimu/">专利名称</a>
+                                    </div>
+                                    <div class="newspaper-x-related-posts-date">
+                                        May 10, 2017
+                                    </div>
+                                </div>
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
+                                    </div>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
+                                    </div>
+                                </div>
+                                <!--/.item-->
+                                <div class="item newspaper-x-image">
+                                    <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                    <div class="newspaper-x-related-post-title">
+                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/">专利名称</a>
+                                    </div>
+                                    <div class="newspaper-x-related-posts-date">
+                                        2017.10.5
+                                    </div>
+                                </div>
+                                <!--/.item-->
                             </div>
-                            <!-- .Author description -->
-                        </div><!-- .entry-footer -->
+                            <!--/.owlCarousel-->
+                        </div>
 
                         <div class="newspaper-x-related-posts">
                             <div class="row">
@@ -361,7 +431,7 @@
                                 </div>
                             </div>
                             <!--/.row-->
-                            <div class="owlCarousel owl-carousel owl-theme" data-slider-id="108" id="owlCarousel-108" data-slider-items="3" data-slider-speed="400" data-slider-auto-play="1" data-slider-navigation="false">
+                            <div class="owlCarousel owl-carousel owl-theme" data-slider-id="107" id="owlCarousel-107" data-slider-items="3" data-slider-speed="400" data-slider-auto-play="1" data-slider-navigation="false">
                                 <div class="item newspaper-x-image">
                                     <a href="https://colorlib.com/newspaper-x/2017/05/10/nunc-hendrerit-egestas-amus-ad-arcu-im-usa/"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
                                     <div class="newspaper-x-related-post-title">
@@ -558,5 +628,35 @@
 <script type='text/javascript' src='/detail/js/machothemes.min.js'></script>
 <script type='text/javascript' src='/detail/js/functions.js'></script>
 <script type='text/javascript' src='/detail/js/owl.carousel.min.js'></script>
+
+<script>
+    $('#want_buy').on('click', function () {
+        $.confirm({
+            title: '购买该专利',
+            content: '如需购买该专利需要与专利持有方进行洽谈咨询 <br> 若是双方已经达成一致条约，请点击下方草拟合同按钮进行合同草案的拟定',
+            confirmButton: '草拟合同',
+            cancelButton: '继续洽谈',
+            confirmButtonClass: 'btn-info',
+            icon: 'fa fa-question-circle',
+            animation: 'rotate',
+            closeAnimation: 'right',
+            opacity: 0.5,
+            confirm: function () {
+                $.alert({
+                    title: '成功!',
+                    content: '您已成功取消此次交易',
+                    confirmButton: '我知道了',
+                    confirmButtonClass: 'btn-primary',
+                    icon: 'fa fa-info',
+                    animation: 'zoom',
+                    confirm:function(){
+
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

@@ -4,8 +4,10 @@ import com.ipnet.enums.Industry;
 import com.ipnet.enums.Region;
 import com.ipnet.enums.Sex;
 
+import java.util.Date;
+
 public class UserInfoVo {
-    String name;
+    String name;//用户名
     int credit; //积分
     Sex gender;
     String phone;
@@ -14,6 +16,34 @@ public class UserInfoVo {
     String region;
     String statement;
     String IDcard_img;
+
+    public Date getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(Date registerTime) {
+        this.registerTime = registerTime;
+    }
+
+    public int getPatentNum() {
+        return patentNum;
+    }
+
+    public void setPatentNum(int patentNum) {
+        this.patentNum = patentNum;
+    }
+
+    public int getPatentPoolNum() {
+        return patentPoolNum;
+    }
+
+    public void setPatentPoolNum(int patentPoolNum) {
+        this.patentPoolNum = patentPoolNum;
+    }
+
+    Date registerTime;
+    int patentNum;
+    int patentPoolNum;
 
     public UserInfoVo() {
     }

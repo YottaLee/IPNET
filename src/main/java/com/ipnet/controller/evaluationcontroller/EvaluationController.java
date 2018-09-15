@@ -16,6 +16,16 @@ public class EvaluationController {
     private EvaluationBLService evaluationBLService;
 
     /**
+     * 获取平台唯一的评估机构name
+     * @return 评估机构的name
+     */
+    @RequestMapping("/getEvaluationId")
+    @ResponseBody
+    public String getEvaluationId() {
+        return evaluationBLService.getEvaluator();
+    }
+
+    /**
      * 提交专利评估报告
      * @param patentID 专利号
      * @param url 上传评估报告的文件路径
@@ -25,8 +35,8 @@ public class EvaluationController {
      */
     @RequestMapping("/submitReport")
     @ResponseBody
-    public ResultMessage submitReport(String patentID,String url, int evaluation,double money) {
-        return evaluationBLService.submitReport(patentID,url,evaluation,money);
+    public ResultMessage submitReport(String patentID,String url,String rule,String tech, double evaluation,String result, double money) {
+        return evaluationBLService.submitReport(patentID,url,rule,tech,evaluation,result,money);
     }
 
     /**
@@ -73,18 +83,4 @@ public class EvaluationController {
     public boolean ifValue(String patentID) {
         return evaluationBLService.ifValue(patentID);
     }
-
-    /**
-     * 存取评估机构是否同意理赔
-     * @param loanID 贷款号
-     * @param insuranceID 保单号
-     * @param ifPass 是否同意
-     * @return ResultMessage
-     */
-//    @RequestMapping("/ifCompensate")
-//    @ResponseBody
-//    public ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass) {
-//        return evaluationBLService.ifCompensate(loanID,insuranceID,ifPass);
-//    }
-
 }

@@ -760,7 +760,7 @@
 
     $("#exit").on('click', function () {
 
-        var userId = storage.userId;
+        var userId = storage.getItem('user_id');
         $.ajax({
             type: "GET",
             url: "user/getUserRole",

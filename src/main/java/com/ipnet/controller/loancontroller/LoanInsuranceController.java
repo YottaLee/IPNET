@@ -1,15 +1,17 @@
 package com.ipnet.controller.loancontroller;
 
-import com.ipnet.blservice.LoanBLService;
+import com.ipnet.blservice.loanblservice.LoanInsuranceBLService;
 import com.ipnet.enums.ResultMessage;
-import com.ipnet.vo.financevo.ClaimVO;
+import com.ipnet.utility.IDNotExistsException;
+import com.ipnet.vo.financevo.InsuranceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+
 
 /**
  * 贷款-保险部分
@@ -19,36 +21,41 @@ import java.util.Date;
 public class LoanInsuranceController {
 
 
+    @Autowired
+    private LoanInsuranceBLService loanInsuranceBLService;
 
 
-//    @Autowired
-//    private LoanBLService loanBLService;
-//
-//
-//    /**
-//     * 存是否愿意投保
-//     *
-//     * @param loanID 贷款号
-//     * @param ifPass   保险公司是否愿意投保
-//     * @return
-//     */
-//    @RequestMapping("/ifInsurance")
-//    @ResponseBody
-//    public ResultMessage ifInsurance(String loanID, boolean ifPass) {
-//        return loanBLService.ifInsurance(loanID,ifPass);
-//    }
-//
-//    /**
-//     * 获取金融机构的理赔信息列表
-//     *
-//     * @param person 贷款号
-//     * @return 保险申请信息
-//     */
-//    @RequestMapping("/getInsurance")
-//    @ResponseBody
-//    public ClaimVO getInsurance(String person) {
-//        return null;
-//    }
+    /**
+     * 获取保险信息
+     * @param loanid 贷款号
+     * @return 保险信息
+     */
+    @RequestMapping("/getInsurance")
+    public @ResponseBody InsuranceVO getInsurance(@RequestParam String loanid) throws IDNotExistsException {
+        return loanInsuranceBLService.getInsurance(loanid);
+    }
+
+    /**
+     * 存是否愿意投保
+     *
+     * @param id 贷款号
+     * @param ifPass   保险公司是否愿意投保
+     * @return ResultMessage
+     */
+    @RequestMapping("/ifInsurance")
+    public @ResponseBody ResultMessage ifInsurance(@RequestParam String id,@RequestParam boolean ifPass){
+        return loanInsuranceBLService.ifInsurance(id,ifPass);
+    }
+
+    //id 保险机构的id
+    //保险机构查看保险列表
+    @RequestMapping("/showListForInsurance")
+    public @ResponseBody ArrayList<InsuranceVO> showListForInsurance(@RequestParam String id) throws IDNotExistsException {
+        return loanInsuranceBLService.showListForInsurance(id);
+    }
+
+
+
 
 
 }

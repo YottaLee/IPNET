@@ -4,12 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class LoanContract extends Contract{
+    @Id
+    private String id;
+
     private String party_A;
     private String postal_address_of_A;
     private String legal_repre_of_A;

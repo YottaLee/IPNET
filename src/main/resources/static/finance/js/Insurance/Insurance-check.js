@@ -1,6 +1,6 @@
 //填表数据
 var storage = window.localStorage;
-var loanID = storage.loanID;
+var loanID = storage.getItem('loan_id');
 $.ajax({
     type: "GET",
     url: "applicant/getChooseInsuranceURL",
@@ -9,8 +9,8 @@ $.ajax({
     success: function (data) {
         document.getElementById("insurance-file").href = data;
     },
-    error: function () {
-
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 
@@ -22,8 +22,8 @@ $.ajax({
     success: function (data) {
         document.getElementById("evaluation-file").href = data.url;
     },
-    error: function () {
-        // alert("Network warning");
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 
@@ -39,8 +39,8 @@ $.ajax({
         document.getElementById("loan-money").innerHTML = data.money;
         document.getElementById("loan-time").innerHTML = data.time;
     },
-    error: function () {
-
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 
@@ -60,8 +60,8 @@ $('#submit').on('click', function () {
             window.location.href = "/ipnet/Insurance-IP-list"
                //回到保险公司主界面
         },
-        error: function () {
-            // alert("Network warning for posting the purpose of the loan")
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
 });

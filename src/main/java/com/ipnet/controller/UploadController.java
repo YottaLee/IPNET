@@ -21,31 +21,25 @@ public class UploadController {
 
     /**
      * 上传文件到OSS服务器
-     * // * @param path 文件的完整路径，即文件夹/文件名，e.g.ipnet/logo.jpg
-     *
      * @param file 要上传的文件
      * @return 上传的文件的url
      */
     @RequestMapping("file")
-    public String uploadFile(MultipartFile file) {//@RequestParam String path,
-
-//      //  System.out.println("path:"+path);
-        System.out.println("fileName:" + file.getName());
-        //return "file";
+    public @ResponseBody
+    String uploadFile(@RequestBody MultipartFile file) {
         return aliService.uploadFile(file);
     }
 
     /**
-     * 上传专利图片
-     *
+     * 上传专利图
      * @param file
-     * @return
+     * @return String
      */
     @RequestMapping("/image")
     public @ResponseBody
-    String uploadImage(MultipartFile file) {
+    String uploadImage(@RequestBody MultipartFile file) {
         System.out.println("Success upload image!!!!!!!!!!!!!!!!!!! ");
-        return null;
+        return aliService.uploadImage(file);
     }
 
 }

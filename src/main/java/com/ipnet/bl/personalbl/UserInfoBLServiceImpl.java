@@ -8,6 +8,7 @@ import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.entity.CompanyUser;
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.UserType;
 import com.ipnet.vo.uservo.AccountInfoVo;
 import com.ipnet.vo.uservo.CompanyUserSaveVo;
 import com.ipnet.vo.uservo.PersonalUserSaveVo;
@@ -74,7 +75,7 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
     }
 
     @Override
-    public UserInfoVo getUserInfo(String userId) {
+    public UserInfoVo getUserInfo(String userId,UserType userType) {
         PersonalUser personalUser=userDao.findPersonalUserById(userId);
         if(personalUser!=null){
             return new UserInfoVo(personalUser.getName(),personalUser.getSex(),personalUser.getTelephone(),

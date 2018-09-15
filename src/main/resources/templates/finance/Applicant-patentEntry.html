@@ -89,7 +89,6 @@
     <script src="/finance/js/jquery-2.2.4.min.js"></script>
 
 
-
     <!--BootstrapJS [ RECOMMENDED ]-->
     <script src="/finance/js/bootstrap.min.js"></script>
 
@@ -154,7 +153,6 @@
     <!--=================================================-->
 
 
-
     <!--=================================================
 
 
@@ -189,7 +187,8 @@
 <!--You may remove all ID or Class names which contain "demo-", they are only used for demonstration. -->
 <body>
 <div class="top col-md-12" style="height: 56px;background: #3b3e43">
-    <img src="https://i.imgur.com/jwJTKCL.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <img src="https://i.imgur.com/jwJTKCL.png"
+         style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
     <span style="color: white;font-size: 15px">IPNET支付交易中心</span>
 </div>
 <div id="container" class="">
@@ -252,22 +251,25 @@
                                             </div>
                                             <label class="col-sm-1 control-label">所属类别</label>
                                             <div class="col-sm-3">
-                                                <input id="type" type="text" placeholder=""
-                                                       class="form-control">
+                                                <select id="demo-chosen-select" type="text" data-placeholder=""
+                                                        tabindex="2" style="width: 100%">
+                                                    <option value="发明">发明</option>
+                                                    <option value="实用新型">实用新型</option>
+                                                    <option value="外观设计">外观设计</option>
+                                                </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-1 control-label">所属地区</label>
-                                                <div class="col-sm-3">
-                                                    <input id="district" placeholder="" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-1 control-label">专利简介</label>
-                                                <div class="col-sm-11">
-                                                    <textarea id="profile" placeholder="" class="form-control"></textarea>
-                                                </div>
+                                            <label class="col-sm-1 control-label">所属地区</label>
+                                            <div class="col-sm-3">
+                                                <input id="district" placeholder="" class="form-control">
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-1 control-label">专利简介</label>
+                                            <div class="col-sm-11">
+                                                <textarea id="profile" placeholder="" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </form>
@@ -286,18 +288,18 @@
                             <div class="form-group">
                                 <!--<label class="control-label col-md-3 col-sm-3 col-xs-12">上传附件</label>-->
                                 <!--<div class="col-md-2">-->
-                                    <!--<label for="file">-->
-                                        <!--<input id="file" class="" type="file" name="file"/>-->
-                                        <!--<div class="form-control fileinput" id="rightText">-->
-                                            <!--<div type="button">上传附件</div>-->
-                                        <!--</div>-->
-                                    <!--</label>-->
+                                <!--<label for="file">-->
+                                <!--<input id="file" class="" type="file" name="file"/>-->
+                                <!--<div class="form-control fileinput" id="rightText">-->
+                                <!--<div type="button">上传附件</div>-->
                                 <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
+                                <!--</label>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
                                 <!--<button id="upload" class="btn btn-info" type="button" onclick="uploadFile()">上传</button>-->
-                            <!--</div>-->
-                            <!--<div class="form-group">-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
                                 <div class="bord-top pad-ver">
                                     <!-- The fileinput-button span is used to style the file input field as button -->
                                     <span class="btn btn-info fileinput-button dz-clickable"><span>上传附件</span></span>
@@ -322,7 +324,8 @@
                                                         <img class="dz-img" data-dz-thumbnail>
                                                     </div>
                                                     <div class="media-body">
-                                                        <p id="fileName" class="text-main text-bold mar-no text-overflow"
+                                                        <p id="fileName"
+                                                           class="text-main text-bold mar-no text-overflow"
                                                            data-dz-name></p>
                                                         <span class="dz-error text-danger text-sm"
                                                               data-dz-errormessage></span>
@@ -369,8 +372,6 @@
     </div>
 
 
-
-
     <!-- SCROLL PAGE BUTTON -->
     <!--===================================================-->
     <button class="scroll-top btn">
@@ -385,7 +386,10 @@
 
 <div id="footerwrap">
     <div class="container">
-        <h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+        <h4><img src="https://i.imgur.com/qrRDHYM.png"
+                 style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href=""
+                                                                                                              style="color: rgba(61, 201, 179, 0.8)">NJU
+            IDigger</a> - Copyright 2018</h4>
     </div>
 </div>
 

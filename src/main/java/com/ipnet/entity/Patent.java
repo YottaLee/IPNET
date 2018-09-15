@@ -9,7 +9,6 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,6 +22,7 @@ public class Patent {
     private String pool_id; //专利池号
     private String patent_name;//专利名称
     private String patent_holder;//专利持有者
+    private String userId;// 用户Id
     private Patent_state state;//专利状态
     private String apply_date;//申请时间
     private String valid_period;//有效期限
