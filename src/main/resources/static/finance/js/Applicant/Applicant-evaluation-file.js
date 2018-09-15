@@ -199,8 +199,8 @@ $("#submit").on('click', function () {
                     var transaction = {
                         patentID: patentID,
                         patent: patent,
-                        payer: holder,//付款方
-                        payee: getEvaluationId(),//收款方
+                        payer_id: data.userId,//付款方
+                        payee_id: getEvaluationId(),//收款方
                         way: "专利评估",//评估机构只有一个
                         money: money//评估费用
                     };
@@ -208,64 +208,10 @@ $("#submit").on('click', function () {
                     storage.setItem('transaction', transaction);
 
                     //支付评估费用
-
-                    window.location.href = "/ipnet/pay";
-                    var storage = window.localStorage;
-                    var loanID = storage.getItem('loan_id');
-                    if(loanID == null||loanID == ""){
-                        storage.removeItem("patent_id");
-                        window.location.href = "/ipnet/Person-IP-list";
-                    }
-                    else{
-                        $.ajax({
-                            url: '/applicant/ifBankChosen',
-                            type: 'GET',
-                            data: {
-                                loanID: loanID
-                            },
-                            success: function (data) {
-                                if (data) {
-                                    window.location.href = "/ipnet/Applicant-loan2";
-                                }
-                                else {
-                                    $.ajax({
-                                        url: '/applicant/ifBankChosen',
-                                        type: 'GET',
-                                        data: {
-                                            loanID: loanID
-                                        },
-                                        success: function (ifChosen) {
-                                            if (ifChosen) {
-                                                $.ajax({
-                                                    url: '/applicant/changeEvaluationState',
-                                                    type: 'POST',
-                                                    data:{
-                                                        loanID: loanID
-                                                    },
-                                                    success:f
-                                                });
-                                                window.location.href = "/ipnet/Applicant-loan2";
-                                            }
-                                            else {
-                                                storage.removeItem("patent_id");
-                                                storage.removeItem("loan_id");
-                                                window.location.href = "/ipnet/Person-IP-list";
-                                            }
-
-                                        },
-                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                                        }
-                                    })
-                                }
-
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                            }
-                        })
-                    }
-
+                    infoFile("即将跳入支付界面");
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/pay";
+                    }, 2000);
 
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {

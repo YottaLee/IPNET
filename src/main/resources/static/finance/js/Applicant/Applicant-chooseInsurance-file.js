@@ -1,5 +1,3 @@
-var url = "";
-
 // Form-File-Upload.js
 // ====================================================================
 // This file should not be included in your project.
@@ -57,7 +55,7 @@ $(document).ready(function () {
         thumbnailHeight: 50,
         parallelUploads: 20,
         previewTemplate: previewTemplate,
-        autoQueue: false, // Make sure the files aren't queued until manually added
+        autoQueue: true, // Make sure the files aren't queued until manually added
         previewsContainer: "#dz-previews", // Define the container to display the previews
         clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
     });
@@ -99,6 +97,30 @@ $(document).ready(function () {
         //对应file.accepted的值是false，在这里捕捉表单验证的错误提示
         if (file.accepted){
             $.each(data,function (key,val) {
+                message = message + val[0] + ';';
+            });
+            //控制器层面的错误提示，file.accepted = true的时候；
+            alertFile(message);
+        }
+    });
+
+    myDropzone.on("success", function (file) {
+        //上传成功触发的事件
+        var fileURL = "http://" + file.xhr.response;
+        var storage = window.localStorage;
+        storage.setItem('fileURL', fileURL);
+
+    });
+
+    myDropzone.on("error", function (file, data) {
+        //上传失败触发的事件
+        console.log('fail');
+        var message = '';
+        //lavarel框架有一个表单验证，
+        //对于ajax请求，JSON 响应会发送一个 422 HTTP 状态码，
+        //对应file.accepted的值是false，在这里捕捉表单验证的错误提示
+        if (file.accepted) {
+            $.each(data, function (key, val) {
                 message = message + val[0] + ';';
             });
             //控制器层面的错误提示，file.accepted = true的时候；

@@ -16,8 +16,8 @@ public class EvaluationController {
     private EvaluationBLService evaluationBLService;
 
     /**
-     * 获取平台唯一的评估机构name
-     * @return 评估机构的name
+     * 获取平台唯一的评估机构id
+     * @return 评估机构的id
      */
     @RequestMapping("/getEvaluationId")
     @ResponseBody

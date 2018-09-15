@@ -45,6 +45,10 @@ $("#exit").on('click', function () {
                     window.location.href = "/ipnet/Insurance-IP-list";
                     break;//保险公司界面
             }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
+
     });
 });
