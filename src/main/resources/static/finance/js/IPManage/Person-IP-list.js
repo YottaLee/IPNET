@@ -10,9 +10,24 @@ $.ajax({
     },
     success: function (data) {
         console.log(data);
-        var patentList = "";
+        var patentList = "<table class=\"table table-striped\">\n" +
+            "                            <thead>\n" +
+            "                            <tr>\n" +
+            "                                <th>专利名</th>\n" +
+            "                                <th>专利号</th>\n" +
+            "                                <th>专利类型</th>\n" +
+            "                                <th>专利申请时间</th>\n" +
+            "                                <th>状态</th>\n" +
+            "                                <th>专利池号</th>\n" +
+            "                                <th>合同详情</th>\n" +
+            "                                <th>转让/许可</th>\n" +
+            "                                <th>申请评估</th>\n" +
+            "                                <th>申请质押贷款</th>\n" +
+            "                            </tr>\n" +
+            "                            </thead>\n" +
+            "                            <tbody>";
         for (var i = 0, len = data.length; i < len; i++) {
-            patentList += "<td><a class=\"btn-link\" href=\"#\">" + data[i].patent_name + "</a></td>\n" +
+            patentList += "<tr><td><a class=\"btn-link\" href=\"#\">" + data[i].patent_name + "</a></td>\n" +
                 "                                <td>" + data[i].patent_id + "</td>\n" +
                 "                                <td><span class=\"text-muted\"><i class=\"demo-pli-clock\"></i>" + data[i].patent_type + "</span></td>\n" +
                 "                                <td>" + data[i].apply_date + "</td>\n" +
@@ -31,8 +46,10 @@ $.ajax({
                 "                                </td>\n" +
                 "                                <td>\n" +
                 "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-primary\" onclick=\"loan(data[i].patent_id)\">合同质押贷款</button>\n" +
-                "                                </td>";
+                "                                </td></tr>";
         }
+        patentList += "   </tbody>\n" +
+            "                        </table>";
         document.getElementById("ip_list").innerHTML = patentList;
 
     },
