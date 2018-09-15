@@ -112,7 +112,7 @@ public class UserBL implements UserBLService{
             newUser.setId(phoneNum);
             newUser.setPassword(request.get("pass"));
             newUser.setTelephone(phoneNum);
-            newUser.setRegisterTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            newUser.setRegisterTime(new Date());
             newUser.setVerified(false);
 
             personalUserDao.save(newUser);
@@ -136,11 +136,11 @@ public class UserBL implements UserBLService{
             newPersonalUser.setPassword(register.getPassword());
             newPersonalUser.setActive(false);
 
-            SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Calendar c=Calendar.getInstance();
-            String currentTime=sf.format(c.getTime());
+//            SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            Calendar c=Calendar.getInstance();
+//            String currentTime=sf.format(c.getTime());
 
-            newPersonalUser.setRegisterTime(currentTime);
+            newPersonalUser.setRegisterTime(new Date());
             newPersonalUser.setEmail(register.getUsername());
 
             StringBuilder code= new StringBuilder();

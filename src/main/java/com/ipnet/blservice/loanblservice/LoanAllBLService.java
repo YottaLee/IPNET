@@ -1,5 +1,6 @@
 package com.ipnet.blservice.loanblservice;
 
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.LoanVO;
 
@@ -20,4 +21,6 @@ public interface LoanAllBLService {
     boolean getIfContract(String loanID,String userID);
 
     String getLatestLoanID(String patentID);
+
+    ResultMessage changeState(String loanID, Patent_loan_state state);
 }

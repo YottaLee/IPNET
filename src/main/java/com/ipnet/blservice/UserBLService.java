@@ -59,13 +59,13 @@ public interface UserBLService {
 
     /**
      * 最近六个月的IP成员数
-     * @return
+     * @return 每个月的数量
      */
     List<Integer> getMemberSum();
 
     /**
      * 最近六个月的IPNet总用户数
-     * @return
+     * @return 每个月的数量
      */
     List<Integer> getUserSum();
 

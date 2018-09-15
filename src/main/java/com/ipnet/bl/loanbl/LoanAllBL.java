@@ -209,4 +209,9 @@ public class LoanAllBL implements LoanAllBLService {
         }
         return result;
     }
+
+    @Override
+    public ResultMessage changeState(String loanID, Patent_loan_state state){
+        return null;
+    }
 }
