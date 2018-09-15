@@ -1,5 +1,6 @@
 package com.ipnet.bl.AdminBL;
 
+import com.ipnet.blservice.AccountBLService;
 import com.ipnet.blservice.AdminBLService;
 import com.ipnet.blservice.UserBLService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class AdminBLServiceImpl implements AdminBLService {
     @Autowired
     private UserBLService userBLService;
 
+    @Autowired
+    private AccountBLService accountBLService;
+
     @Override
     public double setIPIIndexWeigh(int RMB, int IPPoints, int profit, int memberNum, int userNum) {
         this.RMBRatio = RMB;
@@ -55,17 +59,17 @@ public class AdminBLServiceImpl implements AdminBLService {
 
     @Override
     public List<Integer> getRMBSum() {
-        return null;
+        return this.accountBLService.getRMBSum();
     }
 
     @Override
     public List<Integer> getIPPointsSum() {
-        return null;
+        return this.accountBLService.getIPPointsSum();
     }
 
     @Override
     public List<Double> getProfitSum() {
-        return null;
+        return this.accountBLService.getProfitSum();
     }
 
     @Override
