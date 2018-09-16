@@ -96,7 +96,8 @@ public class PostBL implements PostBLService {
 
 
     @Override
-    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<Post_tag> post_tag, String brief_intro,String content) throws IOException {
+    public ResultMessage publishArticle(String post_id,String author, String post_name, ArrayList<String> post_tag, String brief_intro,String content) throws IOException {
+        System.err.println(author+"1111111111111111");
         this.saveAsFile(content);
         File file=new File("E:\\test.txt");
         FileInputStream input = new FileInputStream(file);
@@ -123,7 +124,7 @@ public class PostBL implements PostBLService {
 
 
     @Override
-    public ResultMessage edit(String post_id, String post_name, ArrayList<Post_tag> post_tag, String content) {
+    public ResultMessage edit(String post_id, String post_name, ArrayList<String> post_tag, String content) {
         Post post=postDao.getOne(post_id);
         post.setPost_name(post_name);
         post.setPost_tag(post_tag);
