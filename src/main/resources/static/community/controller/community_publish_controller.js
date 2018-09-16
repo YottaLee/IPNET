@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     var user_id=localStorage.getItem("user_id");
-    user_id="czf";
+    // user_id="czf";
     var user_name="";
 
     $.ajax({
@@ -36,7 +36,7 @@ $(document).ready(function(){
                 post_id=data;
             },
             error:function(data){
-                alert("fail");
+                alert("create_id_fail");
             }
         });
         var imgs=$(".ql-editor").find("img");
@@ -51,7 +51,7 @@ $(document).ready(function(){
                     imgs[i].setAttribute("src",data);
                 },
                 error:function(data){
-                    alert("fail");
+                    alert("upload_pic_fail");
                 }
             });
         }

@@ -13,6 +13,6 @@ import java.util.ArrayList;
 public class EditArticleVO {
     private String post_id;
     private String post_name;
-    private ArrayList<Post_tag> post_tag;
+    private ArrayList<String> post_tag;
     private String content;
 }
