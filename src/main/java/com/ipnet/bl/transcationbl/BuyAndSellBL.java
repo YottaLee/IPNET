@@ -128,7 +128,7 @@ public class BuyAndSellBL implements TranscationBlService {
             case Agent:
                 AgentContract agentContract=agentContractDao.getOne(contract_id);
                 agentContract.setContractType(ContractState.complete);
-                agentContractDao.save(agentContract); 
+                agentContractDao.save(agentContract);
                 patent=patentDao.getOne(agentContract.getId_of_patent());
                 patent.setState(Patent_state.free);
                 patentDao.save(patent);
