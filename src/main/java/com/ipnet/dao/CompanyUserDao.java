@@ -15,8 +15,10 @@ import java.util.Date;
 @Table(name = "company_user")
 public interface CompanyUserDao extends JpaRepository<CompanyUser,String> {
 
-    CompanyUser findCompanyUserById(String id);
+    @Query(value = "select c from CompanyUser c where c.id=:id")
+    CompanyUser findCompanyUserById(@Param("id") String id);
 
+   // @Query(value = "select c from CompanyUser c where c.")
     CompanyUser findCompanyUserByName(String name);
 
     @Query(value = "select c from CompanyUser c where c.role=2 ")

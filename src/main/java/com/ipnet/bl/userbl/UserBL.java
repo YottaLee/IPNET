@@ -318,12 +318,16 @@ public class UserBL implements UserBLService{
 
     @Override
     public Evaluator getEvaluationName(){
-        ArrayList<CompanyUser> companyUsers=companyUserDao.getEvaluators();
-        if(companyUsers==null || companyUsers.size()==0){
+        ArrayList<CompanyUser> evaluators=companyUserDao.getEvaluators();
+        if(evaluators==null || evaluators.size()==0){
             return null;
         }else{
-            CompanyUser eva=companyUsers.get(0);
-            return new Evaluator(eva.getId(),eva.getName());
+            for(CompanyUser eva:evaluators){
+                if(eva.isVerified()){
+                    return new Evaluator(eva.getId(),eva.getName());
+                }
+            }
+            return null;
         }
     }
 
