@@ -1,5 +1,6 @@
 package com.ipnet.bl.patentpoolbl;
 
+import com.ipnet.bl.patentbl.Invitation;
 import com.ipnet.dao.PatentDao;
 import com.ipnet.entity.Patent;
 import com.ipnet.vo.PatentPoolVO;

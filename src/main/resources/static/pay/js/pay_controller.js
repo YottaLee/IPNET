@@ -7,6 +7,9 @@ $(document).ready(function(){
 
     var way_para="";
 
+    var payer_role="";//付款方角色
+    var payee_role="";//收款方角色
+
     var pay_order=JSON.parse(localStorage.getItem("pay_order"));
     $("#patent_id").text(pay_order.patentID);
     $("#patent_name").text(pay_order.patent);
@@ -30,6 +33,7 @@ $(document).ready(function(){
     }else {
         way_para="claim";
     }
+    console.log(way_para);
 
     var date = new Date();
     var seperator1 = "-";
@@ -47,14 +51,39 @@ $(document).ready(function(){
         + seperator2 + date.getSeconds();
     $("#time").text(currentdate);
 
-    console.log(pay_order.payer_id);
+    $.ajax({
+        type : 'POST',
+        url : '/user/getUserRole',
+        data:{userID:pay_order.payer_id},
+        async:false,
+        success:function(data){
+            payer_role=data;
+        },
+        error:function(data){
+
+        }
+    });
+
+    $.ajax({
+        type : 'POST',
+        url : '/user/getUserRole',
+        data:{userID:pay_order.payee_id},
+        async:false,
+        success:function(data){
+            payee_role=data;
+        },
+        error:function(data){
+
+        }
+    });
 
     $.ajax({
         type : 'POST',
         url : '/userInfo/getAllAccountId',
-        data:{userId:pay_order.payer_id},
+        data:{userId:pay_order.payer_id,userType:payer_role},
         async:false,
         success:function(data){
+            console.log("payer_account:"+data.length+"   "+payer_role);
             for(var i=0;i<data.length;i++){
                 var new_element="<div class=\"cover atvImg\" >\n" +
                     "                <div class=\"atvImg-layer pay\" data-img=\"https://i.imgur.com/R8xnkBw.png\" data-number='"+data[i]+"'></div>\n" +
@@ -70,9 +99,10 @@ $(document).ready(function(){
     $.ajax({
         type : 'POST',
         url : '/userInfo/getAllAccountId',
-        data:{userId:pay_order.payee_id},
+        data:{userId:pay_order.payee_id,userType:payee_role},
         async:false,
         success:function(data){
+        console.log("payee_account:"+data.length+"   "+payee_role);
             for(var i=0;i<data.length;i++){
                 var new_element="<div class=\"cover atvImg\" >\n" +
                     "                <div class=\"atvImg-layer receive\" data-img=\"https://i.imgur.com/R8xnkBw.png\" data-number='"+data[i]+"'></div>\n" +
@@ -131,13 +161,14 @@ $(document).ready(function(){
 
                         },
                         error:function(){
-                            alert("fail");
+                           // alert("fail");
                         }
                     });
 
                     if(way_para=="evaluation"){
                         var storage = window.localStorage;
                         var loanID = storage.getItem('loan_id');
+                        console.log(loanID);
                         if (loanID == null || loanID == "") {
                             storage.removeItem("patent_id");
                             window.location.href = "/ipnet/Person-IP-list";
@@ -151,7 +182,7 @@ $(document).ready(function(){
                                 },
                                 success: function (data) {
                                     if (data) {
-                                        window.location.href = "/ipnet/Applicant-loan2";
+                                        window.location.href = "/ipnet/Person-IP-list";
                                     }
                                     else {
                                         $.ajax({
@@ -169,7 +200,7 @@ $(document).ready(function(){
                                                             loanID: loanID
                                                         },
                                                         success: function () {
-                                                            window.location.href = "/ipnet/Applicant-loan2";
+                                                            window.location.href = "/ipnet/Person-IP-list";
                                                         },
                                                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                                                             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);

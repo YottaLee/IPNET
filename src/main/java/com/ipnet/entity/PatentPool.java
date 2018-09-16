@@ -7,18 +7,11 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @Author:zhangping
- * @Description:
- * @CreateData: 2018/7/21 1:39
- */
-
 @Entity
 @Data
 @Table(name = "pool")
 public class PatentPool {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;//专利池的ID，作为唯一标识，由系统自动生成
 
     private String name;//专利池的名字

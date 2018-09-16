@@ -41,7 +41,7 @@ $.ajax({
             }
             patentList += "                                </td>\n" +
                 "                                <td>\n" +
-                "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-info\"  id=\"check-" + data[i].loanID + "\"onclick=\"check(this.id)\">详情</button>\n" +
+                "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-info\"  id=\"check-" + data[i].patentID+"-"+data[i].loanID + "\"onclick=\"check(this.id)\">详情</button>\n" +
                 "                                </td>\n" +
                 "                            </tr>";
         }
@@ -57,10 +57,12 @@ $.ajax({
 
 
 
-function check(loanID) {
-    loanID = (loanID + "").substring((loanID + "").indexOf("-") + 1);
+function check(str) {
+    var arr = str.split("-");
+    var patentID = arr[1];
+    var loanID = arr[2];
     var storage = window.localStorage;
-    storage.setItem('loan_id', loanID);
+    storage.setItem('patent_id', patentID);
     $.ajax({
         type: 'GET',
         url: '/bank/getInfo',

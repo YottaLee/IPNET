@@ -16,7 +16,7 @@ public class PostVO {
     private String post_id;
     private String author;
     private String post_name;
-    private ArrayList<Post_tag> post_tag;
+    private ArrayList<String> post_tag;
     private String content;
     private String publish_time;
     private long visits;

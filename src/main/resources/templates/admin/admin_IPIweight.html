@@ -143,9 +143,9 @@
     <div class="content mt-3">
         <div class="animated fadeIn">
 
-            <div class="row">
-                <!--<div class="col-lg-8"><p style="height: 30px;">IPI 指数计算规则</p></div>-->
-                <!--<div class="col"></div>-->
+            <!--<div class="row">
+                --<div class="col-lg-8"><p style="height: 30px;">IPI 指数计算规则</p></div>--
+                --<div class="col"></div>--
                 <div class="col-lg-6">
                     <div class="card text-white bg-flat-color-1">
                         <div class="card-body pb-0">
@@ -153,7 +153,7 @@
                             <h1 class="mb-0" style="font-weight: bolder">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="count">10468</span><br /><br />
                             </h1>
-                            <div class="chart-wrapper px-0" style="height:144px;" height="144"/><!-- 70-->
+                            <div class="chart-wrapper px-0" style="height:144px;" height="144"/>-- 70--
                             <canvas id="widgetChart1"></canvas>
                         </div>
                         <br /><br />
@@ -202,8 +202,73 @@
                         </div>
                     </div>
                 </div>
-            <!--<div class="col"></div>-->
+            --<div class="col"></div>--
+            </div>-->
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mb-3">&nbsp;当前 IPI 指数</h4>
+                        <!--<div id="numberOfRealChart">num</div>-->
+                        <!--<h4 class="text-light">&nbsp;当前 IPI 指数</h4><br /><br />-->
+                        <!--<h1 class="mb-0" style="font-weight: bolder; color: #007BFF" id="numberOfRealChart">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="count">10468</span><br /><br />
+                        </h1>-->
+                        <div class="mb-0" style="font-weight: bolder; color: #007BFF; font-size: 60px;" id="numberOfRealChart">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;num<br />
+                        </div>
+                        <div class="flot-container">
+                            <div id="cpu-load" class="cpu-load"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>IPI 权重</strong>
+                    </div>
+                    <div class="card-body card-block">
+                        <form action="" method="post" class="form-horizontal">
+                            <div class="row form-group">
+                                <div class="col col-sm-5"><label for="input-small" class=" form-control-label">RMB</label></div>
+                                <div class="col col-sm-5"><input type="text" id="input-small" name="input-small" placeholder="1" class="input-sm form-control-sm form-control"></div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-sm-5"><label for="input-small" class=" form-control-label">IP 豆</label></div>
+                                <div class="col col-sm-5"><input type="text" id="input-small2" name="input-small" placeholder="1" class="input-sm form-control-sm form-control"></div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-sm-5"><label for="input-small" class=" form-control-label">收益</label></div>
+                                <div class="col col-sm-5"><input type="text" id="input-small3" name="input-small" placeholder="1" class="input-sm form-control-sm form-control"></div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-sm-5"><label for="input-small" class=" form-control-label">IP 成员数</label></div>
+                                <div class="col col-sm-5"><input type="text" id="input-small4" name="input-small" placeholder="1" class="input-sm form-control-sm form-control"></div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-sm-5"><label for="input-small" class=" form-control-label">IPNET 用户数</label></div>
+                                <div class="col col-sm-5"><input type="text" id="input-small5" name="input-small" placeholder="1" class="input-sm form-control-sm form-control"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> 确定
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-sm">
+                            <i class="fa fa-ban"></i> 重置
+                        </button>
+                        <button type="input" class="btn btn-secondary btn-sm">
+                            <i class="fa fa-gears"></i> 默认设置
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
         </div><!-- .animated -->
     </div><!-- .content -->
@@ -218,6 +283,17 @@
 <script src="/ipnet_Login_v2/admin/js/main.js"></script>
 <script src="/ipnet_Login_v2/admin/js/lib/chart-js/Chart.bundle.js"></script>
 <script src="/ipnet_Login_v2/admin/js/widgets.js"></script>
+
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/excanvas.min.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/jquery.flot.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/jquery.flot.pie.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/jquery.flot.time.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/jquery.flot.stack.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/jquery.flot.resize.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/jquery.flot.crosshair.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/curvedLines.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/flot-tooltip/jquery.flot.tooltip.min.js"></script>
+<script src="/ipnet_Login_v2/admin/js/lib/flot-chart/flot-chart-init.js"></script>
 
 </body>
 </html>

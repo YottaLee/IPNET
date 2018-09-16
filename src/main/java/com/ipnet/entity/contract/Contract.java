@@ -14,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class  Contract {
 
+
     private String partyA;
     private String partyB;
     private String addressA;

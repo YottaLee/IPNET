@@ -1,7 +1,5 @@
 package com.ipnet.bl.personalbl;
 
-import com.ipnet.blservice.AliService;
-import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.personalservice.UserInfoBLService;
 import com.ipnet.dao.CompanyUserDao;
 import com.ipnet.dao.PersonalUserDao;
@@ -9,15 +7,11 @@ import com.ipnet.entity.CompanyUser;
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
-import com.ipnet.enums.Sex;
-import com.ipnet.enums.UserType;
 import com.ipnet.vo.uservo.AccountInfoVo;
 import com.ipnet.vo.uservo.CompanyUserSaveVo;
 import com.ipnet.vo.uservo.PersonalUserSaveVo;
 import com.ipnet.vo.uservo.UserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,20 +23,12 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
     private PersonalUserDao userDao;
     @Autowired
     private CompanyUserDao companyUserDao;
-    @Autowired
-    private AliService aliService;
-    @Autowired
-    private JavaMailSender mailSender;
-    @Autowired
-    private CommunityUserBLService communityUserBLService;
 
-    @Value("${spring.mail.username}")
-    private String fromEmail;
 
 
     @Override
     public ResultMessage savePersonalUserInfo(PersonalUserSaveVo personalUserSaveVo) {
-        if(userDao.findPersonalUserByName(personalUserSaveVo.getUsername()).equals(null)){
+        if(userDao.findPersonalUserByName(personalUserSaveVo.getUsername())==null){
             return ResultMessage.Fail;
         }else{
             PersonalUser personalUser=userDao.findPersonalUserByName(personalUserSaveVo.getUsername());
@@ -62,7 +48,7 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public ResultMessage saveCompanyUserInfo(CompanyUserSaveVo companyUserSaveVo) {
-        if(companyUserDao.findCompanyUserByName(companyUserSaveVo.getName()).equals(null)){
+        if(companyUserDao.findCompanyUserByName(companyUserSaveVo.getName())==null){
             return ResultMessage.Fail;
         }else{
             CompanyUser companyUser=companyUserDao.findCompanyUserByName(companyUserSaveVo.getName());
@@ -98,22 +84,22 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
     @Override
     public AccountInfoVo getAccountInfo(String userId,Role userType) {
         switch(userType){
-            case CompanyUser:
-                CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
-                if(companyUser.equals(null))
-                    return null;
-                else{
-                    return new AccountInfoVo(companyUser.getBank_accounts(),companyUser.getId(),companyUser.getMoney());
-                }
             case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
-                if(personalUser.equals(null))
+                if(personalUser==null)
                     return null;
                 else{
                     return new AccountInfoVo(personalUser.getBankAccount(),personalUser.getId(),personalUser.getRMB());
                 }
+            default:
+                CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
+                if(companyUser==null)
+                    return null;
+                else{
+                    return new AccountInfoVo(companyUser.getBank_accounts(),companyUser.getId(),companyUser.getMoney());
+                }
         }
-        return null;
+        //return null;
 
     }
 
