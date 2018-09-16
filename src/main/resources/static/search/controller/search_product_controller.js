@@ -22,6 +22,58 @@ $(document).ready(function(){
 
    show_patent_list();
 
+   $(".type_tag").click(function(){
+       var type_get=$(this).text();
+       var type_give="";
+       if(type_get=="发明专利"){
+           type_give="Invention";
+       }else if(type_get=="实用新型"){
+           type_give="Utility";
+       }else{
+           type_give="Design";
+       }
+      search_type(type_give);
+      $(this).addClass("on");
+      $(this).siblings().removeClass("on");
+   });
+
+    $(".region_tag").click(function(){
+        search_region($(this).text());
+        $(this).addClass("on");
+        $(this).siblings().removeClass("on");
+    });
+
+    $(".state_tag").click(function(){
+        var state_get=$(this).text();
+        var state_give="";
+        if(state_get=="闲置"){
+            state_give="free";
+        }else if(state_get=="申请许可"){
+            state_give="to_be_transfer";
+        }else if(state_get=="转让过程中"){
+            state_give="transfering";
+        }else if(state_get=="申请质押贷款过程中"){
+            state_give="to_be_loan";
+        }else if(state_get=="质押过程中"){
+            state_give="loaning";
+        }else if(state_get=="待审核"){
+            state_give="to_be_check";
+        }else{
+            state_give="overdue";
+        }
+        search_state(state_give);
+        $(this).addClass("on");
+        $(this).siblings().removeClass("on");
+    });
+
+    $("#search_apply_time").click(function(){
+       search_apply_time();
+    });
+
+    $("#search_valid_time").click(function(){
+       search_valid_time();
+    });
+
    $("#search_btn").click(function(){
        var search_info=$("#tags").val();
        $.ajax({
@@ -42,6 +94,7 @@ $(document).ready(function(){
 });
 
 function show_patent_list(){
+    $("#main").empty();
     for(var i=0;i<patent_list.length;i++){
         if(col==0){
             row++;
@@ -88,7 +141,19 @@ function show_patent_list(){
 }
 
 function search_type(type){
+    $.ajax({
+        type : 'POST',
+        url : '/Patent/searchPatentsByType',
+        data:{type:type},
+        async:false,
+        success:function(data){
+            patent_list=data;
+        },
+        error:function(data){
 
+        }
+    });
+    show_patent_list();
 }
 
 function search_region(region){
@@ -107,11 +172,58 @@ function search_region(region){
     show_patent_list();
 }
 
-function search_apply_time(beginTime,endTime){
-    var begin_para="";
-    var end_para="";
+function search_apply_time(){
+    var begin_para=$("#apply_begin_time").val();
+    var end_para=$("#apply_end_time").val();
+    begin_para=begin_para.substring(6)+begin_para.substring(0,2)+begin_para.substring(3,5);
+    end_para=end_para.substring(6)+end_para.substring(0,2)+end_para.substring(3,5);
+    $.ajax({
+        type : 'POST',
+        url : '/Patent/searchPatentsByApplyDate',
+        data:{StartDate:begin_para,endDate:end_para},
+        async:false,
+        success:function(data){
+            patent_list=data;
+        },
+        error:function(data){
+
+        }
+    });
+    show_patent_list();
 }
 
-function search_valid_time(beginTime,endTime){
+function search_valid_time(){
+    var begin_para=$("#valid_begin_time").val();
+    var end_para=$("#valid_end_time").val();
+    begin_para=begin_para.substring(6)+begin_para.substring(0,2)+begin_para.substring(3,5);
+    end_para=end_para.substring(6)+end_para.substring(0,2)+end_para.substring(3,5);
+    $.ajax({
+        type : 'POST',
+        url : '/Patent/searchPatentsByApplyDate',
+        data:{StartDate:begin_para,endDate:end_para},
+        async:false,
+        success:function(data){
+            patent_list=data;
+        },
+        error:function(data){
 
+        }
+    });
+    show_patent_list();
+}
+
+function search_state(state){
+    $.ajax({
+        type : 'POST',
+        url : '/Patent/searchPatentsByState',
+        data:{state:state},
+        async:false,
+        success:function(data){
+            patent_list=data;
+        },
+        error:function(data){
+
+        }
+    });
+    show_patent_list();
 }

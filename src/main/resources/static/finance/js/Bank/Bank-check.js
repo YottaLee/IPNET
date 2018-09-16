@@ -1,22 +1,6 @@
 /**
  * 界面的隐藏结构
  */
-$('#checkDetail').on('click', function () {
-    if (document.getElementById("ifHide").style.display == "block")
-        reportHidden();
-    else
-        reportShow();
-});
-
-function reportShow() {
-    document.getElementById("ifHide").style.display = "block";
-    document.getElementById("checkDetail").innerHTML = "缩起";
-}
-
-function reportHidden() {
-    document.getElementById("ifHide").style.display = "none";
-    document.getElementById("checkDetail").innerHTML = "详情";
-}
 
 divHidden();
 
@@ -35,13 +19,6 @@ function divHidden() {
     document.getElementById("loan").style.display = "none";
 }
 
-function sure(checkbox) {
-    if (checkbox.checked == true)
-        document.getElementById("ifInsurance").innerHTML = "该信息已经反馈给专利持有人、保险公司、政府以及评估机构，以待下一步的合同确认";
-    else
-        document.getElementById("ifInsurance").innerHTML = "该信息已经反馈给专利持有人，以待下一步的合同确认";
-}
-
 /**
  * 数据传输
  */
@@ -51,12 +28,29 @@ var patentID = storage.getItem('patent_id');
 //填表
 $.ajax({
     type: "GET",
-    url: "/applicant/getChooseBankURL",
+    url: "/bank/getApplication",
     data: {
         loanID: loanID
     },
     success: function (data) {
-        document.getElementById("loan-file").href = data;
+        document.getElementById("patent").innerHTML = data.patent;
+        document.getElementById("holder").innerHTML = data.person;
+        document.getElementById("pur-money").innerHTML = data.money;
+        document.getElementById("pur-time").innerHTML = data.time;
+        document.getElementById("pur-evaluation").innerHTML = data.evaluation;
+        $.ajax({
+            type: "GET",
+            url: "/evaluation/getEvaluation",
+            data: {
+                patentID: data.patentID
+            },
+            success: function (evaluationURL) {
+                document.getElementById("evaluation-file").href = evaluationURL.url;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+            }
+        });
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
         console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
@@ -65,12 +59,12 @@ $.ajax({
 
 $.ajax({
     type: "GET",
-    url: "/evaluation/getEvaluation",
+    url: "/applicant/getChooseBankURL",
     data: {
-        patentID: patentID
+        loanID: loanID
     },
     success: function (data) {
-        document.getElementById("evaluation-file").href = data.url;
+        document.getElementById("loan-file").href = data;
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
         console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
@@ -93,7 +87,7 @@ $('#submit').on('click', function () {
             var ifInsurance = document.getElementById("demo-form-checkbox").checked;
             var money = $("#money").val();
             var time = $("#time").val();
-
+             console.log(ifPass)
             $.ajax({
                 type: "POST",
                 url: "/bank/submitApplication",

@@ -95,6 +95,21 @@ public class PageController {
         return "pay";
     }
 
+    @RequestMapping("ownership_trade_contract")
+    public String ownership_trade_contract(){
+        return "/contract/ownership_trade_contract";
+    }
+
+    @RequestMapping("proxy_contract")
+    public String proxy_contract(){
+        return "/contract/proxy_contract";
+    }
+
+    @RequestMapping("usage_trade_contract")
+    public String usage_trade_contract(){
+        return "/contract/usage_trade_contract";
+    }
+
     /* 登录 注册 */
     @RequestMapping("login")
     public String loginIndex(){

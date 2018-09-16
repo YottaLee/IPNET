@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.Table;
 
 @Repository
-@Table(name = "transcation")
-public interface TransactionDao extends JpaRepository<Transaction, String> {
+@Table(name = "transaction")
+public interface TransactionDao extends JpaRepository<Transaction, Long> {
 
 }

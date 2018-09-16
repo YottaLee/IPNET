@@ -161,7 +161,7 @@ $(document).ready(function(){
 
                         },
                         error:function(){
-                            alert("fail");
+                           // alert("fail");
                         }
                     });
 
@@ -182,7 +182,7 @@ $(document).ready(function(){
                                 },
                                 success: function (data) {
                                     if (data) {
-                                        window.location.href = "/ipnet/Applicant-loan2";
+                                        window.location.href = "/ipnet/Person-IP-list";
                                     }
                                     else {
                                         $.ajax({
@@ -200,7 +200,7 @@ $(document).ready(function(){
                                                             loanID: loanID
                                                         },
                                                         success: function () {
-                                                            window.location.href = "/ipnet/Applicant-loan2";
+                                                            window.location.href = "/ipnet/Person-IP-list";
                                                         },
                                                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                                                             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);

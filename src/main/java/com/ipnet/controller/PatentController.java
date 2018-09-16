@@ -78,6 +78,7 @@ public class PatentController {
      * @param userId 用户Id   //即根据专利拥有者获得专利
      * @return 专利列表
      */
+
     @RequestMapping("/getPatentList")
     @ResponseBody
     public List<PatentVO> getPatentList(@RequestParam String userId) {
