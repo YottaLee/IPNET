@@ -14,7 +14,6 @@ $(document).ready(function(){
        async:false,
        success:function(data){
            patent_list=data;
-           alert(JSON.stringify(data));
        },
        error:function(data){
            alert("fail");
@@ -96,7 +95,6 @@ $(document).ready(function(){
 
 function show_patent_list(){
     $("#main").empty();
-    alert(patent_list.length);
     for(var i=0;i<patent_list.length;i++){
         if(col==0){
             row++;
@@ -108,7 +106,7 @@ function show_patent_list(){
             "                            <article class=\"post-108 post type-post status-publish format-standard has-post-thumbnail hentry category-editorial\">\n" +
             "                                <header class=\"entry-header\">\n" +
             "                                    <div class=\"newspaper-x-image\">\n" +
-            "                                        <img width=\"550\" height=\"360\" data-id='"+patent_list[i].patent_id+"' src='"+patent_list[i].url+"' class=\"patent_photo attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image\" alt=\"\"/>\n" +
+            "                                        <img style='width: 300px;height: 200px;background-size: 100% 100%' width=\"550\" height=\"360\" data-id='"+patent_list[i].patent_id+"' src='"+patent_list[i].url+"' class=\"patent_photo attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image\" alt=\"\"/>\n" +
             "                                    </div>\n" +
             "                                    <h4 class=\"entry-title\">"+patent_list[i].patent_id+"</h4>\n" +
             "                                    <h4 class=\"entry-title\">"+patent_list[i].patent_name+"</h4>\n" +

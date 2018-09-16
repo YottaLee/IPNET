@@ -225,6 +225,7 @@ public class PatentBLServiceImpl implements PatentBLService {
         else{
         List<Patent> patentList = this.patentDao.searchPatent(info);
         if(patentList.size() == 0 ||patentList == null){
+            System.err.println("yes");
             return null;
         }
         voList = patentList.stream()
@@ -232,6 +233,7 @@ public class PatentBLServiceImpl implements PatentBLService {
                 .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
                 .collect(Collectors.toList());
         }
+        System.err.println(voList.size());
         return voList;
     }
 

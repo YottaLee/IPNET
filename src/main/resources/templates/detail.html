@@ -188,7 +188,7 @@
                         <header class="entry-header">
                             <div class="newspaper-x-image">
                                 <div style="width:400px;height: 360px;margin-right: auto;margin-left: auto">
-                                <img width="400" height="360" id="patent_photo" src="https://i.imgur.com/mKJEdFv.jpg" class="attachment-newspaper-x-single-post size-newspaper-x-single-post wp-post-image" alt="" style="width: 400px;height: 360px;margin-left: auto;margin-right: auto"/>
+                                <img width="400" height="360" id="patent_photo" src="" class="attachment-newspaper-x-single-post size-newspaper-x-single-post wp-post-image" alt="" style="width: 400px;height: 360px;margin-left: auto;margin-right: auto"/>
                                 </div>
                             </div>
                             <div class="newspaper-x-post-meta">
@@ -197,10 +197,10 @@
                                 </div>
                             </div>
                             <!-- .entry-meta -->
-                            <h2 class="entry-title" id="patent_name">CN20180405&nbsp;&nbsp;&nbsp;一种瓷质砖及其生产方法</h2>
+                            <h2 class="entry-title" id="patent_name"></h2>
                         </header><!-- .entry-header -->
 
-                        <span class="newspaper-x-category">
+                        <span class="newspaper-x-category" id="buy_use">
                             <i class="fas fa-shopping-cart"></i>购买专利使用权
 						</span>&nbsp;&nbsp;&nbsp;
                         <span class="newspaper-x-category"  id="want_buy">
@@ -291,10 +291,6 @@
                                     <div class="col-md-12">
                                         <!-- Short Description -->
                                         <p id="patent_intro">
-                                            介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
-                                            介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
-                                            介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
-                                            介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
                                         </p>
                                     </div>
                                 </div>
@@ -627,14 +623,15 @@
             opacity: 0.5,
             confirm: function () {
                 $.alert({
-                    title: '成功!',
-                    content: '您已成功取消此次交易',
-                    confirmButton: '我知道了',
+                    title: '提交申请成功!',
+                    content: '请前往草拟合同',
+                    confirmButton: '我前往',
                     confirmButtonClass: 'btn-primary',
                     icon: 'fa fa-info',
                     animation: 'zoom',
                     confirm:function(){
-
+                        localStorage.setItem("write_or_agree","write");
+                        window.location.href="ownership_trade_contract";
                     }
                 });
             }
