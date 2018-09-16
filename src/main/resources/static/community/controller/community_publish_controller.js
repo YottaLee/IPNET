@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     var user_id=localStorage.getItem("user_id");
-    user_id="czf";
     var user_name="";
 
     $.ajax({
