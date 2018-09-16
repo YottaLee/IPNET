@@ -33,7 +33,7 @@ public class LoanVO {
         this.time=loan.getActual_time();
         this.evaluation=loan.getEvaluation();
         this.loan_state=loan.getState();
-        this.userId=loan.getPerson();
+        this.person=loan.getPerson();
     }
 
 }
