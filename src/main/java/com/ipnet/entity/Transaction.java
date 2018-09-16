@@ -13,7 +13,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Transaction {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String transcation_id;//交易订单id
     private String buyer;//买方nagid
     private String seller;//卖方id

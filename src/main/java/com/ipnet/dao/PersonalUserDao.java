@@ -14,8 +14,8 @@ import java.util.Date;
 @Table(name = "personal_user")
 public interface PersonalUserDao extends JpaRepository<PersonalUser,String> {
 
-    @Query(value = "select p from PersonalUser p where p.id=:id")
-    PersonalUser findPersonalUserById(@Param("id") String id);
+    @Query(value = "select p from PersonalUser p where p.id=:pid")
+    PersonalUser findPersonalUserById(@Param("pid") String pid);
 
     PersonalUser findPersonalUserByName(String name);
 
