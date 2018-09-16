@@ -236,10 +236,10 @@
                             </div>
                         </div>
                         <div class="col-md-8" style="margin-left: auto;margin-right: auto">
-                            <button id="write_done" class="btn btn-default rippler rippler-inverse confirm_pay" href="#"  style="margin-left: 150px;background: #eadbaa">
+                            <button id="write_done" onclick="done()" class="btn btn-default rippler rippler-inverse confirm_pay" href="#"  style="margin-left: 150px;background: #eadbaa">
                                 <span><i class="fas fa-check"></i></span>&nbsp;草拟完成
                             </button>
-                            <button id="agree" class="btn btn-default rippler rippler-inverse cancel_pay" href="#"  style="background: #eadbaa;display: none;margin-left: 150px">
+                            <button id="agree" onclick="agree()" class="btn btn-default rippler rippler-inverse cancel_pay" href="#"  style="background: #eadbaa;display: none;margin-left: 150px">
                                 <span><i class="fas fa-check"></i></span>&nbsp;同意合同
                             </button>
                         </div>
@@ -260,6 +260,64 @@
 <!--<script type="text/javascript" src="/contract/js/turn.js"></script>-->
 <!--<script type="text/javascript" src="/contract/js/turn.html4.js"></script>-->
 <script type="text/javascript">
+
+    $(document).ready(function(){
+        if(localStorage.getItem("write_or_agree")=="agree") {
+            $("#agree").show();
+            $("#write_done").hide();
+            var temp = JSON.parse(localStorage.getItem("proxy_contract"));
+            $("#p1").val(temp.p1);
+            $("#p2").val(temp.p2);
+            $("#p3").val(temp.p3);
+            $("#p4").val(temp.p4);
+            $("#p5").val(temp.p5);
+            $("#p6").val(temp.p6);
+            $("#p7").val(temp.p7);
+            $("#p8").val(temp.p8);
+            $("#p9").val(temp.p9);
+            $("#p10").val(temp.p10);
+            $("#p11").val(temp.p11);
+            $("#p12").val(temp.p12);
+            $("#p13").val(temp.p13);
+            $("#p14").val(temp.p14);
+            $("#p15").val(temp.p15);
+            $("#p16").val(temp.p16);
+            $("#p17").val(temp.p17);
+            $("#p18").val(temp.p18);
+            $("#p19").val(temp.p19);
+            $("#p20").val(temp.p20);
+            $("#p21").val(temp.p21);
+            $("#p22").val(temp.p22);
+            $("#p23").val(temp.p23);
+            $("#p24").val(temp.p24);
+            $("#p25").val(temp.p25);
+            $("#p26").val(temp.p26);
+            $("#p27").val(temp.p27);
+            $("#p28").val(temp.p28);
+            $("#p29").val(temp.p29);
+            $("#p30").val(temp.p30);
+            $("#p31").val(temp.p31);
+            $("#p32").val(temp.p32);
+            $("#p33").val(temp.p33);
+            $("#p34").val(temp.p34);
+            $("#p35").val(temp.p35);
+            $("#p36").val(temp.p36);
+            $("#p37").val(temp.p37);
+            $("#p38").val(temp.p38);
+            $("#p39").val(temp.p39);
+            $("#p40").val(temp.p40);
+            $("#p41").val(temp.p41);
+            $("#p42").val(temp.p42);
+            $("#p43").val(temp.p43);
+            $("#p44").val(temp.p44);
+            $("#p45").val(temp.p45);
+            $("#p46").val(temp.p46);
+            $("#p47").val(temp.p47);
+            $("#p48").val(temp.p48);
+            $("#p49").val(temp.p49)
+        }
+    });
+
     function loadApp() {
         $('.flipbook').turn({
             width: 914,
@@ -303,6 +361,112 @@
 
     $('.disabled').find('input').attr('disabled', 'disabled');
     $('.disabled').find('.seal').attr('disabled', 'disabled');
+
+    function done(){
+        $.confirm({
+            title: '确认完成草拟合同',
+            content: '确认完成后将不可更改 <br> 请仔细核对合同款项',
+            confirmButton: '确认草拟完成',
+            cancelButton: '取消',
+            confirmButtonClass: 'btn-info',
+            icon: 'fa fa-question-circle',
+            animation: 'rotate',
+            closeAnimation: 'right',
+            opacity: 0.5,
+            confirm: function () {
+                $.alert({
+                    title: '草拟合同成功!',
+                    content: '您已成功草拟此份合同，请耐心等待对方同意',
+                    confirmButton: '我知道了',
+                    confirmButtonClass: 'btn-primary',
+                    icon: 'fa fa-info',
+                    animation: 'zoom',
+                    confirm: function () {
+                        var temp={
+                            p1:$("#p1").val(),
+                            p2:$("#p2").val(),
+                            p3:$("#p3").val(),
+                            p4:$("#p4").val(),
+                            p5:$("#p5").val(),
+                            p6:$("#p6").val(),
+                            p7:$("#p7").val(),
+                            p8:$("#p8").val(),
+                            p9:$("#p9").val(),
+                            p10:$("#p10").val(),
+                            p11:$("#p11").val(),
+                            p12:$("#p12").val(),
+                            p13:$("#p13").val(),
+                            p14:$("#p14").val(),
+                            p15:$("#p15").val(),
+                            p16:$("#p16").val(),
+                            p17:$("#p17").val(),
+                            p18:$("#p18").val(),
+                            p19:$("#p19").val(),
+                            p20:$("#p20").val(),
+                            p21:$("#p21").val(),
+                            p22:$("#p22").val(),
+                            p23:$("#p23").val(),
+                            p24:$("#p24").val(),
+                            p25:$("#p25").val(),
+                            p26:$("#p26").val(),
+                            p27:$("#p27").val(),
+                            p28:$("#p28").val(),
+                            p29:$("#p29").val(),
+                            p30:$("#p30").val(),
+                            p31:$("#p31").val(),
+                            p32:$("#p32").val(),
+                            p33:$("#p33").val(),
+                            p34:$("#p34").val(),
+                            p35:$("#p35").val(),
+                            p36:$("#p36").val(),
+                            p37:$("#p37").val(),
+                            p38:$("#p38").val(),
+                            p39:$("#p39").val(),
+                            p40:$("#p40").val(),
+                            p41:$("#p41").val(),
+                            p42:$("#p42").val(),
+                            p43:$("#p43").val(),
+                            p44:$("#p44").val(),
+                            p45:$("#p45").val(),
+                            p46:$("#p46").val(),
+                            p47:$("#p47").val(),
+                            p48:$("#p48").val(),
+                            p49:$("#p49").val()
+                        };
+                        localStorage.setItem("proxy_contract",JSON.stringify(temp));
+                    }
+                });
+            }
+        });
+    }
+
+    function agree(){
+        $.confirm({
+            title: '确认同意草拟合同',
+            content: '确认同意后将无法返回 <br> 请仔细核对合同款项',
+            confirmButton: '确认草拟完成',
+            cancelButton: '取消',
+            confirmButtonClass: 'btn-info',
+            icon: 'fa fa-question-circle',
+            animation: 'rotate',
+            closeAnimation: 'right',
+            opacity: 0.5,
+            confirm: function () {
+                $.alert({
+                    title: '同意合同成功!',
+                    content: '您已成功同意此份合同，合约完成',
+                    confirmButton: '我知道了',
+                    confirmButtonClass: 'btn-primary',
+                    icon: 'fa fa-info',
+                    animation: 'zoom',
+                    confirm:function(){
+
+                    }
+                })
+            }
+        });
+    }
+
 </script>
 <script type="text/javascript" src="/contract/controller/proxy_controller.js"></script>
 

@@ -289,6 +289,77 @@
 <script type="text/javascript" src="/contract/js/modernizr.2.5.3.min.js"></script>
 <script type="text/javascript" src="/common/jquery-confirm.js"></script>
 <script type="text/javascript">
+
+
+    $(document).ready(function(){
+        if(localStorage.getItem("write_or_agree")=="agree") {
+            $("#agree").show();
+            $("#write_done").hide();
+            var temp = JSON.parse(localStorage.getItem("ownership_trade_contract"));
+            $("#o1").val(temp.o1);
+            $("#o2").val(temp.o2);
+            $("#o3").val(temp.o3);
+            $("#o4").val(temp.o4);
+            $("#o5").val(temp.o5);
+            $("#o6").val(temp.o6);
+            $("#o7").val(temp.o7);
+            $("#o8").val(temp.o8);
+            $("#o9").val(temp.o9);
+            $("#o10").val(temp.o10);
+            $("#o11").val(temp.o11);
+            $("#o12").val(temp.o12);
+            $("#o13").val(temp.o13);
+            $("#o14").val(temp.o14);
+            $("#o15").val(temp.o15);
+            $("#o16").val(temp.o16);
+            $("#o17").val(temp.o17);
+            $("#o18").val(temp.o18);
+            $("#o19").val(temp.o19);
+            $("#o20").val(temp.o20);
+            $("#o21").val(temp.o21);
+            $("#o22").val(temp.o22);
+            $("#o23").val(temp.o23);
+            $("#o24").val(temp.o24);
+            $("#o25").val(temp.o25);
+            $("#o26").val(temp.o26);
+            $("#o27").val(temp.o27);
+            $("#o28").val(temp.o28);
+            $("#o29").val(temp.o29);
+            $("#o30").val(temp.o30);
+            $("#o31").val(temp.o31);
+            $("#o32").val(temp.o32);
+            $("#o33").val(temp.o33);
+            $("#o34").val(temp.o34);
+            $("#o35").val(temp.o35);
+            $("#o36").val(temp.o36);
+            $("#o37").val(temp.o37);
+            $("#o38").val(temp.o38);
+            $("#o39").val(temp.o39);
+            $("#o40").val(temp.o40);
+            $("#o41").val(temp.o41);
+            $("#o42").val(temp.o42);
+            $("#o43").val(temp.o43);
+            $("#o44").val(temp.o44);
+            $("#o45").val(temp.o45);
+            $("#o46").val(temp.o46);
+            $("#o47").val(temp.o47);
+            $("#o48").val(temp.o48);
+            $("#o49").val(temp.o49);
+            $("#o50").val(temp.o50);
+            $("#o51").val(temp.o51);
+            $("#o52").val(temp.o52);
+            $("#o53").val(temp.o53);
+            $("#o54").val(temp.o54);
+            $("#o55").val(temp.o55);
+            $("#o56").val(temp.o56);
+            $("#o57").val(temp.o57);
+            $("#o58").val(temp.o58);
+            $("#o59").val(temp.o59);
+            $("#o60").val(temp.o60);
+            $("#o61").val(temp.o61);
+        }
+    });
+
     function loadApp() {
         $('.flipbook').turn({
             width: 914,
@@ -356,63 +427,96 @@
                         var temp={
                             o1:$("#o1").val(),
                             o2:$("#o2").val(),
-                            o3:$("#o1").val(),
-                            o4:$("#o1").val(),
-                            o5:$("#o1").val(),
-                            o6:$("#o1").val(),
-                            o7:$("#o1").val(),
-                            o8:$("#o1").val(),
-                            o9:$("#o1").val(),
-                            o10:$("#o1").val(),
-                            o11:$("#o1").val(),
-                            o12:$("#o1").val(),
-                            o13:$("#o1").val(),
-                            o14:$("#o1").val(),
-                            o15:$("#o1").val(),
-                            o16:$("#o1").val(),
-                            o17:$("#o1").val(),
-                            o18:$("#o1").val(),
-                            o19:$("#o1").val(),
-                            o20:$("#o1").val(),
-                            o21:$("#o1").val(),
-                            o22:$("#o1").val(),
-                            o23:$("#o1").val(),
-                            o24:$("#o1").val(),
-                            o25:$("#o1").val(),
-                            o26:$("#o1").val(),
-                            o27:$("#o1").val(),
-                            o28:$("#o1").val(),
-                            o29:$("#o1").val(),
-                            o30:$("#o1").val(),
-                            o31:$("#o1").val(),
-                            o32:$("#o1").val(),
-                            o33:$("#o1").val(),
-                            o34:$("#o1").val(),
-                            o35:$("#o1").val(),
-                            o36:$("#o1").val(),
-                            o37:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-                            o1:$("#o1").val(),
-
+                            o3:$("#o3").val(),
+                            o4:$("#o4").val(),
+                            o5:$("#o5").val(),
+                            o6:$("#o6").val(),
+                            o7:$("#o7").val(),
+                            o8:$("#o8").val(),
+                            o9:$("#o9").val(),
+                            o10:$("#o10").val(),
+                            o11:$("#o11").val(),
+                            o12:$("#o12").val(),
+                            o13:$("#o13").val(),
+                            o14:$("#o14").val(),
+                            o15:$("#o15").val(),
+                            o16:$("#o16").val(),
+                            o17:$("#o17").val(),
+                            o18:$("#o18").val(),
+                            o19:$("#o19").val(),
+                            o20:$("#o20").val(),
+                            o21:$("#o21").val(),
+                            o22:$("#o22").val(),
+                            o23:$("#o23").val(),
+                            o24:$("#o24").val(),
+                            o25:$("#o25").val(),
+                            o26:$("#o26").val(),
+                            o27:$("#o27").val(),
+                            o28:$("#o28").val(),
+                            o29:$("#o29").val(),
+                            o30:$("#o30").val(),
+                            o31:$("#o31").val(),
+                            o32:$("#o32").val(),
+                            o33:$("#o33").val(),
+                            o34:$("#o34").val(),
+                            o35:$("#o35").val(),
+                            o36:$("#o36").val(),
+                            o37:$("#o37").val(),
+                            o38:$("#o38").val(),
+                            o39:$("#o39").val(),
+                            o40:$("#o40").val(),
+                            o41:$("#o41").val(),
+                            o42:$("#o42").val(),
+                            o43:$("#o43").val(),
+                            o44:$("#o44").val(),
+                            o45:$("#o45").val(),
+                            o46:$("#o46").val(),
+                            o47:$("#o47").val(),
+                            o48:$("#o48").val(),
+                            o49:$("#o49").val(),
+                            o50:$("#o50").val(),
+                            o51:$("#o51").val(),
+                            o52:$("#o52").val(),
+                            o53:$("#o53").val(),
+                            o54:$("#o54").val(),
+                            o55:$("#o55").val(),
+                            o56:$("#o56").val(),
+                            o57:$("#o57").val(),
+                            o58:$("#o58").val(),
+                            o59:$("#o59").val(),
+                            o60:$("#o60").val(),
+                            o61:$("#o61").val()
                         };
+                        localStorage.setItem("ownership_trade_contract",JSON.stringify(temp));
                     }
                 });
+            }
+        });
+    }
+
+    function agree(){
+        $.confirm({
+            title: '确认同意草拟合同',
+            content: '确认同意后将无法返回 <br> 请仔细核对合同款项',
+            confirmButton: '确认草拟完成',
+            cancelButton: '取消',
+            confirmButtonClass: 'btn-info',
+            icon: 'fa fa-question-circle',
+            animation: 'rotate',
+            closeAnimation: 'right',
+            opacity: 0.5,
+            confirm: function () {
+                $.alert({
+                    title: '同意合同成功!',
+                    content: '您已成功同意此份合同，合约完成',
+                    confirmButton: '我知道了',
+                    confirmButtonClass: 'btn-primary',
+                    icon: 'fa fa-info',
+                    animation: 'zoom',
+                    confirm:function(){
+
+                    }
+                })
             }
         });
     }

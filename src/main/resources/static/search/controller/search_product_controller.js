@@ -1,4 +1,4 @@
-var search_info=localStorage.getItem("search_info");
+var search_info="";
 
 var patent_list=[];
 
@@ -14,6 +14,7 @@ $(document).ready(function(){
        async:false,
        success:function(data){
            patent_list=data;
+           alert(JSON.stringify(data));
        },
        error:function(data){
            alert("fail");
@@ -95,6 +96,7 @@ $(document).ready(function(){
 
 function show_patent_list(){
     $("#main").empty();
+    alert(patent_list.length);
     for(var i=0;i<patent_list.length;i++){
         if(col==0){
             row++;
