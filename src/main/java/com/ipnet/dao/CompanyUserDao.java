@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -18,8 +19,8 @@ public interface CompanyUserDao extends JpaRepository<CompanyUser,String> {
 
     CompanyUser findCompanyUserByName(String name);
 
-    @Query(value = "select c.id from CompanyUser c where c.role=2 ")
-    String getEvaluationName();
+    @Query(value = "select c from CompanyUser c where c.role=2 ")
+    ArrayList<CompanyUser> getEvaluators();
 
     @Query("select count(c) from CompanyUser c where c.registerTime<=:t and c.role=0")
     int countUser(@Param("t")Date date);

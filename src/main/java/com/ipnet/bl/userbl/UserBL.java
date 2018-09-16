@@ -317,7 +317,12 @@ public class UserBL implements UserBLService{
 
     @Override
     public String getEvaluationName(){
-        return companyUserDao.getEvaluationName();
+        ArrayList<CompanyUser> companyUsers=companyUserDao.getEvaluators();
+        if(companyUsers==null || companyUsers.size()==0){
+            return null;
+        }else{
+            return companyUsers.get(0).getId();
+        }
     }
 
     @Override
