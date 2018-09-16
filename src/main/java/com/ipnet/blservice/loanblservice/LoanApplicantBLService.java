@@ -17,4 +17,6 @@ public interface LoanApplicantBLService {
     boolean ifValue(String patentID);
 
     boolean ifBankChosen(String loanID);
+
+    ResultMessage changeEvaluationState(String loanID);
 }

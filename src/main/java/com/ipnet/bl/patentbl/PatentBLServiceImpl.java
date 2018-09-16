@@ -49,6 +49,7 @@ public class PatentBLServiceImpl implements PatentBLService {
         Patent p = new Patent();
         p.setPatent_id(patentID);
         p.setPool_id("");
+        p.setUserId(userId);
         p.setPatent_name(patent);
         p.setPatent_holder(holder);
         p.setUrl(url);
@@ -88,8 +89,10 @@ public class PatentBLServiceImpl implements PatentBLService {
 
     @Override
     public List<PatentVO> getPatentList(String userId){
-        List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
+        List<Patent> patentList = this.patentDao.searchPatentsByUserId(userId);
+        System.out.println("list  "+patentList.size());
         if(patentList.size() == 0 ||patentList == null){
+            System.out.println("list为空");
             return null;
         }
         List<PatentVO> voList = patentList.stream()

@@ -14,8 +14,8 @@ $.ajax({
         document.getElementById("result").innerHTML = str(data.result);
         document.getElementById("value").href = data.url;
     },
-    error: function () {
-
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 

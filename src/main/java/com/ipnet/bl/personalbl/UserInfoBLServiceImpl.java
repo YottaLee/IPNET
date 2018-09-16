@@ -8,6 +8,7 @@ import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.entity.CompanyUser;
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.Sex;
 import com.ipnet.enums.UserType;
 import com.ipnet.vo.uservo.AccountInfoVo;
 import com.ipnet.vo.uservo.CompanyUserSaveVo;
@@ -65,9 +66,7 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
         }else{
             CompanyUser companyUser=companyUserDao.findCompanyUserByName(companyUserSaveVo.getName());
             companyUser.setRepresentative(companyUserSaveVo.getRepresentative());
-
-
-
+            
             companyUserDao.save(companyUser);
             return ResultMessage.Success;
         }
@@ -76,31 +75,61 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public UserInfoVo getUserInfo(String userId,UserType userType) {
-        PersonalUser personalUser=userDao.findPersonalUserById(userId);
-        if(personalUser!=null){
-            return new UserInfoVo(personalUser.getName(),personalUser.getSex(),personalUser.getTelephone(),
-                    personalUser.getIndustry(),personalUser.getCompany(),personalUser.getRegion(),personalUser.getDescription(),
-                    personalUser.getIdPhoto());
+        switch(userType){
+            case Company:
+                CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
+                if(companyUser!=null)
+                    return new UserInfoVo(companyUser.getName(), null ,companyUser.getTel(),
+                            null,companyUser.getName(),companyUser.getAddress(),companyUser.getDescription()
+                    ,companyUser.getLicence());
+            case Personal:
+                PersonalUser personalUser=userDao.findPersonalUserById(userId);
+                if(personalUser!=null){
+                    return new UserInfoVo(personalUser.getName(),personalUser.getSex(),personalUser.getTelephone(),
+                            personalUser.getIndustry(),personalUser.getCompany(),personalUser.getRegion(),personalUser.getDescription(),
+                            personalUser.getIdPhoto());
+                }
         }
+
         return null;
     }
 
     @Override
-    public AccountInfoVo getAccountInfo(String userId) {
-        PersonalUser personalUser=userDao.findPersonalUserById(userId);
-        if(personalUser.equals(null))
-            return null;
-        else{
-            return new AccountInfoVo();
+    public AccountInfoVo getAccountInfo(String userId,UserType userType) {
+        switch(userType){
+            case Company:
+                CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
+                if(companyUser.equals(null))
+                    return null;
+                else{
+                    return new AccountInfoVo(companyUser.getBank_accounts(),companyUser.getId(),companyUser.getMoney());
+                }
+            case Personal:
+                PersonalUser personalUser=userDao.findPersonalUserById(userId);
+                if(personalUser.equals(null))
+                    return null;
+                else{
+                    return new AccountInfoVo(personalUser.getBankAccount(),personalUser.getId(),personalUser.getRMB());
+                }
         }
+        return null;
 
     }
 
     @Override
-    public ResultMessage isUserValidate(String userId) {
-        PersonalUser personalUser=userDao.findPersonalUserById(userId);
-        if(personalUser.getIdentities().size()!=0)
-            return ResultMessage.Success;
-        return ResultMessage.Fail;
+    public ResultMessage isUserValidate(String userId,UserType userType) {
+        switch(userType){
+            case Company:
+                CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
+                if(companyUser.getIdentities().size()!=0)
+                    return ResultMessage.Success;
+                return ResultMessage.Fail;
+            case Personal:
+                PersonalUser personalUser=userDao.findPersonalUserById(userId);
+                if(personalUser.getIdentities().size()!=0)
+                    return ResultMessage.Success;
+                return ResultMessage.Fail;
+        }
+        return null;
     }
 }

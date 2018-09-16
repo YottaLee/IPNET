@@ -31,16 +31,15 @@ public class UploadController {
     }
 
     /**
-     * 上传专利图片
-     *
+     * 上传专利图
      * @param file
-     * @return
+     * @return String
      */
-    @RequestMapping("/image")
+    @RequestMapping("image")
     public @ResponseBody
-    String uploadImage(MultipartFile file) {
+    String uploadImage(@RequestBody MultipartFile file) {
         System.out.println("Success upload image!!!!!!!!!!!!!!!!!!! ");
-        return null;
+        return aliService.uploadImage(file);
     }
 
 }

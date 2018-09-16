@@ -18,7 +18,7 @@ public interface UserInfoBLService {
     //身份信息查看
     UserInfoVo getUserInfo(String userId, UserType userType);
     //账户信息查看
-    AccountInfoVo getAccountInfo (String userId);
+    AccountInfoVo getAccountInfo (String userId,UserType userType);
     //查看是否完成验证
-    ResultMessage isUserValidate (String userId);
+    ResultMessage isUserValidate (String userId,UserType userType);
 }

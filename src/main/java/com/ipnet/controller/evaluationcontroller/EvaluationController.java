@@ -3,6 +3,7 @@ package com.ipnet.controller.evaluationcontroller;
 import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.EvaluationVO;
+import com.ipnet.vo.financevo.Evaluator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +17,13 @@ public class EvaluationController {
     private EvaluationBLService evaluationBLService;
 
     /**
-     * 获取平台唯一的评估机构ID
-     * @return
+     * 获取平台唯一的评估机构id
+     * @return 评估机构的id
      */
     @RequestMapping("/getEvaluationId")
     @ResponseBody
-    public String getEvaluationId() {
-        return null;
-        //return evaluationBLService.submitReport(patentID,url,evaluation,money);
+    public Evaluator getEvaluationId() {
+        return evaluationBLService.getEvaluator();
     }
 
     /**
@@ -36,9 +36,8 @@ public class EvaluationController {
      */
     @RequestMapping("/submitReport")
     @ResponseBody
-    public ResultMessage submitReport(String patentID,String url,String rule,String tech, int evaluation,String result, double money) {
-        return null;
-       // return evaluationBLService.submitReport(patentID,url,evaluation,money);
+    public ResultMessage submitReport(String patentID,String url,String rule,String tech, double evaluation,String result, double money) {
+        return evaluationBLService.submitReport(patentID,url,rule,tech,evaluation,result,money);
     }
 
     /**
@@ -85,18 +84,4 @@ public class EvaluationController {
     public boolean ifValue(String patentID) {
         return evaluationBLService.ifValue(patentID);
     }
-
-    /**
-     * 存取评估机构是否同意理赔
-     * @param loanID 贷款号
-     * @param insuranceID 保单号
-     * @param ifPass 是否同意
-     * @return ResultMessage
-     */
-//    @RequestMapping("/ifCompensate")
-//    @ResponseBody
-//    public ResultMessage ifCompensate(String loanID, String insuranceID, boolean ifPass) {
-//        return evaluationBLService.ifCompensate(loanID,insuranceID,ifPass);
-//    }
-
 }

@@ -96,7 +96,6 @@
     <div class="row">
         <div class="col-md-12 newspaper-x-content newspaper-x-with-sidebar" id="pay_card_list">
             <h3 class="widget-title"><span>选择支付银行卡：</span></h3>
-
         </div>
     </div>
 
@@ -124,95 +123,7 @@
 
 </div>
 
-
-
-
-
-<script src="/pay/js/card.js"></script>
-
-<script>
-
-    var current_pay_card="";
-    var current_receive_card="";
-
-    $(".atvImg").click(function(){
-        current_pay_card=$(this).find(".card_number").getAttribute("data-number");
-        $(this).find(".checked").show();
-        $(this).siblings().find(".checked").hide();
-    })
-
-    $('.confirm_pay').on('click', function () {
-        $.confirm({
-            title: '是否确认付款',
-            content: '请确认订单信息合同信息等无误后进行付款 <br> 确认付款后将无法退还付款金额',
-            confirmButton: '确认付款',
-            cancelButton: '取消',
-            confirmButtonClass: 'btn-info',
-            icon: 'fa fa-question-circle',
-            animation: 'rotate',
-            closeAnimation: 'right',
-            opacity: 0.5,
-            confirm: function () {
-                if(current_card==""){
-                    $.alert({
-                        title: '请先选择付款银行卡!',
-                        content: '您还未选择付款的银行卡，请先选中银行卡',
-                        confirmButton: '我知道了',
-                        confirmButtonClass: 'btn-primary',
-                        icon: 'fa fa-info',
-                        animation: 'zoom',
-                        confirm: function () {
-
-                        }
-                    });
-                }else {
-                    $.ajax({
-
-                    });
-                    $.alert({
-                        title: '付款成功!',
-                        content: '您已成功付款，此次交易成功',
-                        confirmButton: '我知道了',
-                        confirmButtonClass: 'btn-primary',
-                        icon: 'fa fa-info',
-                        animation: 'zoom',
-                        confirm: function () {
-
-                        }
-                    });
-                }
-            }
-        });
-    });
-
-    $('.cancel_pay').on('click', function () {
-        $.confirm({
-            title: '是否确认取消付款',
-            content: '如果订单信息有误或合同细则仍令您不满意，您可以选择取消付款 <br> 若是双方均已达成一致的交易请您不要轻易取消',
-            confirmButton: '确认付款',
-            cancelButton: '取消',
-            confirmButtonClass: 'btn-info',
-            icon: 'fa fa-question-circle',
-            animation: 'rotate',
-            closeAnimation: 'right',
-            opacity: 0.5,
-            confirm: function () {
-                $.alert({
-                    title: '取消成功!',
-                    content: '您已成功取消此次交易',
-                    confirmButton: '我知道了',
-                    confirmButtonClass: 'btn-primary',
-                    icon: 'fa fa-info',
-                    animation: 'zoom',
-                    confirm:function(){
-
-                    }
-                });
-            }
-        });
-    });
-
-</script>
+<!--<script src="/pay/js/card.js"></script>-->
 
 </body>
 </html>

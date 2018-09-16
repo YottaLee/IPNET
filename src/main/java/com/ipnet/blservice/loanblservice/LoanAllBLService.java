@@ -1,11 +1,12 @@
 package com.ipnet.blservice.loanblservice;
 
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.LoanVO;
 
 import java.util.ArrayList;
 
-public interface LoanAllBLSerivce {
+public interface LoanAllBLService {
 
     ArrayList<String> getContract(String loanID);
 
@@ -20,4 +21,8 @@ public interface LoanAllBLSerivce {
     boolean getIfContract(String loanID,String userID);
 
     String getLatestLoanID(String patentID);
+
+    ResultMessage changeState(String loanID, Patent_loan_state state);
+
+    ResultMessage changeStateByPatentID(String patentID,Patent_loan_state state);
 }

@@ -3,10 +3,7 @@ package com.ipnet.entity;
 import com.ipnet.enums.Industry;
 import lombok.Data;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +18,7 @@ import java.util.List;
 @Table(name = "pool")
 public class PatentPool {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;//专利池的ID，作为唯一标识，由系统自动生成
 
     private String name;//专利池的名字

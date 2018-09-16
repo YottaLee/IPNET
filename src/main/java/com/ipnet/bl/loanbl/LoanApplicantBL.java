@@ -5,6 +5,7 @@ import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.blservice.loanblservice.LoanApplicantBLService;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Loan;
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class LoanApplicantBL implements LoanApplicantBLService{
             Loan loan=loanOptional.get();
             loan.setInsurance(insurance);
             loan.setPolicy(url);
+            loan.setState(Patent_loan_state.to_be_checked_by_insurance);
             loanDao.saveAndFlush(loan);
             return ResultMessage.Success;
         }
@@ -75,6 +77,7 @@ public class LoanApplicantBL implements LoanApplicantBLService{
             loan.setExpect_money(money);
             loan.setExpect_time(time);
             loan.setApplication(url);
+            loan.setState(Patent_loan_state.to_be_checked_by_bank);
             loanDao.saveAndFlush(loan);
             return ResultMessage.Success;
         }
@@ -115,7 +118,8 @@ public class LoanApplicantBL implements LoanApplicantBLService{
             e.printStackTrace();
         }
         loan.setPatent(patentName);
-        loanDao.save(loan);
+        loan.setState(Patent_loan_state.to_be_value);
+        loanDao.saveAndFlush(loan);
         return loanID;
     }
 
@@ -138,5 +142,17 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     public boolean ifBankChosen(String loanID) {
         Optional<Loan> loanOptional=loanDao.findById(loanID);
         return loanOptional.map(loan -> loan.getBank().equals("")||loan.getBank()==null).orElse(false);
+    }
+
+    @Override
+    public ResultMessage changeEvaluationState(String loanID){
+        Optional<Loan> loanOptional=loanDao.findById(loanID);
+        if(loanOptional.isPresent()){
+            Loan loan=loanOptional.get();
+            loan.setState(Patent_loan_state.to_be_loan_application);
+            loanDao.saveAndFlush(loan);
+            return ResultMessage.Success;
+        }
+        return ResultMessage.Fail;
     }
 }

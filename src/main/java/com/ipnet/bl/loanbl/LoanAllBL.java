@@ -1,12 +1,10 @@
 package com.ipnet.bl.loanbl;
 
-import com.ipnet.bl.patentbl.PatentHelper;
-import com.ipnet.blservice.EvaluationBLService;
-import com.ipnet.blservice.PatentBLService;
 import com.ipnet.blservice.UserBLService;
-import com.ipnet.blservice.loanblservice.LoanAllBLSerivce;
+import com.ipnet.blservice.loanblservice.LoanAllBLService;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Loan;
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
 import com.ipnet.vo.financevo.LoanVO;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
-public class LoanAllBL implements LoanAllBLSerivce{
+public class LoanAllBL implements LoanAllBLService {
 
 
     @Autowired
@@ -76,6 +74,9 @@ public class LoanAllBL implements LoanAllBLSerivce{
                     break;
                 default:
                     loan.setOwnerPass(ifPass);
+            }
+            if(loan.isOwnerPass() && loan.isBankPass() && loan.isEvaluationPass() && loan.isInsurancePass()){
+                loan.setState(Patent_loan_state.to_be_buy_insurance);
             }
             loanDao.save(loan);
             return ResultMessage.Success;
@@ -143,6 +144,9 @@ public class LoanAllBL implements LoanAllBLSerivce{
                 }else{
                     loan.setFinancesign(url);
                 }
+                if(loan.getIposign()!=null && loan.getFinancesign()!=null){
+                    loan.setState(Patent_loan_state.to_be_contract);
+                }
                 loanDao.save(loan);
                 return ResultMessage.Success;
             }else {
@@ -200,8 +204,32 @@ public class LoanAllBL implements LoanAllBLSerivce{
             LoanVO vo=new LoanVO(loan);
             vo.setMoney(loan.getAccept_money());
             vo.setTime(loan.getAccept_time());
+            vo.setPerson(userBLService.getXingMing(loan.getPerson()));
             result.add(vo);
         }
         return result;
+    }
+
+    @Override
+    public ResultMessage changeState(String loanID, Patent_loan_state state){
+        Optional<Loan> loanOptional=loanDao.findById(loanID);
+        if(loanOptional.isPresent()){
+            Loan loan=loanOptional.get();
+            loan.setState(state);
+            loanDao.saveAndFlush(loan);
+        }
+        return null;
+    }
+
+    @Override
+    public ResultMessage changeStateByPatentID(String patentID,Patent_loan_state state){
+        ArrayList<Loan> loans=loanDao.findByPatentID(patentID);
+        for(Loan loan:loans){
+            if(loan.getState()!=Patent_loan_state.free) {
+                loan.setState(state);
+                loanDao.saveAndFlush(loan);
+            }
+        }
+        return ResultMessage.Success;
     }
 }

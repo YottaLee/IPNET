@@ -22,6 +22,7 @@ public class CompanyUser {
     @Id
     private String id;//注册时的邮箱
     private String tel;//手机号
+    private String vertification;
 
     private boolean verified;//公司是否已经实名认证且通过
 
@@ -47,12 +48,13 @@ public class CompanyUser {
     private int points;//积分
     //@ElementCollection(targetClass = String.class,fetch = FetchType.LAZY)
     private ArrayList<String> bank_accounts;//银行账号
+    private String pay_code;
     private String password;//密码
     //@ElementCollection(targetClass = String.class,fetch = FetchType.LAZY)
     private ArrayList<Identity> identities;//身份认证
 
     private String description;//自我描述
-    private String registerTime;//注册日期
+    private Date registerTime;//注册日期
 
     private boolean isActive;//用户的激活状态
     private String activeCode;//用户的激活码

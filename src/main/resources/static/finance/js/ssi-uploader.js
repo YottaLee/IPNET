@@ -499,9 +499,11 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                url: '/upload/image',//thisS.options.url,
+                url: thisS.options.url,
                 success:function (imageURL) {
-                    uploadImageURL = imageURL;
+                    var storage = window.localStorage;
+                    storage.setItem('uploadImageURL',imageURL);
+                    console.log(imageURL);
                 },
                 error: function (request, error) {
                     if (error !== 'abort') {
@@ -751,7 +753,7 @@
             dropZone: true,
             maxNumberOfFiles: '',
             responseValidation: false,
-            maxFileSize: 2,
+            maxFileSize: 10,
             ajaxOptions: {},
             onUpload: function () {
             },
@@ -764,7 +766,7 @@
             allowed: ['jpg', 'jpeg', 'png', 'bmp', 'gif'],
             errorHandler: {
                 method: function (msg) {
-                    alert(msg);
+                    alertFile(msg);
                 },
                 success: 'success',
                 error: 'error'

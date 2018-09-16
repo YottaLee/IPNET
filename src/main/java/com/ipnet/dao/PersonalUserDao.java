@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
+import java.util.Date;
 
 
 @Repository
@@ -16,6 +17,9 @@ public interface PersonalUserDao extends JpaRepository<PersonalUser,String> {
     PersonalUser findPersonalUserById(String id);
 
     PersonalUser findPersonalUserByName(String name);
+
+    @Query("select count(p) from PersonalUser p where p.registerTime<=:t")
+    int count(@Param("t")Date date);
 
 }
 

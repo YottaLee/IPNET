@@ -5,12 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class AgentContract extends Contract{
+    @Id
+    private String contract_id;
     private String transferor;//转让方
     private String transferor_repre;//法定代表人
     private String acquiring_party;//受让方

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -40,9 +41,10 @@ public class PersonalUser {
     private Sex sex;//用户的性别
     private int age;//用户的年龄
     private String telephone;//用户的手机号码，注册时使用
+    private String vertification;
     private String email;//用户的邮箱
     private String description;//用户的自我描述
-    private String registerTime;//用户的注册时间
+    private Date registerTime;//用户的注册时间
     private String company;//用户所在企业
     private Industry industry;//用户从事的行业
     private String region;//用户所在地区
@@ -50,191 +52,6 @@ public class PersonalUser {
     private List<String> bankAccount;//用户的银行账号，可以绑定多张银行卡
     private int credits;//用户拥有的积分
     private double RMB;//用户平台上的人民币或点券（钱包？）
-
-    /*
-    public String getPay_code() {
-        return pay_code;
-    }
-
-    public void setPay_code(String pay_code) {
-        this.pay_code = pay_code;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public String getActiveCode() {
-        return activeCode;
-    }
-
-    public void setActiveCode(String activeCode) {
-        this.activeCode = activeCode;
-    }
-
-    public boolean isVerified() {
-        return verified;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-
-    public String getIdPhoto() {
-        return idPhoto;
-    }
-
-    public void setIdPhoto(String idPhoto) {
-        this.idPhoto = idPhoto;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public List<Identity> getIdentities() {
-        return identities;
-    }
-
-    public void setIdentities(List<Identity> identities) {
-        this.identities = identities;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getRegisterTime() {
-        return registerTime;
-    }
-
-    public void setRegisterTime(String registerTime) {
-        this.registerTime = registerTime;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public Industry getIndustry() {
-        return industry;
-    }
-
-    public void setIndustry(Industry industry) {
-        this.industry = industry;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public List<String> getBankAccount() {
-        return bankAccount;
-    }
-
-    public void setBankAccount(List<String> bankAccount) {
-        this.bankAccount = bankAccount;
-    }
-
-    public int getCredits() {
-        return credits;
-    }
-
-    public void setCredits(int credits) {
-        this.credits = credits;
-    }
-
-    public double getRMB() {
-        return RMB;
-    }
-
-    public void setRMB(double RMB) {
-        this.RMB = RMB;
-    }*/
 
 
 }

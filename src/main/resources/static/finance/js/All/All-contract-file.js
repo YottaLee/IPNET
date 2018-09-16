@@ -1,7 +1,7 @@
 var storage = window.localStorage;
-var loanID = storage.loanID;
-var userId = storage.userId;
-
+var loanID = storage.getItem('loan_id');
+var userId = storage.getItem('user_id');
+//签署协议待完善
 // Form-File-Upload.js
 // ====================================================================
 // This file should not be included in your project.
@@ -54,7 +54,7 @@ $(document).ready(function () {
     var uploadBtn = $('#dz-upload-btn');
     var removeBtn = $('#dz-remove-btn');
     var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-        url: "/target-url", // Set the url
+        url: "/upload/file", // Set the url
         thumbnailWidth: 50,
         thumbnailHeight: 50,
         parallelUploads: 20,
@@ -90,7 +90,7 @@ $(document).ready(function () {
     // Setup the buttons for all transfers
     uploadBtn.on('click', function () {
         //Upload all files
-        //myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+        myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
         var file = myDropzone.getFilesWithStatus(Dropzone.ADDED);
         var fileName = document.getElementById("fileName").innerHTML;
         var splitArr = fileName.split(".");
@@ -99,9 +99,10 @@ $(document).ready(function () {
         //获取用户身份
         $.ajax({
             type: "GET",
-            url: "user/getUserRole",
-            dataType: "json",
-            data: userId,
+            url: "/user/getUserRole",
+            data: {
+                userId: userId
+            },
             success: function (data) {
                 role = data;
             },
@@ -129,7 +130,7 @@ $(document).ready(function () {
                         success: function (data) {
                             //存取合同url
                             $.ajax({
-                                url: 'all/saveContractURL',
+                                url: '/all/saveContractURL',
                                 type: 'POST',
                                 data: {
                                     loanID: loanID,

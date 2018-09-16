@@ -55,15 +55,15 @@ public class UserInfoController {
     //账户信息查看
     @RequestMapping("/getAccount")
     public @ResponseBody
-    AccountInfoVo getAccountInfo (String userId){
-        return userBLService.getAccountInfo(userId);
+    AccountInfoVo getAccountInfo (String userId,UserType userType){
+        return userBLService.getAccountInfo(userId,userType);
     }
 
     //查看是否完成验证
     @RequestMapping("/getValid")
     public @ResponseBody
-    ResultMessage isUserValidate (String userId){
-        return userBLService.isUserValidate(userId);
+    ResultMessage isUserValidate (String userId,UserType userType){
+        return userBLService.isUserValidate(userId,userType);
     }
 
     //用户名设置
@@ -76,57 +76,57 @@ public class UserInfoController {
     //查看是否已绑定邮箱
     @RequestMapping("/isEmailValidate")
     public @ResponseBody
-    ResultMessage isEmailValidate(String userId){
-        return securityBLService.isEmailValidate(userId);
+    ResultMessage isEmailValidate(String userId,UserType userType){
+        return securityBLService.isEmailValidate(userId,userType);
     }
     //绑定邮箱
     @RequestMapping("/setEmail")
     public @ResponseBody
-    ResultMessage setEmail(String useId,String email){
-        return securityBLService.setEmail(useId,email);
+    ResultMessage setEmail(String useId,String email,UserType userType){
+        return securityBLService.setEmail(useId,email,userType);
     }
     //查看是否已绑定手机号
     @RequestMapping("/isPhone")
     public @ResponseBody
-    ResultMessage isPhoneValidate(String userId){
-        return securityBLService.isPhoneValidate(userId);
+    ResultMessage isPhoneValidate(String userId,UserType userType){
+        return securityBLService.isPhoneValidate(userId,userType);
     }
     //获取验证码
     @RequestMapping("/getVerification")
     public @ResponseBody
-    ResultMessage getverification(String phone){
-        return securityBLService.getverification(phone);
+    ResultMessage getverification(String phone,String userId,UserType userType){
+        return securityBLService.getverification(phone,userId,userType);
     }
     //绑定手机号
     @RequestMapping("/setPhone")
     public @ResponseBody
-    ResultMessage setPhone(String userId,String phone,String verification){
-        return securityBLService.setPhone(userId,phone,verification);
+    ResultMessage setPhone(String userId,String phone,String verification,UserType userType){
+        return securityBLService.setPhone(userId,phone,verification,userType);
     }
     //修改登录密码
     @RequestMapping("/setPassword")
     public @ResponseBody
-    ResultMessage setPassword(String userId,String password){
-        return securityBLService.setPassword(userId,password);
+    ResultMessage setPassword(String userId,String password,UserType userType){
+        return securityBLService.setPassword(userId,password,userType);
     }
     //设置支付密码
     @RequestMapping("/setPayMentPassword")
     public @ResponseBody
-    ResultMessage setPaymentPassword(String userId,String pay_code){
-        return securityBLService.setPaymentPassword(userId,pay_code);
+    ResultMessage setPaymentPassword(String userId,String pay_code,UserType userType){
+        return securityBLService.setPaymentPassword(userId,pay_code,userType);
     }
 
     //查看账户余额
     @RequestMapping("/getAccountBalance")
     public @ResponseBody
-    Double getAccountBalance(String userId){
-        return electronicWalletBLService.getAccountBalance(userId);
+    Double getAccountBalance(String userId,UserType userType){
+        return electronicWalletBLService.getAccountBalance(userId,userType);
     }
     //显示所有银行卡卡号
     @RequestMapping("/getAllAccountId")
     public @ResponseBody
-    List<String> getAllAccountId(String userId){
-        return electronicWalletBLService.getAllAccountId(userId);
+    List<String> getAllAccountId(String userId,UserType userType){
+        return electronicWalletBLService.getAllAccountId(userId,userType);
     }
     //余额充值
     @RequestMapping("/chargeBalance")
@@ -143,25 +143,32 @@ public class UserInfoController {
     //查看银行卡信息
     @RequestMapping("/getCreditCardInfo")
     public @ResponseBody
-    List<CreditCard> getCreditCardInfo(String userId){
-        return electronicWalletBLService.getCreditCardInfo(userId);
+    List<CreditCard> getCreditCardInfo(String userId,UserType userType){
+        return electronicWalletBLService.getCreditCardInfo(userId,userType);
     }
     //绑定银行卡
     @RequestMapping("/setCreditCard")
     public @ResponseBody
-    ResultMessage setCreditCard(String userId,String card,String card_code,String bank){
-        return electronicWalletBLService.setCreditCard(userId,card,card_code,bank);
+    ResultMessage setCreditCard(String userId,String card,String card_code,String bank,UserType userType){
+        return electronicWalletBLService.setCreditCard(userId,card,card_code,bank,userType);
     }
     //银行卡解绑
     @RequestMapping("/cancelCreditCard")
     public @ResponseBody
-    ResultMessage cancelCreditCard(String uerId,String card){
-        return electronicWalletBLService.cancelCreditCard(uerId,card);
+    ResultMessage cancelCreditCard(String uerId,String card,UserType userType){
+        return electronicWalletBLService.cancelCreditCard(uerId,card,userType);
     }
     //查看积分
     @RequestMapping("/getPoint")
     public @ResponseBody
-    int getPoint(String userId){
-        return electronicWalletBLService.getPoint(userId);
+    int getPoint(String userId,UserType userType){
+        return electronicWalletBLService.getPoint(userId,userType);
+    }
+
+    //更新积分
+    @RequestMapping("/updatePoint")
+    public @ResponseBody
+    ResultMessage updatePoint(String userId,int point,UserType userType){
+        return electronicWalletBLService.updatePoint(userId,point,userType);
     }
 }

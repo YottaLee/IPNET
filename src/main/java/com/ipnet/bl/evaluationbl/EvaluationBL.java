@@ -1,10 +1,16 @@
 package com.ipnet.bl.evaluationbl;
 
+import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.blservice.EvaluationBLService;
+import com.ipnet.blservice.UserBLService;
+import com.ipnet.blservice.loanblservice.LoanAllBLService;
 import com.ipnet.dao.EvaluationDao;
 import com.ipnet.entity.Evaluation;
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.EvaluationVO;
+import com.ipnet.vo.financevo.Evaluator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +22,21 @@ import java.util.Date;
 public class EvaluationBL implements EvaluationBLService {
     @Autowired
     private EvaluationDao evaluationDao;
+    @Autowired
+    private UserBLService userBLService;
+    @Autowired
+    private PatentHelper patentHelper;
+    @Autowired
+    private LoanAllBLService loanAllBLService;
+
+    /**
+     * 获取平台唯一的评估机构ID
+     * @return 评估机构的ID
+     */
+    @Override
+    public Evaluator getEvaluator(){
+        return userBLService.getEvaluationName();
+    }
 
     /**
      * 提交专利评估报告
@@ -26,14 +47,17 @@ public class EvaluationBL implements EvaluationBLService {
      * @return ResultMessage
      */
     @Override
-    public ResultMessage submitReport(String patentID, String url, int evaluation,double money) {
+    public ResultMessage submitReport(String patentID,String url,String rule,String tech, double evaluation,String result, double money) {
         ArrayList<Evaluation> evaluations=evaluationDao.findByPatentIDSortByTime(patentID);
         if(evaluations==null||evaluations.size()==0){
            return ResultMessage.Fail;
         }else {
             Evaluation toUpdate=evaluations.get(0);
             toUpdate.setReport(url);
+            toUpdate.setRule(rule);
+            toUpdate.setTech(tech);
             toUpdate.setEvaluation(evaluation);
+            toUpdate.setResult(result);
             toUpdate.setMoney(money);
             toUpdate.setOver(true);
             evaluationDao.save(toUpdate);
@@ -50,8 +74,13 @@ public class EvaluationBL implements EvaluationBLService {
     @Override
     public ResultMessage applyEvaluation(String patentID, String url) {
         String time=new SimpleDateFormat("yyMMdd HH:mm:ss").format(new Date());
-        Evaluation newEvaluation=new Evaluation(0,time,null,patentID,url,null,0.0,null,0.0,false);
+        Evaluation newEvaluation=new Evaluation();
+        newEvaluation.setTime(time);
+        newEvaluation.setPatentID(patentID);
+        newEvaluation.setSpecification(url);
+        newEvaluation.setOver(false);
         evaluationDao.save(newEvaluation);
+        loanAllBLService.changeStateByPatentID(patentID,Patent_loan_state.to_be_pay_value);
         return ResultMessage.Success;
     }
 
@@ -84,6 +113,14 @@ public class EvaluationBL implements EvaluationBLService {
             Evaluation evaluation=evaluations.get(0);
             EvaluationVO vo=new EvaluationVO();
             vo.setPatentID(patentID);
+            try {
+                vo.setPatent(patentHelper.receivePatentName(patentID));
+            } catch (IDNotExistsException e) {
+                e.printStackTrace();
+            }
+            vo.setRule(evaluation.getRule());
+            vo.setTech(evaluation.getTech());
+            vo.setResult(evaluation.getResult());
             vo.setUrl(evaluation.getReport());
             vo.setEvaluation(evaluation.getEvaluation());
             vo.setMoney(evaluation.getMoney());

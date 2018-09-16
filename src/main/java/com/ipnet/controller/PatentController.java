@@ -69,6 +69,7 @@ public class PatentController {
     @RequestMapping("/getPatentList")
     @ResponseBody
     public List<PatentVO> getPatentList(@RequestParam String userId) {
+        System.out.println(service.getPatentList(userId));
         return service.getPatentList(userId);
     }
 
@@ -93,7 +94,6 @@ public class PatentController {
      * @param patent 专利
      * @param holder 持有人
      * @param url 专利相关图片url
-     * @param fileURL 文件url
      * @param applyTime 申请时间
      * @param type 专利类型
      * @param district 所属地区
@@ -102,7 +102,7 @@ public class PatentController {
      */
     @RequestMapping("/entryPatent")
     @ResponseBody
-    public ResultMessage entryPatent(String patentID, String patent, String userId , String holder,String url,String fileURL, String applyTime, String type, String district, String profile) {
+    public ResultMessage entryPatent(String patentID, String patent, String userId , String holder,String url, String applyTime, String type, String district, String profile) {
         return service.entryPatent(patentID , patent, userId ,holder, url ,applyTime , type, district, profile);
     }
 

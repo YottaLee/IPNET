@@ -46,62 +46,79 @@ function sure(checkbox) {
  * 数据传输
  */
 var storage = window.localStorage;
-var loanID = storage.loanID;
-var patentID = storage.patentID;
+var loanID = storage.getItem('loan_id');
+var patentID = storage.getItem('patent_id');
 //填表
 $.ajax({
     type: "GET",
-    url: "applicant/getChooseBankURL",
-    dataType: "json",
-    data: loanID,
+    url: "/applicant/getChooseBankURL",
+    data: {
+        loanID: loanID
+    },
     success: function (data) {
         document.getElementById("loan-file").href = data;
     },
-    error: function () {
-        // alert("Network warning");
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 
 $.ajax({
     type: "GET",
-    url: "evaluation/getEvaluation",
-    dataType: "json",
-    data: patentID,
+    url: "/evaluation/getEvaluation",
+    data: {
+        patentID: patentID
+    },
     success: function (data) {
         document.getElementById("evaluation-file").href = data.url;
     },
-    error: function () {
-        // alert("Network warning");
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 
 //提交银行意见
 $('#submit').on('click', function () {
-
-    var ifPass = document.getElementById("check-pass").checked;
-    var bank = "";//银行名称
-    var ifInsurance = document.getElementById("demo-form-checkbox").checked;
-    var money = $("#money").val();
-    var time = $("#time").val();
-
+    var userId = storage.getItem('user_id');
     $.ajax({
-        type: "POST",
-        url: "bank/submitApplication",
-        dataType: "json",
+        type: "GET",
+        url: "/userInfo/getUser",
         data: {
-            loanID: loanID,
-            bank: bank,
-            ifPass: ifPass,
-            ifInsurance: ifInsurance,
-            money:money,
-            time: time
+            userid: userId,
+            userType: "Company"
         },
+        success: function (user) {
+            var bank = user.company;
+            var ifPass = document.getElementById("check-pass").checked;
+            var ifInsurance = document.getElementById("demo-form-checkbox").checked;
+            var money = $("#money").val();
+            var time = $("#time").val();
 
-        success: function (data) {
+            $.ajax({
+                type: "POST",
+                url: "/bank/submitApplication",
+                data: {
+                    loanID: loanID,
+                    bank: bank,
+                    ifPass: ifPass,
+                    ifInsurance: ifInsurance,
+                    money: money,
+                    time: time
+                },
+                success: function () {
+                    infoFile("已将信息反馈给专利持有人");
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/Bank-IP-list";
+                    }, 2000);
 
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+                }
+            });
         },
-        error: function () {
-            // alert("Network warning");
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
 });

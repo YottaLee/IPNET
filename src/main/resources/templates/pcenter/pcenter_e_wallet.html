@@ -118,9 +118,20 @@
         <h4>新卡添加</h4>
         <div class="md-maincontent">
             <br />
-            <span class="t1">银行卡号： <input type="text"></span><br /><br />
-            <span class="t1">支付密码： <input type="text"></span><br />
-            <button class="md-cancel">取消</button><button class="md-confirm">确认</button>
+            <span class="t1">银行卡号： <input type="text" id="Ew_newBankCard_ID"></span><br /><br />
+            <!--<span class="t1">开户银行： <input type="text" id="Ew_newBankCard_bank"></span><br /><br />-->
+            <span class="t1">开户银行：
+				<select name="bankNameList">
+                    <option value="未选择" selected="selected">请选择&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="中国工商银行">中国工商银行</option>
+                    <option value="交通银行">交通银行</option>
+                    <option value="中国农业银行">中国农业银行</option>
+                    <option value="中国建设银行">中国建设银行</option>
+                    <option value="招商银行">招商银行</option>
+				</select>
+			</span><br /><br />
+            <span class="t1">支付密码： <input type="text" id="Ew_newBankCard_code"></span><br />
+            <button class="md-cancel" id="btnCancel_newBankCard">取消</button><button class="md-confirm" id="btnConfirm_newBankCard" onclick="newBankCard()">确认</button>
         </div>
     </div>
 </div>
@@ -277,7 +288,7 @@
                 <main id="main" class="site-main" role="main">
                     <div>
                         <section class="mainContainer">
-                            <div class="row">
+                            <!--<div class="row">
                                 <header class="col-xs-12">
                                     <h3 class="page-title">
                                         <span>余额：</span>
@@ -294,7 +305,7 @@
                                         <button class="md-trigger" data-modal="modal-2">提现</button>
                                     </span>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="row" style="margin-top: 40px;">
                                 <header class="col-xs-12">
@@ -309,7 +320,7 @@
                                         <button class="md-trigger" data-modal="modal-3">新增</button>
                                     </span>
                                 </div>
-                                <div class="col-xs-12" style="margin-top: 10px;">
+                                <div class="col-xs-12" id="Ew_bankCardInfoList" style="margin-top: 10px;">
                                     <span class="t2">
                                         <table class="tb-12">
                                         <tr>
@@ -483,6 +494,7 @@
 <script src="/ipnet_Login_v2/js/classie.js"></script>
 <script src="/ipnet_Login_v2/js/modalEffects.js"></script>
 <script src="/ipnet_Login_v2/js/cssParser.js"></script>
+<script src="/ipnet_Login_v2/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--<script>
     // this is important for IEs
     var polyfilter_scriptpath = '/js/';
