@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "company")
+@Table(name = "companyUser")
 public class CompanyUser {
     @Id
     private String id;//注册时的邮箱
