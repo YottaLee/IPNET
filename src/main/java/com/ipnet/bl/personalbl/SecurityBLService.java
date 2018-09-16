@@ -8,6 +8,7 @@ import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.entity.CompanyUser;
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.Role;
 import com.ipnet.enums.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,14 +49,14 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
     }
 
     @Override
-    public ResultMessage isEmailValidate(String userId,UserType userType) {
+    public ResultMessage isEmailValidate(String userId,Role userType) {
         switch (userType){
-            case Company:
+            case CompanyUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
                 if(companyUser.getEmail().equals(null))
                     return ResultMessage.Fail;
                 return ResultMessage.Success;
-            case Personal:
+            case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
                 if(personalUser.getEmail().equals(null))
                     return ResultMessage.Fail;
@@ -65,16 +66,16 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
     }
 
     @Override
-    public ResultMessage setEmail(String useId, String email,UserType userType) {
+    public ResultMessage setEmail(String useId, String email,Role userType) {
         switch (userType){
-            case Personal:
+            case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(useId);
                 if(personalUser.equals(null))
                     return ResultMessage.Fail;
                 personalUser.setEmail(email);
                 userDao.save(personalUser);
                 return ResultMessage.Success;
-            case Company:
+            case CompanyUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(useId);
                 if(companyUser.equals(null))
                     return ResultMessage.Fail;
@@ -86,9 +87,9 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
     }
 
     @Override
-    public ResultMessage isPhoneValidate(String userId,UserType userType) {
+    public ResultMessage isPhoneValidate(String userId,Role userType) {
         switch (userType){
-            case Personal:
+            case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
                 if(personalUser.equals(null))
                     return ResultMessage.Fail;
@@ -98,7 +99,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
                     else
                         return ResultMessage.Success;
                 }
-            case Company:
+            case CompanyUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
                 if(companyUser.equals(null))
                     return ResultMessage.Fail;
@@ -113,9 +114,9 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
     }
 
     @Override
-    public ResultMessage getverification(String phone,String userId,UserType userType) {
+    public ResultMessage getverification(String phone,String userId,Role userType) {
         switch (userType){
-            case Personal:
+            case PersonalUser:
                 if(userDao.existsById(phone)){
                     return ResultMessage.Fail;
                 }else{
@@ -125,7 +126,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
                     userDao.save(personalUser);
                     return ResultMessage.Success;
                 }
-            case Company:
+            case CompanyUser:
                 if(companyUserDao.existsById(phone)){
                     return ResultMessage.Fail;
                 }else{
@@ -140,9 +141,9 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
     }
 
     @Override
-    public ResultMessage setPhone(String userId, String phone, String verification,UserType userType) {
+    public ResultMessage setPhone(String userId, String phone, String verification,Role userType) {
         switch (userType){
-            case Personal:
+            case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
                 if(personalUser.getVertification().equals(verification)){
                     personalUser.setTelephone(phone);
@@ -150,7 +151,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
                     return ResultMessage.Success;
                 }
                return ResultMessage.Fail;
-            case Company:
+            case CompanyUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
                 if(companyUser.getVertification().equals(verification)){
                     companyUser.setTel(phone);
@@ -163,9 +164,9 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
     }
 
     @Override
-    public ResultMessage setPassword(String userId, String password,UserType userType) {
+    public ResultMessage setPassword(String userId, String password,Role userType) {
         switch (userType){
-            case Personal:
+            case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
                 if(personalUser.equals(null))
                     return ResultMessage.Fail;
@@ -174,7 +175,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
                     userDao.save(personalUser);
                     return ResultMessage.Success;
                 }
-            case Company:
+            case CompanyUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
                 if(companyUser.equals(null))
                     return ResultMessage.Fail;
@@ -190,9 +191,9 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
     }
 
     @Override
-    public ResultMessage setPaymentPassword(String userId, String pay_code,UserType userType) {
+    public ResultMessage setPaymentPassword(String userId, String pay_code,Role userType) {
         switch (userType){
-            case Personal:
+            case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
                 if(personalUser.equals(null))
                     return ResultMessage.Fail;
@@ -201,7 +202,7 @@ public class SecurityBLService implements com.ipnet.blservice.personalservice.Se
                     userDao.save(personalUser);
                     return ResultMessage.Success;
                 }
-            case Company:
+            case CompanyUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
                 if(companyUser.equals(null))
                     return ResultMessage.Fail;

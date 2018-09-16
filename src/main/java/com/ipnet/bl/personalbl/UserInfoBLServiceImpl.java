@@ -8,6 +8,7 @@ import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.entity.CompanyUser;
 import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
+import com.ipnet.enums.Role;
 import com.ipnet.enums.Sex;
 import com.ipnet.enums.UserType;
 import com.ipnet.vo.uservo.AccountInfoVo;
@@ -74,15 +75,15 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
     }
 
     @Override
-    public UserInfoVo getUserInfo(String userId,UserType userType) {
+    public UserInfoVo getUserInfo(String userId,Role userType) {
         switch(userType){
-            case Company:
+            case PersonalUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
                 if(companyUser!=null)
                     return new UserInfoVo(companyUser.getName(), null ,companyUser.getTel(),
                             null,companyUser.getName(),companyUser.getAddress(),companyUser.getDescription()
                     ,companyUser.getLicence());
-            case Personal:
+            case CompanyUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
                 if(personalUser!=null){
                     return new UserInfoVo(personalUser.getName(),personalUser.getSex(),personalUser.getTelephone(),
@@ -95,16 +96,16 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
     }
 
     @Override
-    public AccountInfoVo getAccountInfo(String userId,UserType userType) {
+    public AccountInfoVo getAccountInfo(String userId,Role userType) {
         switch(userType){
-            case Company:
+            case CompanyUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
                 if(companyUser.equals(null))
                     return null;
                 else{
                     return new AccountInfoVo(companyUser.getBank_accounts(),companyUser.getId(),companyUser.getMoney());
                 }
-            case Personal:
+            case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
                 if(personalUser.equals(null))
                     return null;
@@ -117,14 +118,14 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
     }
 
     @Override
-    public ResultMessage isUserValidate(String userId,UserType userType) {
+    public ResultMessage isUserValidate(String userId,Role userType) {
         switch(userType){
-            case Company:
+            case CompanyUser:
                 CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
                 if(companyUser.getIdentities().size()!=0)
                     return ResultMessage.Success;
                 return ResultMessage.Fail;
-            case Personal:
+            case PersonalUser:
                 PersonalUser personalUser=userDao.findPersonalUserById(userId);
                 if(personalUser.getIdentities().size()!=0)
                     return ResultMessage.Success;
