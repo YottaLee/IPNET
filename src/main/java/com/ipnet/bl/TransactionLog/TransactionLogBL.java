@@ -18,7 +18,7 @@ public class TransactionLogBL implements TransactionLogService{
     private  TransactionDao transactionDao;
 
     @Override
-    public void addTransactionLog(String buyer, String seller, String buyer_bank_account, String seller_bank_account, String patentId , double amount) {
+    public void addTransactionLog(String buyer, String seller, String buyer_bank_account, String seller_bank_account, String patentId , double amount ,int IPPoint) {
         Transaction transaction = new Transaction();
         transaction.setBuyer(buyer);
         transaction.setSeller(seller);
@@ -26,6 +26,7 @@ public class TransactionLogBL implements TransactionLogService{
         transaction.setSeller_bank_account(seller_bank_account);
         transaction.setPatent_id(patentId);
         transaction.setAmount(amount);
+        transaction.setIPPoint(IPPoint);
 
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         String date = df.format(new Date());

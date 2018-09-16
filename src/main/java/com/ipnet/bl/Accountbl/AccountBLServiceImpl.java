@@ -6,6 +6,7 @@ package com.ipnet.bl.Accountbl;
 
 import com.ipnet.blservice.AccountBLService;
 import com.ipnet.blservice.TransactionLogService;
+import com.ipnet.blservice.personalservice.ElectronicWalletBLService;
 import com.ipnet.dao.AccountDao;
 import com.ipnet.entity.Transaction;
 import com.ipnet.entity.contract.Account;
@@ -19,12 +20,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import static com.ipnet.enums.Role.Financial;
+import static com.ipnet.enums.Role.Insurance;
+import static com.ipnet.enums.Role.PersonalUser;
 
 
 @Service
 public class AccountBLServiceImpl implements AccountBLService {
      @Autowired
      private AccountDao accountDao;
+
+    @Autowired
+    private ElectronicWalletBLService service;
 
      @Autowired
      private TransactionLogService transactionLogService;
@@ -50,7 +57,31 @@ public class AccountBLServiceImpl implements AccountBLService {
             destAcc.setBalance(desAmount+amount);
             this.accountDao.saveAndFlush(srcAcc);
             this.accountDao.saveAndFlush(destAcc);
-            this.transactionLogService.addTransactionLog(srcAcc.getUserId() ,destAcc.getUserId() , srcAcc.getAcountId() , destAcc.getAcountId() , patentId , amount);
+            if(paytype.equals("license")) {
+                  //修改个人属性
+                  //生成日志
+                  //可能需要调用对应的具体方法
+
+            }
+            if(paytype.equals("transfer")) {
+                service.updatePoint(srcAcc.getUserId() , 20 , PersonalUser);
+                this.transactionLogService.addTransactionLog(srcAcc.getUserId() ,destAcc.getUserId() , srcAcc.getAcountId() , destAcc.getAcountId() , patentId , amount , 20);
+            }
+            if(paytype.equals("evaluation")) {
+
+            }
+            if(paytype.equals("loan")) {
+                service.updatePoint(srcAcc.getUserId() , 10 , Financial);
+                this.transactionLogService.addTransactionLog(srcAcc.getUserId() ,destAcc.getUserId() , srcAcc.getAcountId() , destAcc.getAcountId() , patentId , amount , 2);
+            }
+            if(paytype.equals("insurance")) {
+                service.updatePoint(destAcc.getUserId() , 2 , Insurance);
+                this.transactionLogService.addTransactionLog(srcAcc.getUserId() ,destAcc.getUserId() , srcAcc.getAcountId() , destAcc.getAcountId() , patentId , amount , 2);
+            }
+            if(paytype.equals("claim")) {
+
+            }
+            this.transactionLogService.addTransactionLog(srcAcc.getUserId() ,destAcc.getUserId() , srcAcc.getAcountId() , destAcc.getAcountId() , patentId , amount , 10);
         }
         return flag;
     }
@@ -125,6 +156,11 @@ public class AccountBLServiceImpl implements AccountBLService {
              return (Integer.parseInt(currentDate.substring(0,6))-Integer.parseInt(targetDate.substring(0,6)));
         }
          return (Integer.parseInt(currentDate.substring(4,6))+12-Integer.parseInt(targetDate.substring(4,6)));
+    }
+
+    public String getUserId(String accountId) {
+         Account account = this.accountDao.findById(accountId).get();
+         return account.getUserId();
     }
     public static void  main(String args[]){
          System.out.println(isInpriod("2018011522","2017081922"));

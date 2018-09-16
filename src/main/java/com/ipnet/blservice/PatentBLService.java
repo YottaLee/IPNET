@@ -29,6 +29,11 @@ public interface PatentBLService {
 
     List<PatentVO> searchPatentsByState(Patent_state state);
 
+    List<PatentVO> searchPatentsByApplyDate(String StartDate , String endDate);
+
+    List<PatentVO> searchPatentsByType(String patent_type);
+
+
     List<PatentVO> searchPatentsByValid_period(String valid_period);
 
     List<PatentVO> searchPatentByPool(String poolId);

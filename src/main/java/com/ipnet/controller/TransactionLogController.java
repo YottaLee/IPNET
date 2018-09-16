@@ -17,8 +17,8 @@ public class TransactionLogController {
       private TransactionLogService service;
 
       @RequestMapping("/addTransactionLog")
-      public @ResponseBody void addTransactionLog(@RequestParam String buyer,@RequestParam String seller, @RequestParam String buyer_bank_account,@RequestParam String seller_bank_account,@RequestParam String patentId ,@RequestParam double amount) {
-          service.addTransactionLog(buyer, seller, buyer_bank_account,seller_bank_account,patentId,amount);
+      public @ResponseBody void addTransactionLog(@RequestParam String buyer,@RequestParam String seller, @RequestParam String buyer_bank_account,@RequestParam String seller_bank_account,@RequestParam String patentId ,@RequestParam double amount ,@RequestParam int IPPoint) {
+          service.addTransactionLog(buyer, seller, buyer_bank_account,seller_bank_account,patentId,amount,IPPoint);
 
       }
 
