@@ -47,10 +47,12 @@ public class BuyAndSellBL implements TranscationBlService {
                 loanContract.setParty_B(contract.getPartyB());
                 loanContract.setAddressA(contract.getAddressA());
                 loanContract.setAddressB(contract.getAddressB());
+                loanContract.setContractType(ContractState.draft);
                 loanContractDao.save(loanContract);
                 return ResultMessage.Success;
             case Agent:
                 AgentContract agentContract=new AgentContract();
+                agentContract.setContractType(ContractState.draft);
                 agentContractDao.save(agentContract);
                 return ResultMessage.Success;
             case Permit:
@@ -59,10 +61,12 @@ public class BuyAndSellBL implements TranscationBlService {
                 return ResultMessage.Success;
             case Breakup:
                 BreakupContract breakupContract=new BreakupContract();
+                breakupContract.setContractType(ContractState.draft);
                 breakupContractDao.save(breakupContract);
                 return ResultMessage.Success;
             case Transfer:
                 TransferContract transferContract=new TransferContract();
+                transferContract.setContractType(ContractState.draft);
                 transferContractDao.save(transferContract);
                 return ResultMessage.Success;
         }
@@ -74,9 +78,13 @@ public class BuyAndSellBL implements TranscationBlService {
         switch(contractType){
             case Loan:
                 LoanContract loanContract=loanContractDao.getOne(contract_id);
+                loanContract.setContractType(ContractState.confirm);
+                loanContractDao.save(loanContract);
                 return ResultMessage.Success;
             case Agent:
                 AgentContract agentContract=agentContractDao.getOne(contract_id);
+                agentContract.setContractType(ContractState.confirm);
+                agentContractDao.save(agentContract);
                 return ResultMessage.Success;
             case Permit:
                 PermitContract permitContract=permitcontractDao.getOne(contract_id);
@@ -86,6 +94,8 @@ public class BuyAndSellBL implements TranscationBlService {
                 return ResultMessage.Success;
             case Transfer:
                 TransferContract transferContract=transferContractDao.getOne(contract_id);
+                transferContract.setContractType(ContractState.confirm);
+                transferContractDao.save(transferContract);
                 return ResultMessage.Success;
         }
         return ResultMessage.Fail ;
