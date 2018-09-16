@@ -71,7 +71,7 @@ $(document).ready(function () {
         thumbnailHeight: 50,
         parallelUploads: 20,
         previewTemplate: previewTemplate,
-        autoQueue: false, // Make sure the files aren't queued until manually added
+        autoQueue: true, // Make sure the files aren't queued until manually added
         previewsContainer: "#dz-previews", // Define the container to display the previews
         clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
     });
@@ -156,74 +156,3 @@ $(document).ready(function () {
     });
 
 });
-
-
-//获取评估机构的用户ID
-function getEvaluationId() {
-    $.ajax({
-        type: "GET",
-        url: "evaluation/getEvaluationId",
-        success: function (data) {
-            return data;
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-        }
-    });
-}
-
-$("#submit").on('click', function () {
-    //存取申请意向
-    var storage = window.localStorage;
-    var fileURL = storage.getItem('fileURL');
-    $.ajax({
-        url: '/evaluation/apply',
-        type: 'POST',
-        data: {
-            patentID: patentID,
-            url: fileURL
-        },
-        success: function () {
-
-            $.ajax({
-                url: '/Patent/searchPatentByID',
-                type: 'GET',
-                data: {
-                    patentID: patentID
-                },
-                success: function (data) {
-                    var patent = data.patent_name;
-                    var holder = data.patent_holder;
-                    var money = 20000;//评估费用为20000
-                    //跳入向评估公司申请的支付界面
-                    var transaction = {
-                        patentID: patentID,
-                        patent: patent,
-                        payer_id: data.userId,//付款方
-                        payee_id: getEvaluationId(),//收款方
-                        way: "专利评估",//评估机构只有一个
-                        money: money//评估费用
-                    };
-
-                    storage.setItem('transaction', transaction);
-
-                    //支付评估费用
-                    infoFile("即将跳入支付界面");
-                    setTimeout(function () {
-                        window.location.href = "/ipnet/pay";
-                    }, 2000);
-
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                }
-            });
-
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-        }
-    });
-
-});
-

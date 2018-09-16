@@ -79,42 +79,43 @@ $.ajax({
 
 //提交银行意见
 $('#submit').on('click', function () {
-     var userId = storage.getItem('user_id');
+    var userId = storage.getItem('user_id');
     $.ajax({
         type: "GET",
         url: "/userInfo/getUser",
-        data:{
-            userid:userId,
-            userType:"Company"
-        },
-        success:function (user) {
-           //不知
-        }
-    });
-
-    var ifPass = document.getElementById("check-pass").checked;
-    var bank = "";//银行名称
-    var ifInsurance = document.getElementById("demo-form-checkbox").checked;
-    var money = $("#money").val();
-    var time = $("#time").val();
-
-    $.ajax({
-        type: "POST",
-        url: "/bank/submitApplication",
         data: {
-            loanID: loanID,
-            bank: bank,
-            ifPass: ifPass,
-            ifInsurance: ifInsurance,
-            money: money,
-            time: time
+            userid: userId,
+            userType: "Company"
         },
-        success: function () {
-            infoFile("已将信息反馈给专利持有人");
-            setTimeout(function () {
-                window.location.href = "/ipnet/Bank-IP-list";
-            }, 2000);
+        success: function (user) {
+            var bank = user.company;
+            var ifPass = document.getElementById("check-pass").checked;
+            var ifInsurance = document.getElementById("demo-form-checkbox").checked;
+            var money = $("#money").val();
+            var time = $("#time").val();
 
+            $.ajax({
+                type: "POST",
+                url: "/bank/submitApplication",
+                data: {
+                    loanID: loanID,
+                    bank: bank,
+                    ifPass: ifPass,
+                    ifInsurance: ifInsurance,
+                    money: money,
+                    time: time
+                },
+                success: function () {
+                    infoFile("已将信息反馈给专利持有人");
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/Bank-IP-list";
+                    }, 2000);
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+                }
+            });
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
