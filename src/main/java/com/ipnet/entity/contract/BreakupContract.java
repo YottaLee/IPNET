@@ -13,8 +13,6 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @Entity
 public class BreakupContract extends Contract{
-    @Id
-    private String id;
 
     private int money3;
     private String time1;

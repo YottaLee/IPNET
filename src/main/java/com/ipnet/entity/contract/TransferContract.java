@@ -14,9 +14,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class TransferContract extends Contract {
-    @Id
-    private String id;
-
     private Date time;
     private String address;
 

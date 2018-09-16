@@ -14,9 +14,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class PermitContract {
-    @Id
-    private String id;
-
     private String patent_name;
     private String patent_id;
     private String partyA_repre;

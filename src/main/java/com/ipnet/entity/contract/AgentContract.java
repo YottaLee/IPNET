@@ -14,8 +14,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class AgentContract extends Contract{
-    @Id
-    private String id;
 
     private String transferor;//转让方
     private String transferor_repre;//法定代表人
