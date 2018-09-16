@@ -141,7 +141,7 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     @Override
     public boolean ifBankChosen(String loanID) {
         Optional<Loan> loanOptional=loanDao.findById(loanID);
-        return loanOptional.map(loan -> loan.getBank().equals("")||loan.getBank()==null).orElse(false);
+        return loanOptional.map(loan ->loan.getBank()==null ||loan.getBank().equals("")).orElse(false);
     }
 
     @Override

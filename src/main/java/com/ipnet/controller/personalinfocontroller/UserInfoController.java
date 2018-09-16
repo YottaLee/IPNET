@@ -1,12 +1,10 @@
 package com.ipnet.controller.personalinfocontroller;
 
-import com.ipnet.blservice.UserBLService;
 import com.ipnet.blservice.personalservice.ElectronicWalletBLService;
 import com.ipnet.blservice.personalservice.SecurityBLService;
 import com.ipnet.blservice.personalservice.UserInfoBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
-import com.ipnet.enums.UserType;
 import com.ipnet.vo.CreditCard;
 import com.ipnet.vo.uservo.AccountInfoVo;
 import com.ipnet.vo.uservo.CompanyUserSaveVo;
@@ -57,7 +55,12 @@ public class UserInfoController {
     @RequestMapping("/getAccount")
     public @ResponseBody
     AccountInfoVo getAccountInfo (String userId,Role userType){
-        return userBLService.getAccountInfo(userId,userType);
+        System.out.println("userID:"+userId);
+        System.out.println("userType:"+userType);
+        AccountInfoVo accountInfoVo=userBLService.getAccountInfo(userId,userType);
+        System.out.println(accountInfoVo);
+        System.out.println(accountInfoVo.toString());
+        return accountInfoVo;
     }
 
     //查看是否完成验证
