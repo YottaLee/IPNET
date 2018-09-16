@@ -6,8 +6,7 @@ import com.ipnet.blservice.transcationservice.TranscationBlService;
 import com.ipnet.dao.CompanyUserDao;
 import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.dao.contractdao.*;
-import com.ipnet.entity.contract.BreakupContract;
-import com.ipnet.entity.contract.Contract;
+import com.ipnet.entity.contract.*;
 import com.ipnet.enums.ContractType;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.TranscationType;
@@ -57,48 +56,64 @@ public class BuyAndSellBL implements TranscationBlService {
     public ResultMessage confirmContract(String contract_id, ContractType contractType) {
         switch(contractType){
             case Loan:
+                LoanContract loanContract=loanContractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Agent:
+                AgentContract agentContract=agentContractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Permit:
+                PermitContract permitContract=permitcontractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Breakup:
+                BreakupContract breakupContract=breakupContractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Transfer:
+                TransferContract transferContract=transferContractDao.getOne(contract_id);
                 return ResultMessage.Success;
         }
-        return ResultMessage.Fail;
+        return ResultMessage.Fail ;
     }
 
     @Override
     public ResultMessage payContract(String contract_id, double rmb, ContractType contractType) {
-
         switch(contractType){
             case Loan:
+                LoanContract loanContract=loanContractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Agent:
+                AgentContract agentContract=agentContractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Permit:
+                PermitContract permitContract=permitcontractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Breakup:
+                BreakupContract breakupContract=breakupContractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Transfer:
+                TransferContract transferContract=transferContractDao.getOne(contract_id);
                 return ResultMessage.Success;
-        }return ResultMessage.Fail;
+        }
+        return ResultMessage.Fail ;
     }
 
     @Override
     public ResultMessage completeTranscation(String contract_id, TranscationType transcationType, ContractType contractType) {
         switch(contractType){
             case Loan:
+                LoanContract loanContract=loanContractDao.getOne(contract_id);
+
                 return ResultMessage.Success;
             case Agent:
+                AgentContract agentContract=agentContractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Permit:
+                PermitContract permitContract=permitcontractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Breakup:
+                BreakupContract breakupContract=breakupContractDao.getOne(contract_id);
                 return ResultMessage.Success;
             case Transfer:
+                TransferContract transferContract=transferContractDao.getOne(contract_id);
                 return ResultMessage.Success;
         }
         return ResultMessage.Fail ;

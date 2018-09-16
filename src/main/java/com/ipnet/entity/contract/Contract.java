@@ -25,14 +25,6 @@ public class  Contract {
     private Date date1;
     private Date date2;
 
-    public String getContract_id() {
-        return contract_id;
-    }
-
-    public void setContract_id(String contract_id) {
-        this.contract_id = contract_id;
-    }
-
     public String getPartyA() {
         return partyA;
     }
