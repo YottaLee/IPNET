@@ -3,7 +3,6 @@ var patentID = storage.getItem('patent_id');
 $.ajax({
     type: "GET",
     url: "/evaluation/getEvaluationApplicationURL",
-    dataType: "json",
     data: {
         patentID: patentID
     },
@@ -17,9 +16,11 @@ $.ajax({
 $.ajax({
     type: "GET",
     url: "/Patent/searchPatentByID",
-    data: patentID,
+    data: {
+        patentID: patentID
+    },
     success: function (data) {
-        document.getElementById("patent_id").innerHTML = data.patent_id;
+        document.getElementById("patentID").innerHTML = data.patent_id;
         document.getElementById("patent").innerHTML = data.patent_name;
         document.getElementById("holder").innerHTML = data.patent_holder;
     },
@@ -42,7 +43,7 @@ $('#submit').on('click', function () {
         //提交评估报告
         $.ajax({
             type: "POST",
-            url: "evaluation/submitReport",
+            url: "/evaluation/submitReport",
             data: {
                 patentID: patentID,
                 url: url,
@@ -53,7 +54,10 @@ $('#submit').on('click', function () {
                 money: money
             },
             success: function () {
-                window.location.href = "/ipnet/Evaluation-reportFinish";
+                infoFile("评估完成");
+                setTimeout(function () {
+                    window.location.href = "/ipnet/Evaluation-IP-list";
+                }, 2000);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);

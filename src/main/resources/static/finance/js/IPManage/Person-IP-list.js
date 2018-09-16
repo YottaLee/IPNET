@@ -331,7 +331,7 @@ function payForEvaluation(patentID) {
                         storage.setItem('pay_order', JSON.stringify(transaction));
 
                         //支付评估费用
-                        infoFile("即将跳入支付界面");
+                        infoFile("该专利尚未支付评估费用，即将跳入支付界面");
                         setTimeout(function () {
                             window.location.href = "/ipnet/pay";
                         }, 2000);
@@ -369,7 +369,7 @@ function payForInsurance(loanID) {
                 money: data.money
             };
             storage.setItem('pay_order', JSON.stringify(transaction));
-            infoFile("即将跳入支付界面");
+            infoFile("该专利需要购买专利质押融资贷款保证保险，即将跳入支付界面");
             setTimeout(function () {
                 window.location.href = "/ipnet/pay";
             }, 2000);

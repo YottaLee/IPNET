@@ -24,7 +24,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: mysql
-    url: jdbc:mysql://localhost:3306/ipnet?characterEncoding=UTF-8&useSSL=true
+    url: jdbc:mysql://120.79.232.126:3306/ipnet?characterEncoding=UTF-8&useSSL=true
   jpa:
     database: mysql
     show-sql: true
