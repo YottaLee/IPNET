@@ -74,28 +74,30 @@ $.ajax({
 //提交银行意见
 $('#submit').on('click', function () {
     var userId = storage.getItem('user_id');
-    $.ajax({
-        type: "GET",
-        url: "/userInfo/getUser",
-        data: {
-            userid: userId,
-            userType: "Company"
-        },
-        success: function (user) {
-            var bank = user.company;
-            var ifPass = document.getElementById("check-pass").checked;
-            var ifInsurance = document.getElementById("demo-form-checkbox").checked;
+    // $.ajax({
+    //     type: "GET",
+    //     url: "/userInfo/getUser",
+    //     data: {
+    //         userid: userId,
+    //         userType: "Company"
+    //     },
+    //     success: function (user) {
+           // var bank = user.company;
+            var bank = "招商银行";
+          //  if(document.getElementById("check-pass").checked)
+
+          //  var ifInsurance = document.getElementById("demo-form-checkbox").checked;
             var money = $("#money").val();
             var time = $("#time").val();
-             console.log(ifPass)
+            // console.log(ifPass);
             $.ajax({
                 type: "POST",
                 url: "/bank/submitApplication",
                 data: {
                     loanID: loanID,
                     bank: bank,
-                    ifPass: ifPass,
-                    ifInsurance: ifInsurance,
+                    ifPass: true,
+                    ifInsurance: true,
                     money: money,
                     time: time
                 },
@@ -110,10 +112,10 @@ $('#submit').on('click', function () {
                     console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                 }
             });
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-        }
-    });
+        // },
+        // error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //     console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        // }
+    // });
 });
 
