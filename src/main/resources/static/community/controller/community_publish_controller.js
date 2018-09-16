@@ -13,12 +13,13 @@ $(document).ready(function(){
             user_name=data.nickname;
         },
         error:function(){
-            alert("fail");
+            alert("info_fail");
         }
     });
 
     //发帖
     $("#publish_post").click(function(){
+        alert(user_id+" "+user_name);
         var post_name=document.getElementById("articleTitle").value;
         var post_intro=document.getElementById("post_intro").value;
         var post_tags=[];
@@ -68,7 +69,7 @@ $(document).ready(function(){
                 alert("success");
             },
             error:function(data){
-                alert("fail");
+                alert("publish_fail");
             }
         });
     });
