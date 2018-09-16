@@ -38,7 +38,7 @@ public class PatentController {
      * @return
      */
     @RequestMapping("/searchPatent")
-    public @ResponseBody List<PatentVO> searchPatent(@RequestBody String info){
+    public @ResponseBody List<PatentVO> searchPatent(@RequestParam String info){
         return service.searchPatent(info);
     }
 
