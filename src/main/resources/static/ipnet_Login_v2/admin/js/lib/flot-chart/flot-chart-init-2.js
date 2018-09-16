@@ -157,22 +157,22 @@
 
             var data = [
                 {
-                    label: "Primary",
+                    label: "评估机构", /* Primary*/
                     data: 1,
                     color: "#8fc9fb"
                 },
                 {
-                    label: "Success",
+                    label: "保险机构", /* Success*/
                     data: 3,
                     color: "#007BFF"
                 },
                 {
-                    label: "Danger",
+                    label: "金融机构", /* Danger */
                     data: 9,
                     color: "#19A9D5"
                 },
                 {
-                    label: "Warning",
+                    label: "非第三方企业用户", /* Warning*/
                     data: 20,
                     color: "#DC3545"
                 }
@@ -362,8 +362,9 @@
     };
 
     $(document).ready(function() {
-        SufeeAdmin.cpuLoad();
-        /*SufeeAdmin.lineFlot();
+        SufeeAdmin.pieFlot();
+        /*SufeeAdmin.cpuLoad();
+        SufeeAdmin.lineFlot();
         SufeeAdmin.pieFlot();
         SufeeAdmin.line2Flot();
         SufeeAdmin.barFlot();
