@@ -215,7 +215,10 @@ public class PatentBLServiceImpl implements PatentBLService {
     @Override
     public List<PatentVO> searchPatent(String info) {
         List<PatentVO> voList = new ArrayList<PatentVO>();
+        System.out.println(info);
         if(info.equals("")) {
+            System.out.println("info为" +"空");
+            System.out.println(info);
             List<Patent> patentList = this.patentDao.findAll();
             voList = patentList.stream()
                     .filter(patent -> patent!=null)
