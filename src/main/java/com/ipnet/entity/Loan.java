@@ -21,7 +21,7 @@ public class Loan {
     private String person; //专利持有人ID
 
     private String time;//质押申请时间
-    private int evaluation; //评估经济价值结果
+    private double evaluation; //评估经济价值结果
     private double expect_money; //预期金额
     private String expect_time; //预期质押期限
 
