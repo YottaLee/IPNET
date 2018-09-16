@@ -13,8 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 public class  Contract {
-    @Id
-    private String contract_id;
+
     private String partyA;
     private String partyB;
     private String addressA;
