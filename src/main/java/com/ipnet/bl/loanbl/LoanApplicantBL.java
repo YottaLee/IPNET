@@ -114,6 +114,7 @@ public class LoanApplicantBL implements LoanApplicantBLService{
         loan.setPatentID(patentID);
         loan.setPerson(userID);
         loan.setTime(time);
+        loan.setEvaluation(evaluationBLService.getValue(patentID));
         String patentName= null;
         try {
             patentName = patentHelper.receivePatentName(patentID);
