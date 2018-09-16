@@ -499,10 +499,11 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                url: '/upload/image',//thisS.options.url,
+                url: thisS.options.url,
                 success:function (imageURL) {
                     var storage = window.localStorage;
                     storage.setItem('uploadImageURL',imageURL);
+                    console.log(imageURL);
                 },
                 error: function (request, error) {
                     if (error !== 'abort') {

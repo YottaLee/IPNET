@@ -9,5 +9,5 @@ import javax.persistence.Table;
 
 @Repository
 @Table(name = "permit_contract")
-public interface PermitcontractDao extends JpaRepository<PermitContract, String> {
+public interface PermitcontractDao extends JpaRepository<PermitContract , String> {
 }

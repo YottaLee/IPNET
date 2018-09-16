@@ -1,5 +1,6 @@
 package com.ipnet.bl.patentbl;
 
+import com.ipnet.dao.InvitationDao;
 import com.ipnet.dao.PatentPoolDao;
 import com.ipnet.entity.PatentPool;
 import com.ipnet.enums.ResultMessage;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,6 +36,9 @@ public class PatentBLServiceImpl implements PatentBLService {
     private PatentPoolDao patentpoolDao;
 
     @Autowired
+    private InvitationDao invitationDao;
+
+    @Autowired
     private TransHelper transHelper;
 
     @Override
@@ -49,6 +54,7 @@ public class PatentBLServiceImpl implements PatentBLService {
         Patent p = new Patent();
         p.setPatent_id(patentID);
         p.setPool_id("");
+        p.setUserId(userId);
         p.setPatent_name(patent);
         p.setPatent_holder(holder);
         p.setUrl(url);
@@ -58,7 +64,7 @@ public class PatentBLServiceImpl implements PatentBLService {
         p.setRegion(district);
         p.setInvitationPoolIdList(new ArrayList<String>());
         p.setState(free);
-        p.setValid_period("2");      //有效期限设定;
+        p.setValid_period("2");      //有效期限设定;    这个设值有待商榷
         this.patentDao.saveAndFlush(p);
         return null;
     }
@@ -88,8 +94,10 @@ public class PatentBLServiceImpl implements PatentBLService {
 
     @Override
     public List<PatentVO> getPatentList(String userId){
-        List<Patent> patentList = this.patentDao.searchPatentByHolder(userId);
+        List<Patent> patentList = this.patentDao.searchPatentsByUserId(userId);
+        System.out.println("list  "+patentList.size());
         if(patentList.size() == 0 ||patentList == null){
+            System.out.println("list为空");
             return null;
         }
         List<PatentVO> voList = patentList.stream()
@@ -126,6 +134,34 @@ public class PatentBLServiceImpl implements PatentBLService {
     }
 
     @Override
+    public List<PatentVO> searchPatentsByApplyDate(String StartDate, String endDate) {
+        List<Patent> OriginList = this.patentDao.findAll();
+        List<Patent> patentList = new ArrayList<Patent>();
+        for(Patent p : OriginList) {
+            if(StartDate.equals("")){
+                if(Integer.parseInt(p.getApply_date())<= Integer.parseInt(endDate)){
+                    patentList.add(p);
+                }
+            }
+            else if(endDate.equals("")){
+                if(Integer.parseInt(p.getApply_date()) >= Integer.parseInt(StartDate)) {
+                    patentList.add(p);
+                }
+            }
+            else{
+                if(Integer.parseInt(p.getApply_date()) <=Integer.parseInt(endDate) && Integer.parseInt(p.getApply_date())>= Integer.parseInt(StartDate)) {
+                    patentList.add(p);
+                }
+            }
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
     public List<PatentVO> searchPatentByRegion(String region){
         List<Patent> patentList = this.patentDao.searchPatentsByRegion(region);
         if(patentList.size() == 0 || patentList == null){
@@ -140,6 +176,19 @@ public class PatentBLServiceImpl implements PatentBLService {
     @Override
     public List<PatentVO> searchPatentsByState(Patent_state state){
         List<Patent> patentList = this.patentDao.searchPatentsByState(state);
+        if(patentList.size() == 0 || patentList == null){
+            return null;
+        }
+        List<PatentVO> voList = patentList.stream()
+                .filter(patent -> patent!=null)
+                .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                .collect(Collectors.toList());
+        return voList;
+    }
+
+    @Override
+    public List<PatentVO> searchPatentsByType(String patent_type) {
+        List<Patent> patentList = this.patentDao.searchPatentsByType(patent_type);
         if(patentList.size() == 0 || patentList == null){
             return null;
         }
@@ -275,6 +324,11 @@ public class PatentBLServiceImpl implements PatentBLService {
         }
         Patent patent = this.getPatentById(patentId);
         patent.addInvitationFromPool(patentPoolId);
+        Invitation invitation = new Invitation();
+        invitation.setPatentId(patentId);
+        invitation.setPatentPoolId(patentPoolId);
+        invitation.setDate(new Date());
+        this.invitationDao.saveAndFlush(invitation);      //invitation的id在哪
         this.savePatent(patent);
     }
 

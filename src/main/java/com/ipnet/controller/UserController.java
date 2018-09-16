@@ -1,6 +1,7 @@
 package com.ipnet.controller;
 
 import com.ipnet.blservice.UserBLService;
+import com.ipnet.dao.PersonalUserDao;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
 import com.ipnet.vo.uservo.CompanyVerify;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,8 +27,16 @@ public class UserController {
 
     @RequestMapping("/test")
     public @ResponseBody
-    String check(String username){
-        return userBLService.getImageUrl(username);
+    List<Integer> check(){
+        return userBLService.getMemberSum();
+//        return userBLService.getEvaluationName();
+    }
+
+    @RequestMapping("/test2")
+    public @ResponseBody
+    List<Integer> test(){
+        return userBLService.getUserSum();
+//        return userBLService.getEvaluationName();
     }
 
     //个人用户使用手机号码注册

@@ -34,8 +34,6 @@
     <link href="/home/css/animate-custom.css" rel="stylesheet">
 
 
-
-
     <!--JAVASCRIPT-->
     <!--=================================================-->
 
@@ -56,7 +54,6 @@
     <script src="/finance/js/nifty.min.js"></script>
 
 
-
     <!--Modals [ SAMPLE ]-->
     <script src="/finance/js/demo/ui-modals.js"></script>
 
@@ -67,9 +64,6 @@
 
     <!--Demo script [ DEMONSTRATION ]-->
     <script src="/finance/js/demo/nifty-demo.min.js"></script>
-
-
-
 
 
     <!--=================================================
@@ -99,8 +93,6 @@
     =================================================-->
 
 
-
-
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
 
@@ -120,17 +112,12 @@
     <link href="/finance/css/demo/nifty-demo.min.css" rel="stylesheet">
 
 
-
     <!--Font Awesome [ OPTIONAL ]-->
     <link href="/finance/plugins/magic-check/css/magic-check.min.css" rel="stylesheet">
 
 
     <!--Bootstrap Validator [ OPTIONAL ]-->
     <link href="/finance/plugins/bootstrap-validator/bootstrapValidator.min.css" rel="stylesheet">
-
-
-
-
 
 
     <!--JAVASCRIPT-->
@@ -151,10 +138,6 @@
 
     <!--NiftyJS [ RECOMMENDED ]-->
     <script src="/finance/js/nifty.min.js"></script>
-
-
-
-
 
 
     <!--=================================================-->
@@ -178,56 +161,44 @@
 <body>
 <!--END NAVBAR-->
 <div class="top col-md-12" style="height: 56px;background: #3b3e43">
-    <img src="https://i.imgur.com/jwJTKCL.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <img src="https://i.imgur.com/jwJTKCL.png"
+         style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
     <span style="color: white;font-size: 15px">IPNET支付交易中心</span>
 </div>
 <div id="container" class="">
-<div class="boxed">
+    <div class="boxed">
 
-    <!--CONTENT CONTAINER-->
-    <!--===================================================-->
-    <div id="content-container">
-
-
-
-
-
-
-        <!--Page content-->
+        <!--CONTENT CONTAINER-->
         <!--===================================================-->
-        <div id="page-content">
+        <div id="content-container">
 
 
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">专利列表</h3>
-                </div>
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">
 
-                <!--Data Table-->
-                <!--===================================================-->
-                <div class="panel-body">
-                    <div class="pad-btm form-inline">
-                        <div class="row">
-                            <div class="col-sm-12 table-toolbar-right">
-                                <div class="form-group">
-                                    <input id="demo-input-search2" type="text" placeholder="查询" class="form-control" autocomplete="off">
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">专利列表</h3>
+                    </div>
+
+                    <!--Data Table-->
+                    <!--===================================================-->
+                    <div class="panel-body">
+                        <div class="pad-btm form-inline">
+                            <div class="row">
+                                <div class="col-sm-12 table-toolbar-right">
+                                    <div class="form-group">
+                                        <input id="demo-input-search2" type="text" placeholder="查询" class="form-control"
+                                               autocomplete="off">
+                                    </div>
+
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>专利号</th>
-                                <th>专利名</th>
-                                <th>专利持有人</th>
-                                <th>状态</th>
-                                <th>详情</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                        <div class="table-responsive">
+
                             <div id="ip_list">
                                 <script>
                                     var script = document.createElement("script");
@@ -236,62 +207,64 @@
                                     document.body.appendChild(script);
                                 </script>
                             </div>
-                            <tr>
-                                <td><a class="btn-link" href="#"> Order #53431</a></td>
-                                <td>新型口腔器械</td>
-                                <td><span class="text-muted"><i class="demo-pli-clock"></i>Steve N. Horton</span></td>
-                                <td>
-                                    <div class="label label-table label-warning">质押中</div>
-                                </td>
-                                <td>
-                                    <button data-target="#demo-lg-modal" data-toggle="modal" class="btn btn-info" onclick="check()">详情</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="btn-link" href="#"> Order #53435</a></td>
-                                <td>基于区块链的加密算法</td>
-                                <td><span class="text-muted"><i class="demo-pli-clock"></i>Teresa L. Doe</span></td>
-                                <td>
-                                    <div class="label label-table label-success">正常</div>
-                                </td>
-                                <td>
-                                    <button  class="btn btn-info" onclick="check()">详情</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="btn-link" href="#"> Order #53437</a></td>
-                                <td>新型玻璃</td>
-                                <td><span class="text-muted"><i class="demo-pli-clock"></i>Teresa L. Doe</span></td>
-                                <td>
-                                    <div class="label label-table label-danger">逾期</div>
-                                </td>
-                                <td>
-                                    <button  class="btn btn-info" onclick="check()">详情</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                            <!--<tr>-->
+                            <!--<td><a class="btn-link" href="#"> Order #53431</a></td>-->
+                            <!--<td>新型口腔器械</td>-->
+                            <!--<td><span class="text-muted"><i class="demo-pli-clock"></i>Steve N. Horton</span></td>-->
+                            <!--<td>-->
+                            <!--<div class="label label-table label-warning">质押中</div>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                            <!--<button data-target="#demo-lg-modal" data-toggle="modal" class="btn btn-info" onclick="check()">详情</button>-->
+                            <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                            <!--<td><a class="btn-link" href="#"> Order #53435</a></td>-->
+                            <!--<td>基于区块链的加密算法</td>-->
+                            <!--<td><span class="text-muted"><i class="demo-pli-clock"></i>Teresa L. Doe</span></td>-->
+                            <!--<td>-->
+                            <!--<div class="label label-table label-success">正常</div>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                            <!--<button  class="btn btn-info" onclick="check()">详情</button>-->
+                            <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                            <!--<td><a class="btn-link" href="#"> Order #53437</a></td>-->
+                            <!--<td>新型玻璃</td>-->
+                            <!--<td><span class="text-muted"><i class="demo-pli-clock"></i>Teresa L. Doe</span></td>-->
+                            <!--<td>-->
+                            <!--<div class="label label-table label-danger">逾期</div>-->
+                            <!--</td>-->
+                            <!--<td>-->
+                            <!--<button  class="btn btn-info" onclick="check()">详情</button>-->
+                            <!--</td>-->
+                            <!--</tr>-->
+
+                        </div>
                     </div>
+                    <!--===================================================-->
+                    <!--End Data Table-->
+
                 </div>
-                <!--===================================================-->
-                <!--End Data Table-->
+
 
             </div>
+            <!--===================================================-->
+            <!--End page content-->
 
 
         </div>
         <!--===================================================-->
-        <!--End page content-->
-
-
+        <!--END CONTENT CONTAINER-->
     </div>
-    <!--===================================================-->
-    <!--END CONTENT CONTAINER-->
-</div>
 </div>
 <div id="footerwrap">
     <div class="container">
-        <h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>
+        <h4><img src="https://i.imgur.com/qrRDHYM.png"
+                 style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href=""
+                                                                                                              style="color: rgba(61, 201, 179, 0.8)">NJU
+            IDigger</a> - Copyright 2018</h4>
     </div>
 </div>
 

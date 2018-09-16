@@ -41,5 +41,10 @@ public interface PatentDao extends JpaRepository<Patent,String>{
     @Query(value = "select p from Patent p where p.apply_date = :region")
     List<Patent> searchPatentsByRegion(@Param("region") String region);
 
+    @Query(value = "select p from Patent p where p.userId = :userId")
+    List<Patent> searchPatentsByUserId(@Param("userId") String userId);
+
+    @Query(value = "select p from Patent p where p.patent_type = :patent_type")
+    List<Patent> searchPatentsByType(@Param("patent_type") String patent_type);
 
 }

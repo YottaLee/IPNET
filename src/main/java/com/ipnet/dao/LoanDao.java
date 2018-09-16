@@ -24,4 +24,7 @@ public interface LoanDao extends JpaRepository<Loan,String> {
 
     @Query(value = "select l from Loan l where l.patentID=:patentID order by l.time desc")
     ArrayList<Loan> findByPatentIDSortByTime(@Param("patentID")String patentID);
+
+    @Query(value = "select l from Loan l where l.patentID=:patent")
+    ArrayList<Loan> findByPatentID(@Param("patent")String patentid);
 }

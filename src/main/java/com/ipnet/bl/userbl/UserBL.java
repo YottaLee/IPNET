@@ -10,6 +10,7 @@ import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
 import com.ipnet.utility.MD5Util;
+import com.ipnet.vo.financevo.Evaluator;
 import com.ipnet.vo.uservo.CompanyVerify;
 import com.ipnet.vo.uservo.EmailRegister;
 import com.ipnet.vo.uservo.PersonVerify;
@@ -112,8 +113,9 @@ public class UserBL implements UserBLService{
             newUser.setId(phoneNum);
             newUser.setPassword(request.get("pass"));
             newUser.setTelephone(phoneNum);
-            newUser.setRegisterTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            newUser.setRegisterTime(new Date());
             newUser.setVerified(false);
+            newUser.setActive(true);
 
             personalUserDao.save(newUser);
             //自动为用户生成社区用户的实体
@@ -136,11 +138,11 @@ public class UserBL implements UserBLService{
             newPersonalUser.setPassword(register.getPassword());
             newPersonalUser.setActive(false);
 
-            SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Calendar c=Calendar.getInstance();
-            String currentTime=sf.format(c.getTime());
+//            SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            Calendar c=Calendar.getInstance();
+//            String currentTime=sf.format(c.getTime());
 
-            newPersonalUser.setRegisterTime(currentTime);
+            newPersonalUser.setRegisterTime(new Date());
             newPersonalUser.setEmail(register.getUsername());
 
             StringBuilder code= new StringBuilder();
@@ -175,11 +177,11 @@ public class UserBL implements UserBLService{
             newCompanyUser.setPassword(register.getPassword());
             newCompanyUser.setActive(false);
 
-            SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Calendar c=Calendar.getInstance();
-            String currentTime=sf.format(c.getTime());
+            //SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //Calendar c=Calendar.getInstance();
+            //String currentTime=sf.format(c.getTime());
 
-            newCompanyUser.setRegisterTime(currentTime);
+            newCompanyUser.setRegisterTime(new Date());
             newCompanyUser.setEmail(register.getUsername());
             newCompanyUser.setRole(register.getRole());
 
@@ -315,8 +317,18 @@ public class UserBL implements UserBLService{
     }
 
     @Override
-    public String getEvaluationName(){
-        return companyUserDao.getEvaluationName();
+    public Evaluator getEvaluationName(){
+        ArrayList<CompanyUser> evaluators=companyUserDao.getEvaluators();
+        if(evaluators==null || evaluators.size()==0){
+            return null;
+        }else{
+            for(CompanyUser eva:evaluators){
+                if(eva.isVerified()){
+                    return new Evaluator(eva.getId(),eva.getName());
+                }
+            }
+            return null;
+        }
     }
 
     @Override
@@ -414,14 +426,56 @@ public class UserBL implements UserBLService{
         }
         return null;
     }
+
+    /**
+     * 最近六个月的IP成员数
+     * @return 每个月的数量
+     */
     @Override
     public List<Integer> getMemberSum() {
-        return null;
+        Calendar c=Calendar.getInstance();
+
+        Integer[] temp=new Integer[6];
+        temp[5]=personalUserDao.count(new Date());
+        for(int i=0;i<5;i++){
+            c.add(Calendar.MONTH,-1);
+            Date date=c.getTime();
+            temp[4-i]=personalUserDao.count(date);
+        }
+
+        Calendar c2=Calendar.getInstance();
+        temp[5]=companyUserDao.countUser(new Date())+temp[5];
+        for(int i=0;i<5;i++){
+            c2.add(Calendar.MONTH,-1);
+            Date d=c2.getTime();
+            temp[4-i]=companyUserDao.countUser(d)+temp[4-i];
+        }
+        return Arrays.asList(temp);
     }
 
+    /**
+     * 最近六个月的IPNet总用户数
+     * @return 每个月的数量
+     */
     @Override
     public List<Integer> getUserSum() {
-        return null;
+        Integer[] temp=new Integer[6];
+        temp[5]=personalUserDao.count(new Date());
+        Calendar c=Calendar.getInstance();
+        for(int i=0;i<5;i++){
+            c.add(Calendar.MONTH,-1);
+            Date date=c.getTime();
+            temp[4-i]=personalUserDao.count(date);
+        }
+
+        Calendar c2=Calendar.getInstance();
+        temp[5]=companyUserDao.countAll(new Date())+temp[5];
+        for(int i=0;i<5;i++){
+            c2.add(Calendar.MONTH,-1);
+            Date d=c2.getTime();
+            temp[4-i]=companyUserDao.countAll(d)+temp[4-i];
+        }
+        return Arrays.asList(temp);
     }
 
 

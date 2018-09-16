@@ -21,8 +21,7 @@ var loanID = storage.loanID;
 //0-专利持有人 1-金融机构 2-保险公司 3-评估机构 4-政府
 $.ajax({
     type: "POST",
-    url: "all/getContract",
-    dataType: "json",
+    url: "/all/getContract",
     data: {
         loanID: loanID
     },
@@ -56,8 +55,7 @@ $('#submit').on('click', function () {
 
     $.ajax({
         type: "POST",
-        url: "all/ifContract",
-        dataType: "json",
+        url: "/all/ifContract",
         data: {
             loanID: loanID,
             userid: userid,
@@ -73,8 +71,8 @@ $('#submit').on('click', function () {
             // }
             window.location.href = "/ipnet/All-loan-check";
         },
-        error: function () {
-            // alert("Network warning for posting the purpose of the loan")
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
 

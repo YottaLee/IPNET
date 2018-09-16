@@ -20,7 +20,7 @@ $(document).ready(function () {
         autoProcessQueue: true,
         uploadMultiple: true,
         parallelUploads: 25,
-        maxFiles: 1,
+        maxFiles: 2,
 
         // The setting up of the dropzone
         init: function () {

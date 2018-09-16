@@ -3,6 +3,7 @@ package com.ipnet.controller.evaluationcontroller;
 import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.EvaluationVO;
+import com.ipnet.vo.financevo.Evaluator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +17,12 @@ public class EvaluationController {
     private EvaluationBLService evaluationBLService;
 
     /**
-     * 获取平台唯一的评估机构name
-     * @return 评估机构的name
+     * 获取平台唯一的评估机构id
+     * @return 评估机构的id
      */
     @RequestMapping("/getEvaluationId")
     @ResponseBody
-    public String getEvaluationId() {
+    public Evaluator getEvaluationId() {
         return evaluationBLService.getEvaluator();
     }
 

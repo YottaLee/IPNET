@@ -14,8 +14,7 @@ import java.util.Date;
 @Entity
 public class LoanContract extends Contract{
     @Id
-    private String id;
-
+    private String contract_id;
     private String party_A;
     private String postal_address_of_A;
     private String legal_repre_of_A;

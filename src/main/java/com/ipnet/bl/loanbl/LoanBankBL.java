@@ -22,6 +22,7 @@ public class LoanBankBL implements LoanBankBLService {
      */
     @Override
     public LoanVO getInfo(String loanID) {
+        System.out.println(loanID);
         Loan loan=loanDao.getOne(loanID);
         return new LoanVO(loan);
     }

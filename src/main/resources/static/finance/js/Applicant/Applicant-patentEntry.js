@@ -1,9 +1,9 @@
 
 $('#submit').on('click', function () {
     var storage = window.localStorage;
-    var url = storage.getItem('fileURL');
+    // var url = storage.getItem('fileURL');
     var uploadImageURL = storage.getItem('uploadImageURL');
-    if (url == null || uploadImageURL == null)
+    if (uploadImageURL == null)
         alertFile("请先上传文件");
     else {
 

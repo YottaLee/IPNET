@@ -2,6 +2,7 @@ package com.ipnet.blservice;
 
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
+import com.ipnet.vo.financevo.Evaluator;
 import com.ipnet.vo.uservo.CompanyVerify;
 import com.ipnet.vo.uservo.EmailRegister;
 import com.ipnet.vo.uservo.PersonVerify;
@@ -38,7 +39,7 @@ public interface UserBLService {
     Role getUserRole(String userID);
 
     //获取唯一一家评估机构的名字
-    String getEvaluationName();
+    Evaluator getEvaluationName();
 
     //根据用户ID获得姓名
     String getXingMing(String userID);
@@ -59,13 +60,13 @@ public interface UserBLService {
 
     /**
      * 最近六个月的IP成员数
-     * @return
+     * @return 每个月的数量
      */
     List<Integer> getMemberSum();
 
     /**
      * 最近六个月的IPNet总用户数
-     * @return
+     * @return 每个月的数量
      */
     List<Integer> getUserSum();
 

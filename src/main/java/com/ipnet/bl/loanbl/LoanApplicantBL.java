@@ -119,7 +119,7 @@ public class LoanApplicantBL implements LoanApplicantBLService{
         }
         loan.setPatent(patentName);
         loan.setState(Patent_loan_state.to_be_value);
-        loanDao.save(loan);
+        loanDao.saveAndFlush(loan);
         return loanID;
     }
 
@@ -141,6 +141,18 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     @Override
     public boolean ifBankChosen(String loanID) {
         Optional<Loan> loanOptional=loanDao.findById(loanID);
-        return loanOptional.map(loan -> loan.getBank().equals("")||loan.getBank()==null).orElse(false);
+        return loanOptional.map(loan ->loan.getBank()==null ||loan.getBank().equals("")).orElse(false);
+    }
+
+    @Override
+    public ResultMessage changeEvaluationState(String loanID){
+        Optional<Loan> loanOptional=loanDao.findById(loanID);
+        if(loanOptional.isPresent()){
+            Loan loan=loanOptional.get();
+            loan.setState(Patent_loan_state.to_be_loan_application);
+            loanDao.saveAndFlush(loan);
+            return ResultMessage.Success;
+        }
+        return ResultMessage.Fail;
     }
 }

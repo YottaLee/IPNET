@@ -209,4 +209,27 @@ public class LoanAllBL implements LoanAllBLService {
         }
         return result;
     }
+
+    @Override
+    public ResultMessage changeState(String loanID, Patent_loan_state state){
+        Optional<Loan> loanOptional=loanDao.findById(loanID);
+        if(loanOptional.isPresent()){
+            Loan loan=loanOptional.get();
+            loan.setState(state);
+            loanDao.saveAndFlush(loan);
+        }
+        return null;
+    }
+
+    @Override
+    public ResultMessage changeStateByPatentID(String patentID,Patent_loan_state state){
+        ArrayList<Loan> loans=loanDao.findByPatentID(patentID);
+        for(Loan loan:loans){
+            if(loan.getState()!=Patent_loan_state.free) {
+                loan.setState(state);
+                loanDao.saveAndFlush(loan);
+            }
+        }
+        return ResultMessage.Success;
+    }
 }

@@ -3,18 +3,9 @@ package com.ipnet.entity;
 import com.ipnet.enums.Industry;
 import lombok.Data;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
-/**
- * @Author:zhangping
- * @Description:
- * @CreateData: 2018/7/21 1:39
- */
 
 @Entity
 @Data

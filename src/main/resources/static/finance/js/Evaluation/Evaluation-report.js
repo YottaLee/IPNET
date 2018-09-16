@@ -15,10 +15,10 @@ $.ajax({
     }
 });
 $.ajax({
-    type:"GET",
-    url:"/Patent/searchPatentByID",
-    data:patentID,
-    success:function (data) {
+    type: "GET",
+    url: "/Patent/searchPatentByID",
+    data: patentID,
+    success: function (data) {
         document.getElementById("patent_id").innerHTML = data.patent_id;
         document.getElementById("patent").innerHTML = data.patent_name;
         document.getElementById("holder").innerHTML = data.patent_holder;
@@ -30,11 +30,10 @@ $.ajax({
 $("#money").val(20000);
 //提交结果
 $('#submit').on('click', function () {
-
-    if(url == "")
+    var url = storage.getItem("fileURL");
+    if (url == null)
         alertFile("请先上传文件");
     else {
-
         var rule = $("#rule").val();
         var result = $("#result").val();
         var evaluation = $("#evaluation").val();
