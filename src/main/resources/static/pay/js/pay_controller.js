@@ -33,6 +33,7 @@ $(document).ready(function(){
     }else {
         way_para="claim";
     }
+    console.log(way_para);
 
     var date = new Date();
     var seperator1 = "-";
@@ -82,6 +83,7 @@ $(document).ready(function(){
         data:{userId:pay_order.payer_id,userType:payer_role},
         async:false,
         success:function(data){
+            console.log("payer_account:"+data.length+"   "+payer_role);
             for(var i=0;i<data.length;i++){
                 var new_element="<div class=\"cover atvImg\" >\n" +
                     "                <div class=\"atvImg-layer pay\" data-img=\"https://i.imgur.com/R8xnkBw.png\" data-number='"+data[i]+"'></div>\n" +
@@ -100,6 +102,7 @@ $(document).ready(function(){
         data:{userId:pay_order.payee_id,userType:payee_role},
         async:false,
         success:function(data){
+        console.log("payee_account:"+data.length+"   "+payee_role);
             for(var i=0;i<data.length;i++){
                 var new_element="<div class=\"cover atvImg\" >\n" +
                     "                <div class=\"atvImg-layer receive\" data-img=\"https://i.imgur.com/R8xnkBw.png\" data-number='"+data[i]+"'></div>\n" +
@@ -165,6 +168,7 @@ $(document).ready(function(){
                     if(way_para=="evaluation"){
                         var storage = window.localStorage;
                         var loanID = storage.getItem('loan_id');
+                        console.log(loanID);
                         if (loanID == null || loanID == "") {
                             storage.removeItem("patent_id");
                             window.location.href = "/ipnet/Person-IP-list";
