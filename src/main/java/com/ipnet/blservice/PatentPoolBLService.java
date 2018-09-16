@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface PatentPoolBLService {
 
-    PatentPoolVO createPatentPool(PatentPoolVO newPatentPool);
+    PatentPoolVO createPatentPool(String poolName,  String holderId ,  String region , String profile ,String date);
 
     PatentPoolVO searchPatentPoolByID(String patentPoolID);
 

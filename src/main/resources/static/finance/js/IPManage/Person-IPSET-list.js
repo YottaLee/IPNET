@@ -79,7 +79,30 @@ $("#poolsummit").on('click',function () {
         strDate = "0" + strDate;
     }
     var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate; // 日期
+    var invitedIP = $("#invitedIP").val();
+    var IPPool = $("#IPPool").val();
+    console.log(invitedIP,IPPool);
 
+    var postData = {
+        "poolName":name,
+        "holderId":creater,
+        "region":industry,
+        "profile":intro,
+        "date":nowDate
+    };
+
+    $.ajax({
+        url: "/PatentPool/createPatentPool",
+        type: "POST",
+        data : postData,
+        async: false,
+        success: function (data, status) {
+            console.log("我成功了");
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log("传输失败");
+        }
+    });
     console.log(nowDate);
 
 });

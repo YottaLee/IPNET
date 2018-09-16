@@ -24,8 +24,8 @@ public class PatentPoolController {
     private PatentPoolBLService service;
 
     @RequestMapping("/createPatentPool")
-    public @ResponseBody  PatentPoolVO createPatentPool(@RequestBody PatentPoolVO newPatentPool){
-        return service.createPatentPool(newPatentPool);
+    public @ResponseBody  PatentPoolVO createPatentPool(@RequestParam String poolName, @RequestParam String holderId , @RequestParam String region ,@RequestParam String profile ,@RequestParam String date){
+        return service.createPatentPool(poolName , holderId , region , profile , date);
     }
 
     @RequestMapping("/searchPatentPoolByID")

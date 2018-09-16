@@ -3,6 +3,7 @@ package com.ipnet.bl.patentpoolbl;
 import com.ipnet.bl.patentbl.Invitation;
 import com.ipnet.dao.PatentDao;
 import com.ipnet.entity.Patent;
+import com.ipnet.enums.Industry;
 import com.ipnet.vo.PatentPoolVO;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.bl.patentbl.PatentBLHelper;
@@ -13,6 +14,8 @@ import com.ipnet.utility.TransHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,9 +41,22 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
 
 
     @Override
-    public PatentPoolVO createPatentPool(PatentPoolVO newPatentPool) {
-        PatentPool domain = (PatentPool) this.transHelper.transTO(newPatentPool , PatentPool.class);
-        PatentPool resultDomain = this.patentPoolDao.saveAndFlush(domain);
+    public PatentPoolVO createPatentPool(String poolName,  String holderId ,  String region , String profile ,String date) {
+        PatentPool pool =  new PatentPool();
+        pool.setName(poolName);
+        pool.setAmount(20);
+        pool.setPatents(new ArrayList<String>());
+        pool.setApplypatents(new ArrayList<String>());
+        pool.setDescription(profile);
+        pool.setIndustry(Industry.Holder);
+        pool.setManagers(new ArrayList<String>());
+        pool.setPicture("  ");
+        pool.setOwner(holderId);
+        pool.setUsers(new ArrayList<String>());
+        pool.setProfile(profile);
+        pool.setCreateTime(new Date());
+        pool.setId(String.valueOf(Math.random()));
+        PatentPool resultDomain = this.patentPoolDao.saveAndFlush(pool);
         PatentPoolVO resultVO = (PatentPoolVO) this.transHelper.transTO(resultDomain , PatentPoolVO.class);
         return resultVO;
     }
