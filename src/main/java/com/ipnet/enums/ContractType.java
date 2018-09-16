@@ -1,7 +1,7 @@
 package com.ipnet.enums;
 
 public enum ContractType {
-     Agent,
+    Agent,
     Breakup,
     Loan,
     Permit,

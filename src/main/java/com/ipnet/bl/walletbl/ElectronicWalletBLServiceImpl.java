@@ -1,5 +1,6 @@
 package com.ipnet.bl.walletbl;
 
+import com.ipnet.blservice.AccountBLService;
 import com.ipnet.blservice.AliService;
 import com.ipnet.blservice.communityservice.CommunityUserBLService;
 import com.ipnet.blservice.personalservice.ElectronicWalletBLService;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * nan
@@ -32,6 +34,8 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService 
     private AliService aliService;
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private AccountBLService accountBLService;
     @Autowired
     private CommunityUserBLService communityUserBLService;
 
@@ -117,6 +121,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService 
                     //密码验证
                     if (true) {
                         companyUser.getBank_accounts().add(card);
+                        accountBLService.addAccount(card, Math.random(),userId);
                         companyUserDao.save(companyUser);
                         return ResultMessage.Success;
                     } else

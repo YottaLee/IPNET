@@ -35,4 +35,5 @@ public class LoanContract extends Contract{
     private String others;
     private String ninteenth;
 
+
 }
