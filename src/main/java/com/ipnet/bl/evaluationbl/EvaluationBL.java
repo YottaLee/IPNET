@@ -29,8 +29,8 @@ public class EvaluationBL implements EvaluationBLService {
     private LoanAllBLService loanAllBLService;
 
     /**
-     * 获取平台唯一的评估机构name
-     * @return 评估机构的name
+     * 获取平台唯一的评估机构ID
+     * @return 评估机构的ID
      */
     @Override
     public  String getEvaluator(){

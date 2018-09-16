@@ -18,7 +18,7 @@ public interface CompanyUserDao extends JpaRepository<CompanyUser,String> {
 
     CompanyUser findCompanyUserByName(String name);
 
-    @Query(value = "select c.name from CompanyUser c where c.role=2 ")
+    @Query(value = "select c.id from CompanyUser c where c.role=2 ")
     String getEvaluationName();
 
     @Query("select count(c) from CompanyUser c where c.registerTime<=:t and c.role=0")
