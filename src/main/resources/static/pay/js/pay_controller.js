@@ -7,6 +7,9 @@ $(document).ready(function(){
 
     var way_para="";
 
+    var payer_role="";//付款方角色
+    var payee_role="";//收款方角色
+
     var pay_order=JSON.parse(localStorage.getItem("pay_order"));
     $("#patent_id").text(pay_order.patentID);
     $("#patent_name").text(pay_order.patent);
@@ -47,12 +50,36 @@ $(document).ready(function(){
         + seperator2 + date.getSeconds();
     $("#time").text(currentdate);
 
-    console.log(pay_order.payer_id);
+    $.ajax({
+        type : 'POST',
+        url : '/user/getUserRole',
+        data:{userID:pay_order.payer_id},
+        async:false,
+        success:function(data){
+            payer_role=data;
+        },
+        error:function(data){
+
+        }
+    });
+
+    $.ajax({
+        type : 'POST',
+        url : '/user/getUserRole',
+        data:{userID:pay_order.payee_id},
+        async:false,
+        success:function(data){
+            payee_role=data;
+        },
+        error:function(data){
+
+        }
+    });
 
     $.ajax({
         type : 'POST',
         url : '/userInfo/getAllAccountId',
-        data:{userId:pay_order.payer_id},
+        data:{userId:pay_order.payer_id,userType:payer_role},
         async:false,
         success:function(data){
             for(var i=0;i<data.length;i++){
@@ -70,7 +97,7 @@ $(document).ready(function(){
     $.ajax({
         type : 'POST',
         url : '/userInfo/getAllAccountId',
-        data:{userId:pay_order.payee_id},
+        data:{userId:pay_order.payee_id,userType:payee_role},
         async:false,
         success:function(data){
             for(var i=0;i<data.length;i++){

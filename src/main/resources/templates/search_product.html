@@ -101,6 +101,8 @@
             nav.navbar.bootsnav ul.nav > li:hover{ background: transparent; }
             nav.navbar.bootsnav ul.nav > li > a{ margin: 0; }
         }
+        .input-group-addon{
+            height: 34px;}
     </style>
 
     <link rel="stylesheet" type="text/css" href="/search/css/bootstrap-datepicker3.css">
@@ -264,12 +266,12 @@
             }
         </script>
 
-        <div class="banner search_parameter_p_url" style="background: transparent">
+        <div class="banner search_parameter_p_url" style="background: transparent;height: 300px;">
         </div>
         <!-- 下面所有内容 -->
         <div class="all_content" style="background: white">
             <!-- 服务选择 -->
-            <div class="service_choose">
+            <div class="service_choose" style="top: -280px;">
                 <ul class="publicblock screen">
                     <li style="padding-right: 0px;margin-right: 0px;width: 100%">
                         <dt>
@@ -293,80 +295,49 @@
                         <dt>
                             <h2>申请时间</h2>
                         </dt>
-                        <dd style="width:1000px;">
-                            <div class="input-group date datepicker" style="width: 200px;">
-                                <span>起始时间：</span>
+                        <dd style="width:1000px;display: inline-block;padding-top: 10px;padding-bottom: 0px">
+                            <span style="display: inline-block;">起始时间：</span>
+                            <div class="input-group date datepicker" style="width: 150px;display: inline-block">
                                 <input type="text" class="form-control">
-                                <div class="input-group-addon">
+                                <div class="input-group-addon" style="display: none">
                                     <span class=""><i class="fas fa-calendar-alt"></i></span>
                                 </div>
                             </div>
-                            <div class="input-group date datepicker" style="width: 200px">
-                                <span>结束时间：</span>
+                            <span style="display: inline-block;">结束时间：</span>
+                            <div class="input-group date datepicker" style="width: 150px;display: inline-block">
                                 <input type="text" class="form-control">
-                                <div class="input-group-addon">
+                                <div class="input-group-addon" style="display: none">
                                     <span class=""><i class="fas fa-calendar-alt"></i></span>
                                 </div>
                             </div>
+                            <button type="submit" class="btn btn-success" style="display: inline-block;position:absolute;top:10px;margin-left:20px">重新检索</button>
                         </dd>
                     </li>
-                    <li class="other_select" style="padding-right: 0px;margin-right: 0px;width: 100%">
+                    <li style="padding-right: 0px;margin-right: 0px;width: 100%">
                         <dt>
-                            <h2>其他条件</h2>
+                            <h2>有效期限</h2>
                         </dt>
-                        <dd style="width:1000px;">
-                            <div class="first_select">
-                                <div>
-                                    交易状态
+                        <dd style="width:1000px;display: inline-block;padding-top: 10px;padding-bottom: 0px">
+                            <span style="display: inline-block;">起始时间：</span>
+                            <div class="input-group date datepicker" style="width: 150px;display: inline-block">
+                                <input type="text" class="form-control">
+                                <div class="input-group-addon" style="display: none">
+                                    <span class=""><i class="fas fa-calendar-alt"></i></span>
                                 </div>
-                                <ul class="pull_frame">
-                                    <li class="select_style_nav">
-                                        <a href="javascript:search('','4');">不限</a>
-                                    </li>
-                                    <li class="select_style_nav">
-                                        <a href="javascript:search('1','4');"></a>
-                                    </li>
-                                    <li class="select_style_nav">
-                                        <a href="javascript:search('2','4');">授权商品</a>
-                                    </li>
-                                </ul>
                             </div>
-                            <div class="second_select">
-                                <div>
-                                    专利状态
+                            <span style="display: inline-block;">结束时间：</span>
+                            <div class="input-group date datepicker" style="width: 150px;display: inline-block">
+                                <input type="text" class="form-control">
+                                <div class="input-group-addon" style="display: none">
+                                    <span class=""><i class="fas fa-calendar-alt"></i></span>
                                 </div>
-                                <ul class="pull_frame">
-                                    <li class="select_style_nav">
-                                        <a href="javascript:search('','6');">不限</a>
-                                    </li>
-                                    <li class="select_style_nav">
-                                        <a href="javascript:search('1','6');">授权未下证</a>
-                                    </li>
-                                    <li class="select_style_nav">
-                                        <a href="javascript:search('2','6');">已下证</a>
-                                    </li>
-                                </ul>
                             </div>
+                            <button type="submit" class="btn btn-success" style="display: inline-block;position:absolute;top:10px;margin-left:20px">重新检索</button>
                         </dd>
-                    </li>
-                    <li class="result" style="display: block;padding-right: 0px;margin-right: 0px;width: 100%">
-                        <div class="dt">
-                            您选择的结果：
-                        </div>
-                        <a class="left_arrow" href="javascript:;"></a>
-                        <div class="dd result_dd" style="width:1000px;">
-                            <!--清空选择之后就显示文字无，不留a标签-->
-                            <a class="result_content" href="javascript:search('','7');">3000以下                <i></i>
-                            </a>
-                            <!--<a href="/search.html" class="result_content null">清空选择</a>-->
-                        </div>
-                        <a class="right_arrow" href="javascript:;"></a>
-                        <a href="/psearch.html" class="result_empty" style="margin-right: 0px">清空筛选条件</a>
-                        <!--</dd>-->
                     </li>
                 </ul>
                 <script type="text/javascript">
-                    jQuery(".picScroll-top").slide({
+                    $(".picScroll-top").slide({
                         mainCell: ".bd ul",
                         autoPage: true,
                         effect: "topLoop",
@@ -406,23 +377,20 @@
                             <article class="post-108 post type-post status-publish format-standard has-post-thumbnail hentry category-editorial">
                                 <header class="entry-header">
                                     <div class="newspaper-x-image">
-                                        <a href="https://colorlib.com/newspaper-x/2017/05/10/sed-purus-velit-finibus-non-semper-nonut-utas/" rel="bookmark"><img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/></a>
+                                        <img width="550" height="360" src="https://i.imgur.com/IopyFtV.png" class="attachment-newspaper-x-recent-post-big size-newspaper-x-recent-post-big wp-post-image" alt=""/>
                                     </div>
-                                    <h4 class="entry-title"><a href="https://colorlib.com/newspaper-x/2017/05/10/sed-purus-velit-finibus-non-semper-nonut-utas/" rel="bookmark">专利号</a></h4>
-                                    <h4 class="entry-title"><a href="https://colorlib.com/newspaper-x/2017/05/10/sed-purus-velit-finibus-non-semper-nonut-utas/" rel="bookmark">专利名称</a></h4>
+                                    <h4 class="entry-title">专利号</h4>
+                                    <h4 class="entry-title">专利名称</h4>
                                     <div class="newspaper-x-post-meta">
                                         <div>
                                             <span class="newspaper-x-category">
-						                        <a href="https://colorlib.com/newspaper-x/category/news/">发明实用型专利</a>
+                                                发明实用型专利
 						                    </span>&nbsp;&nbsp;&nbsp;
-                                            <span class="newspaper-x-category">
-						                        <a href="https://colorlib.com/newspaper-x/category/news/">专利类别</a>
-						                    </span>
                                         </div>
                                     </div>
                                     <div class="newspaper-x-post-meta">
                                         <div>
-                                            <span class="newspaper-x-date" style="color: black;font-weight: bold;margin-left: 0px">￥10000 </span>
+                                            <span class="newspaper-x-date" style="color: black;font-weight: bold;margin-left: 0px">持有人：<span></span> </span>
                                         </div>
                                     </div>
                                     <!-- .entry-meta -->
