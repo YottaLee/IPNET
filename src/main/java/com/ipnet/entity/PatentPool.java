@@ -7,12 +7,6 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @Author:zhangping
- * @Description:
- * @CreateData: 2018/7/21 1:39
- */
-
 @Entity
 @Data
 @Table(name = "pool")
