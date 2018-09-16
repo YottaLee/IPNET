@@ -3,6 +3,7 @@ package com.ipnet.controller.evaluationcontroller;
 import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.EvaluationVO;
+import com.ipnet.vo.financevo.Evaluator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class EvaluationController {
      */
     @RequestMapping("/getEvaluationId")
     @ResponseBody
-    public String getEvaluationId() {
+    public Evaluator getEvaluationId() {
         return evaluationBLService.getEvaluator();
     }
 

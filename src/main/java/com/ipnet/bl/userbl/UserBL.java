@@ -10,6 +10,7 @@ import com.ipnet.entity.PersonalUser;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.enums.Role;
 import com.ipnet.utility.MD5Util;
+import com.ipnet.vo.financevo.Evaluator;
 import com.ipnet.vo.uservo.CompanyVerify;
 import com.ipnet.vo.uservo.EmailRegister;
 import com.ipnet.vo.uservo.PersonVerify;
@@ -316,12 +317,13 @@ public class UserBL implements UserBLService{
     }
 
     @Override
-    public String getEvaluationName(){
+    public Evaluator getEvaluationName(){
         ArrayList<CompanyUser> companyUsers=companyUserDao.getEvaluators();
         if(companyUsers==null || companyUsers.size()==0){
             return null;
         }else{
-            return companyUsers.get(0).getId();
+            CompanyUser eva=companyUsers.get(0);
+            return new Evaluator(eva.getId(),eva.getName());
         }
     }
 

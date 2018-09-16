@@ -2,6 +2,7 @@ package com.ipnet.blservice;
 
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.EvaluationVO;
+import com.ipnet.vo.financevo.Evaluator;
 
 public interface EvaluationBLService {
 
@@ -15,6 +16,6 @@ public interface EvaluationBLService {
 
     boolean ifValue(String patentID);
 
-    String getEvaluator();
+    Evaluator getEvaluator();
 
 }

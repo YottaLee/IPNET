@@ -10,6 +10,7 @@ import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.EvaluationVO;
+import com.ipnet.vo.financevo.Evaluator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class EvaluationBL implements EvaluationBLService {
      * @return 评估机构的ID
      */
     @Override
-    public  String getEvaluator(){
+    public Evaluator getEvaluator(){
         return userBLService.getEvaluationName();
     }
 
