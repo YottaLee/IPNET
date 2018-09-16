@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     var user_id=localStorage.getItem("user_id");
-    user_id="czf";
     var user_name="";
     var user_url="";
 
@@ -22,7 +21,6 @@ $(document).ready(function(){
     });
 
     var post_id=localStorage.getItem("post_detail_id");
-    post_id="12345";
     var author_id="";
     var remarks=[];
     $.ajax({

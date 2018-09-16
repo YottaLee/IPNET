@@ -21,7 +21,6 @@ $(document).ready(function(){
 
     var user_detail_id=localStorage.getItem("user_detail_id");
     var user_id=localStorage.getItem("user_id");
-    user_detail_id="czf";
 
     //个人信息展示
     $.ajax({

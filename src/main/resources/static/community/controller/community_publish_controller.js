@@ -1,7 +1,6 @@
 $(document).ready(function(){
 
     var user_id=localStorage.getItem("user_id");
-    // user_id="czf";
     var user_name="";
 
     $.ajax({
@@ -19,7 +18,6 @@ $(document).ready(function(){
 
     //发帖
     $("#publish_post").click(function(){
-        alert(user_id+" "+user_name);
         var post_name=document.getElementById("articleTitle").value;
         var post_intro=document.getElementById("post_intro").value;
         var post_tags=[];
