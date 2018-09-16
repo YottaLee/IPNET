@@ -150,6 +150,8 @@ public class LoanApplicantBL implements LoanApplicantBLService{
                 return false;
             }else {
                 loanAllBLService.changeState(loanID,Patent_loan_state.to_be_evaluation);
+
+
                 return true;
             }
         }
