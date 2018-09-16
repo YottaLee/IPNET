@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.annotation.Generated;
 import javax.persistence.*;
 
 @Entity
@@ -13,7 +14,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Transaction {
     @Id
-    private String transcation_id;//交易订单id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long transcation_id;//交易订单id
     private String buyer;//买方nagid
     private String seller;//卖方id
     private String buyer_bank_account;//买方银行账户号

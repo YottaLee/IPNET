@@ -23,7 +23,7 @@ import java.util.List;
  * nan
  */
 @Service
-public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
+public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService {
     @Autowired
     private PersonalUserDao userDao;
     @Autowired
@@ -37,35 +37,41 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
 
 
     @Override
-    public Double getAccountBalance(String userId,Role userType) {
-        switch (userType){
+    public Double getAccountBalance(String userId, Role userType) {
+        switch (userType) {
             case PersonalUser:
 
                 return userDao.findPersonalUserById(userId).getRMB();
             case CompanyUser:
-                
+
                 return companyUserDao.findCompanyUserById(userId).getMoney();
         }
         return null;
     }
 
     @Override
-    public List<String> getAllAccountId(String userId,Role userType) {
-        switch (userType){
+    public List<String> getAllAccountId(String userId, Role userType) {
+        System.out.println("UserType:  " + userType);
+
+
+        switch (userType) {
             case PersonalUser:
-
+                System.out.println("PersonUserType:  " + userType);
+                PersonalUser user = userDao.findPersonalUserById(userId);
+                System.out.println(user.toString());
                 return userDao.findPersonalUserById(userId).getBankAccount();
-            case CompanyUser:
-
+            default:
+               // CompanyUser user2 = companyUserDao.findCompanyUserById(userId);
+                System.out.println(companyUserDao.findCompanyUserById(userId).getBank_accounts());
                 return companyUserDao.findCompanyUserById(userId).getBank_accounts();
+                //userType属性有问题
         }
-        return null;
     }
 
     @Override
     public ResultMessage chargeBalance(String userId, double rmb_num, String card) {
         //???
-        List<String> account=userDao.findPersonalUserById(userId).getBankAccount();
+        List<String> account = userDao.findPersonalUserById(userId).getBankAccount();
 
         return ResultMessage.Success;
     }
@@ -73,26 +79,26 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     @Override
     public ResultMessage withDrawBalance(String userId, double rmb_num, String card) {
         //???
-        List<String> account=userDao.findPersonalUserById(userId).getBankAccount();
+        List<String> account = userDao.findPersonalUserById(userId).getBankAccount();
 
         return ResultMessage.Success;
     }
 
     @Override
-    public List<CreditCard> getCreditCardInfo(String userId,Role userType) {
-        switch (userType){
+    public List<CreditCard> getCreditCardInfo(String userId, Role userType) {
+        switch (userType) {
             case CompanyUser:
-                List<String> account1=companyUserDao.findCompanyUserById(userId).getBank_accounts();
-                List<CreditCard> creditCards1=new ArrayList<>();
-                for(String a:account1){
-                    creditCards1.add(new CreditCard(a,""));
+                List<String> account1 = companyUserDao.findCompanyUserById(userId).getBank_accounts();
+                List<CreditCard> creditCards1 = new ArrayList<>();
+                for (String a : account1) {
+                    creditCards1.add(new CreditCard(a, ""));
                 }
                 return creditCards1;
             case PersonalUser:
-                List<String> account=userDao.findPersonalUserById(userId).getBankAccount();
-                List<CreditCard> creditCards=new ArrayList<>();
-                for(String a:account){
-                    creditCards.add(new CreditCard(a,""));
+                List<String> account = userDao.findPersonalUserById(userId).getBankAccount();
+                List<CreditCard> creditCards = new ArrayList<>();
+                for (String a : account) {
+                    creditCards.add(new CreditCard(a, ""));
                 }
                 return creditCards;
         }
@@ -101,33 +107,33 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     }
 
     @Override
-    public ResultMessage setCreditCard(String userId, String card, String card_code,String bank,Role userType) {
-        switch (userType){
+    public ResultMessage setCreditCard(String userId, String card, String card_code, String bank, Role userType) {
+        switch (userType) {
             case CompanyUser:
-                CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
-                if(companyUser.equals(null))
+                CompanyUser companyUser = companyUserDao.findCompanyUserById(userId);
+                if (companyUser.equals(null))
                     return ResultMessage.Fail;
-                else{
+                else {
                     //密码验证
-                    if(true){
+                    if (true) {
                         companyUser.getBank_accounts().add(card);
                         companyUserDao.save(companyUser);
-                        return  ResultMessage.Success;
-                    }else
+                        return ResultMessage.Success;
+                    } else
                         return ResultMessage.Fail;
 
                 }
             case PersonalUser:
-                PersonalUser personalUser=userDao.findPersonalUserById(userId);
-                if(personalUser.equals(null))
+                PersonalUser personalUser = userDao.findPersonalUserById(userId);
+                if (personalUser.equals(null))
                     return ResultMessage.Fail;
-                else{
+                else {
                     //密码验证
-                    if(true){
+                    if (true) {
                         personalUser.getBankAccount().add(card);
                         userDao.save(personalUser);
-                        return  ResultMessage.Success;
-                    }else
+                        return ResultMessage.Success;
+                    } else
                         return ResultMessage.Fail;
 
                 }
@@ -136,33 +142,33 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     }
 
     @Override
-    public ResultMessage cancelCreditCard(String userId, String card,Role userType) {
-        switch (userType){
+    public ResultMessage cancelCreditCard(String userId, String card, Role userType) {
+        switch (userType) {
             case CompanyUser:
-                CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
-                if(companyUser.equals(null))
+                CompanyUser companyUser = companyUserDao.findCompanyUserById(userId);
+                if (companyUser.equals(null))
                     return ResultMessage.Fail;
-                else{
+                else {
                     //密码验证
-                    if(true){
+                    if (true) {
                         companyUser.getBank_accounts().remove(card);
                         companyUserDao.save(companyUser);
                         return ResultMessage.Success;
-                    }else
+                    } else
                         return ResultMessage.Fail;
 
                 }
             case PersonalUser:
-                PersonalUser personalUser=userDao.findPersonalUserById(userId);
-                if(personalUser.equals(null))
+                PersonalUser personalUser = userDao.findPersonalUserById(userId);
+                if (personalUser.equals(null))
                     return ResultMessage.Fail;
-                else{
+                else {
                     //密码验证
-                    if(true){
+                    if (true) {
                         personalUser.getBankAccount().remove(card);
                         userDao.save(personalUser);
                         return ResultMessage.Success;
-                    }else
+                    } else
                         return ResultMessage.Fail;
 
                 }
@@ -172,8 +178,8 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     }
 
     @Override
-    public int getPoint(String userId,Role userType) {
-        switch (userType){
+    public int getPoint(String userId, Role userType) {
+        switch (userType) {
             case PersonalUser:
                 return companyUserDao.findCompanyUserById(userId).getPoints();
             case CompanyUser:
@@ -183,18 +189,18 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService{
     }
 
     @Override
-    public ResultMessage updatePoint(String userId,int point,Role userType) {
-        switch (userType){
+    public ResultMessage updatePoint(String userId, int point, Role userType) {
+        switch (userType) {
             case CompanyUser:
-                CompanyUser companyUser=companyUserDao.findCompanyUserById(userId);
-                companyUser.setPoints(companyUser.getPoints()+point);
+                CompanyUser companyUser = companyUserDao.findCompanyUserById(userId);
+                companyUser.setPoints(companyUser.getPoints() + point);
                 companyUserDao.save(companyUser);
                 return ResultMessage.Success;
             case PersonalUser:
-               PersonalUser personalUser=userDao.findPersonalUserById(userId);
-               personalUser.setCredits(personalUser.getCredits()+point);
-               userDao.save(personalUser);
-               return ResultMessage.Success;
+                PersonalUser personalUser = userDao.findPersonalUserById(userId);
+                personalUser.setCredits(personalUser.getCredits() + point);
+                userDao.save(personalUser);
+                return ResultMessage.Success;
         }
         return ResultMessage.Fail;
     }
