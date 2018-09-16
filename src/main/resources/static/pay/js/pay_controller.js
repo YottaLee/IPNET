@@ -15,6 +15,8 @@ $(document).ready(function(){
     $("#way").text(pay_order.way);
     $("#money").text(pay_order.money);
 
+    console.log(JSON.stringify(pay_order));
+
     if(pay_order.way=="专利许可"){
         way_para="license";
     }else if(pay_order.way=="专利转让"){
@@ -44,6 +46,8 @@ $(document).ready(function(){
         + " " + date.getHours() + seperator2 + date.getMinutes()
         + seperator2 + date.getSeconds();
     $("#time").text(currentdate);
+
+    console.log(pay_order.payer_id);
 
     $.ajax({
         type : 'POST',
