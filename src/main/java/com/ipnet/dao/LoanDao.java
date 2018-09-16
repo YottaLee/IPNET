@@ -13,13 +13,13 @@ import java.util.ArrayList;
 @Table(name = "loan")
 public interface LoanDao extends JpaRepository<Loan,String> {
 
-    @Query(value = "select l from Loan l order by l.time desc")
+    @Query(value = "select l from Loan l where l.state>=3 order by l.time desc")
     ArrayList<Loan> findAllSortByTime();
 
-    @Query(value = "select l from Loan l where l.insurance=:insurance order by l.time desc")
+    @Query(value = "select l from Loan l where l.insurance=:insurance and l.state>=7 order by l.time desc")
     ArrayList<Loan> findByInsuranceSortByTime(@Param("insurance")String insurance);
 
-    @Query(value = "select l from Loan l where l.bank=:bank order by l.time desc")
+    @Query(value = "select l from Loan l where l.bank=:bank and l.state>=5 order by l.time desc")
     ArrayList<Loan> findByBankSortByTime(@Param("bank")String bank);
 
     @Query(value = "select l from Loan l where l.patentID=:patentID order by l.time desc")
