@@ -54,3 +54,28 @@ $.ajax({
     }
 });
 
+$('.btn-rounded').click(function(){
+    //提交请求
+    console.log("测试button")
+});
+
+$('.btn-mint').click(function(){
+    var ip =$('#invitedIP').val();
+    var ippool =$('#IPPool').val();
+
+    $.ajax({
+        type: "POST",
+        url: "Patent/sendInvitationFromPool",
+        dataType: "json",
+        data:{
+            patentId:ip,
+            patentPoolId:ippool
+        },
+        success: function (data) {
+            console.log("happy");
+        },
+        error: function () {
+            // alert("Network warning for posting the purpose of the loan")
+        }
+    });
+});
