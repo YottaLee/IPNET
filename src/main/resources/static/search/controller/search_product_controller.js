@@ -108,7 +108,8 @@ function search_region(region){
 }
 
 function search_apply_time(beginTime,endTime){
-
+    var begin_para="";
+    var end_para="";
 }
 
 function search_valid_time(beginTime,endTime){

@@ -45,12 +45,12 @@ $(document).ready(function(){
             "                        </li>";
         $("#article_list").append(new_element);
         $("#"+i).click(function(){
-           var id=$(this).getAttribute("id");
+           var id=$(this).attr("id");
            localStorage.setItem("post_detail_id",article_lists[id].post_id);
            window.location.href="community_detail";
         });
         $("#"+i).find("touxiang").click(function(){
-            var id=$(this).getAttribute("id");
+            var id=$(this).attr("id");
             localStorage.setItem("user_detail_id",article_lists[id].author);
             window.location.href="community_person";
         });
