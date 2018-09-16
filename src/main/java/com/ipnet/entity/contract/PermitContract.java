@@ -15,8 +15,7 @@ import java.util.Date;
 @Entity
 public class PermitContract {
     @Id
-    private String id;
-
+    private String contract_id;
     private String patent_name;
     private String patent_id;
     private String partyA_repre;

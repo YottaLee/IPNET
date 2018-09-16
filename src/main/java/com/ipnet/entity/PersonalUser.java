@@ -41,6 +41,7 @@ public class PersonalUser {
     private Sex sex;//用户的性别
     private int age;//用户的年龄
     private String telephone;//用户的手机号码，注册时使用
+    private String vertification;
     private String email;//用户的邮箱
     private String description;//用户的自我描述
     private Date registerTime;//用户的注册时间

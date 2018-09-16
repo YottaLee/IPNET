@@ -15,8 +15,7 @@ import java.util.Date;
 @Entity
 public class TransferContract extends Contract {
     @Id
-    private String id;
-
+    private String contract_id;
     private Date time;
     private String address;
 

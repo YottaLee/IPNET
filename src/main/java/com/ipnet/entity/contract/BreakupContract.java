@@ -14,8 +14,7 @@ import java.util.ArrayList;
 @Entity
 public class BreakupContract extends Contract{
     @Id
-    private String id;
-
+    private String contract_id;
     private int money3;
     private String time1;
     private int money4;

@@ -1,7 +1,7 @@
 .banner {
     width: 100%;
     height: 550px;
-    background: url("../images/business_list/banner.jpg") #f0f2f5 no-repeat center -6px;
+    background:  #f0f2f5 no-repeat center -6px;
 }
 
 .banner .banner_center {
@@ -29,7 +29,7 @@
     width: 12px;
     height: 7px;
     margin-right: 7px;
-    background: url("../images/business_list/icon1.png") no-repeat center;
+    background:  no-repeat center;
     position: relative;
     top: -1px
 }
@@ -38,7 +38,7 @@
     width: 8px;
     height: 5px;
     margin: 0 7px 0 9px;
-    background: url("../images/business_list/icon2.png") no-repeat center;
+    background: no-repeat center;
     top: -2px
 }
 
@@ -64,7 +64,7 @@
     display: inline-block;
     width: 12px;
     height: 14px;
-    background: url("../images/business_list/icon3.png") no-repeat center;
+    background:  no-repeat center;
     position: relative;
     top: 3px;
     margin-right: 2px;
@@ -79,12 +79,12 @@
 .banner .banner_center .need .sell:first-child i {
     width: 14px;
     height: 16px;
-    background: url("../images/business_list/icon3.png") no-repeat center
+    background:  no-repeat center
 }
 .banner .banner_center .need .sell:first-child+.sell i {
     width: 14px;
     height: 16px;
-    background: url("../images/business_list/icon4.png") no-repeat center
+    background:  no-repeat center
 }
 
 .all_content {
@@ -157,31 +157,31 @@
     border-right: 1px solid #edecf4;
     border-left: 1px solid #edecf4;
     float: left;
-    background: url("../images/business_list/icon28.png") no-repeat center;
+    background: no-repeat center;
     cursor: pointer
 }
 
 .all_content .sorting .company .card_icon:hover,
 .all_content .sorting .company .list_icon:hover {
-    background: url("../images/business_list/icon25.png") no-repeat center
+    background:  no-repeat center
 }
 
 .all_content .sorting .company .list_icon {
     border-left: none;
-    background: url("../images/business_list/icon27.png") no-repeat center;
+    background:  no-repeat center;
     margin-right: 16px
 }
 
 .all_content .sorting .company .list_icon:hover {
-    background: url("../images/business_list/icon26.png") no-repeat center
+    background:  no-repeat center
 }
 
 .all_content .sorting .company .active_card {
-    background: url("../images/business_list/icon25.png") no-repeat center
+    background: no-repeat center
 }
 
 .all_content .sorting .company .active_list {
-    background: url("../images/business_list/icon26.png") no-repeat center
+    background: no-repeat center
 }
 
 .all_content .sorting .company .all_company,
@@ -218,7 +218,7 @@
     display: inline-block;
     width: 4px;
     height: 8px;
-    background: url("../images/business_list/icon14.png") no-repeat center
+    background: no-repeat center
 }
 
 .all_content .sorting .company .left:hover,
@@ -228,7 +228,7 @@
 
 .all_content .sorting .company .left:hover i,
 .all_content .sorting .company .right:hover i {
-    background: url("../images/business_list/icon15.png") no-repeat center
+    background: no-repeat center
 }
 
 .all_content .sorting .company .right {
@@ -236,7 +236,7 @@
 }
 
 .all_content .sorting .company .right i {
-    background: url("../images/business_list/icon17.png") no-repeat center
+    background: no-repeat center
 }
 
 .all_content .sorting .company .right:hover {
@@ -244,7 +244,7 @@
 }
 
 .all_content .sorting .company .right:hover i {
-    background: url("../images/business_list/icon16.png") no-repeat center
+    background: no-repeat center
 }
 
 .all_content .list_two {
@@ -292,7 +292,7 @@
     text-align: left;
     padding-left: 12px;
     line-height: 30px;
-    background: url("../images/business_list/s3_bg1.png") no-repeat center;
+    background: no-repeat center;
     position: absolute;
     top: 0;
     left: 0
@@ -345,7 +345,7 @@
     display: inline-block;
     width: 8px;
     height: 10px;
-    background: url("../images/business_list/icon20.png") no-repeat center;
+    background: no-repeat center;
     position: absolute;
     bottom: 2px;
     left: -8px
@@ -606,7 +606,7 @@
 .all_content .hot_recommend {
     width: 100%;
     height: 610px;
-    background: url("../images/business_list/bg4.jpg") no-repeat center;
+    background: no-repeat center;
     margin-top: 41px
 }
 
@@ -655,7 +655,7 @@
     width: 234px;
     height: 302px;
     float: left;
-    background: url("../images/business_list/s4_bg3.png") no-repeat center;
+    background: no-repeat center;
     margin: 0 7px 0px 0
 }
 
@@ -731,7 +731,7 @@
     font-size: 14px;
     margin-top: 38px;
     padding-left: 15px;
-    background: url("../images/business_list/icon17.png") no-repeat right 14px center
+    background: no-repeat right 14px center
 }
 
 .all_content .hot_recommend .recommend_show .card_each_li:hover {
@@ -740,7 +740,7 @@
 }
 
 .all_content .hot_recommend .recommend_show .card_each_li:hover .check_btn {
-    background: #5075c6 url("../images/business_list/icon16.png") no-repeat right 14px center;
+    background: #5075c6 no-repeat right 14px center;
     color: #fff;
     border: 1px solid #5075c6
 }
@@ -799,7 +799,7 @@
 .mask_box00 .mask_detailt {
     width: 650px;
     height: 62px;
-    background:url(../../ipr/images/pop/pop_tbg.png) no-repeat;
+    background: no-repeat;
     padding: 0 30px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -993,7 +993,6 @@
     height: 1px;
     margin: 11px auto 0;
     display: block;
-    background: url(../../ipr/images/pop/pop_icon16.png);
 }
 .mask_tired{
     width: 554px;
@@ -1038,7 +1037,7 @@
     font-size: 18px;
     color: #828282;
     margin:14px 0 28px;
-    background: url(../../ipr/images/pop/pop_icon11.png) center center no-repeat;
+    background: center center no-repeat;
 }
 .mask_tired>a{
     display: inline-block;

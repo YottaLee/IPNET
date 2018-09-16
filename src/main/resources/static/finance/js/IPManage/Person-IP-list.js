@@ -275,7 +275,6 @@ function searchIPState(patentID) {
 }
 
 function stateToText(state) {
-    alert(state);
     switch (state) {
         case "free":
             return "闲置状态";
@@ -298,51 +297,57 @@ function stateToText(state) {
 
 //向评估机构支付费用
 function payForEvaluation(patentID) {
-    var patent = "";
-    var holder = "";
-    var money = 0;
-    $.ajax({
-        url: '/Patent/searchPatentByID',
-        type: 'GET',
-        async: false,
-        data: {
-            patentID: patentID
-        },
-        success: function (data) {
-            patent = data.patent_name;
-            holder = data.patent_holder;
-
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-        }
-    });
 
     $.ajax({
-        url: '/evaluation/getEvaluation',
-        type: 'GET',
-        async: false,
-        data: {
-            patentID: patentID
-        },
-        success: function (data) {
-            money = data.money;
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+            url: '/Patent/searchPatentByID',
+            type: 'GET',
+            async: false,
+            data: {
+                patentID: patentID
+            },
+            success: function (data) {
+                var patent = data.patent_name;
+                var holder = data.patent_holder;
+                var money = 20000;//评估费用
+                //跳入向评估公司申请的支付界面
+                $.ajax({
+                    type: "GET",
+                    url: "/evaluation/getEvaluationId",
+                    success: function (evaluationFirm) {
+                        console.log(evaluationFirm);
+                        console.log(evaluationFirm.id);
+                        console.log(evaluationFirm.name);
+                        var transaction = {
+                            patentID: patentID,
+                            patent: patent,
+                            payer_id: data.userId,//付款方
+                            payee_id: evaluationFirm.id,//收款方
+                            payer: holder,
+                            payee: evaluationFirm.name,
+                            way: "专利评估",//评估机构只有一个
+                            money: money//评估费用
+                        };
+
+                        storage.setItem('pay_order', JSON.stringify(transaction));
+
+                        //支付评估费用
+                        infoFile("即将跳入支付界面");
+                        setTimeout(function () {
+                            window.location.href = "/ipnet/pay";
+                        }, 2000);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+                    }
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+            }
         }
-    });
+    );
 
-    //跳入向评估公司申请的支付界面
-    var transaction = {
-        patentID: patentID,
-        patent: patent,
-        holder: holder,
-        way: "专利评估",
-        money: money
-    };
 
-    window.location.href = "/ipnet/pay";
 }
 
 function payForInsurance(loanID) {
@@ -356,13 +361,18 @@ function payForInsurance(loanID) {
             var transaction = {
                 patentID: data.patentID,
                 patent: data.patent,
+                payer_id: "",//差支付人id
+                payee_id: "",//差收款方id
                 payer: data.person,
                 payee: data.insuranceCompany,
                 way: "专利质押贷款保证保险",
                 money: data.money
             };
-
-            window.location.href = "/ipnet/pay";
+            storage.setItem('pay_order', JSON.stringify(transaction));
+            infoFile("即将跳入支付界面");
+            setTimeout(function () {
+                window.location.href = "/ipnet/pay";
+            }, 2000);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
