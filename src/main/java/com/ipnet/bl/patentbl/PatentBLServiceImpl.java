@@ -214,14 +214,24 @@ public class PatentBLServiceImpl implements PatentBLService {
 
     @Override
     public List<PatentVO> searchPatent(String info) {
+        List<PatentVO> voList = new ArrayList<PatentVO>();
+        if(info.equals("")) {
+            List<Patent> patentList = this.patentDao.findAll();
+            voList = patentList.stream()
+                    .filter(patent -> patent!=null)
+                    .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
+                    .collect(Collectors.toList());
+        }
+        else{
         List<Patent> patentList = this.patentDao.searchPatent(info);
         if(patentList.size() == 0 ||patentList == null){
             return null;
         }
-        List<PatentVO> voList = patentList.stream()
+        voList = patentList.stream()
                 .filter(patent -> patent!=null)
                 .map(patent -> (PatentVO)this.transHelper.transTO(patent , PatentVO.class))
                 .collect(Collectors.toList());
+        }
         return voList;
     }
 
