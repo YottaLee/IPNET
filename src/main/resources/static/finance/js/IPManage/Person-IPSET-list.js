@@ -63,8 +63,25 @@ $.ajax({
     }
 });
 
-$("#demo-btn-addrow").on('click',function () {
-   //调入建池界面
+$("#poolsummit").on('click',function () {
+    var name = $('#poolName').val();   //名称
+    var creater = $('#poolCreater').val();// 创建者
+    var industry = $('#industry').val();  // 相关领域
+    var intro = $('#brief-intro').val();  //简单介绍
+    var date = new Date();
+    var nowMonth = date.getMonth() + 1;
+    var strDate = date.getDate();
+    var seperator = "-";
+    if (nowMonth >= 1 && nowMonth <= 9) {
+        nowMonth = "0" + nowMonth;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate; // 日期
+
+    console.log(nowDate);
+
 });
 
 function checkDetail(patentPoolID){

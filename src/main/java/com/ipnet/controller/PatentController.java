@@ -167,7 +167,7 @@ public class PatentController {
      * @throws IDNotExistsException
      */
     @RequestMapping("/sendInvitationFromPool")
-    public void sendInvitationFromPool(@RequestParam String patentId, @RequestParam String patentPoolId) throws IDNotExistsException{
+    public @ResponseBody void sendInvitationFromPool(@RequestParam String patentId, @RequestParam String patentPoolId) throws IDNotExistsException{
          service.sendInvitationFromPool(patentId , patentPoolId);
     }
 
@@ -179,7 +179,7 @@ public class PatentController {
      * @throws IDNotExistsException
      */
     @RequestMapping("/acceptInvitationFromPool")
-    public boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
+    public @ResponseBody boolean acceptInvitationFromPool(@RequestParam String patentId ,@RequestParam String patentPoolId) throws IDNotExistsException{
           return service.acceptInvitationFromPool(patentId , patentPoolId);
     }
 

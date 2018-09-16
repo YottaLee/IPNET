@@ -322,9 +322,13 @@ public class PatentBLServiceImpl implements PatentBLService {
         if (!this.patentDao.existsById(patentId)){
             throw new IDNotExistsException("patent id not exists");
         }
+        if(!this.patentpoolDao.existsById(patentPoolId)) {
+            throw new IDNotExistsException("pool id not exists");
+        }
         Patent patent = this.getPatentById(patentId);
         patent.addInvitationFromPool(patentPoolId);
         Invitation invitation = new Invitation();
+        invitation.setId(String.valueOf(Math.random()));
         invitation.setPatentId(patentId);
         invitation.setPatentPoolId(patentPoolId);
         invitation.setDate(new Date());
