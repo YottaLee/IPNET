@@ -20,8 +20,8 @@ public class Post {
     private String post_id;
     private String author;
     private String post_name;
-    @ElementCollection(targetClass =Post_tag .class,fetch = FetchType.LAZY)
-    private List<Post_tag> post_tag;
+    @ElementCollection(targetClass =String .class,fetch = FetchType.LAZY)
+    private List<String> post_tag;
     private Post_state post_state;
     private String content_url;
     private String brief_intro;
@@ -41,7 +41,7 @@ public class Post {
         this.post_state=Post_state.Draft;
     }
 
-    public Post(String post_id, String author, String post_name, List<Post_tag> post_tag, String brief_intro,String content_url){
+    public Post(String post_id, String author, String post_name, List<String> post_tag, String brief_intro,String content_url){
         this.post_id=post_id;
         this.author=author;
         this.post_name=post_name;

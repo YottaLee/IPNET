@@ -12,6 +12,6 @@ import javax.persistence.Table;
  */
 @Repository
 @Table(name = "invitation")
-public interface InvitationDao extends JpaRepository<Invitation , String> {
+public interface InvitationDao extends JpaRepository<Invitation , Long> {
 
 }

@@ -1,0 +1,310 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!--<link rel="stylesheet" href="/contract/css/basic.css">-->
+    <link rel="stylesheet" href="/contract/css/style.css">
+    <link rel="stylesheet" href="/common/bootstrap.css">
+    <link rel="stylesheet" href="/common/jquery-confirm.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/pay/css/rippler.css">
+    <script type="text/javascript" src="/common/jquery.js"></script>
+    <script type="text/javascript" src="/pay/js/jquery.rippler.js"></script>
+    <script type="text/javascript" src="/common/bootstrap.min.js"></script>
+    <title>IPNET代理合同</title>
+
+    <style>
+        .input-class{width: 160px}
+    </style>
+
+</head>
+
+<body>
+<div class="manage-modal">
+    <div class="flipbook-viewport">
+        <div class="container">
+            <div class="flipbook">
+                <div>
+                    <div class="fm-top">
+                        <!--<p>甲方合同编号：<span>HZ1213134864</span></p>-->
+                        <!--<p>乙方合同编号：<span>HZ4562312151</span></p>-->
+                    </div>
+                    <div class="fm-title">专利委托合同范本</div>
+                    <div class="fm-sign">
+                        <label>甲方(持有人)：</label>
+                        <input id="p1" class="input-class fm-input" type="text">
+                    </div>
+                    <div class="fm-sign">
+                        <label>乙方(代理人)：</label>
+                        <input id="p2" class="input-class fm-input" type="text">
+                    </div>
+                    <div class="fm-footer">
+                        <p>中华人民共和国专利局监制</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="manage-page">
+                        <!--<div class="fm-title" style="">专利实施许可合同</div>-->
+                        <div class="fm-sign">
+                            <label> 依据《中华人民共和国合同法》的有关规定，经双方当事人协商一致，签订本合同。</label>
+                        </div>
+                        <div class="fm-sign">
+                            <label> 专利名称：</label>
+                            <input id="p3" class="input-class fm-input" type="text">
+                        </div>
+                        <div class="fm-sign">
+                            <label>专利申请人：</label>
+                            <input id="p4" class="input-class fm-input" type="text">
+                        </div>
+                        <div class="fm-sign">
+                            <label>专利权人： </label>
+                            <input id="p5" class="input-class fm-input" type="text">
+                        </div>
+                        <div class="fm-sign">
+                            <label>申请日：</label>
+                            <input id="p6" class="input-class fm-input" type="text">
+                        </div>
+                        <div class="fm-sign">
+                            <label>申请号： </label>
+                            <input id="p7" class="input-class fm-input" type="text">
+                        </div>
+                        <div class="fm-sign">
+                            <label>专利号：</label>
+                            <input id="p8" class="input-class fm-input" type="text">
+                        </div>
+                        <div class="fm-sign">
+                            <label>专利有效期限:</label>
+                            <input id="p9" class="input-class fm-input" type="text">
+                        </div>
+                        <div class="fm-sign">
+                            <label>本专利权的保护范围: </label>
+                            <input id="p10" class="input-class fm-input" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="manage-page">
+                        <p>1.本许可证合同的授权性质<input id="p11" class="input-class" type="text">（注：许可证合同的授权性质，即在合同中明确授权性质是独占实施许可，排它实施许可，普通实施许可；对于产品发明或者实用新型专利，可以采取生产许可，使用许可或销售许可等形式。）</p>
+                        <p>2.本许可证合同的授权时长<input id="p12" class="input-class" type="text"></p>
+                        <p>3.转让方的主要义务</p>
+                        <p>(1)转让方应该承担支付专利年费的义务</p>
+                        <p>*专利持有人支付年费</p>
+                        <p>*按比例分红，默认比例<input id="p13" class="input-class" type="text" value="70">%专利持有人获取，<input id="p14" class="input-class" type="text" value="20">%专利池内其他人均分，10%专利运营商盈利</p>
+                        <p>（注：当事人也可以约定，由受让方支付年费，但应从许可证使用费中扣还受让方所支付的年费）</p>
+                        <p>(2)转让方应在合同生效后<input id="p15" class="input-class" type="text">天内向受让方提供下列技术资料：<input id="p16" class="input-class" type="text">的全部专利文件。 </p>
+                        <p>(3)转让方应向受让方提供下列技术指导：<input id="p17" class="input-class" type="text"></p>
+                        <p>5.受让方的主要义务</p>
+                        <p>(1)向转让方支付许可证使用费、数额为<input id="p18" class="input-class" type="text">按下列日期分期支付：<input id="p19" class="input-class" type="text"></p>
+                    </div>
+                </div>
+                <div>
+                    <div class="manage-page">
+                        <p class="wrap">（注：在采取提成支付的情况下，当事人可以约定：a.合同生效后<input id="p20" class="input-class" type="text">日内先向转让方支付<input id="p21" class="input-class" type="text">元；b.自合同产品投产之日起（或第一件合同产品销售之日起）<input id="p22" class="input-class" type="text">年内按产值（或销售额、或利润）的<input id="p23" class="input-class" type="text">%向转让方支付提成费。提成费每年支付一次，支付日期为每年<input id="p24" class="input-class" type="text">月<input id="p25" class="input-class" type="text">日前。）</p>
+                        <p>(2)按照如下期限和方式实施本专利技术：<input id="p26" class="input-class" type="text">。</p>
+                        <p>(3)（排它实施许可合同的）转让方在合同约定的技术范围、地域范围和期限范围内，不得许可合同外第三方实施该专利；（独占实施许可合同的）转让方在合同约定的技术范围、地域范围和期限范围内，不得自己实施或者许可第三方实施该专利。</p>
+                        <p>6.技术性能担保条款</p>
+                        <p>转让方承诺对本专利技术的下列技术性能和指标承担保证义务：<input id="p27" class="input-class" type="text">。 当本专利技术在实施中达不到约定的技术指标时，转让方应退还全部（或部分）使用费，并补偿受让方由此而花费的额外开支。</p>
+                        <p>7.转让方不对实施本专利可能产生的经济效益（如利润、产值、销售额等）承担保证义务。</p>
+                        <p>8.专利权完整担保条款</p>
+                        <p>转让方向受让方保证：在本合同订立时，本专利权不存在如下缺陷：</p>
+                        <p>(1)该专利权受物权或抵押权的约束；</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="manage-page">
+                        <p class="wrap">(2)本专利权的实施受到另一个现有的专利权限制；</p>
+                        <p>(3)有专利先用权的存在；</p>
+                        <p>(4)有强制许可证的存在</p>
+                        <p>(5)有被政府采取“计划推广许可”的情况；</p>
+                        <p>(6)本专利权项下的发明属非法所得。</p>
+                        <p>在本合同订立时，转让方如果不如实向受让方告知上述权利缺陷，受让方有权拒绝支付使用费，并要求转让方补偿由此而支付的额外开支。</p>
+                        <p>9.在本合同履行过程中，如发生第三方提出侵权的控诉，应由转让方到庭应诉并承担法律责任 本合同生效后如发生专利权被告无效的情况，合同随之解除。在专利无效宣告确定之前，受让方已经支付的使用费，受让方不得请求转让方返还。</p>
+                        <p>10.转让方的违约责任</p>
+                        <p>(1)由于转让方未交专利年费而导致专利权失效，应向转让方支付数额为<input id="p28" class="input-class" type="text">的违约金。</p>
+                        <p>(2)转让方逾期两个月未交付技术资料和提供技术指导，受让方有权解除合同。转让方应当返还使用费，支付数额为<input id="p29" class="input-class" type="text">的违约金。</p>
+                        <p>(3)（独占实施许可使用或者排他实施许可合同的）转让方，在已经许可受让方实施专利的范围内又就同一专利与他人订立专利实施许可合同的，应当返还非法所得，支付数额为<input id="p30" class="input-class" type="text">的违约金。</p>
+                        <p>(4)（独占实施许可合同的）转让方，在已经许可受让方实施专利的范围内自己又实施本专利技术的，应当停止实</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="manage-page">
+                        <p class="wrap">施行为，向受让方支付数额为<input id="p31" class="input-class" type="text">的违约金。</p>
+                        <p>11.受让方的违约责任</p>
+                        <p>(1)受让方逾期两个月不支付技术使用费的，转让方有权解除合同。受让方应当补交使用费，支付数额为<input id="p32" class="input-class" type="text">的违约金。</p>
+                        <p>(2)受让方实施专利超越合同约定的范围，或者未经转让方许可擅自与他人订立再转让许可合同，应当返还非法所得，支付数额为<input id="p33" class="input-class" type="text">的违约金。</p>
+                        <p>12.后续改进的分享办法</p>
+                        <p>双方当事人各自在本专利技术基础上做出的新的发明创造的专利申请权，归做出发明创造的一方所有，但另一方有权优先有偿受让和使用该技术成果。双方另有约定的以约定为准。</p>
+                        <p>本合同自双方当事人签字、盖章之日起生效。</p>
+                        <p>转让方负责人（或授权代表） 受让方负责人（或授权代表）</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="manage-page">
+                        <p>持有方：</p>
+                        <p>  </p>
+                        <p>名称：<input id="p34" class="input-class" type="text" value="" style="width: 150px"></p>
+                        <p>签字时间：<input id="p35" class="input-class" type="text" value=""></p>
+                        <p>卡户银行：<input id="p36" class="input-class" type="text" value=""></p>
+                        <p>户名：<input id="p37" class="input-class" type="text" value=""  style="width: 150px"></p>
+                        <p>账号：<input id="p38" class="input-class" type="text" value=""  style="width: 150px"></p>
+                        <br>
+                        <br>
+                        <p>被许可方：</p>
+                        <p>  </p>
+                        <p>名称：<input id="p39" class="input-class" type="text" value="" style="width: 150px"></p>
+                        <p>签字时间：<input id="p40" class="input-class" type="text" value=""></p>
+                        <p>卡户银行：<input id="p41" class="input-class" type="text" value=""></p>
+                        <p>户名：<input id="p42" class="input-class" type="text" value=""  style="width: 150px"></p>
+                        <p>账号：<input id="p43" class="input-class" type="text" value=""  style="width: 150px"></p>
+                    </div>
+                </div>
+                <div>
+                    <div class="manage-page" id="signPage">
+                        <p class="page-title wrap">
+                            签字页
+                        </p>
+                        <div class="party party-a" style="height: 70%">
+                            <div style="height: 182px">
+                                <div class="fm-sign">
+                                    <p class="wrap">(持有方盖章)</p>
+                                    <!--<button class="seal">盖章</button>-->
+                                    <!--<button class="qx-seal">取消</button>-->
+                                </div>
+                                <div class="box" style="display: block;margin-top: 0px;margin-bottom: 5px">
+                                    <span class="letter1"></span>
+                                    <span class="letter2"></span>
+                                    <span class="letter3"></span>
+                                    <span class="letter4"></span>
+                                    <span class="letter5"></span>
+                                    <span class="letter6"></span>
+                                    <span class="letter7"></span>
+                                    <span class="letter8"></span>
+                                    <span class="letter9"></span>
+                                    <span class="letter10"></span>
+                                    <span class="letter11"></span>
+                                    <span class="letter12"></span>
+                                    <span class="letter13"></span>
+                                </div>
+                            </div>
+                            <div class="fm-sign">
+                                <label>签订日期:</label>
+                                <input id="p44" class="input-class year" type="text" style="width: 25px">年
+                                <input id="p45" class="input-class date" type="text" style="width: 25px">月
+                                <input id="p46" class="input-class date" type="text" style="width: 25px">日
+                            </div>
+
+                        </div>
+                        <div class="party party-b" style="height: 70%">
+                            <div style="height: 182px">
+                                <div class="fm-sign">
+                                    <p class="wrap">(代理方盖章)</p>
+                                    <!--<button class="seal">盖章</button>-->
+                                    <!--<button class="qx-seal">取消</button>-->
+                                </div>
+                                <div class="box" style="display: block;margin-top: 0px;margin-bottom: 5px">
+                                    <span class="letter1"></span>
+                                    <span class="letter2"></span>
+                                    <span class="letter3"></span>
+                                    <span class="letter4"></span>
+                                    <span class="letter5"></span>
+                                    <span class="letter6"></span>
+                                    <span class="letter7"></span>
+                                    <span class="letter8"></span>
+                                    <span class="letter9"></span>
+                                    <span class="letter10"></span>
+                                    <span class="letter11"></span>
+                                    <span class="letter12"></span>
+                                    <span class="letter13"></span>
+                                </div>
+                            </div>
+                            <div class="fm-sign">
+                                <label>签订日期:</label>
+                                <input id="p47" class="input-class year" type="text" style="width: 25px">年
+                                <input id="p48" class="input-class date" type="text" style="width: 25px">月
+                                <input id="p49" class="input-class date" type="text" style="width: 25px">日
+                            </div>
+                        </div>
+                        <div class="col-md-8" style="margin-left: auto;margin-right: auto">
+                            <button id="write_done" class="btn btn-default rippler rippler-inverse confirm_pay" href="#"  style="margin-left: 150px;background: #eadbaa">
+                                <span><i class="fas fa-check"></i></span>&nbsp;草拟完成
+                            </button>
+                            <button id="agree" class="btn btn-default rippler rippler-inverse cancel_pay" href="#"  style="background: #eadbaa;display: none;margin-left: 150px">
+                                <span><i class="fas fa-check"></i></span>&nbsp;同意合同
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <button class="prev-btn"></button>
+        <button class="next-btn"></button>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="/common/jquery.js"></script>
+<script type="text/javascript" src="/contract/js/modernizr.2.5.3.min.js"></script>
+<script type="text/javascript" src="/common/jquery-confirm.js"></script>
+<!--<script type="text/javascript" src="/contract/js/turn.js"></script>-->
+<!--<script type="text/javascript" src="/contract/js/turn.html4.js"></script>-->
+<script type="text/javascript">
+    function loadApp() {
+        $('.flipbook').turn({
+            width: 914,
+            height: 643,
+            elevation: 500,
+            gradients: true,
+            autoCenter: true
+
+        });
+    }
+    yepnope({
+        test: Modernizr.csstransforms,
+        yep: ['/contract/js/turn.js'],
+        nope: ['/contract/js/turn.html4.min.js'],
+        both: ['/contract/css/basic.css'],
+        complete: loadApp
+    });
+
+    $(".prev-btn").on("click", function (event) {
+        $(".flipbook").turn("previous");
+    });
+    //上一页按钮
+    $(".next-btn").on("click", function (event) {
+        $(".flipbook").turn("next");
+    });
+
+    $('.seal').on('click', function () {
+        var str = '可以自定义公司名称'; //假设公司名称
+        var letter = str.split('');
+        var o = 7 - Math.floor(letter.length / 2);
+        $(this).parent().siblings('.box').children('span').html();
+        for (var i = 0; i < letter.length; i++) {
+            $(this).parent().siblings('.box').children('span').eq(o + i).html(letter[i]);
+        }
+        $(this).hide().siblings('.qx-seal').show().parent().siblings('.box').show();
+    })
+
+    $('.qx-seal').on('click', function () {
+        $(this).hide().siblings('.seal').show().parent().siblings('.box').hide();
+    })
+
+    $('.disabled').find('input').attr('disabled', 'disabled');
+    $('.disabled').find('.seal').attr('disabled', 'disabled');
+</script>
+<script type="text/javascript" src="/contract/controller/proxy_controller.js"></script>
+
+</body>
+</html>

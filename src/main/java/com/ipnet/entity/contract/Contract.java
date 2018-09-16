@@ -1,5 +1,6 @@
 package com.ipnet.entity.contract;
 
+import com.ipnet.enums.ContractState;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class  Contract {
 
+
     private String partyA;
     private String partyB;
     private String addressA;
@@ -23,6 +25,15 @@ public class  Contract {
     private String seal2_url;
     private Date date1;
     private Date date2;
+    private ContractState contractType;
+
+    public ContractState getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(ContractState contractType) {
+        this.contractType = contractType;
+    }
 
     public String getPartyA() {
         return partyA;

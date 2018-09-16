@@ -15,8 +15,8 @@ import java.util.List;
 
 public interface PostBLService {
     String createID(String author);
-    ResultMessage publishArticle(String post_id, String author, String post_name, ArrayList<Post_tag> post_tag,String brief_intro, String content) throws IOException;
-    ResultMessage edit(String post_id, String post_name, ArrayList<Post_tag> post_tag, String content_url);
+    ResultMessage publishArticle(String post_id, String author, String post_name, ArrayList<String> post_tag,String brief_intro, String content) throws IOException;
+    ResultMessage edit(String post_id, String post_name, ArrayList<String> post_tag, String content_url);
     ResultMessage deleteArticle(String post_id);
     ResultMessage remark(String post_id, String reviewer, String remark_content);
     PostVO readArticle(String post_id,String reader) throws IOException;

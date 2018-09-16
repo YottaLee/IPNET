@@ -2,6 +2,7 @@ package com.ipnet.bl.loanbl;
 
 import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.blservice.EvaluationBLService;
+import com.ipnet.blservice.loanblservice.LoanAllBLService;
 import com.ipnet.blservice.loanblservice.LoanApplicantBLService;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Loan;
@@ -24,6 +25,8 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     private EvaluationBLService evaluationBLService;
     @Autowired
     private PatentHelper patentHelper;
+    @Autowired
+    private LoanAllBLService loanAllBLService;
 
     /**
      * 将该专利的质押贷款保证保险申请提供给保险公司
@@ -111,6 +114,7 @@ public class LoanApplicantBL implements LoanApplicantBLService{
         loan.setPatentID(patentID);
         loan.setPerson(userID);
         loan.setTime(time);
+        loan.setEvaluation(evaluationBLService.getValue(patentID));
         String patentName= null;
         try {
             patentName = patentHelper.receivePatentName(patentID);
@@ -141,7 +145,16 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     @Override
     public boolean ifBankChosen(String loanID) {
         Optional<Loan> loanOptional=loanDao.findById(loanID);
-        return loanOptional.map(loan ->loan.getBank()==null ||loan.getBank().equals("")).orElse(false);
+        if(loanOptional.isPresent()){
+            Loan loan=loanOptional.get();
+            if(loan.getBank()==null||loan.getBank().equals("")){
+                return false;
+            }else {
+                loanAllBLService.changeState(loanID,Patent_loan_state.to_be_evaluation);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

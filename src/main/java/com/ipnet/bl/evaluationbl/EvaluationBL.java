@@ -147,4 +147,19 @@ public class EvaluationBL implements EvaluationBLService {
             return false;
         }
     }
+
+    @Override
+    public double getValue(String patentID){
+        ArrayList<Evaluation> evaluations=evaluationDao.findByPatentIDSortByTime(patentID);
+        if(evaluations==null || evaluations.size()==0){
+            return 0;
+        }else {
+            for (Evaluation evaluation : evaluations) {
+                if (evaluation.isOver()) {
+                    return evaluation.getEvaluation();
+                }
+            }
+            return 0.0;
+        }
+    }
 }

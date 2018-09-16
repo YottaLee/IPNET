@@ -18,4 +18,6 @@ public interface EvaluationBLService {
 
     Evaluator getEvaluator();
 
+    double getValue(String patentID);
+
 }

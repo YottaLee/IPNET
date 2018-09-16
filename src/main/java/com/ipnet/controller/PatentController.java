@@ -78,6 +78,7 @@ public class PatentController {
      * @param userId 用户Id   //即根据专利拥有者获得专利
      * @return 专利列表
      */
+
     @RequestMapping("/getPatentList")
     @ResponseBody
     public List<PatentVO> getPatentList(@RequestParam String userId) {
@@ -166,7 +167,7 @@ public class PatentController {
      * @throws IDNotExistsException
      */
     @RequestMapping("/sendInvitationFromPool")
-    public void sendInvitationFromPool(@RequestParam String patentId, @RequestParam String patentPoolId) throws IDNotExistsException{
+    public @ResponseBody void sendInvitationFromPool(@RequestParam String patentId, @RequestParam String patentPoolId) throws IDNotExistsException{
          service.sendInvitationFromPool(patentId , patentPoolId);
     }
 
@@ -178,7 +179,7 @@ public class PatentController {
      * @throws IDNotExistsException
      */
     @RequestMapping("/acceptInvitationFromPool")
-    public boolean acceptInvitationFromPool(String patentId , String patentPoolId) throws IDNotExistsException{
+    public @ResponseBody boolean acceptInvitationFromPool(@RequestParam String patentId ,@RequestParam String patentPoolId) throws IDNotExistsException{
           return service.acceptInvitationFromPool(patentId , patentPoolId);
     }
 

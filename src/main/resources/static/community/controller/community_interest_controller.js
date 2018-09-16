@@ -11,7 +11,7 @@ $(document).ready(function(){
         async:false,
         success:function(data){
             article_lists=data;
-            alert(JSON.stringify(data));
+            // alert(JSON.stringify(data));
         },
         error:function(data){
             alert("fail");
@@ -65,7 +65,7 @@ $(document).ready(function(){
         async:false,
         success:function(data){
             user_list=data;
-            alert(JSON.stringify(data));
+            // alert(JSON.stringify(data));
         },
         error:function(data){
             alert("fail");
