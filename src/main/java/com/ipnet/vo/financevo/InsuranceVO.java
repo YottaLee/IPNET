@@ -32,6 +32,7 @@ public class InsuranceVO {
     private String insuranceCompany;//保险公司名称
     private String evaluationCompany;//评估机构名称
     private double money; //保费
+    private boolean isPass;
 
     public InsuranceVO(Insurance insurance) throws IDNotExistsException {
         this.id=insurance.getId();
@@ -44,5 +45,6 @@ public class InsuranceVO {
         this.insuranceCompany=insurance.getInsurance_id();
         this.evaluationCompany=insurance.getEvaluationCompany();
         this.money=insurance.getMoney();
+        this.isPass=insurance.isIfPass();
     }
 }

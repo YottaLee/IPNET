@@ -2,6 +2,7 @@ package com.ipnet.bl.loanbl;
 
 import com.ipnet.blservice.loanblservice.LoanInsuranceBLService;
 import com.ipnet.dao.InsuranceDao;
+import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Insurance;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
@@ -14,8 +15,21 @@ import java.util.ArrayList;
 public class LoanInsuranceBL implements LoanInsuranceBLService{
     @Autowired
     private InsuranceDao insuranceDao;
+
+    @Autowired
+    private LoanDao loanDao;
+
     @Override
-    public InsuranceVO getInsurance(String id) throws IDNotExistsException {
+    public ResultMessage createInsurance(InsuranceVO insuranceVO) {
+        Insurance insurance=new Insurance(insuranceVO);
+        insuranceDao.saveAndFlush(insurance);
+        return ResultMessage.Success;
+    }
+
+    @Override
+    public InsuranceVO getInsurance(String loanid) throws IDNotExistsException {
+        //不确定
+        String id=loanDao.getOne(loanid).getPolicy();
         Insurance insurance=insuranceDao.getOne(id);
         return new InsuranceVO(insurance);
     }

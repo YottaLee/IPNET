@@ -6,6 +6,7 @@ import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.InsuranceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,15 @@ public class LoanInsuranceController {
     @Autowired
     private LoanInsuranceBLService loanInsuranceBLService;
 
+    /**
+     * @Author: Jane
+     * @Description: insurancevo的id由后台自动生成 格式为yyyyMMdd-HHmmss-person
+     * @Date: 2018/9/29 10:39
+     */
+    @RequestMapping("/createNewInsurance")
+    public  @ResponseBody ResultMessage createInsurance(@RequestBody InsuranceVO insuranceVO){
+        return loanInsuranceBLService.createInsurance(insuranceVO);
+    }
 
     /**
      * 获取保险信息

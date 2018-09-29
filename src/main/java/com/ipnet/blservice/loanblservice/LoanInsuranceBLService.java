@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public interface LoanInsuranceBLService {
 
+    ResultMessage createInsurance(InsuranceVO insuranceVO);
+
     //获取保险信息
     InsuranceVO getInsurance(String loanid) throws IDNotExistsException;
 
