@@ -2,6 +2,7 @@ package com.ipnet.vo.financevo;
 
 import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.entity.Insurance;
+import com.ipnet.enums.IfPass;
 import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.utility.IDNotExistsException;
 import lombok.*;
@@ -32,7 +33,7 @@ public class InsuranceVO {
     private String insuranceCompany;//保险公司名称
     private String evaluationCompany;//评估机构名称
     private double money; //保费
-    private boolean isPass;
+    private IfPass isPass;
 
     public InsuranceVO(Insurance insurance) throws IDNotExistsException {
         this.id=insurance.getId();
@@ -40,11 +41,11 @@ public class InsuranceVO {
         this.patentID=insurance.getPatent_id();
         this.patent=patentHelper.receivePatentName(insurance.getPatent_id());
         this.person=insurance.getPerson();
-        this.url=insurance.getUrl();
+        this.url=insurance.getInsurance_url();
         this.bank=insurance.getBank();
         this.insuranceCompany=insurance.getInsurance_id();
         this.evaluationCompany=insurance.getEvaluationCompany();
         this.money=insurance.getMoney();
-        this.isPass=insurance.isIfPass();
+        this.isPass=insurance.getIfPass();
     }
 }

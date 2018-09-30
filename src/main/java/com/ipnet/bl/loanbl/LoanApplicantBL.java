@@ -4,11 +4,13 @@ import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.blservice.loanblservice.LoanAllBLService;
 import com.ipnet.blservice.loanblservice.LoanApplicantBLService;
+import com.ipnet.blservice.loanblservice.LoanInsuranceBLService;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Loan;
 import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
+import com.ipnet.vo.financevo.CreateInsuranceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,8 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     private PatentHelper patentHelper;
     @Autowired
     private LoanAllBLService loanAllBLService;
+    @Autowired
+    private LoanInsuranceBLService loanInsuranceBLService;
 
     /**
      * 将该专利的质押贷款保证保险申请提供给保险公司
@@ -45,6 +49,8 @@ public class LoanApplicantBL implements LoanApplicantBLService{
             loan.setPolicy(url);
             loan.setState(Patent_loan_state.to_be_checked_by_insurance);
             loanDao.saveAndFlush(loan);
+            CreateInsuranceVO createInsuranceVO=new CreateInsuranceVO(loanID,loan.getPolicy(),loan.getInsurance());
+            loanInsuranceBLService.createInsurance(createInsuranceVO);
             return ResultMessage.Success;
         }
         return ResultMessage.Fail;

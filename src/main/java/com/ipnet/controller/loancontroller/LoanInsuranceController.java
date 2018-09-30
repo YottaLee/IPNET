@@ -1,6 +1,7 @@
 package com.ipnet.controller.loancontroller;
 
 import com.ipnet.blservice.loanblservice.LoanInsuranceBLService;
+import com.ipnet.enums.IfPass;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.InsuranceVO;
@@ -30,10 +31,10 @@ public class LoanInsuranceController {
      * @Description: insurancevo的id由后台自动生成 格式为yyyyMMdd-HHmmss-person
      * @Date: 2018/9/29 10:39
      */
-    @RequestMapping("/createNewInsurance")
-    public  @ResponseBody ResultMessage createInsurance(@RequestBody InsuranceVO insuranceVO){
-        return loanInsuranceBLService.createInsurance(insuranceVO);
-    }
+//    @RequestMapping("/createNewInsurance")
+//    public  @ResponseBody ResultMessage createInsurance(@RequestBody InsuranceVO insuranceVO){
+//        return loanInsuranceBLService.createInsurance(insuranceVO);
+//    }
 
     /**
      * 获取保险信息
@@ -53,7 +54,7 @@ public class LoanInsuranceController {
      * @return ResultMessage
      */
     @RequestMapping("/ifInsurance")
-    public @ResponseBody ResultMessage ifInsurance(@RequestParam String id,@RequestParam boolean ifPass){
+    public @ResponseBody ResultMessage ifInsurance(@RequestParam String id,@RequestParam IfPass ifPass){
         return loanInsuranceBLService.ifInsurance(id,ifPass);
     }
 
