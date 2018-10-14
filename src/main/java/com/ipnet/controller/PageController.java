@@ -110,6 +110,11 @@ public class PageController {
         return "/contract/usage_trade_contract";
     }
 
+    @RequestMapping("chain_view")
+    public String chain_view(){
+        return "/block-chain/chain-view";
+    }
+
     /* 登录 注册 */
     @RequestMapping("login")
     public String loginIndex(){

@@ -340,7 +340,9 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
+        localStorage.setItem("write_or_agree","agree");
         if(localStorage.getItem("write_or_agree")=="agree") {
+            alert("yes");
             $("#agree").show();
             $("#write_done").hide();
             var temp = JSON.parse(localStorage.getItem("usage_trade_contract"));
