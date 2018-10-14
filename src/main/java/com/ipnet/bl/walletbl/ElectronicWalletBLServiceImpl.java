@@ -122,7 +122,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService 
                     if (true) {
                         companyUser.getBank_accounts().add(card);
                         accountBLService.addAccount(card, Math.random(),userId);
-                        companyUserDao.save(companyUser);
+                        companyUserDao.saveAndFlush(companyUser);
                         return ResultMessage.Success;
                     } else
                         return ResultMessage.Fail;
@@ -136,7 +136,8 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService 
                     //密码验证
                     if (true) {
                         personalUser.getBankAccount().add(card);
-                        userDao.save(personalUser);
+                        accountBLService.addAccount(card, Math.random(),userId);
+                        userDao.saveAndFlush(personalUser);
                         return ResultMessage.Success;
                     } else
                         return ResultMessage.Fail;
@@ -185,9 +186,9 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService 
     @Override
     public int getPoint(String userId, Role userType) {
         switch (userType) {
-            case PersonalUser:
-                return companyUserDao.findCompanyUserById(userId).getPoints();
             case CompanyUser:
+                return companyUserDao.findCompanyUserById(userId).getPoints();
+            case PersonalUser:
                 return userDao.findPersonalUserById(userId).getCredits();
         }
         return 0;

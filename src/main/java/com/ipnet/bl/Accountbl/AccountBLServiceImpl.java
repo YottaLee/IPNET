@@ -92,7 +92,7 @@ public class AccountBLServiceImpl implements AccountBLService {
          account.setAcountId(accountId);
          account.setBalance(amount);
          account.setUserId(userId);
-         this.accountDao.saveAndFlush(account);
+         accountDao.saveAndFlush(account);
     }
 
     @Override

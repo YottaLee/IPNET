@@ -20,7 +20,6 @@ $.ajax({
             "                                <th>专利申请时间</th>\n" +
             "                                <th>状态</th>\n" +
             "                                <th>专利池号</th>\n" +
-            "                                <th>合同详情</th>\n" +
             "                                <th>转让/许可</th>\n" +
             "                                <th>申请评估</th>\n" +
             "                                <th>申请质押贷款</th>\n" +
@@ -36,9 +35,6 @@ $.ajax({
                 "                                    <div class=\"label label-table label-success\">" + data[i].state + "</div>\n" +
                 "                                </td>\n" +
                 "                                <td><i class=\"demo-pli-mine\"></i>" + data[i].pool_id + "</td>\n" +
-                "                                <td>\n" +
-                "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-warning\" onclick=\"toIndex()\">合同详情</button>\n" +
-                "                                </td>\n" +
                 "                                <td>\n" +
                 "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-info\"  id=\"transaction-" + data[i].patent_id + "\"onclick=\"transaction(this.id)\">转让/许可</button>\n" +
                 "                                </td>\n" +
