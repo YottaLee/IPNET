@@ -1,16 +1,16 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
-    var user_id=localStorage.getItem("user_id");
+    var user_id = localStorage.getItem("user_id");
 
-    var current_pay_card="";
-    var current_receive_card="";
+    var current_pay_card = "";
+    var current_receive_card = "";
 
-    var way_para="";
+    var way_para = "";
 
-    var payer_role="";//付款方角色
-    var payee_role="";//收款方角色
+    var payer_role = "";//付款方角色
+    var payee_role = "";//收款方角色
 
-    var pay_order=JSON.parse(localStorage.getItem("pay_order"));
+    var pay_order = JSON.parse(localStorage.getItem("pay_order"));
     $("#patent_id").text(pay_order.patentID);
     $("#patent_name").text(pay_order.patent);
     $("#payer").text(pay_order.payer);
@@ -20,18 +20,18 @@ $(document).ready(function(){
 
     console.log(JSON.stringify(pay_order));
 
-    if(pay_order.way=="专利许可"){
-        way_para="license";
-    }else if(pay_order.way=="专利转让"){
-        way_para="transfer";
-    }else if(pay_order.way=="专利评估"){
-        way_para="evaluation";
-    }else if(pay_order.way=="专利贷款"){
-        way_para="loan";
-    }else if(pay_order.way=="专利保险"){
-        way_para="insurance";
-    }else {
-        way_para="claim";
+    if (pay_order.way == "专利许可") {
+        way_para = "license";
+    } else if (pay_order.way == "专利转让") {
+        way_para = "transfer";
+    } else if (pay_order.way == "专利评估") {
+        way_para = "evaluation";
+    } else if (pay_order.way == "专利贷款") {
+        way_para = "loan";
+    } else if (pay_order.way == "专利保险") {
+        way_para = "insurance";
+    } else {
+        way_para = "claim";
     }
     console.log(way_para);
 
@@ -52,76 +52,76 @@ $(document).ready(function(){
     $("#time").text(currentdate);
 
     $.ajax({
-        type : 'POST',
-        url : '/user/getUserRole',
-        data:{userID:pay_order.payer_id},
-        async:false,
-        success:function(data){
-            payer_role=data;
+        type: 'POST',
+        url: '/user/getUserRole',
+        data: {userID: pay_order.payer_id},
+        async: false,
+        success: function (data) {
+            payer_role = data;
         },
-        error:function(data){
+        error: function (data) {
 
         }
     });
 
     $.ajax({
-        type : 'POST',
-        url : '/user/getUserRole',
-        data:{userID:pay_order.payee_id},
-        async:false,
-        success:function(data){
-            payee_role=data;
+        type: 'POST',
+        url: '/user/getUserRole',
+        data: {userID: pay_order.payee_id},
+        async: false,
+        success: function (data) {
+            payee_role = data;
         },
-        error:function(data){
+        error: function (data) {
 
         }
     });
 
     $.ajax({
-        type : 'POST',
-        url : '/userInfo/getAllAccountId',
-        data:{userId:pay_order.payer_id,userType:payer_role},
-        async:false,
-        success:function(data){
-            console.log("payer_account:"+data.length+"   "+payer_role);
-            for(var i=0;i<data.length;i++){
-                var new_element="<div class=\"cover atvImg\" >\n" +
-                    "                <div class=\"atvImg-layer pay\" data-img=\"https://i.imgur.com/R8xnkBw.png\" data-number='"+data[i]+"'></div>\n" +
+        type: 'POST',
+        url: '/userInfo/getAllAccountId',
+        data: {userId: pay_order.payer_id, userType: payer_role},
+        async: false,
+        success: function (data) {
+            console.log("payer_account:" + data.length + "   " + payer_role);
+            for (var i = 0; i < data.length; i++) {
+                var new_element = "<div class=\"cover atvImg\" >\n" +
+                    "                <div class=\"atvImg-layer pay\" data-img=\"https://i.imgur.com/R8xnkBw.png\" data-number='" + data[i] + "'></div>\n" +
                     "            </div>";
                 $("#pay_card_list").append(new_element);
             }
         },
-        error:function(data){
+        error: function (data) {
 
         }
     });
 
     $.ajax({
-        type : 'POST',
-        url : '/userInfo/getAllAccountId',
-        data:{userId:pay_order.payee_id,userType:payee_role},
-        async:false,
-        success:function(data){
-        console.log("payee_account:"+data.length+"   "+payee_role);
-            for(var i=0;i<data.length;i++){
-                var new_element="<div class=\"cover atvImg\" >\n" +
-                    "                <div class=\"atvImg-layer receive\" data-img=\"https://i.imgur.com/R8xnkBw.png\" data-number='"+data[i]+"'></div>\n" +
+        type: 'POST',
+        url: '/userInfo/getAllAccountId',
+        data: {userId: pay_order.payee_id, userType: payee_role},
+        async: false,
+        success: function (data) {
+            console.log("payee_account:" + data.length + "   " + payee_role);
+            for (var i = 0; i < data.length; i++) {
+                var new_element = "<div class=\"cover atvImg\" >\n" +
+                    "                <div class=\"atvImg-layer receive\" data-img=\"https://i.imgur.com/R8xnkBw.png\" data-number='" + data[i] + "'></div>\n" +
                     "            </div>";
                 $("#receive_card_list").append(new_element);
             }
         },
-        error:function(data){
+        error: function (data) {
 
         }
     });
 
     atvImg();
 
-    $(".atvImg").click(function(){
-        if($(this).find(".receive_card_number").attr("data-number")==undefined){
-            current_pay_card=$(this).find(".pay_card_number").attr("data-number");
-        }else{
-            current_receive_card=$(this).find(".receive_card_number").attr("data-number");
+    $(".atvImg").click(function () {
+        if ($(this).find(".receive_card_number").attr("data-number") == undefined) {
+            current_pay_card = $(this).find(".pay_card_number").attr("data-number");
+        } else {
+            current_receive_card = $(this).find(".receive_card_number").attr("data-number");
         }
         $(this).find(".checked").show();
         $(this).siblings().find(".checked").hide();
@@ -139,7 +139,7 @@ $(document).ready(function(){
             closeAnimation: 'right',
             opacity: 0.5,
             confirm: function () {
-                if(current_pay_card==""||current_receive_card==""){
+                if (current_pay_card == "" || current_receive_card == "") {
                     $.alert({
                         title: '请先选择银行卡!',
                         content: '您还未选择付款或收款的银行卡，请先选中银行卡',
@@ -151,21 +151,27 @@ $(document).ready(function(){
 
                         }
                     });
-                }else {
+                } else {
                     $.ajax({
-                        type : 'POST',
-                        url : '/MoneyMove',
-                        data:{srcAccount:current_pay_card,destAccount:current_receive_card,amount:pay_order.money,paytype:way_para,patentId:pay_order.patentID},
-                        async:false,
-                        success:function(data){
+                        type: 'POST',
+                        url: '/MoneyMove',
+                        data: {
+                            srcAccount: current_pay_card,
+                            destAccount: current_receive_card,
+                            amount: pay_order.money,
+                            paytype: way_para,
+                            patentId: pay_order.patentID
+                        },
+                        async: false,
+                        success: function (data) {
 
                         },
-                        error:function(){
-                           // alert("fail");
+                        error: function () {
+                            // alert("fail");
                         }
                     });
 
-                    if(way_para=="evaluation"){
+                    if (way_para == "evaluation") {
                         var storage = window.localStorage;
                         var loanID = storage.getItem('loan_id');
                         console.log(loanID);
@@ -175,56 +181,38 @@ $(document).ready(function(){
                         }
                         else {
                             $.ajax({
-                                url: '/applicant/ifBankChosen',
-                                type: 'GET',
-                                data: {
-                                    loanID: loanID
-                                },
-                                success: function (data) {
-                                    if (data) {
-                                        window.location.href = "/ipnet/Person-IP-list";
-                                    }
-                                    else {
-                                        $.ajax({
-                                            url: '/applicant/ifBankChosen',
-                                            type: 'GET',
-                                            data: {
-                                                loanID: loanID
-                                            },
-                                            success: function (ifChosen) {
-                                                if (ifChosen) {
-                                                    $.ajax({
-                                                        url: '/applicant/changeEvaluationState',
-                                                        type: 'POST',
-                                                        data: {
-                                                            loanID: loanID
-                                                        },
-                                                        success: function () {
-                                                            window.location.href = "/ipnet/Person-IP-list";
-                                                        },
-                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                                                        }
-                                                    });
-                                                }
-                                                else {
-                                                    storage.removeItem("patent_id");
-                                                    storage.removeItem("loan_id");
+                                    url: '/applicant/ifBankChosen',
+                                    type: 'GET',
+                                    data: {
+                                        loanID: loanID
+                                    },
+                                    success: function (data) {
+                                        if (data) {
+                                            $.ajax({
+                                                url: '/applicant/changeEvaluationState',
+                                                type: 'POST',
+                                                data: {
+                                                    loanID: loanID
+                                                },
+                                                success: function () {
                                                     window.location.href = "/ipnet/Person-IP-list";
+                                                },
+                                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                                                 }
-
-                                            },
-                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                                            }
-                                        })
+                                            });
+                                        }
+                                        else {
+                                            storage.removeItem("patent_id");
+                                            storage.removeItem("loan_id");
+                                            window.location.href = "/ipnet/Person-IP-list";
+                                        }
+                                    },
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                                     }
-
-                                },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                                 }
-                            })
+                            );
                         }
                     }
 
@@ -263,7 +251,7 @@ $(document).ready(function(){
                     confirmButtonClass: 'btn-primary',
                     icon: 'fa fa-info',
                     animation: 'zoom',
-                    confirm:function(){
+                    confirm: function () {
 
                     }
                 });
@@ -271,9 +259,10 @@ $(document).ready(function(){
         });
     });
 
-});
+})
+;
 
-function atvImg(){
+function atvImg() {
 
     var d = document,
         de = d.documentElement,
@@ -284,21 +273,21 @@ function atvImg(){
         totalImgs = imgs.length,
         supportsTouch = 'ontouchstart' in win || navigator.msMaxTouchPoints;
 
-    if(totalImgs <= 0){
+    if (totalImgs <= 0) {
         return;
     }
 
-    for(var l=0;l<totalImgs;l++){
+    for (var l = 0; l < totalImgs; l++) {
 
         var thisImg = imgs[l],
             layerElems = thisImg.querySelectorAll('.atvImg-layer'),
             totalLayerElems = layerElems.length;
 
-        if(totalLayerElems <= 0){
+        if (totalLayerElems <= 0) {
             continue;
         }
 
-        while(thisImg.firstChild) {
+        while (thisImg.firstChild) {
             thisImg.removeChild(thisImg.firstChild);
         }
 
@@ -308,50 +297,50 @@ function atvImg(){
             layersHTML = d.createElement('div'),
             layers = [];
 
-        thisImg.id = 'atvImg__'+l;
+        thisImg.id = 'atvImg__' + l;
         containerHTML.className = 'atvImg-container';
         shineHTML.className = 'atvImg-shine';
         shadowHTML.className = 'atvImg-shadow';
         layersHTML.className = 'atvImg-layers';
 
-        for(var i=0;i<totalLayerElems;i++){
+        for (var i = 0; i < totalLayerElems; i++) {
 
             var layer = d.createElement('div'),
                 imgSrc = layerElems[i].getAttribute('data-img');
 
             layer.className = 'atvImg-rendered-layer';
-            layer.setAttribute('data-layer',i+"");
-            layer.style.backgroundImage = 'url('+imgSrc+')';
+            layer.setAttribute('data-layer', i + "");
+            layer.style.backgroundImage = 'url(' + imgSrc + ')';
 
-            var nums1=d.createElement('span');
-            nums1.setAttribute("style","color: black;padding-left: 30px");
-            nums1.innerText="****";
+            var nums1 = d.createElement('span');
+            nums1.setAttribute("style", "color: black;padding-left: 30px");
+            nums1.innerText = "****";
 
-            var nums2=d.createElement('span');
-            nums2.setAttribute("style","color: black;padding-left: 40px");
-            nums2.innerText="****";
+            var nums2 = d.createElement('span');
+            nums2.setAttribute("style", "color: black;padding-left: 40px");
+            nums2.innerText = "****";
 
-            var nums3=d.createElement('span');
-            nums3.setAttribute("style","color: black;padding-left: 40px");
-            nums3.innerText="****";
+            var nums3 = d.createElement('span');
+            nums3.setAttribute("style", "color: black;padding-left: 40px");
+            nums3.innerText = "****";
 
-            var nums4=d.createElement('span');
-            nums4.setAttribute("style","color: black;padding-left: 40px");
+            var nums4 = d.createElement('span');
+            nums4.setAttribute("style", "color: black;padding-left: 40px");
             nums4.innerText = layerElems[i].getAttribute("data-number").substring(12);
 
-            var checked=d.createElement('span');
-            checked.setAttribute("style","display:none;top: 10px;left: 280px;position:absolute");
-            checked.setAttribute("class","checked");
-            checked.innerHTML="<i class=\"fas fa-check-circle\"></i>";
+            var checked = d.createElement('span');
+            checked.setAttribute("style", "display:none;top: 10px;left: 280px;position:absolute");
+            checked.setAttribute("class", "checked");
+            checked.innerHTML = "<i class=\"fas fa-check-circle\"></i>";
 
-            var letter_area=d.createElement('div');
-            if(layerElems[i].className=="atvImg-layer pay") {
+            var letter_area = d.createElement('div');
+            if (layerElems[i].className == "atvImg-layer pay") {
                 letter_area.setAttribute("class", "pay_card_number");
-            }else{
+            } else {
                 letter_area.setAttribute("class", "receive_card_number");
             }
-            letter_area.setAttribute("style","margin-top: 40px");
-            letter_area.setAttribute("data-number",layerElems[i].getAttribute("data-number"));
+            letter_area.setAttribute("style", "margin-top: 40px");
+            letter_area.setAttribute("data-number", layerElems[i].getAttribute("data-number"));
             letter_area.appendChild(nums1);
             letter_area.appendChild(nums2);
             letter_area.appendChild(nums3);
@@ -371,58 +360,58 @@ function atvImg(){
         thisImg.appendChild(containerHTML);
 
         var w = thisImg.clientWidth || thisImg.offsetWidth || thisImg.scrollWidth;
-        thisImg.style.transform = 'perspective('+ w*3 +'px)';
+        thisImg.style.transform = 'perspective(' + w * 3 + 'px)';
 
-        if(supportsTouch){
+        if (supportsTouch) {
             win.preventScroll = false;
 
-            (function(_thisImg,_layers,_totalLayers,_shine) {
-                thisImg.addEventListener('touchmove', function(e){
-                    if (win.preventScroll){
+            (function (_thisImg, _layers, _totalLayers, _shine) {
+                thisImg.addEventListener('touchmove', function (e) {
+                    if (win.preventScroll) {
                         e.preventDefault();
                     }
-                    processMovement(e,true,_thisImg,_layers,_totalLayers,_shine);
+                    processMovement(e, true, _thisImg, _layers, _totalLayers, _shine);
                 });
-                thisImg.addEventListener('touchstart', function(e){
+                thisImg.addEventListener('touchstart', function (e) {
                     win.preventScroll = true;
-                    processEnter(e,_thisImg);
+                    processEnter(e, _thisImg);
                 });
-                thisImg.addEventListener('touchend', function(e){
+                thisImg.addEventListener('touchend', function (e) {
                     win.preventScroll = false;
-                    processExit(e,_thisImg,_layers,_totalLayers,_shine);
+                    processExit(e, _thisImg, _layers, _totalLayers, _shine);
                 });
-            })(thisImg,layers,totalLayerElems,shineHTML);
+            })(thisImg, layers, totalLayerElems, shineHTML);
         } else {
-            (function(_thisImg,_layers,_totalLayers,_shine) {
-                thisImg.addEventListener('mousemove', function(e){
-                    processMovement(e,false,_thisImg,_layers,_totalLayers,_shine);
+            (function (_thisImg, _layers, _totalLayers, _shine) {
+                thisImg.addEventListener('mousemove', function (e) {
+                    processMovement(e, false, _thisImg, _layers, _totalLayers, _shine);
                 });
-                thisImg.addEventListener('mouseenter', function(e){
-                    processEnter(e,_thisImg);
+                thisImg.addEventListener('mouseenter', function (e) {
+                    processEnter(e, _thisImg);
                 });
-                thisImg.addEventListener('mouseleave', function(e){
-                    processExit(e,_thisImg,_layers,_totalLayers,_shine);
+                thisImg.addEventListener('mouseleave', function (e) {
+                    processExit(e, _thisImg, _layers, _totalLayers, _shine);
                 });
-            })(thisImg,layers,totalLayerElems,shineHTML);
+            })(thisImg, layers, totalLayerElems, shineHTML);
         }
     }
 
-    function processMovement(e, touchEnabled, elem, layers, totalLayers, shine){
+    function processMovement(e, touchEnabled, elem, layers, totalLayers, shine) {
 
         var bdst = bd.scrollTop || htm.scrollTop,
             bdsl = bd.scrollLeft,
-            pageX = (touchEnabled)? e.touches[0].pageX : e.pageX,
-            pageY = (touchEnabled)? e.touches[0].pageY : e.pageY,
+            pageX = (touchEnabled) ? e.touches[0].pageX : e.pageX,
+            pageY = (touchEnabled) ? e.touches[0].pageY : e.pageY,
             offsets = elem.getBoundingClientRect(),
             w = elem.clientWidth || elem.offsetWidth || elem.scrollWidth,
             h = elem.clientHeight || elem.offsetHeight || elem.scrollHeight,
-            wMultiple = 320/w,
-            offsetX = 0.52 - (pageX - offsets.left - bdsl)/w,
-            offsetY = 0.52 - (pageY - offsets.top - bdst)/h,
+            wMultiple = 320 / w,
+            offsetX = 0.52 - (pageX - offsets.left - bdsl) / w,
+            offsetY = 0.52 - (pageY - offsets.top - bdst) / h,
             dy = (pageY - offsets.top - bdst) - h / 2,
             dx = (pageX - offsets.left - bdsl) - w / 2,
-            yRotate = (offsetX - dx)*(0.07 * wMultiple),
-            xRotate = (dy - offsetY)*(0.1 * wMultiple),
+            yRotate = (offsetX - dx) * (0.07 * wMultiple),
+            xRotate = (dy - offsetY) * (0.1 * wMultiple),
             imgCSS = 'rotateX(' + xRotate + 'deg) rotateY(' + yRotate + 'deg)',
             arad = Math.atan2(dy, dx),
             angle = arad * 180 / Math.PI - 90;
@@ -431,34 +420,34 @@ function atvImg(){
             angle = angle + 360;
         }
 
-        if(elem.firstChild.className.indexOf(' over') != -1){
+        if (elem.firstChild.className.indexOf(' over') != -1) {
             imgCSS += ' scale3d(1.07,1.07,1.07)';
         }
         elem.firstChild.style.transform = imgCSS;
 
-        shine.style.background = 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + (pageY - offsets.top - bdst)/h * 0.4 + ') 0%,rgba(255,255,255,0) 80%)';
+        shine.style.background = 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + (pageY - offsets.top - bdst) / h * 0.4 + ') 0%,rgba(255,255,255,0) 80%)';
         shine.style.transform = 'translateX(' + (offsetX * totalLayers) - 0.1 + 'px) translateY(' + (offsetY * totalLayers) - 0.1 + 'px)';
 
         var revNum = totalLayers;
-        for(var ly=0;ly<totalLayers;ly++){
+        for (var ly = 0; ly < totalLayers; ly++) {
             layers[ly].style.transform = 'translateX(' + (offsetX * revNum) * ((ly * 2.5) / wMultiple) + 'px) translateY(' + (offsetY * totalLayers) * ((ly * 2.5) / wMultiple) + 'px)';
             revNum--;
         }
     }
 
-    function processEnter(e, elem){
+    function processEnter(e, elem) {
         elem.firstChild.className += ' over';
     }
 
-    function processExit(e, elem, layers, totalLayers, shine){
+    function processExit(e, elem, layers, totalLayers, shine) {
 
         var container = elem.firstChild;
 
-        container.className = container.className.replace(' over','');
+        container.className = container.className.replace(' over', '');
         container.style.transform = '';
         shine.style.cssText = '';
 
-        for(var ly=0;ly<totalLayers;ly++){
+        for (var ly = 0; ly < totalLayers; ly++) {
             layers[ly].style.transform = '';
         }
 

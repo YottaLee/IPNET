@@ -12,7 +12,7 @@ $.ajax({
         document.getElementById("tech").innerHTML = data.tech;
         document.getElementById("finance").innerHTML = data.evaluation;
         document.getElementById("evaluation").innerHTML = data.evaluation;
-        document.getElementById("result").innerHTML = str(data.result);
+        document.getElementById("result").innerHTML = data.result;
         document.getElementById("value").href = data.url;
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -23,10 +23,12 @@ $.ajax({
         loanID: loanID
     },
     success: function (data) {
+        console.log(data.money);
         document.getElementById("patent").innerHTML = data.patent;
         document.getElementById("holder").innerHTML = data.person;
         document.getElementById("loan-money").innerHTML = data.money;
         document.getElementById("loan-time").innerHTML = data.time;
+        document.getElementById("evaluation").innerHTML = data.evaluation;
         $.ajax({
             type: "GET",
             url: "/evaluation/getEvaluation",
@@ -49,20 +51,33 @@ $.ajax({
 //提交结果
 $('#submit').on('click', function () {
     var ifPass = document.getElementById("check-pass").checked;
-    //存取是否愿意投保
+    console.log(loanID);
     $.ajax({
-        type: "POST",
-        url: "/insurance/ifInsurance",
+        type: "GET",
+        url: "/insurance/getInsurance",
         data: {
-            loanID: loanID,
-            ifPass: ifPass
+            loanid: loanID
         },
-        success: function () {
-            infoFile("已将信息反馈给专利持有人");
-            setTimeout(function () {
-                window.location.href = "/ipnet/Insurance-IP-list"
-                //回到保险公司主界面
-            }, 2000);
+        success: function (insuranceID) {
+            //存取是否愿意投保
+            $.ajax({
+                type: "POST",
+                url: "/insurance/ifInsurance",
+                data: {
+                    id: insuranceID,
+                    ifPass: ifPass
+                },
+                success: function () {
+                    infoFile("已将信息反馈给专利持有人");
+                    setTimeout(function () {
+                        window.location.href = "/ipnet/Insurance-IP-list";
+                        //回到保险公司主界面
+                    }, 2000);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+                }
+            });
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);

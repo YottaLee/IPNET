@@ -61,7 +61,9 @@ function check(str) {
     var arr = str.split("-");
     var patentID = arr[1];
     var loanID = arr[2];
+    console.log(patentID);
     var storage = window.localStorage;
+    storage.setItem('loan_id', loanID);
     storage.setItem('patent_id', patentID);
     $.ajax({
         type: 'GET',

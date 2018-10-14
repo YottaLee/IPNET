@@ -23,11 +23,12 @@ $.ajax({
 $("#exit").on('click', function () {
     storage.removeItem('loan_id');
     var userId = storage.getItem('user_id');
+    console.log(userId);
     $.ajax({
         type: "GET",
         url: "/user/getUserRole",
         data: {
-            userId: userId
+            userID: userId
         },
         success: function (data) {
             switch (data) {
