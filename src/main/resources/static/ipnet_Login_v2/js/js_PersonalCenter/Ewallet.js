@@ -1,23 +1,39 @@
 window.onload = function () {
-    if(!window.localStorage){
+    if (!window.localStorage) {
         alert("浏览器不支持localStorage");
         return false;
-    } else{   //主逻辑业务
+    } else {   //主逻辑业务
         var storage = window.localStorage;
         var userID = storage.getItem("user_id");
-        console.log(userID);
-        showBankCardList(userID);
-        showPoint(userID);
+        $.ajax({
+            type: "GET",
+            url: "/user/getUserRole",
+            async: false,
+            data: {
+                userID: userID
+            },
+            success: function (userRole) {
+                console.log(userID);
+                showBankCardList(userID, userRole);
+                showPoint(userID, userRole);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+            }
+
+        });
+
     }
 }
 
-function showPoint(userID) {
+
+function showPoint(userID, userRole) {
     $.ajax({
         url: "/userInfo/getPoint",
         type: "POST",
         async: false,
         dataType: "json",
-        data: {userId: userID},
+        data: {userId: userID, userType: userRole},
         success: function (data) {
             document.getElementById("Ew_point").innerHTML = "<i><img class=\"imgMid\" src=\"/ipnet_Login_v2/images/icon-gift.jpg\" alt=\"Gift\" height=\"5%\" width=\"5%\" style=\"margin-left: 8px;margin-right: 5px\"></i><span class=\"t1\" style=\"margin-left: 5px;\">" + data + "积分</span>";
         },
@@ -27,27 +43,28 @@ function showPoint(userID) {
     });
 }
 
-function showBankCardList(userID) {
+function showBankCardList(userID, userRole) {
+
     $.ajax({
         url: "/userInfo/getCreditCardInfo",
         type: "POST",
         async: false,
         dataType: "json",
-        data: {userId: userID},
+        data: {userId: userID, userType: userRole},
         success: function (data) {
-            if(data != null && data.length != 0){
+            if (data != null && data.length != 0) {
                 //console.log(data);
                 var dlist = data;
                 var str = "";
                 str = "<span class=\"t2\"><table class=\"tb-12\"><tr><td class=\"tb-12-head\">银行卡卡号</td><td class=\"tb-12-head\">所在银行</td><td class=\"tb-12-head\">操作</td></tr><tr>";
-                for(var i = 0;i < dlist.length ;i++){
+                for (var i = 0; i < dlist.length; i++) {
                     str = str + "<td>" + dlist[i].cardId + "</td><td>" + dlist[i].bank + "</td><td>" +
                         "<a href=\"#\" id=\"btnCancel_" + dlist[i].cardId + "_" + dlist[i].bank + "\" onclick=\"cancelBankCard(this.id)\" style=\"color: #38a4f0;border-bottom: 1px solid #38a4f0;\">解绑</a></td>";
                 }
                 str = str + "</tr></table></span>";
                 document.getElementById("Ew_bankCardInfoList").innerHTML = str;
             }
-            else{
+            else {
                 document.getElementById("Ew_bankCardInfoList").innerHTML = "<span style=\"font-size: small; color: #9f9f9f\">&nbsp;&nbsp;&nbsp;&nbsp;暂未绑定任何银行卡</span>";
             }
         },
@@ -55,6 +72,7 @@ function showBankCardList(userID) {
             alert("Error!");
         }
     });
+
 }
 
 function cancelBankCard(btnID) {
@@ -69,11 +87,11 @@ function cancelBankCard(btnID) {
         dataType: "json",
         data: {userId: userID, card: cardID},
         success: function (data) {      //data为Resultmessage : ???
-            if(data == "Success"){
+            if (data == "Success") {
                 alert("解除绑定成功！");
                 window.location.href = "/ipnet/pc_eWallet";   //相当于刷新？
             }
-            else{
+            else {
                 alert("解除绑定失败！");
             }
         }, error: function () {
@@ -85,42 +103,58 @@ function cancelBankCard(btnID) {
 function newBankCard() {
     var storage = window.localStorage;
     var userID = storage.getItem("user_id");
-    var cardID = document.getElementById("Ew_newBankCard_ID");
-    var cardCode = document.getElementById("Ew_newBankCard_code");
+    var cardID = $("Ew_newBankCard_ID").val();
+    var cardCode = $("Ew_newBankCard_code").val();
     //var bankName = document.getElementById("Ew_newBankCard_bank");
-    var bankName = "未选择";
-    var bankNameList = document.getElementsByName("bankNameList");
-    for(var i = 0;i < bankNameList.length;i++){
-        if(bankNameList[i].selected){
-            bankName = bankNameList[i].value;
-            break;
-        }
-    }
-
-    if(bankName == "未选择"){
-        alert("尚未选择开户银行！");
-    }
-    else{
-        $.ajax({
-            url: "/userInfo/setCreditCard",
-            type: "POST",
-            async: false,
-            dataType: "json",
-            data: {userId: userID, card: cardID, card_code: cardCode},
-            success: function (data) {
-                if(data == "Success"){
-                    alert("绑定成功！");
-                    window.location.href = "/ipnet/pc_eWallet";
-                }
-                else{
-                    alert("绑定失败！");
-                }
-            },
-            error: function () {
-                alert("Error!");
+    var bankName = $("#bankNameList").val();
+    console.log("bank_name: "+bankName);
+    // var bankNameList = document.getElementsByName("bankNameList");
+    // for(var i = 0;i < bankNameList.length;i++){
+    //     if(bankNameList[i].selected){
+    //         bankName = bankNameList[i].value;
+    //         break;
+    //     }
+    // }
+    $.ajax({
+        type: "GET",
+        url: "/user/getUserRole",
+        async: false,
+        data: {
+            userID: userID
+        },
+        success: function (userRole) {
+            if (bankName == "未选择") {
+                alert("尚未选择开户银行！");
             }
-        });
-    }
+            else {
+                $.ajax({
+                    url: "/userInfo/setCreditCard",
+                    type: "POST",
+                    async: false,
+                    dataType: "json",
+                    data: {userId: userID, card: cardID, card_code: cardCode, bank: bankName, userType: userRole},
+                    success: function (data) {
+                        if (data == "Success") {
+                            alert("绑定成功！");
+                            window.location.href = "/ipnet/pc_eWallet";
+                        }
+                        else {
+                            alert("绑定失败！");
+                        }
+                    },
+                    error: function () {
+                        alert("Error!");
+                    }
+                });
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+
+    });
+
+
 }
 
 function cancelNewBankCard() {
