@@ -88,6 +88,7 @@ public class AccountBLServiceImpl implements AccountBLService {
 
     @Override
     public void addAccount(String accountId, double amount, String userId) {
+         System.out.println("addAccount!!!!!!!!!!!:"+accountId+" "+amount+" "+userId);
          Account account = new Account();
          account.setAcountId(accountId);
          account.setBalance(amount);

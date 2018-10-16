@@ -20,7 +20,7 @@
 <link href="/home/css/icomoon.css" rel="stylesheet">
 <link href="/home/css/animate-custom.css" rel="stylesheet">
 <link href="/home/css/bootstrap.css" rel="stylesheet">
-
+<script src="/block-chain/js/bloch-chain.js"></script>
 </head>
 <body>
 
@@ -33,6 +33,14 @@
     <div class="row">
         <div class="col-md-12 newspaper-x-content newspaper-x-with-sidebar" id="pay_card_list">
             <h3 class="widget-title"><span>IP链查看：</span></h3>
+            <div id="ip_chain">
+                <script>
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src = "/block-chain/js/block-chain.js";
+                    document.body.appendChild(script);
+                </script>
+            </div>
             <div class="row">
                 <article class="card" style="position: relative;left: 12%;top: 220px;">
                     <header class="card__thumb">

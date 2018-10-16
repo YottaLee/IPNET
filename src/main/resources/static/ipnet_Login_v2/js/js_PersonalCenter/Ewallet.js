@@ -103,8 +103,9 @@ function cancelBankCard(btnID) {
 function newBankCard() {
     var storage = window.localStorage;
     var userID = storage.getItem("user_id");
-    var cardID = $("Ew_newBankCard_ID").val();
-    var cardCode = $("Ew_newBankCard_code").val();
+    var cardID = $("#Ew_newBankCard_ID").val();
+    console.log(cardID);
+    var cardCode = $("#Ew_newBankCard_code").val();
     //var bankName = document.getElementById("Ew_newBankCard_bank");
     var bankName = $("#bankNameList").val();
     console.log("bank_name: "+bankName);
