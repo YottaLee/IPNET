@@ -3,15 +3,11 @@ package com.ipnet.vo;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
-@Component
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class CreditCard {
     String cardId;
     String bank;
-    
+
 }
