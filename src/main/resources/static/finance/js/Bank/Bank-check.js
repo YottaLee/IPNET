@@ -104,10 +104,5 @@ $('#submit').on('click', function () {
             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
-    // },
-    // error: function (XMLHttpRequest, textStatus, errorThrown) {
-    //     console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-    // }
-    // });
 });
 

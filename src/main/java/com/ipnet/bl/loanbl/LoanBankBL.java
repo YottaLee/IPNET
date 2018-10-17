@@ -49,7 +49,6 @@ public class LoanBankBL implements LoanBankBLService {
      * 银行提交通过意见
      *
      * @param loanID      贷款号
-     * @param bank        金融机构名称
      * @param ifPass      是否同意放贷
      * @param ifInsurance 是否同意让专利持有人购买专利质押贷款保证保险
      * @param money       放贷金额
