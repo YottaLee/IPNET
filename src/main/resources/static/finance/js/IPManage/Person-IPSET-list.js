@@ -1,6 +1,6 @@
 //获取专利列表
 var storage = window.localStorage;
-var userId = storage.userId;
+var userId = storage.getItem("user_id");
 $.ajax({
     type: "GET",
     url: "PatentPool/getIPSETList",

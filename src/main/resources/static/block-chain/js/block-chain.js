@@ -1,5 +1,5 @@
 // showChain();
-//test();
+test();
 
 function test() {
     $.ajax({
@@ -7,10 +7,10 @@ function test() {
         type: "POST",
         dataType: "json", //指定服务器返回的数据类型
         data: {
-            "$class": "org.acme.ipregistry.Bank",
-            id: "111@qq.com",
+            $class: "org.acme.ipregistry.Bank",
+            id: "222@qq.com",
             name: "a银行",
-            balance: 64491347020.0
+            balance: "23331.0"
         },
         success: function (data) {
             console.log(data);
