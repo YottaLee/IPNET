@@ -75,31 +75,22 @@ $.ajax({
 $('#submit').on('click', function () {
     var userId = storage.getItem('user_id');
 
-    // $.ajax({
-    //     type: "GET",
-    //     url: "/userInfo/getUser",
-    //     data: {
-    //         userid: userId,
-    //         userType: "Company"
-    //     },
-    //     success: function (user) {
-    // var bank = user.company;
-    var bank = "招商银行";
     //  if(document.getElementById("check-pass").checked)
     var ifPass = document.getElementById("check-pass").checked;
     var ifInsurance = document.getElementById("demo-form-checkbox").checked;
     var money = $("#money").val();
     var time = $("#time").val();
+    console.log("money:"+money);
+    console.log("time:"+time);
     // console.log(ifPass);
     $.ajax({
         type: "POST",
         url: "/bank/submitApplication",
         data: {
             loanID: loanID,
-            bank: bank,
             ifPass: ifPass,
             ifInsurance: ifInsurance,
-            money: money,
+            money: parseInt(money),
             time: time
         },
         success: function () {

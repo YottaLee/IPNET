@@ -48,7 +48,6 @@ public class LoanBankController {
     /**
      * 银行提交通过意见
      * @param loanID 贷款号
-     * @param bank 金融机构名称
      * @param ifPass 是否同意放贷
      * @param ifInsurance 是否同意让专利持有人购买专利质押贷款保证保险
      * @param money 放贷金额
@@ -57,8 +56,8 @@ public class LoanBankController {
      */
     @RequestMapping("/submitApplication")
     @ResponseBody
-    public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
-        return loanBankBLService.submitApplication(loanID,bank,ifPass,ifInsurance,money,time);
+    public ResultMessage submitApplication(String loanID, boolean ifPass, boolean ifInsurance, int money, String time) {
+        return loanBankBLService.submitApplication(loanID,ifPass,ifInsurance,money,time);
     }
 
 

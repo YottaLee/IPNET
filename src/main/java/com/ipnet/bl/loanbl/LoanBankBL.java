@@ -57,9 +57,8 @@ public class LoanBankBL implements LoanBankBLService {
      * @return ResultMessage
      */
     @Override
-    public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
+    public ResultMessage submitApplication(String loanID, boolean ifPass, boolean ifInsurance, int money, String time) {
         Loan loan = loanDao.getOne(loanID);
-        loan.setBank(bank);
         loan.setBankPass(ifPass);
         if (!ifPass) {//银行不同意放贷，此次申请就此结束
             loan.setState(Patent_loan_state.free);
