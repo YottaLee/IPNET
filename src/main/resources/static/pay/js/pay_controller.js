@@ -52,7 +52,7 @@ $(document).ready(function () {
     $("#time").text(currentdate);
 
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: '/user/getUserRole',
         data: {userID: pay_order.payer_id},
         async: false,
@@ -65,7 +65,7 @@ $(document).ready(function () {
     });
 
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: '/user/getUserRole',
         data: {userID: pay_order.payee_id},
         async: false,

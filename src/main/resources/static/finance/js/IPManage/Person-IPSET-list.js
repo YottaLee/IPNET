@@ -44,24 +44,39 @@ $.ajax({
         // alert("Network warning for posting the purpose of the loan")
     }
 });
-
 $.ajax({
-    type: "GET",
-    url: "/userInfo/getUser",
-    dataType: "json",
-    data: userId,
-    success: function (data) {
-        document.getElementById("user").innerHTML = data.name;
-        document.getElementById("personinfo").innerHTML = data.statement;
-        document.getElementById("credit").innerHTML = data.credit;
-        document.getElementById("profession").innerHTML = data.profession;
-        document.getElementById("country").innerHTML = data.region;
-        document.getElementById("imgURL").innerHTML = data.IDcard_img;
+    type: 'GET',
+    url: '/user/getUserRole',
+    data: {userID: userId},
+    async: false,
+    success: function (userType) {
+        $.ajax({
+            type: "GET",
+            url: "/userInfo/getUser",
+            dataType: "json",
+            data: {
+                userid: userId,
+                userType:userType
+            },
+            success: function (data) {
+                document.getElementById("user").innerHTML = data.name;
+                document.getElementById("personinfo").innerHTML = data.statement;
+                document.getElementById("credit").innerHTML = data.credit;
+                document.getElementById("profession").innerHTML = data.profession;
+                document.getElementById("country").innerHTML = data.region;
+                document.getElementById("imgURL").innerHTML = data.IDcard_img;
+            },
+            error: function () {
+
+            }
+        });
     },
-    error: function () {
+    error: function (data) {
 
     }
 });
+
+
 
 $("#poolsummit").on('click',function () {
     var name = $('#poolName').val();   //名称
