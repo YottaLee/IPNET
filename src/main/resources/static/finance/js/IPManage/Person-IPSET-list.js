@@ -63,47 +63,50 @@ $.ajax({
     }
 });
 
-$("#poolsummit").on('click',function () {
-    var name = $('#poolName').val();   //名称
-    var creater = $('#poolCreater').val();// 创建者
-    var industry = $('#industry').val();  // 相关领域
-    var intro = $('#brief-intro').val();  //简单介绍
-    var date = new Date();
-    var nowMonth = date.getMonth() + 1;
-    var strDate = date.getDate();
-    var seperator = "-";
-    if (nowMonth >= 1 && nowMonth <= 9) {
-        nowMonth = "0" + nowMonth;
-    }
-    if (strDate >= 0 && strDate <= 9) {
-        strDate = "0" + strDate;
-    }
-    var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate; // 日期
-    var invitedIP = $("#invitedIP").val();
-    var IPPool = $("#IPPool").val();
-    console.log(invitedIP,IPPool);
+$("#submit").click(function () {
 
-    var postData = {
-        "poolName":name,
-        "holderId":creater,
-        "region":industry,
-        "profile":intro,
-        "date":nowDate
-    };
+    console.log("yes");
 
-    $.ajax({
-        url: "/PatentPool/createPatentPool",
-        type: "POST",
-        data : postData,
-        async: false,
-        success: function (data, status) {
-            console.log("我成功了");
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log("传输失败");
-        }
-    });
-    console.log(nowDate);
+    // var name = $('#poolName').val();   //名称
+    // var creater = $('#poolCreater').val();// 创建者
+    // var industry = $('#industry').val();  // 相关领域
+    // var intro = $('#brief-intro').val();  //简单介绍
+    // var date = new Date();
+    // var nowMonth = date.getMonth() + 1;
+    // var strDate = date.getDate();
+    // var seperator = "-";
+    // if (nowMonth >= 1 && nowMonth <= 9) {
+    //     nowMonth = "0" + nowMonth;
+    // }
+    // if (strDate >= 0 && strDate <= 9) {
+    //     strDate = "0" + strDate;
+    // }
+    // var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate; // 日期
+    // var invitedIP = $("#invitedIP").val();
+    // var IPPool = $("#IPPool").val();
+    // console.log(invitedIP,IPPool);
+    //
+    // var postData = {
+    //     "poolName":name,
+    //     "holderId":creater,
+    //     "region":industry,
+    //     "profile":intro,
+    //     "date":nowDate
+    // };
+    //
+    // $.ajax({
+    //     url: "/PatentPool/createPatentPool",
+    //     type: "POST",
+    //     data : postData,
+    //     async: false,
+    //     success: function (data, status) {
+    //         console.log("我成功了");
+    //     },
+    //     error: function (XMLHttpRequest, textStatus, errorThrown) {
+    //         console.log("传输失败");
+    //     }
+    // });
+    // console.log(nowDate);
 
 });
 
