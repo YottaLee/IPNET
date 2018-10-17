@@ -43,7 +43,7 @@ public class LoanInsuranceBL implements LoanInsuranceBLService{
     @Override
     public InsuranceVO getInsurance(String loanid) throws IDNotExistsException {
         //不确定
-        String id=loanDao.getOne(loanid).getContractid();
+        String id=loanDao.getOne(loanid).getInsurance();
         Insurance insurance=insuranceDao.getOne(id);
         return new InsuranceVO(insurance);
     }
