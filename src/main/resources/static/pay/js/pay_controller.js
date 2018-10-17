@@ -181,38 +181,18 @@ $(document).ready(function () {
                         }
                         else {
                             $.ajax({
-                                    url: '/applicant/ifBankChosen',
-                                    type: 'GET',
-                                    data: {
-                                        loanID: loanID
-                                    },
-                                    success: function (data) {
-                                        if (data) {
-                                            $.ajax({
-                                                url: '/applicant/changeEvaluationState',
-                                                type: 'POST',
-                                                data: {
-                                                    loanID: loanID
-                                                },
-                                                success: function () {
-                                                    window.location.href = "/ipnet/Person-IP-list";
-                                                },
-                                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                                                }
-                                            });
-                                        }
-                                        else {
-                                            storage.removeItem("patent_id");
-                                            storage.removeItem("loan_id");
-                                            window.location.href = "/ipnet/Person-IP-list";
-                                        }
-                                    },
-                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                                    }
+                                url: '/applicant/changeEvaluationState',
+                                type: 'POST',
+                                data: {
+                                    loanID: loanID
+                                },
+                                success: function () {
+                                    window.location.href = "/ipnet/Person-IP-list";
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                                 }
-                            );
+                            });
                         }
                     }
 
