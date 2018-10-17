@@ -64,7 +64,10 @@ public class EvaluationBL implements EvaluationBLService {
             toUpdate.setMoney(money);
             toUpdate.setOver(true);
             evaluationDao.save(toUpdate);
-            loanApplicantBLService.changeEvaluationStateToEvaluationFinish(loanAllBLService.getLatestLoanID(patentID));
+            String loadID=loanAllBLService.getLatestLoanID(patentID);
+            loanAllBLService.changeState(loadID,Patent_loan_state.to_be_loan_application);
+            loanAllBLService.changeEvaluationByPatentID(patentID,evaluation);
+//            loanApplicantBLService.changeEvaluationStateToEvaluationFinish(loanAllBLService.getLatestLoanID(patentID));
             return ResultMessage.Success;
         }
     }

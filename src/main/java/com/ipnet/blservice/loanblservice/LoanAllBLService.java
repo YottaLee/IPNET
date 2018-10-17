@@ -25,4 +25,6 @@ public interface LoanAllBLService {
     ResultMessage changeState(String loanID, Patent_loan_state state);
 
     ResultMessage changeStateByPatentID(String patentID,Patent_loan_state state);
+
+    ResultMessage changeEvaluationByPatentID(String patentID,double evaluation);
 }

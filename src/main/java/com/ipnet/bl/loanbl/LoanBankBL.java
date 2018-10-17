@@ -25,7 +25,11 @@ public class LoanBankBL implements LoanBankBLService {
     public LoanVO getInfo(String loanID) {
         System.out.println(loanID);
         Loan loan = loanDao.getOne(loanID);
-        return new LoanVO(loan);
+
+        LoanVO loanVO=new LoanVO(loan);
+        loanVO.setTime(loan.getAccept_time());
+        loanVO.setMoney(loan.getAccept_money());
+        return loanVO;
     }
 
     /**
@@ -68,7 +72,7 @@ public class LoanBankBL implements LoanBankBLService {
         }
         loan.setIfInsurance(ifInsurance);
         loan.setAccept_money(money);
-        loan.setTime(time);
+        loan.setAccept_time(time);
         loanDao.saveAndFlush(loan);
         return ResultMessage.Success;
     }

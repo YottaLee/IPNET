@@ -1,6 +1,5 @@
 package com.ipnet.controller.loancontroller;
 
-import com.ipnet.bl.loanbl.LoanBankBL;
 import com.ipnet.blservice.loanblservice.LoanBankBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.LoanVO;
@@ -8,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-
 
 /**
  * 贷款-银行部分

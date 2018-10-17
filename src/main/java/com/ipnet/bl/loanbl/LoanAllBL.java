@@ -217,6 +217,7 @@ public class LoanAllBL implements LoanAllBLService {
             Loan loan=loanOptional.get();
             loan.setState(state);
             loanDao.saveAndFlush(loan);
+            return ResultMessage.Success;
         }
         return null;
     }
@@ -230,6 +231,16 @@ public class LoanAllBL implements LoanAllBLService {
                 loanDao.saveAndFlush(loan);
             }
         }
+        return ResultMessage.Success;
+    }
+
+    @Override
+    public ResultMessage changeEvaluationByPatentID(String patentID, double evaluation) {
+        ArrayList<Loan> loans=loanDao.findByPatentID(patentID);
+        for(Loan loan:loans){
+            loan.setEvaluation(evaluation);
+        }
+        loanDao.saveAll(loans);
         return ResultMessage.Success;
     }
 }
