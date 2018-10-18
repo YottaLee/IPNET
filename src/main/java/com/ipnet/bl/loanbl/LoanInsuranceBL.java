@@ -30,6 +30,9 @@ public class LoanInsuranceBL implements LoanInsuranceBLService{
     @Autowired
     private EvaluationBLService evaluationBLService;
 
+    @Autowired
+    private UserBLService userBLService;
+
     @Override
     public ResultMessage createInsurance(CreateInsuranceVO createInsuranceVO) {
         SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd-HHmmss");
@@ -43,7 +46,8 @@ public class LoanInsuranceBL implements LoanInsuranceBLService{
     @Override
     public InsuranceVO getInsurance(String loanid) throws IDNotExistsException {
         //不确定
-        String id=loanDao.getOne(loanid).getInsurance();
+        String name=loanDao.getOne(loanid).getInsurance();
+        String id=userBLService.getCompanyId(name);
         Insurance insurance=insuranceDao.getOne(id);
         return new InsuranceVO(insurance);
     }

@@ -18,9 +18,6 @@ public interface CompanyUserDao extends JpaRepository<CompanyUser,String> {
     @Query(value = "select c from CompanyUser c where c.id=:cid")
     CompanyUser findCompanyUserById(@Param("cid") String cid);
 
-   // @Query(value = "select c from CompanyUser c where c.")
-    CompanyUser findCompanyUserByName(String name);
-
     @Query(value = "select c from CompanyUser c where c.role=2 ")
     ArrayList<CompanyUser> getEvaluators();
 
@@ -29,6 +26,9 @@ public interface CompanyUserDao extends JpaRepository<CompanyUser,String> {
 
     @Query("select count(c) from CompanyUser c where c.registerTime<=:t")
     int countAll(@Param("t")Date date);
+
+    @Query(value = "select c from CompanyUser c where c.name=:name")
+    CompanyUser findCompanyUserByName(@Param("name") String name);
 
 
 }
