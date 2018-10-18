@@ -44,6 +44,8 @@ public interface UserBLService {
     //根据用户ID获得姓名
     String getXingMing(String userID);
 
+    String getCompanyId(String name);
+
     //用户实名身份认证
     boolean personVerify(PersonVerify personVerify);
     //企业信息实名认证

@@ -422,9 +422,19 @@ public class UserBL implements UserBLService{
         if(person.isPresent()){
             return person.get().getName();
         }else if(company.isPresent()){
-            return company.get().getImage();
+            return company.get().getName();
         }
         return null;
+    }
+
+    @Override
+    public String getCompanyId(String name) {
+        CompanyUser companyUser=companyUserDao.findCompanyUserByName(name);
+        if(companyUser==null){
+            return null;
+        }else{
+            return companyUser.getId();
+        }
     }
 
     /**
