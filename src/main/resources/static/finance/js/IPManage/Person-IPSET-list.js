@@ -23,7 +23,6 @@ $.ajax({
                 "                                                <small class=\"text-muted\">" + data[i].industry + "</small>\n" +
                 "                                            </div>\n" +
                 "                                        </a>";
-                 ipsetinfolist +=
             ipsetinfolist += "<tr onclick='checkDetail(data[i].id)'>\n" +
                 "                                                    <td><a class=\"btn-link\" href=\"#\">" + data[i].name + "</a></td>\n" +
                 "                                                    <td>" + data[i].id + "</td>\n" +
@@ -39,7 +38,7 @@ $.ajax({
 
         }
         document.getElementById("ipset_list").innerHTML = ipsetList;
-        $('ipset_info_list').append(ipsetinfolist);
+        $('#ipset_info_list').append(ipsetinfolist);
         // document.getElementById("ipset_info_list").innerHTML = ipsetinfolist;
 
     },
