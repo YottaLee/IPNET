@@ -3,14 +3,16 @@ var storage = window.localStorage;
 var userId = storage.getItem("user_id");
 $.ajax({
     type: "GET",
-    url: "PatentPool/getIPSETList",
+    url: "/PatentPool/getIPSETList",
     dataType: "json",
-    data: userId,
+    data: { userId: userId},
     success: function (data) {
-        document.getElementById("ipsetNum").innerHTML = str(data.length);
+        console.log(data);
+        document.getElementById("ipsetNum").innerHTML = data.length;
         var ipsetList = "";
         var ipsetinfolist = "";
         for (var i = 0, len = data.length; i < len; i++) {
+
             ipsetList += "<a href=\"#\" class=\"list-group-item\">\n" +
                 "                                            <div class=\"media-left pos-rel\">\n" +
                 "                                                     alt=\"Profile Picture\">\n" +
@@ -21,7 +23,7 @@ $.ajax({
                 "                                                <small class=\"text-muted\">" + data[i].industry + "</small>\n" +
                 "                                            </div>\n" +
                 "                                        </a>";
-
+                 ipsetinfolist +=
             ipsetinfolist += "<tr onclick='checkDetail(data[i].id)'>\n" +
                 "                                                    <td><a class=\"btn-link\" href=\"#\">" + data[i].name + "</a></td>\n" +
                 "                                                    <td>" + data[i].id + "</td>\n" +
@@ -34,10 +36,11 @@ $.ajax({
                 // "                                                    </td>\n" +
                 "\n" +
                 "                                                </tr>";
-        }
 
+        }
         document.getElementById("ipset_list").innerHTML = ipsetList;
-        document.getElementById("ipset_info_list").innerHTML = ipsetinfolist;
+        $('ipset_info_list').append(ipsetinfolist);
+        // document.getElementById("ipset_info_list").innerHTML = ipsetinfolist;
 
     },
     error: function () {

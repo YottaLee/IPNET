@@ -353,8 +353,9 @@ public class PatentBLServiceImpl implements PatentBLService {
 
     @Override
     public List<PatentVO> recommendPatent() {
-        int random = (int)(Math.random());
+
         List<Patent> patents = this.patentDao.findAll();
+        int random = (int)(Math.random() * patents.size());
         List<Patent> patentList= new ArrayList<Patent>();
         if(patents.size() == 0 || patents == null){
             return null;

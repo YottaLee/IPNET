@@ -55,9 +55,14 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         pool.setUsers(new ArrayList<String>());
         pool.setProfile(profile);
         pool.setCreateTime(new Date());
-        pool.setId(String.valueOf(Math.random()));
+        pool.setId(String.valueOf(Math.random()*100));
         PatentPool resultDomain = this.patentPoolDao.saveAndFlush(pool);
         PatentPoolVO resultVO = (PatentPoolVO) this.transHelper.transTO(resultDomain , PatentPoolVO.class);
+        List<PatentPool> newList = this.patentPoolDao.searchPatentPoolByName(poolName);
+        for(int i =1 ; i< newList.size() ; i ++) {
+            deletePatentPool(newList.get(i).getId());
+        }
+        //System.out.println("已调用");
         return resultVO;
     }
 
@@ -195,6 +200,7 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
     @Override
     public List<PatentPoolVO> getIPSETList(String userId) throws IDNotExistsException{
         List<PatentPool> poolists = this.patentPoolDao.searchPatentPoolByOwner(userId);
+        System.out.println("lists size is  "+ poolists.size());
         if (poolists == null || poolists.size() == 0) {
             return null;
         }

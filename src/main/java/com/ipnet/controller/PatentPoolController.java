@@ -25,6 +25,7 @@ public class PatentPoolController {
 
     @RequestMapping("/createPatentPool")
     public @ResponseBody  PatentPoolVO createPatentPool(@RequestParam String poolName, @RequestParam String holderId , @RequestParam String region ,@RequestParam String profile ,@RequestParam String date){
+        //System.out.println("1");
         return service.createPatentPool(poolName , holderId , region , profile , date);
     }
 
