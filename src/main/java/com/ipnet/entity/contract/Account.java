@@ -17,5 +17,5 @@ public class Account {
       @Id
       private String acountId;       //银行卡号
       private String userId;
-      private double balance;       //账户余额;
+      private double balance;       //账户余额
 }
