@@ -261,14 +261,35 @@
                                     <div class="tab-content">
 
                                         <!--First tab-->
-
+                                        <div class="col-sm-12">
+                                            <p>您的贷款已被金融机构审核通过，根据金融机构要求，您需要购买专利质押贷款保证保险，请选择保险公司</p>
+                                        </div>
 
                                         <div class="row">
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <div class="col-sm-12">
-                                                        <p>您的贷款已被金融机构审核通过，根据金融机构要求，您需要购买专利质押贷款保证保险，请选择保险公司</p>
+                                                    <label class="col-sm-1 control-label">银行放贷信息</label>
+                                                    <div class="col-sm-11">
+                                                    <table class="table table-bordered">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>银行名称</td>
+                                                            <td colspan="3" id="bank"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>放贷金额</td>
+                                                            <td id="money"></td>
+                                                            <td>放贷期限</td>
+                                                            <td id="time"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+
                                                     <label class="col-sm-1 control-label">意向保险</label>
                                                     <div class="col-sm-11">
                                                         <select id="demo-chosen-select"

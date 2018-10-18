@@ -18,6 +18,7 @@ $('#submit').on('click', function () {
         console.log(userId);
         // console.log(type);
 
+
         $.ajax({
             type: "POST",
             url: "/Patent/entryPatent",
