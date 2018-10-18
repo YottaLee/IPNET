@@ -12,5 +12,5 @@ public interface LoanBankBLService {
     LoanVO getApplication(String loanID);
 
     //银行提交通过意见
-    ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time);
+    ResultMessage submitApplication(String loanID, boolean ifPass, boolean ifInsurance, int money, String time);
 }

@@ -13,7 +13,9 @@ window.onload = function () {
                 userID: userID
             },
             success: function (userRole) {
-                console.log(userID);
+                console.log(userRole);
+                if(userRole != "PersonalUser")
+                    userRole = "CompanyUser";
                 showBankCardList(userID, userRole);
                 showPoint(userID, userRole);
             },
@@ -128,6 +130,9 @@ function newBankCard() {
                 alert("尚未选择开户银行！");
             }
             else {
+                console.log(userRole);
+                if(userRole != "PersonalUser")
+                    userRole = "CompanyUser";
                 $.ajax({
                     url: "/userInfo/setCreditCard",
                     type: "POST",

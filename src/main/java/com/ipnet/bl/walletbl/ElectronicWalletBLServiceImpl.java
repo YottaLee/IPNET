@@ -115,6 +115,7 @@ public class ElectronicWalletBLServiceImpl implements ElectronicWalletBLService 
         switch (userType) {
             case CompanyUser:
                 CompanyUser companyUser = companyUserDao.findCompanyUserById(userId);
+                System.out.println("Has the company user!!!!!!!!!!!!!:"+companyUser.getId());
                 if (companyUser.equals(null))
                     return ResultMessage.Fail;
                 else {

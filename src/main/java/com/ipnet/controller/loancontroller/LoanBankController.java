@@ -1,6 +1,5 @@
 package com.ipnet.controller.loancontroller;
 
-import com.ipnet.bl.loanbl.LoanBankBL;
 import com.ipnet.blservice.loanblservice.LoanBankBLService;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.LoanVO;
@@ -8,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-
 
 /**
  * 贷款-银行部分
@@ -48,7 +44,6 @@ public class LoanBankController {
     /**
      * 银行提交通过意见
      * @param loanID 贷款号
-     * @param bank 金融机构名称
      * @param ifPass 是否同意放贷
      * @param ifInsurance 是否同意让专利持有人购买专利质押贷款保证保险
      * @param money 放贷金额
@@ -57,8 +52,8 @@ public class LoanBankController {
      */
     @RequestMapping("/submitApplication")
     @ResponseBody
-    public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
-        return loanBankBLService.submitApplication(loanID,bank,ifPass,ifInsurance,money,time);
+    public ResultMessage submitApplication(String loanID, boolean ifPass, boolean ifInsurance, int money, String time) {
+        return loanBankBLService.submitApplication(loanID,ifPass,ifInsurance,money,time);
     }
 
 

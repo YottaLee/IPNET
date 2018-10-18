@@ -58,13 +58,15 @@ $('#submit').on('click', function () {
         data: {
             loanid: loanID
         },
-        success: function (insuranceID) {
+        success: function (insurance) {
             //存取是否愿意投保
+            console.log(insurance);
+            console.log(insurance.id);
             $.ajax({
                 type: "POST",
                 url: "/insurance/ifInsurance",
                 data: {
-                    id: insuranceID,
+                    id: insurance.id,
                     ifPass: ifPass
                 },
                 success: function () {

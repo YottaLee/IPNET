@@ -25,7 +25,11 @@ public class LoanBankBL implements LoanBankBLService {
     public LoanVO getInfo(String loanID) {
         System.out.println(loanID);
         Loan loan = loanDao.getOne(loanID);
-        return new LoanVO(loan);
+
+        LoanVO loanVO=new LoanVO(loan);
+        loanVO.setTime(loan.getAccept_time());
+        loanVO.setMoney(loan.getAccept_money());
+        return loanVO;
     }
 
     /**
@@ -49,7 +53,6 @@ public class LoanBankBL implements LoanBankBLService {
      * 银行提交通过意见
      *
      * @param loanID      贷款号
-     * @param bank        金融机构名称
      * @param ifPass      是否同意放贷
      * @param ifInsurance 是否同意让专利持有人购买专利质押贷款保证保险
      * @param money       放贷金额
@@ -57,9 +60,8 @@ public class LoanBankBL implements LoanBankBLService {
      * @return ResultMessage
      */
     @Override
-    public ResultMessage submitApplication(String loanID, String bank, boolean ifPass, boolean ifInsurance, int money, String time) {
+    public ResultMessage submitApplication(String loanID, boolean ifPass, boolean ifInsurance, int money, String time) {
         Loan loan = loanDao.getOne(loanID);
-        loan.setBank(bank);
         loan.setBankPass(ifPass);
         if (!ifPass) {//银行不同意放贷，此次申请就此结束
             loan.setState(Patent_loan_state.free);
@@ -70,7 +72,7 @@ public class LoanBankBL implements LoanBankBLService {
         }
         loan.setIfInsurance(ifInsurance);
         loan.setAccept_money(money);
-        loan.setTime(time);
+        loan.setAccept_time(time);
         loanDao.saveAndFlush(loan);
         return ResultMessage.Success;
     }

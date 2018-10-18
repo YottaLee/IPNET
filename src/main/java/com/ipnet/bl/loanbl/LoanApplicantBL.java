@@ -168,6 +168,18 @@ public class LoanApplicantBL implements LoanApplicantBLService{
         Optional<Loan> loanOptional=loanDao.findById(loanID);
         if(loanOptional.isPresent()){
             Loan loan=loanOptional.get();
+            loan.setState(Patent_loan_state.to_be_evaluation);
+            loanDao.saveAndFlush(loan);
+            return ResultMessage.Success;
+        }
+        return ResultMessage.Fail;
+    }
+
+    @Override
+    public ResultMessage changeEvaluationStateToEvaluationFinish(String loanID){
+        Optional<Loan> loanOptional=loanDao.findById(loanID);
+        if(loanOptional.isPresent()){
+            Loan loan=loanOptional.get();
             loan.setState(Patent_loan_state.to_be_loan_application);
             loanDao.saveAndFlush(loan);
             return ResultMessage.Success;

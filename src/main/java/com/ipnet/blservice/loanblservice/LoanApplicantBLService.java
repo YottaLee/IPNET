@@ -19,4 +19,6 @@ public interface LoanApplicantBLService {
     boolean ifBankChosen(String loanID);
 
     ResultMessage changeEvaluationState(String loanID);
+
+    ResultMessage changeEvaluationStateToEvaluationFinish(String loanID);
 }
