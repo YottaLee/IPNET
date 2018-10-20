@@ -28,10 +28,10 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public ResultMessage savePersonalUserInfo(PersonalUserSaveVo personalUserSaveVo) {
-        if(userDao.findPersonalUserByName(personalUserSaveVo.getUsername())==null){
+        if(userDao.findPersonalUserById(personalUserSaveVo.getId())==null){
             return ResultMessage.Fail;
         }else{
-            PersonalUser personalUser=userDao.findPersonalUserByName(personalUserSaveVo.getUsername());
+            PersonalUser personalUser=userDao.findPersonalUserById(personalUserSaveVo.getId());
             personalUser.setName(personalUserSaveVo.getName());
             personalUser.setSex(personalUserSaveVo.getGender());
             personalUser.setTelephone(personalUserSaveVo.getPhone());
@@ -48,10 +48,10 @@ public class UserInfoBLServiceImpl implements UserInfoBLService {
 
     @Override
     public ResultMessage saveCompanyUserInfo(CompanyUserSaveVo companyUserSaveVo) {
-        if(companyUserDao.findCompanyUserByName(companyUserSaveVo.getName())==null){
+        if(companyUserDao.findCompanyUserById(companyUserSaveVo.getId())==null){
             return ResultMessage.Fail;
         }else{
-            CompanyUser companyUser=companyUserDao.findCompanyUserByName(companyUserSaveVo.getName());
+            CompanyUser companyUser=companyUserDao.findCompanyUserById(companyUserSaveVo.getId());
             companyUser.setRepresentative(companyUserSaveVo.getRepresentative());
             
             companyUserDao.save(companyUser);

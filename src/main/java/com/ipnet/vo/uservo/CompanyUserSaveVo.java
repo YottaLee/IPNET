@@ -1,7 +1,7 @@
 package com.ipnet.vo.uservo;
 
 public class CompanyUserSaveVo {
-
+    private String id;
     private String name;
     private String representative;
     private String foundation;
@@ -17,6 +17,14 @@ public class CompanyUserSaveVo {
     private String IDcard_img;
 
     public CompanyUserSaveVo() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
