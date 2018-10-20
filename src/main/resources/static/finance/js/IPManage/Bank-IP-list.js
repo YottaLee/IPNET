@@ -23,7 +23,7 @@ $.ajax({
             patentList += "<tr>\n" +
                 "                                <td><a class=\"btn-link\" href=\"#\">" + data[i].patentID + "</a></td>\n" +
                 "                                <td>" + data[i].patent + "</td>\n" +
-                "                                <td><span class=\"text-muted\">" + data[i].patent_holder + "</span></td>\n" +
+                "                                <td><span class=\"text-muted\">" + data[i].person + "</span></td>\n" +
                 "                                <td>\n";
             switch (data[i].loan_state) {
                 case "to_be_loan_application":

@@ -434,3 +434,23 @@ function registerMsgEnterprise() {
         TINY.box.show(content,0,0,0,0,3);
     }
 }
+
+function registerParticipant(id){
+    $.ajax({
+        url: "http://localhost:3000/api/PrivateIndividual",
+        type: "POST",
+        dataType: "json", //指定服务器返回的数据类型
+        data: {
+            $class: "org.acme.ipregistry.PrivateIndividual",
+            id: id,
+            name: "",
+            balance: 0
+        },
+        success: function (data) {
+            console.log(data);
+        },
+        error: function () {
+            console.log("Fail!!!!!!!!");
+        }
+    });
+}

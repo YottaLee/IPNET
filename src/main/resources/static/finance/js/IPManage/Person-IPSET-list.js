@@ -4,7 +4,6 @@ var userId = storage.getItem("user_id");
 $.ajax({
     type: "GET",
     url: "/PatentPool/getIPSETList",
-    dataType: "json",
     data: { userId: userId},
     success: function (data) {
         console.log(data);
@@ -42,8 +41,8 @@ $.ajax({
         // document.getElementById("ipset_info_list").innerHTML = ipsetinfolist;
 
     },
-    error: function () {
-        // alert("Network warning for posting the purpose of the loan")
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 $.ajax({
@@ -55,7 +54,6 @@ $.ajax({
         $.ajax({
             type: "GET",
             url: "/userInfo/getUser",
-            dataType: "json",
             data: {
                 userid: userId,
                 userType:userType
@@ -68,13 +66,13 @@ $.ajax({
                 document.getElementById("country").innerHTML = data.region;
                 document.getElementById("imgURL").innerHTML = data.IDcard_img;
             },
-            error: function () {
-
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
             }
         });
     },
-    error: function (data) {
-
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 

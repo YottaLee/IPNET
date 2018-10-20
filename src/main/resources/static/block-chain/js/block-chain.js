@@ -10,7 +10,7 @@ function test() {
             $class: "org.acme.ipregistry.Bank",
             id: "222@qq.com",
             name: "a银行",
-            balance: "23331.0"
+            balance: 23331.0
         },
         success: function (data) {
             console.log(data);
