@@ -1,20 +1,36 @@
 window.onload = function () {
     var storage = window.localStorage;
     var userID = storage.getItem("user_id");
-    showCompanyInfo(userID);
+    $.ajax({
+        type: "GET",
+        url: "/user/getUserRole",
+        async: false,
+        data: {
+            userID: userID
+        },
+        success: function (userRole) {
+            showCompanyInfo(userID,userRole);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+
+    });
+
 }
 
 
-function showCompanyInfo(userID) {
+function showCompanyInfo(userID, userType) {
     $.ajax({
         url: "/userInfo/getUser",
         type: "POST",
         async: false,
-        dataType: "json",
-        data: {userid: userID},
+        data: {
+            userid: userID,
+            userType: userType
+        },
         success: function (data) {
-            var userInfoVo = data;
-            if(data != null){
+            if (data != null) {
                 document.getElementById("name").value = data["name"];   //vo信息不全！？
                 document.getElementById("representative").value = data[""];
                 document.getElementById("foundation").value = data[""];
@@ -29,7 +45,7 @@ function showCompanyInfo(userID) {
                 document.getElementById("email").value = data[""];
                 document.getElementById("p_id_card").value = data[""];
             }
-            else{
+            else {
                 document.getElementById("name").value = "";
                 document.getElementById("representative").value = "";
                 document.getElementById("foundation").value = "";
@@ -54,6 +70,22 @@ function showCompanyInfo(userID) {
 function submitCompanyInfo(op_type) {
     var storage = window.localStorage;
     var userID = storage.getItem("user_id");
+    var userType = "";
+    $.ajax({
+        type: "GET",
+        url: "/user/getUserRole",
+        async: false,
+        data: {
+            userID: userID
+        },
+        success: function (userRole) {
+            userType = userRole;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+
+    });
 
     var name = document.getElementById("name").value;
     var representative = document.getElementById("representative").value;
@@ -69,12 +101,13 @@ function submitCompanyInfo(op_type) {
     var email = document.getElementById("email").value;
     var img_E = document.getElementById("p_id_card").value;
 
-    if(op_type == "Submit" && (name == "" || representative == "" || foundation == "" || address == "" || phone == "" || statement == "" || field == "" ||
-            type == "" || fund == "" || duration == "" || officialWeb == "" || email == "" || img_E == "")){
+    if (op_type == "Submit" && (name == "" || representative == "" || foundation == "" || address == "" || phone == "" || statement == "" || field == "" ||
+        type == "" || fund == "" || duration == "" || officialWeb == "" || email == "" || img_E == "")) {
         alert("身份信息不完整，请完善！");
     }
-    else{
+    else {
         var companyUserSaveVo = {
+            id: userID,
             name: name,
             representative: representative,
             foundation: foundation,
@@ -100,21 +133,125 @@ function submitCompanyInfo(op_type) {
             dataType: "json",
             data: JSON.stringify(companyUserSaveVo),
             success: function (data) {
-                if(data == "Success"){
+                if (data == "Success") {
+                    registerMailParticipant(userID, name, userType)
                     window.location.href = "/ipnet/pc_identifiedE";
                 }
-                else{
-                    alert("保存/提交失败！");
+                else {
+                    console.log("保存/提交失败！");
                 }
             },
-            error: function () {
-                alert("Error!");
+            error: function (error) {
+                console.log(error);
             }
         });
 
-        if(op_type == "Submit"){
+        if (op_type == "Submit") {
             //提醒管理员审核！？？
 
         }
     }
+}
+
+
+function registerMailParticipant(id, name, type) {
+
+    switch (type) {
+        case "Financial":
+            $.ajax({
+                url: "http://localhost:3000/api/Bank",
+                type: "POST",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    $class: "org.acme.ipregistry.Bank",
+                    id: id,
+                    name: name,
+                    balance: 0
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+        case "Insurance":
+            $.ajax({
+                url: "http://localhost:3000/api/InsuranceCompany",
+                type: "POST",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    $class: "org.acme.ipregistry.InsuranceCompany",
+                    id: id,
+                    name: name,
+                    balance: 0
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+        case "Evaluator":
+            $.ajax({
+                url: "http://localhost:3000/api/Notary",
+                type: "POST",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    $class: "org.acme.ipregistry.Notary",
+                    id: id,
+                    name: name,
+                    balance: 0
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+        case "CompanyUser":
+            $.ajax({
+                url: "http://localhost:3000/api/IPEstateAgent",
+                type: "POST",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    $class: "org.acme.ipregistry.IPEstateAgent",
+                    id: id,
+                    name: name,
+                    balance: 0
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+        case "PersonalUser":
+            $.ajax({
+                url: "http://localhost:3000/api/PrivateIndividual",
+                type: "POST",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    $class: "org.acme.ipregistry.PrivateIndividual",
+                    id: id,
+                    name: name,
+                    balance: 0
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+    }
+
 }

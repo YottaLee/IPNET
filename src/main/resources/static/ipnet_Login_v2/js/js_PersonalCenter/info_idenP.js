@@ -1,20 +1,37 @@
 window.onload = function () {
     var storage = window.localStorage;
     var userID = storage.getItem("user_id");
-    showPersonInfo(userID);
+    $.ajax({
+        type: "GET",
+        url: "/user/getUserRole",
+        async: false,
+        data: {
+            userID: userID
+        },
+        success: function (userRole) {
+            console.log(userRole);
+            showPersonInfo(userID, userRole);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+
+    });
+
 }
 
 
-function showPersonInfo(userID) {
+function showPersonInfo(userID, userRole) {
     $.ajax({
         url: "/userInfo/getUser",
         type: "POST",
         async: false,
-        dataType: "json",
-        data: {userid: userID},
+        data: {
+            userid: userID,
+            userType: userRole
+        },
         success: function (data) {
-            var userInfoVo = data;
-            if(data != null){
+            if (data != null) {
                 document.getElementById("name").value = data["name"];
                 document.getElementById("phone").value = data["phone"];
                 document.getElementById("company").value = data["company"];
@@ -24,7 +41,7 @@ function showPersonInfo(userID) {
                 document.getElementById("statement").value = data["statement"];
                 document.getElementById("p_id_card").value = data["IDcard_img"];  //显示图片路径或名称！？
             }
-            else{
+            else {
                 document.getElementById("name").value = "";
                 document.getElementById("phone").value = "";
                 document.getElementById("company").value = "";
@@ -35,8 +52,8 @@ function showPersonInfo(userID) {
                 //document.getElementById("p_id_card").value = "";
             }
         },
-        error: function () {
-            alert("Error!");
+        error: function (error) {
+            console.log(error);
         }
     });
 }
@@ -54,12 +71,13 @@ function submitPersonInfo(op_type) {
     var statement = document.getElementById("statement").value;
     var img_E = document.getElementById("p_id_card").value;  //图片路径或名称！？
 
-    if(op_type == "Submit" && (name == "" || phone == "" || company == "" || region == "" ||
-            gender == "" || profession == "" || statement == "" || img_E == "")){
+    if (op_type == "Submit" && (name == "" || phone == "" || company == "" || region == "" ||
+        gender == "" || profession == "" || statement == "" || img_E == "")) {
         alert("身份信息不完整，请完善！");
     }
-    else{
+    else {
         var personalUserSaveVo = {
+            id: userID,
             name: name,
             phone: phone,
             company: company,
@@ -80,22 +98,44 @@ function submitPersonInfo(op_type) {
             dataType: "json",
             data: JSON.stringify(personalUserSaveVo),
             success: function (data) {
-                if(data == "Success"){
+                if (data == "Success") {
+                    registerParticipant(userID,name);
                     alert("保存/提交成功！");
                     window.location.href = "/ipnet/pc_identifiedP";
                 }
-                else{
-                    alert("保存/提交失败！");
+                else {
+                    console.log("保存/提交失败！");
                 }
             },
-            error: function () {
-                alert("Error!");
+            error: function (error) {
+                console.log(error);
             }
         });
 
-        if(op_type == "Submit"){
+        if (op_type == "Submit") {
             //提醒管理员审核！？？
 
         }
     }
+}
+
+function registerParticipant(id,name){
+    console.log(id);
+    $.ajax({
+        url: "http://localhost:3000/api/PrivateIndividual",
+        type: "POST",
+        dataType: "json", //指定服务器返回的数据类型
+        data: {
+            $class: "org.acme.ipregistry.PrivateIndividual",
+            id: id,
+            name: name,
+            balance: 0
+        },
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 }

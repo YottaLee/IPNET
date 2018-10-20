@@ -4,9 +4,11 @@ import com.ipnet.enums.Industry;
 import com.ipnet.enums.Region;
 import com.ipnet.enums.Role;
 import com.ipnet.enums.Sex;
+import lombok.Data;
 
 import javax.print.DocFlavor;
 
+@Data
 public class PersonalUserSaveVo {
 
     private String id;

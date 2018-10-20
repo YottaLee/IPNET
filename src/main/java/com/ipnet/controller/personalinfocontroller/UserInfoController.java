@@ -12,6 +12,7 @@ import com.ipnet.vo.uservo.PersonalUserSaveVo;
 import com.ipnet.vo.uservo.UserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,14 +34,14 @@ public class UserInfoController {
     //修改个人用户
     @RequestMapping("/modifyPerson")
     public @ResponseBody
-    ResultMessage savePersonalUserInfo(PersonalUserSaveVo personalUserSaveVo){
+    ResultMessage savePersonalUserInfo(@RequestBody PersonalUserSaveVo personalUserSaveVo){
         return userBLService.savePersonalUserInfo(personalUserSaveVo);
     }
 
     //修改企业用户
     @RequestMapping("/modifyCompany")
     public @ResponseBody
-    ResultMessage saveCompanyUserInfo(CompanyUserSaveVo companyUserSaveVo){
+    ResultMessage saveCompanyUserInfo(@RequestBody CompanyUserSaveVo companyUserSaveVo){
         return userBLService.saveCompanyUserInfo(companyUserSaveVo);
     }
 

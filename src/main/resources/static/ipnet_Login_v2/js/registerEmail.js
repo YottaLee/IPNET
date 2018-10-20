@@ -163,6 +163,7 @@ function registerMsgByEmailEnterprise() {
             data: JSON.stringify(emailRegister),
             success: function (data) {
                 if (data == "Success"){
+                    registerMailParticipant(oUsername,oRole);
                     content = "发送链接成功，请前往邮箱确认！即将跳转 . . .";
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
@@ -223,6 +224,7 @@ function registerMsgByEmailPerson() {
             data: JSON.stringify(emailRegister),
             success: function (data) {
                 if (data == "Success"){
+                    registerMailParticipant(id,emailRegister.role);
                     content = "发送链接成功，请前往邮箱确认！即将跳转 . . .";
                     TINY.box.show(content,0,0,0,0,2);
                     setTimeout(function () {
@@ -255,72 +257,6 @@ function registerMsgByEmailPerson() {
         content = "注册失败！请重试 . . .";
         TINY.box.show(content,0,0,0,0,3);
     }
-}
-
-function registerMailParticipant(id,type){
-
-    switch(type){
-        case "Bank":
-            $.ajax({
-                url: "http://localhost:3000/api/Bank",
-                type: "POST",
-                dataType: "json", //指定服务器返回的数据类型
-                data: {
-                    $class: "org.acme.ipregistry.Bank",
-                    id: id,
-                    name: "",
-                    balance: 0
-                },
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function () {
-                    console.log("Fail!!!!!!!!");
-                }
-            });
-            break;
-        case "InsuranceCompany":
-            $.ajax({
-                url: "http://localhost:3000/api/InsuranceCompany",
-                type: "POST",
-                dataType: "json", //指定服务器返回的数据类型
-                data: {
-                    $class: "org.acme.ipregistry.InsuranceCompany",
-                    id: id,
-                    name: "",
-                    balance: 0
-                },
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function () {
-                    console.log("Fail!!!!!!!!");
-                }
-            });
-            break;
-        case "Notary":
-            $.ajax({
-                url: "http://localhost:3000/api/Notary",
-                type: "POST",
-                dataType: "json", //指定服务器返回的数据类型
-                data: {
-                    $class: "org.acme.ipregistry.Notary",
-                    id: id,
-                    name: "",
-                    balance: 0
-                },
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function () {
-                    console.log("Fail!!!!!!!!");
-                }
-            });
-            break;
-        case "Third":
-            break;
-    }
-
 }
 
 

@@ -1,5 +1,8 @@
 package com.ipnet.vo.uservo;
 
+import lombok.Data;
+
+@Data
 public class CompanyUserSaveVo {
     private String id;
     private String name;

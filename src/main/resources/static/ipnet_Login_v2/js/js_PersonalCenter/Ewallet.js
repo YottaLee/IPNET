@@ -141,6 +141,7 @@ function newBankCard() {
                     data: {userId: userID, card: cardID, card_code: cardCode, bank: bankName, userType: userRole},
                     success: function (data) {
                         if (data == "Success") {
+                            walletInBlockChain(userID);
                             alert("绑定成功！");
                             window.location.href = "/ipnet/pc_eWallet";
                         }
@@ -164,6 +165,191 @@ function newBankCard() {
 }
 
 function cancelNewBankCard() {
+
+}
+
+function walletInBlockChain(id) {
+    var amount = 2000000000;
+    var type = "";
+    $.ajax({
+        type: "GET",
+        url: "/user/getUserRole",
+        async: false,
+        data: {
+            userID: id
+        },
+        success: function (userRole) {
+            console.log(userRole);
+            type = userRole;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+
+    });
+    switch (type) {
+        case "Financial":
+            $.ajax({
+                url: "http://localhost:3000/api/Bank",
+                type: "GET",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                   id:id
+                },
+                success: function (data) {
+                    $.ajax({
+                        url: "http://localhost:3000/api/Bank",
+                        type: "PUT",
+                        dataType: "json", //指定服务器返回的数据类型
+                        data: {
+                            $class: "org.acme.ipregistry.Bank",
+                            id: id,
+                            name: data.name,
+                            balance: amount
+                        },
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function () {
+                            console.log("Fail!!!!!!!!");
+                        }
+                    });
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+        case "Insurance":
+            $.ajax({
+                url: "http://localhost:3000/api/InsuranceCompany",
+                type: "GET",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    id:id
+                },
+                success: function (data) {
+                    $.ajax({
+                        url: "http://localhost:3000/api/InsuranceCompany",
+                        type: "PUT",
+                        dataType: "json", //指定服务器返回的数据类型
+                        data: {
+                            $class: "org.acme.ipregistry.InsuranceCompany",
+                            id: id,
+                            name: data.name,
+                            balance: amount
+                        },
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function () {
+                            console.log("Fail!!!!!!!!");
+                        }
+                    });
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+        case "Evaluator":
+            $.ajax({
+                url: "http://localhost:3000/api/Notary",
+                type: "GET",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    id:id
+                },
+                success: function (data) {
+                    $.ajax({
+                        url: "http://localhost:3000/api/Notary",
+                        type: "PUT",
+                        dataType: "json", //指定服务器返回的数据类型
+                        data: {
+                            $class: "org.acme.ipregistry.Notary",
+                            id: id,
+                            name: data.name,
+                            balance: amount
+                        },
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function () {
+                            console.log("Fail!!!!!!!!");
+                        }
+                    });
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+        case "CompanyUser":
+            $.ajax({
+                url: "http://localhost:3000/api/IPEstateAgent",
+                type: "GET",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    id:id
+                },
+                success: function (data) {
+                    $.ajax({
+                        url: "http://localhost:3000/api/IPEstateAgent",
+                        type: "PUT",
+                        dataType: "json", //指定服务器返回的数据类型
+                        data: {
+                            
+                            $class: "org.acme.ipregistry.IPEstateAgent",
+                            id: id,
+                            name: data.name,
+                            balance: amount
+                        },
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function () {
+                            console.log("Fail!!!!!!!!");
+                        }
+                    });
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+        case "PersonalUser":
+            $.ajax({
+                url: "http://localhost:3000/api/PrivateIndividual",
+                type: "GET",
+                dataType: "json", //指定服务器返回的数据类型
+                data: {
+                    id:id
+                },
+                success: function (data) {
+                    $.ajax({
+                        url: "http://localhost:3000/api/PrivateIndividual",
+                        type: "PUT",
+                        dataType: "json", //指定服务器返回的数据类型
+                        data: {
+                            $class: "org.acme.ipregistry.PrivateIndividual",
+                            id: id,
+                            name: data.name,
+                            balance: amount
+                        },
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function () {
+                            console.log("Fail!!!!!!!!");
+                        }
+                    });
+                },
+                error: function () {
+                    console.log("Fail!!!!!!!!");
+                }
+            });
+            break;
+    }
 
 }
 
