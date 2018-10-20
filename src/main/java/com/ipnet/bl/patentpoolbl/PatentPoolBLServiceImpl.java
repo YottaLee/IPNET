@@ -55,7 +55,7 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         pool.setOwner(holderId);
         pool.setUsers(new ArrayList<String>());
         pool.setProfile(profile);
-        SimpleDateFormat form = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         pool.setCreateTime(form.format(new Date()));
         List<PatentPool> tempList = this.patentPoolDao.findAll();
         pool.setId(holderId+"_"+tempList.size());
@@ -203,7 +203,6 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
     @Override
     public List<PatentPoolVO> getIPSETList(String userId) throws IDNotExistsException{
         List<PatentPool> poolists = this.patentPoolDao.searchPatentPoolByOwner(userId);
-        System.out.println("lists size is  "+ poolists.size());
         if (poolists == null || poolists.size() == 0) {
             return null;
         }

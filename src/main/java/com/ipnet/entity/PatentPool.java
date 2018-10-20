@@ -1,7 +1,9 @@
 package com.ipnet.entity;
 
 import com.ipnet.enums.Industry;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "pool")
 public class PatentPool {
     @Id

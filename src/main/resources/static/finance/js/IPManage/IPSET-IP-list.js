@@ -28,6 +28,10 @@ $.ajax({
     }
 });
 
+//通过id获取pool的相关信息
+
+
+
 $.ajax({
     type: "GET",
     url: "Patent/searchRelatedPatents",

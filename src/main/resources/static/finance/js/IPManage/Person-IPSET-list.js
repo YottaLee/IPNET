@@ -11,7 +11,7 @@ $.ajax({
         var ipsetList = "";
         var ipsetinfolist = "";
         for (var i = 0, len = data.length; i < len; i++) {
-
+            alert(data[i].createTime);
             ipsetList += "<a href=\"#\" class=\"list-group-item\">\n" +
                 "                                            <div class=\"media-left pos-rel\">\n" +
                 "                                                     alt=\"Profile Picture\">\n" +
