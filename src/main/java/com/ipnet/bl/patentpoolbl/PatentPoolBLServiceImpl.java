@@ -14,6 +14,7 @@ import com.ipnet.utility.TransHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,8 +55,10 @@ public class PatentPoolBLServiceImpl implements PatentPoolBLService {
         pool.setOwner(holderId);
         pool.setUsers(new ArrayList<String>());
         pool.setProfile(profile);
-        pool.setCreateTime(new Date());
-        pool.setId(String.valueOf(Math.random()*100));
+        SimpleDateFormat form = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        pool.setCreateTime(form.format(new Date()));
+        List<PatentPool> tempList = this.patentPoolDao.findAll();
+        pool.setId(holderId+"_"+tempList.size());
         PatentPool resultDomain = this.patentPoolDao.saveAndFlush(pool);
         PatentPoolVO resultVO = (PatentPoolVO) this.transHelper.transTO(resultDomain , PatentPoolVO.class);
         List<PatentPool> newList = this.patentPoolDao.searchPatentPoolByName(poolName);

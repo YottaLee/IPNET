@@ -19,7 +19,7 @@ public class PatentPool {
     private String picture;//专利池的头像？的url
     private Industry industry;//池内专利所属行业
     private String description;//专利池简介
-    private Date createTime;//专利池的创建时间
+    private String createTime;//专利池的创建时间
 
     //新添加
     private int amount; //池子容量
