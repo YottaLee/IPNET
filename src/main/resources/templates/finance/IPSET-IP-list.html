@@ -125,7 +125,7 @@
                                     <img src="/finance/img/profile-photos/2.png" class="img-lg img-border img-circle" alt="Profile Picture">
                                 </div>
                                 <h4 class="text-lg text-overflow mar-no">专利池</h4>
-                                <p class="text-sm text-muted">ln's IPset1</p>
+                                <p class="text-sm text-muted" id="poolName">ln's IPset1</p>
 
                                 <button class="btn btn-block btn-success">关注</button>
 
@@ -133,16 +133,16 @@
                             </div>
                             <p class="text-semibold text-main pad-all mar-no">专利池号</p>
                             <div class="pad-hor mar-btm">
-                                <small class="text-muted">00001</small>
+                                <small class="text-muted" id="poolId">00001</small>
                             </div>
                             <p class="text-semibold text-main pad-all mar-no">所属方向</p>
                             <div class="pad-hor mar-btm">
-                                <small class="text-muted">知识产权</small>
+                                <small class="text-muted" id="industry">知识产权</small>
                             </div>
 
                             <p class="text-semibold text-main pad-all mar-no">有效期限</p>
                             <ul class="list-inline mar-hor">
-                                <li class="tag tag-sm">2018.03.31</li>
+                                <li class="tag tag-sm" id = "">2018.03.31</li>
                             </ul>
 
                             <p class="text-semibold text-main pad-all mar-no">池内人数</p>
@@ -261,8 +261,8 @@
                                             <table class="table table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th>专利名</th>
                                                     <th>专利号</th>
+                                                    <th>专利名</th>
                                                     <th>入池日期</th>
                                                     <th>出池日期</th>
                                                     <th>状态</th>

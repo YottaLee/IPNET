@@ -95,7 +95,6 @@ public class PatentBLServiceImpl implements PatentBLService {
     @Override
     public List<PatentVO> getPatentList(String userId){
         List<Patent> patentList = this.patentDao.searchPatentsByUserId(userId);
-        System.out.println("list  "+patentList.size());
         if(patentList.size() == 0 ||patentList == null){
             System.out.println("list为空");
             return null;
@@ -343,7 +342,6 @@ public class PatentBLServiceImpl implements PatentBLService {
         Patent patent = this.getPatentById(patentId);
         patent.addInvitationFromPool(patentPoolId);
         Invitation invitation = new Invitation();
-        invitation.setId(String.valueOf(Math.random()));
         invitation.setPatentId(patentId);
         invitation.setPatentPoolId(patentPoolId);
         invitation.setDate(new Date());

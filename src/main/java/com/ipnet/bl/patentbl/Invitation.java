@@ -16,7 +16,6 @@ public class Invitation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long simpleId;
-    private String id;
     private String patentId;
     private String patentPoolId;
     private Date date;

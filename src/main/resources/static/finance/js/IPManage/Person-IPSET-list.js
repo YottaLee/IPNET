@@ -11,7 +11,6 @@ $.ajax({
         var ipsetList = "";
         var ipsetinfolist = "";
         for (var i = 0, len = data.length; i < len; i++) {
-            alert(data[i].createTime);
             ipsetList += "<a href=\"#\" class=\"list-group-item\">\n" +
                 "                                            <div class=\"media-left pos-rel\">\n" +
                 "                                                     alt=\"Profile Picture\">\n" +
@@ -23,8 +22,8 @@ $.ajax({
                 "                                            </div>\n" +
                 "                                        </a>";
             ipsetinfolist += "<tr onclick='checkDetail(data[i].id)'>\n" +
-                "                                                    <td><a class=\"btn-link\" href=\"#\">" + data[i].name + "</a></td>\n" +
-                "                                                    <td>" + data[i].id + "</td>\n" +
+                "                                                    <td><a class=\"btn-link\" " + data[i].id + "</a></td>\n" +
+                "                                                    <td>" + data[i].name + "</td>\n" +
                 "                                                    <td><span class=\"text-muted\"><i class=\"demo-pli-clock\"></i>" + data[i].createTime + "</span>\n" +
                 "                                                    </td>\n" +
                 // "                                                    <td>2015.01.01</td>\n" +

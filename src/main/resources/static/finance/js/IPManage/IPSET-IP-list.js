@@ -1,17 +1,36 @@
-//获取专利列表
+
 var storage = window.localStorage;
-var userId = storage.userId;
+var patentPoolID = storage.patentPoolID;
+//通过id获取pool的相关信息
 $.ajax({
     type: "GET",
-    url: "PatentPool/getIPSETList",
-    dataType: "json",
-    data: userId,
+    url: "/PatentPool/searchPatentPoolByID",
+    async: false,
+    data: {patentPoolID: patentPoolID},
     success: function (data) {
-        var patentPoolList = "";
+        alert(1);
+        document.getElementById("poolName").innerHTML = data.name;
+        document.getElementById("poolId").innerHTML = data.id;
+
+    },
+    error: function (error) {
+         alert(error);
+         console.log(error);
+    }
+});
+
+//获取专利列表
+$.ajax({
+    type: "GET",
+    url: "/Patent/searchPatentByPool",
+    dataType: "json",
+    data: patentPoolID,
+    success: function (data) {
+        var patentList = "";
         for (var i = 0, len = data.length; i < len; i++) {
-            patentPoolList += "<tr>\n" +
-                "                                                    <td><a class=\"btn-link\" href=\"#\">"+data[i].name+"</a></td>\n" +
-                "                                                    <td>"+data[i].id+"</td>\n" +
+            patentList += "<tr>\n" +
+                "                                                    <td><a class=\"btn-link\" href=\"#\">"+data[i].id +"</a></td>\n" +
+                "                                                    <td>"+data[i].name+"</td>\n" +
                 "                                                    <td><span class=\"text-muted\"><i class=\"demo-pli-clock\"></i> 2014.01.10</span></td>\n" +
                 "                                                    <td>2015.01.10</td>\n" +
                 "                                                    <td>\n" +
@@ -28,7 +47,6 @@ $.ajax({
     }
 });
 
-//通过id获取pool的相关信息
 
 
 
