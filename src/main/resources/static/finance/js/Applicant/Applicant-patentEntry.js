@@ -1,4 +1,3 @@
-
 $('#submit').on('click', function () {
     var storage = window.localStorage;
     // var url = storage.getItem('fileURL');
@@ -34,7 +33,8 @@ $('#submit').on('click', function () {
                 district: district,
                 profile: profile
             },
-            success: function (data) {
+            success: function () {
+                patentBlockChain(patentID,userId);
                 storage.removeItem('fileURL');
                 storage.removeItem('uploadImageURL');
                 infoFile("已提交");
@@ -52,3 +52,25 @@ $('#submit').on('click', function () {
 
 $('#ssi-upload').ssi_uploader({url: '/upload/image', maxFileSize: 5, allowed: ['jpg', 'gif', 'png', 'pdf']});
 
+function patentBlockChain(patentID,userId) {
+    $.ajax({
+        url: "http://localhost:3000/api/IPEstate",
+        type: "POST",
+        dataType: "json", //指定服务器返回的数据类型
+        async: false,
+        data: {
+            $class: "org.acme.ipregistry.IPEstate",
+            id: patentID,
+            price: 0,
+            ownerID: userId,
+            agentID: "null",
+            poolID: "null"
+        },
+        success: function (data) {
+            console.log(data);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}

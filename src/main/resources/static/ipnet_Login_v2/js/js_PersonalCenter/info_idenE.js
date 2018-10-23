@@ -247,8 +247,8 @@ function registerMailParticipant(id, name, type) {
                 success: function (data) {
                     console.log(data);
                 },
-                error: function () {
-                    console.log("Fail!!!!!!!!");
+                error: function (error) {
+                    console.log(error);
                 }
             });
             break;
