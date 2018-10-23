@@ -3,7 +3,7 @@ test();
 
 function test() {
     $.ajax({
-        url: "http://localhost:3000/api/Bank",
+        url: "http://120.79.232.126:3000/api/Bank",
         type: "POST",
         dataType: "json", //指定服务器返回的数据类型
         data: {

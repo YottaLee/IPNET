@@ -190,7 +190,7 @@ function walletInBlockChain(id) {
     switch (type) {
         case "Financial":
             $.ajax({
-                url: "http://localhost:3000/api/Bank",
+                url: "http://120.79.232.126:3000/api/Bank",
                 type: "GET",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -198,7 +198,7 @@ function walletInBlockChain(id) {
                 },
                 success: function (data) {
                     $.ajax({
-                        url: "http://localhost:3000/api/Bank",
+                        url: "http://120.79.232.126:3000/api/Bank",
                         type: "PUT",
                         dataType: "json", //指定服务器返回的数据类型
                         data: {
@@ -222,7 +222,7 @@ function walletInBlockChain(id) {
             break;
         case "Insurance":
             $.ajax({
-                url: "http://localhost:3000/api/InsuranceCompany",
+                url: "http://120.79.232.126:3000/api/InsuranceCompany",
                 type: "GET",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -230,7 +230,7 @@ function walletInBlockChain(id) {
                 },
                 success: function (data) {
                     $.ajax({
-                        url: "http://localhost:3000/api/InsuranceCompany",
+                        url: "http://120.79.232.126:3000/api/InsuranceCompany",
                         type: "PUT",
                         dataType: "json", //指定服务器返回的数据类型
                         data: {
@@ -254,7 +254,7 @@ function walletInBlockChain(id) {
             break;
         case "Evaluator":
             $.ajax({
-                url: "http://localhost:3000/api/Notary",
+                url: "http://120.79.232.126:3000/api/Notary",
                 type: "GET",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -262,7 +262,7 @@ function walletInBlockChain(id) {
                 },
                 success: function (data) {
                     $.ajax({
-                        url: "http://localhost:3000/api/Notary",
+                        url: "http://120.79.232.126:3000/api/Notary",
                         type: "PUT",
                         dataType: "json", //指定服务器返回的数据类型
                         data: {
@@ -286,7 +286,7 @@ function walletInBlockChain(id) {
             break;
         case "CompanyUser":
             $.ajax({
-                url: "http://localhost:3000/api/IPEstateAgent",
+                url: "http://120.79.232.126:3000/api/IPEstateAgent",
                 type: "GET",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -294,7 +294,7 @@ function walletInBlockChain(id) {
                 },
                 success: function (data) {
                     $.ajax({
-                        url: "http://localhost:3000/api/IPEstateAgent",
+                        url: "http://120.79.232.126:3000/api/IPEstateAgent",
                         type: "PUT",
                         dataType: "json", //指定服务器返回的数据类型
                         data: {
@@ -319,7 +319,7 @@ function walletInBlockChain(id) {
             break;
         case "PersonalUser":
             $.ajax({
-                url: "http://localhost:3000/api/PrivateIndividual",
+                url: "http://120.79.232.126:3000/api/PrivateIndividual",
                 type: "GET",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -327,7 +327,7 @@ function walletInBlockChain(id) {
                 },
                 success: function (data) {
                     $.ajax({
-                        url: "http://localhost:3000/api/PrivateIndividual",
+                        url: "http://120.79.232.126:3000/api/PrivateIndividual",
                         type: "PUT",
                         dataType: "json", //指定服务器返回的数据类型
                         data: {

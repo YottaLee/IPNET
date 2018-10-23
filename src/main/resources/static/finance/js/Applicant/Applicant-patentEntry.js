@@ -54,7 +54,7 @@ $('#ssi-upload').ssi_uploader({url: '/upload/image', maxFileSize: 5, allowed: ['
 
 function patentBlockChain(patentID,userId) {
     $.ajax({
-        url: "http://localhost:3000/api/IPEstate",
+        url: "http://120.79.232.126:3000/api/IPEstate",
         type: "POST",
         dataType: "json", //指定服务器返回的数据类型
         async: false,

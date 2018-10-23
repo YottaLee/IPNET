@@ -159,7 +159,7 @@ function registerMailParticipant(id, name, type) {
     switch (type) {
         case "Financial":
             $.ajax({
-                url: "http://localhost:3000/api/Bank",
+                url: "http://120.79.232.126:3000/api/Bank",
                 type: "POST",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -178,7 +178,7 @@ function registerMailParticipant(id, name, type) {
             break;
         case "Insurance":
             $.ajax({
-                url: "http://localhost:3000/api/InsuranceCompany",
+                url: "http://120.79.232.126:3000/api/InsuranceCompany",
                 type: "POST",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -197,7 +197,7 @@ function registerMailParticipant(id, name, type) {
             break;
         case "Evaluator":
             $.ajax({
-                url: "http://localhost:3000/api/Notary",
+                url: "http://120.79.232.126:3000/api/Notary",
                 type: "POST",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -216,7 +216,7 @@ function registerMailParticipant(id, name, type) {
             break;
         case "CompanyUser":
             $.ajax({
-                url: "http://localhost:3000/api/IPEstateAgent",
+                url: "http://120.79.232.126:3000/api/IPEstateAgent",
                 type: "POST",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {
@@ -235,7 +235,7 @@ function registerMailParticipant(id, name, type) {
             break;
         case "PersonalUser":
             $.ajax({
-                url: "http://localhost:3000/api/PrivateIndividual",
+                url: "http://120.79.232.126:3000/api/PrivateIndividual",
                 type: "POST",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {

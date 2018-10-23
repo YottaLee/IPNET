@@ -68,7 +68,7 @@ $('#submit').on('click', function () {
 
 function patentValueBlockChain(patentID, value) {
     $.ajax({
-        url: "http://localhost:3000/api/IPEstate",
+        url: "http://120.79.232.126:3000/api/IPEstate",
         type: "GET",
         dataType: "json", //指定服务器返回的数据类型
         data: {
@@ -76,7 +76,7 @@ function patentValueBlockChain(patentID, value) {
         },
         success: function (data) {
             $.ajax({
-                url: "http://localhost:3000/api/IPEstate",
+                url: "http://120.79.232.126:3000/api/IPEstate",
                 type: "PUT",
                 dataType: "json", //指定服务器返回的数据类型
                 data: {

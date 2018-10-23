@@ -122,7 +122,7 @@ function submitPersonInfo(op_type) {
 function registerParticipant(id,name){
     console.log(id);
     $.ajax({
-        url: "http://localhost:3000/api/PrivateIndividual",
+        url: "http://120.79.232.126:3000/api/PrivateIndividual",
         type: "POST",
         dataType: "json", //指定服务器返回的数据类型
         data: {
