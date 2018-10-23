@@ -323,14 +323,14 @@ public class UserBL implements UserBLService{
             return null;
         }else{
             for(CompanyUser eva:evaluators){
-                if(eva.isVerified()){
+//                if(eva.isVerified()){
                     return new Evaluator(eva.getId(),eva.getName());
-                }
+//                }
             }
             return null;
         }
     }
-
+    
     @Override
     public boolean personVerify(PersonVerify personVerify) {
         Optional<PersonalUser> person= personalUserDao.findById(personVerify.getId());
