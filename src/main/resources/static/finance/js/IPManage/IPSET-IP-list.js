@@ -1,6 +1,6 @@
 
 var storage = window.localStorage;
-var patentPoolID = storage.patentPoolID;
+var patentPoolID = storage.getItem("patentPoolID");
 //通过id获取pool的相关信息
 $.ajax({
     type: "GET",
@@ -8,7 +8,6 @@ $.ajax({
     async: false,
     data: {patentPoolID: patentPoolID},
     success: function (data) {
-        alert(1);
         document.getElementById("poolName").innerHTML = data.name;
         document.getElementById("poolId").innerHTML = data.id;
 
@@ -23,27 +22,32 @@ $.ajax({
 $.ajax({
     type: "GET",
     url: "/Patent/searchPatentByPool",
-    dataType: "json",
-    data: patentPoolID,
+    async: false,
+    data: {poolId: patentPoolID},
     success: function (data) {
+        document.getElementById("IPSum").innerHTML = data.length;
         var patentList = "";
         for (var i = 0, len = data.length; i < len; i++) {
             patentList += "<tr>\n" +
-                "                                                    <td><a class=\"btn-link\" href=\"#\">"+data[i].id +"</a></td>\n" +
-                "                                                    <td>"+data[i].name+"</td>\n" +
+                "                                                    <td><a class=\"btn-link\" href=\"#\">"+data[i].patent_id +"</a></td>\n" +
+                "                                                    <td>"+data[i].patent_name+"</td>\n" +
                 "                                                    <td><span class=\"text-muted\"><i class=\"demo-pli-clock\"></i> 2014.01.10</span></td>\n" +
                 "                                                    <td>2015.01.10</td>\n" +
                 "                                                    <td>\n" +
                 "                                                        <div class=\"label label-table label-success\">正常</div>\n" +
                 "                                                    </td>\n" +
-                "                                                    <td>ln</td>\n" +
+                "                                                    <td>"+data[i].userId+"</td>\n" +
+                "                                                     <td>\n" +
+                "                                                        <button class= \"btn btn-warning btn-rounded \">投入市场</button>\n" +
+                "                                                      </td>\n" +
                 "                                                </tr>";
         }
-        document.getElementById("ipset_list").innerHTML = patentPoolList;
+        $('#ipset_ip').append(patentList);
+        //document.getElementById("ipset_list").innerHTML = patentPoolList;
 
     },
     error: function () {
-        // alert("Network warning for posting the purpose of the loan")
+         alert("Network warning for posting the purpose of the loan")
     }
 });
 
@@ -52,8 +56,8 @@ $.ajax({
 
 $.ajax({
     type: "GET",
-    url: "Patent/searchRelatedPatents",
-    dataType: "json",
+    url: "/Patent/searchRelatedPatents",
+    async: false,
     success: function (data) {
         var patentList = "";
         for (var i = 0, len = data.length; i < len; i++) {
@@ -88,7 +92,7 @@ $('.btn-mint').click(function(){
     $.ajax({
         type: "POST",
         url: "Patent/sendInvitationFromPool",
-        dataType: "json",
+        async: false,
         data:{
             patentId:ip,
             patentPoolId:ippool
