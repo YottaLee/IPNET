@@ -21,8 +21,8 @@ $.ajax({
                 "                                                <small class=\"text-muted\">" + data[i].industry + "</small>\n" +
                 "                                            </div>\n" +
                 "                                        </a>";
-            ipsetinfolist += "<tr onclick='checkDetail(data[i].id)'>\n" +
-                "                                                    <td><a class=\"btn-link\" " + data[i].id + "</a></td>\n" +
+            ipsetinfolist += "<tr  id=\"ipset-" + data[i].id+"\"onclick=\"checkDetail(this.id)\">\n" +
+                "                                                    <td><a class=\"btn-link\" >" + data[i].id + "</a></td>\n" +
                 "                                                    <td>" + data[i].name + "</td>\n" +
                 "                                                    <td><span class=\"text-muted\"><i class=\"demo-pli-clock\"></i>" + data[i].createTime + "</span>\n" +
                 "                                                    </td>\n" +
@@ -122,6 +122,7 @@ $("#poolsummit").on('click',function () {
 });
 
 function checkDetail(patentPoolID){
-    storage.patentPoolID = patentPoolID;
-    window.location.href = "/ipnet/Person-IP-list";
+    patentPoolID = (patentPoolID + "").substring((patentPoolID + "").indexOf("-") + 1);
+    storage.setItem('patentPoolID', patentPoolID);
+    window.location.href = "/ipnet/IPSET-IP-list";
 }
