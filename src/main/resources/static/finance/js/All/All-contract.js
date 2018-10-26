@@ -55,30 +55,31 @@ function ifPerson() {
 }
 
 $("#confirm").on('click', function () {
-    var loanMoney = $(".Bank-loan").val(); //贷款金额
-    var returnMoreMoney = $(".Bank-money").val(); //保管费用
-    var bankDay = $(".Bank-day").val();
-    var compensation = $(".Bank-compensation").val(); //赔偿
-    var isSuccess = false;
-    if (userRole == "PersonalUser") {
-        $.ajax({
-            type: "POST",
-            url: "/bank/hasContract",
-            data: {
-                loanID: loanID,
-                loanMoney: loanMoney,
-                returnMoreMoney: returnMoreMoney,
-                duration: bankDay,
-                compensation: compensation
-            },
-            success: function () {
-               isSuccess = true;
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        });
-    } else {
-
-    }
+    window.location.href = "/ipnet/loading";
+    // var loanMoney = $(".Bank-loan").val(); //贷款金额
+    // var returnMoreMoney = $(".Bank-money").val(); //保管费用
+    // var bankDay = $(".Bank-day").val();
+    // var compensation = $(".Bank-compensation").val(); //赔偿
+    // var isSuccess = false;
+    // if (userRole == "PersonalUser") {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/bank/hasContract",
+    //         data: {
+    //             loanID: loanID,
+    //             loanMoney: loanMoney,
+    //             returnMoreMoney: returnMoreMoney,
+    //             duration: bankDay,
+    //             compensation: compensation
+    //         },
+    //         success: function () {
+    //            isSuccess = true;
+    //         },
+    //         error: function (error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // } else {
+    //
+    // }
 });

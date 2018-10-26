@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/finance/basic/css/style.css">
     <link rel="stylesheet" href="/finance/basic/css/bootstrap.css">
     <link rel="stylesheet" href="/common/jquery-confirm.css">
-    <link rel="stylesheet" type="text/css" href="/ipnet_Login_v2/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="/ipnet_Login_v2/css/component.css"/>
     <link rel="stylesheet" type="text/css" href="/ipnet_Login_v2/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <title>专利质押借款合同</title>
@@ -40,10 +40,11 @@
     <div class="md-content">
         <h4>个人身份认证</h4>
         <div class="md-maincontent">
-            <br />
-            <span ><i class="fa fa-key"></i>密钥： <input type="password" width="200px" id="key"></span><br /><br />
+            <br/>
+            <span><i class="fa fa-key"></i>密钥： <input type="password" width="200px" id="key"></span><br/><br/>
             <!--<span class="t1">开户银行： <input type="text" id="Ew_newBankCard_bank"></span><br /><br />-->
-            <button class="md-confirm" id="confirm">确认</button><button class="md-cancel" id="cancel">取消</button>
+            <button class="md-confirm" id="confirm">确认</button>
+            <button class="md-cancel" id="cancel">取消</button>
         </div>
     </div>
 </div>
@@ -121,18 +122,18 @@
                 <div>
                     <div class="manage-page">
                         <p>专利：<input class="System patent input-class fm-input" type="text"></p>
-                        <p>评估价值：<input class="System evaluation input-class fm-input" type="text"></p>
+                        <p>评估价值：<input class="System evaluation input-class fm-input" type="number"></p>
                         <p>
                             第一条 甲方以“质押财产清单”（附后）所列之财产设定质押。
                         </p>
-                        <p>第二条 甲方质押担保的贷款金额<input class="Bank loan input-class fm-input" type="text">(大写）元，贷款期限自<input
+                        <p>第二条 甲方质押担保的贷款金额<input class="Bank loan input-class fm-input" type="text">元，贷款期限<input
                                 class="System duration input-class fm-input" type="text">。</p>
                         <p> 第三条 甲方保证对质押物依法享有完全的所有权。</p>
                         <p> 第四条 甲方应于<input class="System duration input-class fm-input" type="text">日将质押财产产付乙方占有并同时向乙方支付保管费<input
-                                class="Bank-money input-class fm-input" type="text">元。 
+                                class="Bank-money input-class fm-input" type="number">元。 
 
                         </p>
-                        <p> 第五条 质押担保的范围：贷款金额（大写）<input class="Bank loan input-class fm-input" type="text">元，及利息、违约金（包括罚息）、赔偿金、质物保管费用及实现贷款债权和质权的费用（包括诉讼费、律师费等）。 
+                        <p> 第五条 质押担保的范围：贷款金额<input class="Bank loan input-class fm-input" type="number">元，及利息、违约金（包括罚息）、赔偿金、质物保管费用及实现贷款债权和质权的费用（包括诉讼费、律师费等）。 
                         </p>
                         <p> 第六条 本合同项下有关的评估、鉴定、保险、保管、运输等费用均由甲方承担。 </p>
                         <p> 第七条 质押期间，<input class="System patentHolder input-class fm-input" type="text">方有维持专利权有效的义务，负责交纳专利年费，处理专利纠纷等事务。
@@ -145,7 +146,7 @@
                 </div>
                 <div>
                     <div class="manage-page">
-                        <p> 第十条 非因乙方过错致质押财产价值减少，甲方应在<input class="Bank day input-class fm-input" type="text">天内向乙方提供与减少的价值相当的担保。
+                        <p> 第十条 非因乙方过错致质押财产价值减少，甲方应在<input class="Bank day input-class fm-input" type="number">天内向乙方提供与减少的价值相当的担保。
                         </p>
                         <p> 第十一条 质押期间，质押财产造成环境污染或造成其他损害，应由甲方独立承担责任。
                         </p>
@@ -168,7 +169,7 @@
                 <div>
                     <div class="manage-page">
                         <p> 第十六条 甲方因隐瞒质押财产存在共有、争议、被查封、被扣压或已设定抵押权等情况而给乙方造成经济损失的，应向乙方支付借款合同项下贷款金额<input
-                                class="Bank compensation input-class fm-input" type="text">％的违约金，违约金不足以弥补乙方损失的，甲方还应就不足部分予以赔偿。乙方有权就违约金、赔偿金直接与甲方存款帐户中的资金予以抵销。
+                                class="Bank compensation input-class fm-input" type="number">％的违约金，违约金不足以弥补乙方损失的，甲方还应就不足部分予以赔偿。乙方有权就违约金、赔偿金直接与甲方存款帐户中的资金予以抵销。
                         </p><h4> 三、各方职责
                     </h4>
                         <p> 第十七条 乙方贪污处分质押财产所得的价款，按下列顺序分配： 
@@ -184,7 +185,7 @@
                         <p> （4）支付其他费用。 
 
                         </p>
-                        <p> ____如果甲方同时与保险公司签订专利质押保险合同，则第十四条中，未能清偿部分由保险公司全部赔偿，质押权移交保险公司<input
+                        <p> 如果甲方同时与保险公司签订专利质押保险合同，则第十四条中，未能清偿部分由保险公司全部赔偿，质押权移交保险公司<input
                                 class="System insurance input-class fm-input" type="text">。
                         </p>
                         <p> 第十九条 因本合同发生的争议，经协商解决达不成一致意见，应当向人民法院提起诉讼。
@@ -198,7 +199,7 @@
                         <p class="page-title wrap">
                             签字页
                         </p>
-                        <div class="party party-a" style="height: 100%">
+                        <div class="party party-a" style="width:300px;height: 100%">
                             <div style="height: 182px">
                                 <div class="fm-sign">
                                     <!--<p class="wrap">(甲方盖章)</p>-->
@@ -222,25 +223,25 @@
                                 </div>
                             </div>
 
-                            <!--<div class="fm-sign">-->
-                            <!--<label>签订日期:</label>-->
-                            <!--<input class="input-class year" type="text" style="width: 25px">年-->
-                            <!--<input class="input-class date" type="text" style="width: 25px">月-->
-                            <!--<input class="input-class date" type="text" style="width: 25px">日-->
-                            <!--</div>-->
-
-                        </div>
-                        <div class="party party-b" style="height: 100%">
-
-
                             <div class="fm-sign">
                                 <label>签订日期:</label>
-                                <input class="input-class year" type="text" style="width: 25px">年
-                                <input class="input-class month" type="text" style="width: 25px">月
-                                <input class="input-class date" type="text" style="width: 25px">日
+                                <input class="input-class year" type="number" style="width: 45px">年
+                                <input class="input-class month" type="number" style="width: 30px">月
+                                <input class="input-class date" type="number" style="width: 30px">日
                             </div>
                             <button data-modal="modal-3" class="md-trigger btn btn-default">签字上链</button>
                         </div>
+                        <!--<div class="party party-b" style="height: 100%">-->
+
+
+                        <!--<div class="fm-sign">-->
+                        <!--<label>签订日期:</label>-->
+                        <!--<input class="input-class year" type="number" style="width: 40px">年-->
+                        <!--<input class="input-class month" type="number" style="width: 25px">月-->
+                        <!--<input class="input-class date" type="number" style="width: 25px">日-->
+                        <!--</div>-->
+                        <!--<button data-modal="modal-3" class="md-trigger btn btn-default">签字上链</button>-->
+                        <!--</div>-->
                     </div>
 
                 </div>
@@ -299,7 +300,6 @@
 
     $('.disabled').find('input').attr('disabled', 'disabled');
     $('.disabled').find('.seal').attr('disabled', 'disabled');
-
 
 
 </script>

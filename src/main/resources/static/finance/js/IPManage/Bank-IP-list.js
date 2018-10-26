@@ -77,8 +77,11 @@ function check(loanID) {
                 case "to_be_mid_confirm":
                     window.location.href = "/ipnet/Bank-midConfirm";
                     break;
-                case "to_be_contract_by_loan":
+                case "to_be_final_confirm":
                     window.location.href = "/ipnet/Bank-finalConfirm";
+                    break;
+                case "to_be_contract_by_loan":
+                    window.location.href = "/ipnet/All-loan-check";
                     break;
                 // case 7:
                 //     window.location.href = "/ipnet/Bank-insuranceApplication2";

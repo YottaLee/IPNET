@@ -19,6 +19,9 @@ public interface LoanBankBLService {
     //提交中期通过意见
     ResultMessage submitMidApplication(String loanID, boolean ifPass,boolean ifInsurance);
 
+    //通过最终审核
+    ResultMessage submitDecision(String loanID, boolean ifPass);
+
     //银行签署合同
     ResultMessage hasContract(String loanID, double loanMoney, double returnMoreMoney, String duration, double compensation);
 }

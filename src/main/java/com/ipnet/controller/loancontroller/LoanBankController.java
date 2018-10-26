@@ -72,6 +72,14 @@ public class LoanBankController {
         return loanBankBLService.submitMidApplication(loanID, ifPass, ifInsurance);
     }
 
+    @RequestMapping("/submitDecision")
+    @ResponseBody
+    public ResultMessage submitDecision(String loanID, boolean ifPass) {
+        return loanBankBLService.submitDecision(loanID, ifPass);
+    }
+
+
+
     /**
      * 银行提交协议
      * @param loanID 贷款号

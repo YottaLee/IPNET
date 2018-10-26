@@ -86,6 +86,24 @@ public class LoanBankBL implements LoanBankBLService {
     }
 
     /**
+     * 银行提交最终审核意见
+     *
+     * @param loanID 贷款号
+     * @param ifPass 是否同意放贷
+     * @return ResultMessage
+     */
+    @Override
+    public ResultMessage submitDecision(String loanID, boolean ifPass){
+        Loan loan = loanDao.getOne(loanID);
+        if (!ifPass) //银行不同意放贷，此次申请就此结束
+            loan.setState(Patent_loan_state.free);
+        else
+            loan.setState(Patent_loan_state.to_be_contract_by_loan);
+        loanDao.saveAndFlush(loan);
+        return ResultMessage.Success;
+    }
+
+    /**
      * 银行提交协议
      * @param loanID 贷款号
      * @param loanMoney 贷款金额

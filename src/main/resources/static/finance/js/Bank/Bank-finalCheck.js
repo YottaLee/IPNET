@@ -76,27 +76,29 @@ $('#submit').on('click', function () {
     var ifPass = document.getElementById("check-pass").checked;
 
     // console.log(ifPass);
-    if(ifPass)
-        window.location.href = "/ipnet/All-loan-check";
-    else {
-        $.ajax({
-            type: "POST",
-            url: "/bank/submitApplication",
-            data: {
-                loanID: loanID,
-                ifPass: ifPass
-            },
-            success: function () {
-                infoFile("已将信息反馈给专利持有人");
-                setTimeout(function () {
-                    window.location.href = "/ipnet/Bank-IP-list";
-                }, 2000);
 
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-            }
-        });
-    }
+
+    $.ajax({
+        type: "POST",
+        url: "/bank/submitDecision",
+        data: {
+            loanID: loanID,
+            ifPass: ifPass
+        },
+        success: function () {
+            infoFile("已将信息反馈给专利持有人");
+            setTimeout(function () {
+                if (ifPass)
+                    window.location.href = "/ipnet/All-loan-check";
+                else
+                    window.location.href = "/ipnet/Bank-IP-list";
+            }, 2000);
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+    });
+
 });
 
