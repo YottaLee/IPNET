@@ -18,8 +18,10 @@ public class Loan {
     private String loanID;
     private String patentID;//专利ID
     private String patent;//专利名称
-    private String person; //专利持有人ID
+    private String userID; //专利持有人ID
+    private String person;
 
+    private String way; //贷款用途
     private String time;//质押申请时间
     private double evaluation; //评估经济价值结果
     private double expect_money; //预期金额
@@ -27,11 +29,13 @@ public class Loan {
 
     private Patent_loan_state state;
 
+    private String bankId;
     private String bank; //银行名称
     private String application;//向银行提出质押申请的申请表
     private double accept_money;//银行接受金额
     private String accept_time;//银行接受期限
 
+    private String insuranceId;
     private String insurance;//保险公司
     private String policy;//保险保单
 

@@ -26,8 +26,6 @@ $.ajax({
         console.log(data.money);
         document.getElementById("patent").innerHTML = data.patent;
         document.getElementById("holder").innerHTML = data.person;
-        document.getElementById("loan-money").innerHTML = data.money;
-        document.getElementById("loan-time").innerHTML = data.time;
         document.getElementById("evaluation").innerHTML = data.evaluation;
         $.ajax({
             type: "GET",
@@ -53,33 +51,18 @@ $('#submit').on('click', function () {
     var ifPass = document.getElementById("check-pass").checked;
     console.log(loanID);
     $.ajax({
-        type: "GET",
-        url: "/insurance/getInsurance",
+        type: "POST",
+        url: "/insurance/ifInsurance",
         data: {
-            loanid: loanID
+            loanId: loanID,
+            ifPass: ifPass
         },
-        success: function (insurance) {
-            //存取是否愿意投保
-            console.log(insurance);
-            console.log(insurance.id);
-            $.ajax({
-                type: "POST",
-                url: "/insurance/ifInsurance",
-                data: {
-                    id: insurance.id,
-                    ifPass: ifPass
-                },
-                success: function () {
-                    infoFile("已将信息反馈给专利持有人");
-                    setTimeout(function () {
-                        window.location.href = "/ipnet/Insurance-IP-list";
-                        //回到保险公司主界面
-                    }, 2000);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                }
-            });
+        success: function () {
+            infoFile("已将信息反馈给专利持有人");
+            setTimeout(function () {
+                window.location.href = "/ipnet/Insurance-IP-list";
+                //回到保险公司主界面
+            }, 2000);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);

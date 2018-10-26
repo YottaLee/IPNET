@@ -40,10 +40,30 @@ $('#submit').on('click', function () {
         var evaluation = $("#evaluation").val();
         var money = $("#money").val();
         var tech = $("#tech").val();
+        var transactionId = "";
         //提交评估报告
         $.ajax({
             type: "POST",
+            url: "http://120.79.232.126:3000/api/SubmitIPReport",
+            async: false,
+            data: {
+                $class: "org.acme.ipregistry.SubmitIPReport",
+                ipID: patentID,
+                value: evaluation
+            },
+            success: function (transaction) {
+                console.log(transaction);
+                transactionId = transaction.transactionId;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+            }
+        });
+
+        $.ajax({
+            type: "POST",
             url: "/evaluation/submitReport",
+            async: false,
             data: {
                 patentID: patentID,
                 url: url,
@@ -54,7 +74,7 @@ $('#submit').on('click', function () {
                 money: money
             },
             success: function () {
-                infoFile("评估完成");
+                infoFile("评估完成！交易哈希码为：" + transactionId);
                 setTimeout(function () {
                     window.location.href = "/ipnet/Evaluation-IP-list";
                 }, 2000);
@@ -65,38 +85,3 @@ $('#submit').on('click', function () {
         });
     }
 });
-
-function patentValueBlockChain(patentID, value) {
-    $.ajax({
-        url: "http://120.79.232.126:3000/api/IPEstate",
-        type: "GET",
-        dataType: "json", //指定服务器返回的数据类型
-        data: {
-            id: patentID
-        },
-        success: function (data) {
-            $.ajax({
-                url: "http://120.79.232.126:3000/api/IPEstate",
-                type: "PUT",
-                dataType: "json", //指定服务器返回的数据类型
-                data: {
-                    $class: "org.acme.ipregistry.IPEstate",
-                    id: patentID,
-                    price: value,
-                    ownerID: data.ownerID,
-                    agentID: data.agentID,
-                    poolID: data.poolID
-                },
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-}

@@ -1,80 +1,78 @@
-divHidden();
-
-function sure(checkbox) {
-    if (checkbox.checked == true)
-        divShow();
-    else
-        divHidden();
-}
-
-function divShow() {
-    document.getElementById("ifHide").style.display = "block";
-}
-
-function divHidden() {
-    document.getElementById("ifHide").style.display = "none";
-}
-
 var storage = window.localStorage;
-var loanID = storage.loanID;
-//获取该合同其他公司信息
-//0-专利持有人 1-金融机构 2-保险公司 3-评估机构 4-政府
+var loanID = storage.getItem('loan_id');
+
+$(".Bank-money").val(300000); //贷款费用
+
 $.ajax({
-    type: "POST",
-    url: "/all/getContract",
+    type: 'GET',
+    url: '/bank/getInfo',
+    async:false,
     data: {
         loanID: loanID
     },
     success: function (data) {
-        var gov = document.getElementsByClassName("gov");
-        for (var i = 0, len = gov.length; i < len; i++)
-            gov[i] = data[4];
-        var bank = document.getElementsByClassName("bank");
-        for (var i = 0, len = bank.length; i < len; i++)
-            bank[i] = data[1];
-        var insurance = document.getElementsByClassName("insurance");
-        for (var i = 0, len = insurance.length; i < len; i++)
-            insurance[i] = data[2];
-        var value = document.getElementsByClassName("value");
-        for (var i = 0, len = value.length; i < len; i++)
-            value[i] = data[3];
+        var address = ""
+        $.ajax({
+            type: 'GET',
+            url: '/userInfo/getUser',
+            async: false,
+            data: {
+                userid: data.userId,
+                userType: "PersonalUser"
+            },
+            success: function (person) {
+                 address = person.company;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+        document.getElementsByClassName("System-patentHolder").innerHTML = data.person;
+        document.getElementsByClassName("System-address").innerHTML = address;
+        document.getElementsByClassName("System-bank").innerHTML = data.bank;
+        document.getElementsByClassName("System-bank-address").innerHTML = data.bank;
+        document.getElementsByClassName("System-date").innerHTML = data.date;
+        document.getElementsByClassName("System-place").innerHTML = data.bank;
+        document.getElementsByClassName("System-duration").innerHTML = data.time;
     },
-    error: function () {
-        // alert("Network warning");
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
-$('#checkInfo').on('click',function () {
-    window.location.href = "/ipnet/All-loan-check";
-});
 
-// var patentID = document.getElementById("patentID").innerHTML;
-$('#submit').on('click', function () {
-
-    var userid = storage.userId;//用户名
-    var ifPass = document.getElementById("demo-form-checkbox").checked;
-
-    $.ajax({
-        type: "POST",
-        url: "/all/ifContract",
-        data: {
-            loanID: loanID,
-            userid: userid,
-            ifPass: ifPass
-        },
-        success: function (data) {
-            // storage.removeItem("loanID");
-            // switch (data){
-            //     case 0: window.location.href = ""
-            //     case 2:
-            //     case 3:
-            //     case 4:
-            // }
-            window.location.href = "/ipnet/All-loan-check";
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-        }
-    });
-
-
+$.ajax({
+    type: 'GET',
+    url: '/bank/getInfo',//有待修改
+    async:false,
+    data: {
+        loanID: loanID
+    },
+    success: function (data) {
+        var address = ""
+        $.ajax({
+            type: 'GET',
+            url: '/userInfo/getUser',
+            async: false,
+            data: {
+                userid: data.userId,
+                userType: "PersonalUser"
+            },
+            success: function (person) {
+                address = person.company;
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+        document.getElementsByClassName("Bank-loan").innerHTML = data.person; //放贷金额
+        document.getElementsByClassName("Bank-money").innerHTML = address; //贷款费用
+        document.getElementsByClassName("Bank-day").innerHTML = data.bank;
+        document.getElementsByClassName("System-bank-address").innerHTML = data.bank;
+        document.getElementsByClassName("System-date").innerHTML = data.date;
+        document.getElementsByClassName("System-place").innerHTML = data.bank;
+        document.getElementsByClassName("System-duration").innerHTML = data.time;
+    },
+    error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+    }
 });

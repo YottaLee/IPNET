@@ -1,21 +1,6 @@
 document.getElementById("model").href = "http://ipnet10.oss-cn-beijing.aliyuncs.com/%E6%96%87%E6%A1%A3%E6%A8%A1%E7%89%88/%E4%BF%9D%E8%AF%81%E4%BF%9D%E9%99%A9%E6%8A%95%E4%BF%9D%E5%8D%95%E3%80%81%E4%BF%9D%E5%8D%95.xlsx";
 var storage = window.localStorage;
 var loanID = storage.getItem('loan_id');
-$.ajax({
-    type: "GET",
-    url: "/bank/getInfo",
-    data: {
-        loanID: loanID,
-    },
-    success: function (loan) {
-        document.getElementById("bank").innerHTML = loan.bank;
-        document.getElementById("money").innerHTML = loan.money;
-        document.getElementById("time").innerHTML = loan.time;
-    },
-    error: function (XMLHttpRequest, textStatus, errorThrown) {
-        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-    }
-});
 
 $('#submit').on('click', function () {
 

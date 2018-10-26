@@ -170,31 +170,57 @@ $(document).ready(function () {
                             // alert("fail");
                         }
                     });
-
-                    if (way_para == "evaluation") {
-                        var storage = window.localStorage;
-                        var loanID = storage.getItem('loan_id');
-                        console.log(loanID);
-                        if (loanID == null || loanID == "") {
-                            storage.removeItem("patent_id");
-                            window.location.href = "/ipnet/Person-IP-list";
-                        }
-                        else {
-                            $.ajax({
-                                url: '/applicant/changeEvaluationState',
-                                type: 'POST',
-                                data: {
-                                    loanID: loanID
-                                },
-                                success: function () {
-                                    window.location.href = "/ipnet/Person-IP-list";
-                                },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                                }
-                            });
-                        }
+                    switch (way_para) {
+                        case "evaluation":
+                            var storage = window.localStorage;
+                            var loanID = storage.getItem('loan_id');
+                            console.log(loanID);
+                            if (loanID == null || loanID == "") {
+                                storage.removeItem("patent_id");
+                                window.location.href = "/ipnet/Person-IP-list";
+                            }
+                            else {
+                                $.ajax({
+                                    url: '/applicant/changeEvaluationState',
+                                    type: 'POST',
+                                    data: {
+                                        loanID: loanID
+                                    },
+                                    success: function () {
+                                        window.location.href = "/ipnet/Person-IP-list";
+                                    },
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+                                    }
+                                });
+                            }
+                            break;
+                        case "insurance":
+                            var storage = window.localStorage;
+                            var loanID = storage.getItem('loan_id');
+                            console.log(loanID);
+                            if (loanID == null || loanID == "") {
+                                storage.removeItem("patent_id");
+                                window.location.href = "/ipnet/Person-IP-list";
+                            }
+                            else {
+                                $.ajax({
+                                    url: '/applicant/successPayForInsurance',
+                                    type: 'POST',
+                                    data: {
+                                        loanID: loanID
+                                    },
+                                    success: function () {
+                                        window.location.href = "/ipnet/Person-IP-list";
+                                    },
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                        console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+                                    }
+                                });
+                            }
+                            break;
                     }
+
 
                     $.alert({
                         title: '付款成功!',

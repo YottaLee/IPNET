@@ -29,11 +29,12 @@ public class LoanApplicantController {
     @RequestMapping("/chooseInsurance")
     @ResponseBody
     public ResultMessage chooseInsurance(String loanID, String url, String insurance) {
-        return loanBLService.chooseInsurance(loanID,url,insurance);
+        return loanBLService.chooseInsurance(loanID, url, insurance);
     }
 
     /**
      * 获取保险申请文件的url
+     *
      * @param loanID 贷款号
      * @return url
      */
@@ -46,21 +47,24 @@ public class LoanApplicantController {
     /**
      * 存取该专利贷款意向结果
      *
-     * @param loanID 贷款号
-     * @param url 意向申请的文件路径
-     * @param money  意向金额
-     * @param time   意向期限
-     * @param bank   金融机构
-     * @return ResultMessage
+     * @param patentID 专利号
+     * @param userID   用户ID
+     * @param url      意向申请的文件路径
+     * @param money    意向金额
+     * @param time     意向期限
+     * @param way      贷款用途
+     * @param bank     金融机构
+     * @return String
      */
     @RequestMapping("/chooseBank")
     @ResponseBody
-    public ResultMessage chooseBank(String loanID, String url, double money, String time, String bank) {
-        return loanBLService.chooseBank(loanID, url,money, time, bank);
+    public String chooseBank(String patentID, String userID, String url, double money, String time, String way, String bank) {
+        return loanBLService.chooseBank(patentID, userID, url, money, time, way, bank);
     }
 
     /**
      * 获取贷款意向文件的url
+     *
      * @param loanID 贷款号
      * @return url
      */
@@ -72,14 +76,15 @@ public class LoanApplicantController {
 
     /**
      * 存取该专利已经有贷款申请，可借此机会生成loanID
-     * @param userID 用户ID
+     *
+     * @param userID   用户ID
      * @param patentID 专利号
      * @return 返回loanID
      */
     @RequestMapping("/applyLoan")
     @ResponseBody
-    public String saveLoanApply(String userID,String patentID) {
-        return loanBLService.saveLoanApply(userID,patentID);
+    public String saveLoanApply(String userID, String patentID) {
+        return loanBLService.saveLoanApply(userID, patentID);
     }
 
     /**
@@ -108,6 +113,7 @@ public class LoanApplicantController {
 
     /**
      * 改变贷款状态，将贷款状态从待评估中转变成申请贷款中
+     *
      * @param loanID 贷款ID
      * @return
      */
@@ -117,7 +123,11 @@ public class LoanApplicantController {
         return loanBLService.changeEvaluationState(loanID);
     }
 
-
+    @RequestMapping("/successPayForInsurance")
+    @ResponseBody
+    public ResultMessage successPayForInsurance(String loanID) {
+        return loanBLService.successPayForInsurance(loanID);
+    }
 
 }
 

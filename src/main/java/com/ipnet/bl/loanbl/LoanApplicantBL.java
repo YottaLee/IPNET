@@ -2,9 +2,11 @@ package com.ipnet.bl.loanbl;
 
 import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.blservice.EvaluationBLService;
+import com.ipnet.blservice.UserBLService;
 import com.ipnet.blservice.loanblservice.LoanAllBLService;
 import com.ipnet.blservice.loanblservice.LoanApplicantBLService;
 import com.ipnet.blservice.loanblservice.LoanInsuranceBLService;
+import com.ipnet.blservice.personalservice.UserInfoBLService;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Loan;
 import com.ipnet.enums.Patent_loan_state;
@@ -19,7 +21,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Service
-public class LoanApplicantBL implements LoanApplicantBLService{
+public class LoanApplicantBL implements LoanApplicantBLService {
 
     @Autowired
     private LoanDao loanDao;
@@ -27,6 +29,10 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     private EvaluationBLService evaluationBLService;
     @Autowired
     private PatentHelper patentHelper;
+    @Autowired
+    private UserBLService userBLService;
+    @Autowired
+    private UserInfoBLService userInfoBLService;
     @Autowired
     private LoanAllBLService loanAllBLService;
     @Autowired
@@ -42,14 +48,14 @@ public class LoanApplicantBL implements LoanApplicantBLService{
      */
     @Override
     public ResultMessage chooseInsurance(String loanID, String url, String insurance) {
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        if(loanOptional.isPresent()){
-            Loan loan=loanOptional.get();
+        Optional<Loan> loanOptional = loanDao.findById(loanID);
+        if (loanOptional.isPresent()) {
+            Loan loan = loanOptional.get();
             loan.setInsurance(insurance);
             loan.setPolicy(url);
             loan.setState(Patent_loan_state.to_be_checked_by_insurance);
             loanDao.saveAndFlush(loan);
-            CreateInsuranceVO createInsuranceVO=new CreateInsuranceVO(loanID,loan.getPolicy(),loan.getInsurance());
+            CreateInsuranceVO createInsuranceVO = new CreateInsuranceVO(loanID, loan.getPolicy(), loan.getInsurance());
             loanInsuranceBLService.createInsurance(createInsuranceVO);
             return ResultMessage.Success;
         }
@@ -58,70 +64,85 @@ public class LoanApplicantBL implements LoanApplicantBLService{
 
     /**
      * 获取保险申请文件的url
+     *
      * @param loanID 贷款号
      * @return url
      */
     @Override
-    public String getPolicy(String loanID){
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
+    public String getPolicy(String loanID) {
+        Optional<Loan> loanOptional = loanDao.findById(loanID);
         return loanOptional.map(Loan::getPolicy).orElse(null);
     }
 
     /**
      * 存取该专利贷款意向结果
      *
-     * @param loanID 贷款号
-     * @param url 意向申请的文件路径
-     * @param money  意向金额
-     * @param time   意向期限
-     * @param bank   金融机构
+     * @param patentID 贷款号
+     * @param url      意向申请的文件路径
+     * @param money    意向金额
+     * @param time     意向期限
+     * @param bank     金融机构
      * @return ResultMessage
      */
     @Override
-    public ResultMessage chooseBank(String loanID, String url,double money, String time, String bank) {
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        if(loanOptional.isPresent()){
-            Loan loan=loanOptional.get();
-            loan.setBank(bank);
-            loan.setExpect_money(money);
-            loan.setExpect_time(time);
-            loan.setApplication(url);
-            loan.setState(Patent_loan_state.to_be_checked_by_bank);
-            loanDao.saveAndFlush(loan);
-            return ResultMessage.Success;
+    public String chooseBank(String patentID, String userID, String url, double money, String time, String way, String bank) {
+        String loanID = patentID;
+        String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        loanID = loanID + currentTime;
+        Loan loan = new Loan();
+        loan.setLoanID(loanID);
+        loan.setPatentID(patentID);
+        loan.setUserID(userID);
+        loan.setWay(way);
+        loan.setBank(bank);
+        loan.setExpect_money(money);
+        loan.setExpect_time(time);
+        loan.setApplication(url);
+        loan.setState(Patent_loan_state.to_be_checked_by_bank);
+        loan.setPerson(userInfoBLService.getUserInfo(userID, userBLService.getUserRole(userID)).getName());
+        loan.setEvaluation(evaluationBLService.getValue(patentID));
+        String patentName = null;
+        try {
+            patentName = patentHelper.receivePatentName(patentID);
+        } catch (IDNotExistsException e) {
+            e.printStackTrace();
         }
-        return ResultMessage.Fail;
+        loan.setPatent(patentName);
+        loanDao.saveAndFlush(loan);
+        return loanID;
     }
 
     /**
      * 获取贷款意向文件的url
+     *
      * @param loanID 贷款号
      * @return url
      */
     @Override
-    public String getApplicationToBank(String loanID){
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
+    public String getApplicationToBank(String loanID) {
+        Optional<Loan> loanOptional = loanDao.findById(loanID);
         return loanOptional.map(Loan::getApplication).orElse(null);
     }
 
     /**
      * 存取该专利已经有贷款申请，可借此机会生成loanID
-     * @param userID 用户ID
+     *
+     * @param userID   用户ID
      * @param patentID 专利号
      * @return 返回loanID
      */
     @Override
-    public String saveLoanApply(String userID,String patentID) {
-        String loanID=patentID;
-        String time=new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        loanID=loanID+time;
-        Loan loan=new Loan();
+    public String saveLoanApply(String userID, String patentID) {
+        String loanID = patentID;
+        String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        loanID = loanID + time;
+        Loan loan = new Loan();
         loan.setLoanID(loanID);
         loan.setPatentID(patentID);
         loan.setPerson(userID);
         loan.setTime(time);
         loan.setEvaluation(evaluationBLService.getValue(patentID));
-        String patentName= null;
+        String patentName = null;
         try {
             patentName = patentHelper.receivePatentName(patentID);
         } catch (IDNotExistsException e) {
@@ -135,6 +156,7 @@ public class LoanApplicantBL implements LoanApplicantBLService{
 
     /**
      * 判断该专利是否已经拥有评估结果
+     *
      * @param patentID 专利号
      * @return boolean
      */
@@ -145,18 +167,19 @@ public class LoanApplicantBL implements LoanApplicantBLService{
 
     /**
      * 判断该专利是否已经填写贷款意向信息
+     *
      * @param loanID 贷款号
      * @return boolean
      */
     @Override
     public boolean ifBankChosen(String loanID) {
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        if(loanOptional.isPresent()){
-            Loan loan=loanOptional.get();
-            if(loan.getBank()==null||loan.getBank().equals("")){
+        Optional<Loan> loanOptional = loanDao.findById(loanID);
+        if (loanOptional.isPresent()) {
+            Loan loan = loanOptional.get();
+            if (loan.getBank() == null || loan.getBank().equals("")) {
                 return false;
-            }else {
-                loanAllBLService.changeState(loanID,Patent_loan_state.to_be_evaluation);
+            } else {
+                loanAllBLService.changeState(loanID, Patent_loan_state.to_be_evaluation);
                 return true;
             }
         }
@@ -164,10 +187,10 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     }
 
     @Override
-    public ResultMessage changeEvaluationState(String loanID){
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        if(loanOptional.isPresent()){
-            Loan loan=loanOptional.get();
+    public ResultMessage changeEvaluationState(String loanID) {
+        Optional<Loan> loanOptional = loanDao.findById(loanID);
+        if (loanOptional.isPresent()) {
+            Loan loan = loanOptional.get();
             loan.setState(Patent_loan_state.to_be_evaluation);
             loanDao.saveAndFlush(loan);
             return ResultMessage.Success;
@@ -176,11 +199,11 @@ public class LoanApplicantBL implements LoanApplicantBLService{
     }
 
     @Override
-    public ResultMessage changeEvaluationStateToEvaluationFinish(String loanID){
-        Optional<Loan> loanOptional=loanDao.findById(loanID);
-        if(loanOptional.isPresent()){
-            Loan loan=loanOptional.get();
-            loan.setState(Patent_loan_state.to_be_loan_application);
+    public ResultMessage successPayForInsurance(String loanID) {
+        Optional<Loan> loanOptional = loanDao.findById(loanID);
+        if (loanOptional.isPresent()) {
+            Loan loan = loanOptional.get();
+            loan.setState(Patent_loan_state.to_be_contract_by_loan);
             loanDao.saveAndFlush(loan);
             return ResultMessage.Success;
         }

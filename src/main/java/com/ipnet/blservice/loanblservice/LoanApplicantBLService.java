@@ -8,7 +8,7 @@ public interface LoanApplicantBLService {
 
     String getPolicy(String loanID);
 
-    ResultMessage chooseBank(String loanID, String url, double money, String time, String bank);
+    String chooseBank(String patentID,String userID, String url, double money, String time,String way, String bank);
 
     String getApplicationToBank(String loanID);
 
@@ -20,5 +20,5 @@ public interface LoanApplicantBLService {
 
     ResultMessage changeEvaluationState(String loanID);
 
-    ResultMessage changeEvaluationStateToEvaluationFinish(String loanID);
+    ResultMessage successPayForInsurance(String loanID);
 }

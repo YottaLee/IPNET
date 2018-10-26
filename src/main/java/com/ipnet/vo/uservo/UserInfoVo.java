@@ -17,6 +17,14 @@ public class UserInfoVo {
     String statement;
     String IDcard_img;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Date getRegisterTime() {
         return registerTime;
     }

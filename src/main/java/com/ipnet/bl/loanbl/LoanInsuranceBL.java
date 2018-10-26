@@ -2,16 +2,19 @@ package com.ipnet.bl.loanbl;
 
 import com.ipnet.blservice.EvaluationBLService;
 import com.ipnet.blservice.UserBLService;
+import com.ipnet.blservice.loanblservice.LoanBankBLService;
 import com.ipnet.blservice.loanblservice.LoanInsuranceBLService;
 import com.ipnet.dao.InsuranceDao;
 import com.ipnet.dao.LoanDao;
 import com.ipnet.entity.Insurance;
 import com.ipnet.entity.Loan;
 import com.ipnet.enums.IfPass;
+import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.CreateInsuranceVO;
 import com.ipnet.vo.financevo.InsuranceVO;
+import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,10 +56,12 @@ public class LoanInsuranceBL implements LoanInsuranceBLService{
     }
 
     @Override
-    public ResultMessage ifInsurance(String id, IfPass ifPass) {
-        Insurance insurance=insuranceDao.getOne(id);
-        insurance.setIfPass(ifPass);
-        insuranceDao.saveAndFlush(insurance);
+    public ResultMessage ifInsurance(String loanId, boolean ifPass) {
+        Loan loan = loanDao.getOne(loanId);
+        if(ifPass)
+            loan.setState(Patent_loan_state.to_be_buy_insurance);
+        else
+            loan.setState(Patent_loan_state.free);
         return ResultMessage.Success;
     }
 

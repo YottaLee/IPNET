@@ -2,22 +2,22 @@
  * 界面的隐藏结构
  */
 
-// divHidden();
-//
-// function agree(checkbox) {
-//     if (checkbox.checked == true)
-//         divShow();
-//     else
-//         divHidden();
-// }
-//
-// function divShow() {
-//     document.getElementById("loan").style.display = "block";
-// }
-//
-// function divHidden() {
-//     document.getElementById("loan").style.display = "none";
-// }
+divHidden();
+
+function agree(checkbox) {
+    if (checkbox.checked == true)
+        divShow();
+    else
+        divHidden();
+}
+
+function divShow() {
+    document.getElementById("loan").style.display = "block";
+}
+
+function divHidden() {
+    document.getElementById("loan").style.display = "none";
+}
 
 /**
  * 数据传输
@@ -38,19 +38,19 @@ $.ajax({
         document.getElementById("pur-money").innerHTML = data.money;
         document.getElementById("pur-time").innerHTML = data.time;
         document.getElementById("pur-way").innerHTML = data.way;
-        // $.ajax({
-        //     type: "GET",
-        //     url: "/evaluation/getEvaluation",
-        //     data: {
-        //         patentID: data.patentID
-        //     },
-        //     success: function (evaluationURL) {
-        //         document.getElementById("evaluation-file").href = evaluationURL.url;
-        //     },
-        //     error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //         console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-        //     }
-        // });
+        $.ajax({
+            type: "GET",
+            url: "/evaluation/getEvaluation",
+            data: {
+                patentID: data.patentID
+            },
+            success: function (evaluationURL) {
+                document.getElementById("evaluation-file").href = evaluationURL.url;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+            }
+        });
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
         console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
@@ -76,14 +76,15 @@ $('#submit').on('click', function () {
 
     //  if(document.getElementById("check-pass").checked)
     var ifPass = document.getElementById("check-pass").checked;
-
+    var ifInsurance = document.getElementById("demo-form-checkbox").checked;
     // console.log(ifPass);
     $.ajax({
         type: "POST",
-        url: "/bank/submitApplication",
+        url: "/bank/submitMidApplication",
         data: {
             loanID: loanID,
-            ifPass: ifPass
+            ifPass: ifPass,
+            ifInsurance: ifInsurance
         },
         success: function () {
             infoFile("已将信息反馈给专利持有人");

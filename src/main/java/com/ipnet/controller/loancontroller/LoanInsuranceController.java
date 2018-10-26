@@ -49,19 +49,13 @@ public class LoanInsuranceController {
     /**
      * 存是否愿意投保
      *
-     * @param id 贷款号
+     * @param loanId 贷款号
      * @param ifPass   保险公司是否愿意投保
      * @return ResultMessage
      */
     @RequestMapping("/ifInsurance")
-    public @ResponseBody ResultMessage ifInsurance(@RequestParam String id,@RequestParam boolean ifPass){
-        IfPass state = null;
-        if(ifPass){
-            state=IfPass.AGREE;
-        }else if(!ifPass){
-            state=IfPass.DENY;
-        }
-        return loanInsuranceBLService.ifInsurance(id,state);
+    public @ResponseBody ResultMessage ifInsurance(@RequestParam String loanId,@RequestParam boolean ifPass){
+        return loanInsuranceBLService.ifInsurance(loanId,ifPass);
     }
 
     //id 保险机构的id

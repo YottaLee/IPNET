@@ -74,6 +74,9 @@ function check(loanID) {
                 case "to_be_checked_by_bank":
                     window.location.href = "/ipnet/Bank-check2";
                     break;//审核
+                case "to_be_mid_confirm":
+                    window.location.href = "/ipnet/Bank-midConfirm";
+                    break;
                 case "to_be_contract":
                     $.ajax({
                         type: "GET",

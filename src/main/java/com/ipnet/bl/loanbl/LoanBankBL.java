@@ -26,7 +26,7 @@ public class LoanBankBL implements LoanBankBLService {
         System.out.println(loanID);
         Loan loan = loanDao.getOne(loanID);
 
-        LoanVO loanVO=new LoanVO(loan);
+        LoanVO loanVO = new LoanVO(loan);
         loanVO.setTime(loan.getAccept_time());
         loanVO.setMoney(loan.getAccept_money());
         return loanVO;
@@ -44,35 +44,43 @@ public class LoanBankBL implements LoanBankBLService {
         LoanVO loanVO = new LoanVO(loan);
         loanVO.setMoney(loan.getExpect_money());
         loanVO.setTime(loan.getExpect_time());
-        loanVO.setPerson(loan.getPerson());
-        loanVO.setEvaluation(loan.getEvaluation());
         return loanVO;
     }
 
     /**
      * 银行提交通过意见
      *
-     * @param loanID      贷款号
-     * @param ifPass      是否同意放贷
-     * @param ifInsurance 是否同意让专利持有人购买专利质押贷款保证保险
-     * @param money       放贷金额
-     * @param time        放贷期限
+     * @param loanID 贷款号
+     * @param ifPass 是否同意放贷
      * @return ResultMessage
      */
     @Override
-    public ResultMessage submitApplication(String loanID, boolean ifPass, boolean ifInsurance, int money, String time) {
+    public ResultMessage submitApplication(String loanID, boolean ifPass) {
         Loan loan = loanDao.getOne(loanID);
         loan.setBankPass(ifPass);
-        if (!ifPass) {//银行不同意放贷，此次申请就此结束
+        if (!ifPass) //银行不同意放贷，此次申请就此结束
             loan.setState(Patent_loan_state.free);
-        } else if (ifInsurance) {//如果银行需要专利持有人购买专利质押贷款保证保险
+        else
+            loan.setState(Patent_loan_state.to_be_value);
+        loanDao.saveAndFlush(loan);
+        return ResultMessage.Success;
+    }
+
+    /**
+     * 银行提交中期审核
+     *
+     * @param loanID      贷款号
+     * @param ifPass      是否继续同意
+     * @param ifInsurance 是否让专利持有人购买专利质押融资贷款保证保险
+     * @return
+     */
+    @Override
+    public ResultMessage submitMidApplication(String loanID, boolean ifPass, boolean ifInsurance) {
+        Loan loan = loanDao.getOne(loanID);
+        if (!ifPass) //银行不同意放贷，此次申请就此结束
+            loan.setState(Patent_loan_state.free);
+        else if(ifInsurance)
             loan.setState(Patent_loan_state.to_be_choose_insurance);
-        } else {//银行不需要专利持有人购买专利质押贷款保证保险，但是这种情况应该不存在
-            loan.setState(Patent_loan_state.to_be_contract);
-        }
-        loan.setIfInsurance(ifInsurance);
-        loan.setAccept_money(money);
-        loan.setAccept_time(time);
         loanDao.saveAndFlush(loan);
         return ResultMessage.Success;
     }

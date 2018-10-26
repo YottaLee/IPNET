@@ -360,4 +360,9 @@ public class PageController {
     public String Applicant_patentEntry(){
         return finance+"Applicant-patentEntry";
     }
+
+    @RequestMapping("Bank-midConfirm")
+    public String Bank_midConfirm(){
+        return finance+"Bank-midConfirm";
+    }
 }

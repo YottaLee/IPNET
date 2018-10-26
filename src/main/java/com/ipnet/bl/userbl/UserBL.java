@@ -330,7 +330,7 @@ public class UserBL implements UserBLService{
             return null;
         }
     }
-    
+
     @Override
     public boolean personVerify(PersonVerify personVerify) {
         Optional<PersonalUser> person= personalUserDao.findById(personVerify.getId());
