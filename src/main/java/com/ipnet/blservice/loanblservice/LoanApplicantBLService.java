@@ -20,5 +20,5 @@ public interface LoanApplicantBLService {
 
     ResultMessage changeEvaluationState(String loanID);
 
-    ResultMessage successPayForInsurance(String loanID);
+    String successPayForInsurance(String loanID);
 }

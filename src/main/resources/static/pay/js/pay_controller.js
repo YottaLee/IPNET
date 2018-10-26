@@ -198,6 +198,7 @@ $(document).ready(function () {
                         case "insurance":
                             var storage = window.localStorage;
                             var loanID = storage.getItem('loan_id');
+                            var patentID = storage.getItem('patent_id');
                             console.log(loanID);
                             if (loanID == null || loanID == "") {
                                 storage.removeItem("patent_id");
@@ -210,8 +211,33 @@ $(document).ready(function () {
                                     data: {
                                         loanID: loanID
                                     },
-                                    success: function () {
-                                        window.location.href = "/ipnet/Person-IP-list";
+                                    success: function (insuranceId) {
+                                        $.ajax({
+                                            url: 'http://120.79.232.126:3000/AddAssetInsurance',
+                                            type: 'POST',
+                                            async: false,
+                                            data: {
+                                                $class: "org.acme.ipregistry.AddAssetInsurance",
+                                                insurance: {
+                                                    $class: "org.acme.ipregistry.Insurance",
+                                                    id: insuranceId,
+                                                    ioanID: loanID,
+                                                    ipID: pay_order.patentID,
+                                                    insuredID: pay_order.payer,
+                                                    insuranceCompanyID: pay_order.payee,
+                                                    monthlyCost: 0, //保险费用操作
+                                                    durationInMonths: 0
+                                                }
+                                            },
+                                            success:function () {
+                                                window.location.href = "/ipnet/Person-IP-list";
+                                            },
+                                            error:function (error) {
+                                                console.log(error);
+                                            }
+                                        });
+
+
                                     },
                                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                                         console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);

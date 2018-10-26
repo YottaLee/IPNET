@@ -172,10 +172,12 @@ function loan(patentID) {
                                     case "to_be_buy_insurance":
                                         payForInsurance(loanID);
                                         break;
-                                    case "to_be_contract_by_loan":
-                                        payForInsurance(loanID);
+                                    case "to_be_final_confirm":
+                                        window.location.href = "/ipnet/loan_detail";//贷款详情
                                         break;
-                                    case "to_be_paid_by_bank":
+                                    case "to_be_contract_by_loan":
+                                        window.location.href = "/ipnet/All-loan-check";
+                                        break;
                                     case "loaning":
                                     case "overdue":
                                     case "to_be_compensation":

@@ -19,6 +19,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <link rel="stylesheet" href="/finance/basic/css/style.css">
     <link rel="stylesheet" href="/finance/basic/css/bootstrap.css">
+    <link rel="stylesheet" href="/common/jquery-confirm.css">
+    <link rel="stylesheet" type="text/css" href="/ipnet_Login_v2/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="/ipnet_Login_v2/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
     <title>专利质押借款合同</title>
 
     <style>
@@ -26,10 +30,23 @@
             width: 160px
         }
     </style>
-
+    <script src="/common/jquery.js"></script>
+    <script type="text/javascript" src="/common/jquery-confirm.js"></script>
+    <script type="text/javascript" src="/finance/js/alertFile.js"></script>
 </head>
 
 <body>
+<div class="md-modal md-effect-10" id="modal-3">
+    <div class="md-content">
+        <h4>个人身份认证</h4>
+        <div class="md-maincontent">
+            <br />
+            <span ><i class="fa fa-key"></i>密钥： <input type="password" width="200px" id="key"></span><br /><br />
+            <!--<span class="t1">开户银行： <input type="text" id="Ew_newBankCard_bank"></span><br /><br />-->
+            <button class="md-confirm" id="confirm">确认</button><button class="md-cancel" id="cancel">取消</button>
+        </div>
+    </div>
+</div>
 <div class="manage-modal">
     <div class="flipbook-viewport">
         <div class="container">
@@ -44,28 +61,28 @@
 
                     <div class="fm-sign">
                         <label>出质人（甲方）：
-                            </label>
-                        <input class="System-patentHolder input-class fm-input" type="text">
+                        </label>
+                        <input class="System patentHolder input-class fm-input" type="text">
                     </div>
                     <div class="fm-sign">
                         <label>通讯地址
-                           </label>
-                        <input class="System-address input-class fm-input" type="text">
+                        </label>
+                        <input class="System address input-class fm-input" type="text">
                     </div>
                     <div class="fm-sign">
                         <label>法定代表人:
-                            </label>
-                        <input class="System-patentHolder input-class fm-input" type="text">
+                        </label>
+                        <input class="System patentHolder input-class fm-input" type="text">
                     </div>
                     <div class="fm-sign">
                         <label>质权人（乙方）：
-                            </label>
-                        <input class="System-bank input-class fm-input" type="text">
+                        </label>
+                        <input class="System bank-name input-class fm-input" type="text">
                     </div>
                     <div class="fm-sign">
                         <label>通讯地址：
-                            </label>
-                        <input class="System-bank-address input-class fm-input" type="text">
+                        </label>
+                        <input class="System bank-address input-class fm-input" type="text">
                     </div>
                     <!--<div class="fm-footer">-->
                     <!--<p>中华人民共和国专利局监制</p>-->
@@ -79,22 +96,22 @@
                     <div class="fm-sign">
                         <label>法定代表人:
                         </label>
-                        <input class="System-bank input-class fm-input" type="text">
+                        <input class="System bank-name input-class fm-input" type="text">
                     </div>
                     <div class="fm-sign">
                         <label>登记日期：
                         </label>
-                        <input class="System-date input-class fm-input" type="text">
+                        <input class="System date input-class fm-input" type="text">
                     </div>
                     <div class="fm-sign">
                         <label>签订地点:
                         </label>
-                        <input class="System-place input-class fm-input" type="text">
+                        <input class="System place input-class fm-input" type="text">
                     </div>
                     <div class="fm-sign">
                         <label>质押期限：
                         </label>
-                        <input class="System-duration input-class fm-input" type="text">
+                        <input class="System duration input-class fm-input" type="text">
                     </div>
                     <p>为确保债务的偿还，甲方愿意以其有权处分的财产作质押，乙方经审查，同意接受甲方的财产质押，甲、乙双方根据有关法律规定，经协商一致，约定如下条款：</p>
                     <!--<div class="fm-footer">-->
@@ -103,17 +120,23 @@
                 </div>
                 <div>
                     <div class="manage-page">
+                        <p>专利：<input class="System patent input-class fm-input" type="text"></p>
+                        <p>评估价值：<input class="System evaluation input-class fm-input" type="text"></p>
                         <p>
                             第一条 甲方以“质押财产清单”（附后）所列之财产设定质押。
                         </p>
-                        <p>第二条 甲方质押担保的贷款金额<input class="Bank-loan input-class fm-input" type="text">(大写）元，贷款期限自<input class="System-duration input-class fm-input" type="text">。</p>
+                        <p>第二条 甲方质押担保的贷款金额<input class="Bank loan input-class fm-input" type="text">(大写）元，贷款期限自<input
+                                class="System duration input-class fm-input" type="text">。</p>
                         <p> 第三条 甲方保证对质押物依法享有完全的所有权。</p>
-                        <p> 第四条 甲方应于<input class="System-duration input-class fm-input" type="text">日将质押财产产付乙方占有并同时向乙方支付保管费<input class="Bank-money input-class fm-input" type="text">元。 
+                        <p> 第四条 甲方应于<input class="System duration input-class fm-input" type="text">日将质押财产产付乙方占有并同时向乙方支付保管费<input
+                                class="Bank-money input-class fm-input" type="text">元。 
 
                         </p>
-                        <p> 第五条 质押担保的范围：贷款金额（大写）<input class="Bank-loan input-class fm-input" type="text">元，及利息、违约金（包括罚息）、赔偿金、质物保管费用及实现贷款债权和质权的费用（包括诉讼费、律师费等）。 </p>
+                        <p> 第五条 质押担保的范围：贷款金额（大写）<input class="Bank loan input-class fm-input" type="text">元，及利息、违约金（包括罚息）、赔偿金、质物保管费用及实现贷款债权和质权的费用（包括诉讼费、律师费等）。 
+                        </p>
                         <p> 第六条 本合同项下有关的评估、鉴定、保险、保管、运输等费用均由甲方承担。 </p>
-                        <p> 第七条 质押期间，<input class="System-patentHolder input-class fm-input" type="text">方有维持专利权有效的义务，负责交纳专利年费，处理专利纠纷等事务。</p>
+                        <p> 第七条 质押期间，<input class="System patentHolder input-class fm-input" type="text">方有维持专利权有效的义务，负责交纳专利年费，处理专利纠纷等事务。
+                        </p>
                         <p> 第八条 甲方应负责质押财产在质押期间的财产保险。财产保险的第一受益人为乙方。保险单证由乙方代为保管。
                         </p>
                         <p> 第九条 质押期间，质押财产如发生投保范围的损失，或者因第三人的行为导致质押财产价值减少的，保险赔偿金或损害赔偿金应作为质押财产，存入乙方指定的帐户，质押期间双方均不得动用。
@@ -122,7 +145,8 @@
                 </div>
                 <div>
                     <div class="manage-page">
-                        <p> 第十条 非因乙方过错致质押财产价值减少，甲方应在<input class="Bank-day input-class fm-input" type="text">天内向乙方提供与减少的价值相当的担保。</p>
+                        <p> 第十条 非因乙方过错致质押财产价值减少，甲方应在<input class="Bank day input-class fm-input" type="text">天内向乙方提供与减少的价值相当的担保。
+                        </p>
                         <p> 第十一条 质押期间，质押财产造成环境污染或造成其他损害，应由甲方独立承担责任。
                         </p>
                         <p> 第十二条 质押期间，未经乙方书面同意，甲方不得赠与、迁移、出租、转让、再抵押（质押）或以其他任何方式处分本合同项下质押财产。
@@ -137,12 +161,15 @@
                         <p> （1）甲方被宣告破产或被解散；
                         </p>
                         <p>（2）甲方违反本合同第八条、第十条、第十二条、第十三条的约定或发生其他严重违约行为；</p>
-                        <p> （3）借款合同履行期间借款人被宣告破产、被解散、擅自变更企业体制至乙方贷款债权落空、改变贷款用途、卷入或即将卷入重大的诉讼（或仲裁）程序、发生其他足以影响其偿债能力或缺乏偿债诚意的行为等情况。</p>
+                        <p>
+                            （3）借款合同履行期间借款人被宣告破产、被解散、擅自变更企业体制至乙方贷款债权落空、改变贷款用途、卷入或即将卷入重大的诉讼（或仲裁）程序、发生其他足以影响其偿债能力或缺乏偿债诚意的行为等情况。</p>
                     </div>
                 </div>
                 <div>
                     <div class="manage-page">
-                        <p> 第十六条 甲方因隐瞒质押财产存在共有、争议、被查封、被扣压或已设定抵押权等情况而给乙方造成经济损失的，应向乙方支付借款合同项下贷款金额<input class="Bank-compensation input-class fm-input" type="text">％的违约金，违约金不足以弥补乙方损失的，甲方还应就不足部分予以赔偿。乙方有权就违约金、赔偿金直接与甲方存款帐户中的资金予以抵销。</p><h4> 三、各方职责
+                        <p> 第十六条 甲方因隐瞒质押财产存在共有、争议、被查封、被扣压或已设定抵押权等情况而给乙方造成经济损失的，应向乙方支付借款合同项下贷款金额<input
+                                class="Bank compensation input-class fm-input" type="text">％的违约金，违约金不足以弥补乙方损失的，甲方还应就不足部分予以赔偿。乙方有权就违约金、赔偿金直接与甲方存款帐户中的资金予以抵销。
+                        </p><h4> 三、各方职责
                     </h4>
                         <p> 第十七条 乙方贪污处分质押财产所得的价款，按下列顺序分配： 
 
@@ -157,7 +184,8 @@
                         <p> （4）支付其他费用。 
 
                         </p>
-                        <p> ____如果甲方同时与保险公司签订专利质押保险合同，则第十四条中，未能清偿部分由保险公司全部赔偿，质押权移交保险公司<input class="System-insurance input-class fm-input" type="text">。
+                        <p> ____如果甲方同时与保险公司签订专利质押保险合同，则第十四条中，未能清偿部分由保险公司全部赔偿，质押权移交保险公司<input
+                                class="System insurance input-class fm-input" type="text">。
                         </p>
                         <p> 第十九条 因本合同发生的争议，经协商解决达不成一致意见，应当向人民法院提起诉讼。
                         </p>
@@ -173,7 +201,7 @@
                         <div class="party party-a" style="height: 100%">
                             <div style="height: 182px">
                                 <div class="fm-sign">
-                                    <p class="wrap">(甲方盖章)</p>
+                                    <!--<p class="wrap">(甲方盖章)</p>-->
                                     <!--<button class="seal">盖章</button>-->
                                     <!--<button class="qx-seal">取消</button>-->
                                 </div>
@@ -205,14 +233,13 @@
                         <div class="party party-b" style="height: 100%">
 
 
-
                             <div class="fm-sign">
                                 <label>签订日期:</label>
                                 <input class="input-class year" type="text" style="width: 25px">年
-                                <input class="input-class date" type="text" style="width: 25px">月
+                                <input class="input-class month" type="text" style="width: 25px">月
                                 <input class="input-class date" type="text" style="width: 25px">日
                             </div>
-                            <button id="exit" class="btn btn-default">签字上链</button>
+                            <button data-modal="modal-3" class="md-trigger btn btn-default">签字上链</button>
                         </div>
                     </div>
 
@@ -272,78 +299,12 @@
 
     $('.disabled').find('input').attr('disabled', 'disabled');
     $('.disabled').find('.seal').attr('disabled', 'disabled');
-    var storage = window.localStorage;
-    var loanID = storage.loanID;
-    //获取合同图片
-    $.ajax({
-        type: "GET",
-        url: "all/getContractURL",
-        dataType: "json",
-        data: loanID,
-        success: function (data) {
-            document.getElementById("a").style.backgroundImage = data[0];
-            document.getElementById("b").style.backgroundImage = data[1];
-            document.getElementById("c").style.backgroundImage = data[2];
-            document.getElementById("d").style.backgroundImage = data[3];
-            document.getElementById("e").style.backgroundImage = data[4];
-        }
-    });
-    //获取该合同其他公司信息
-    //0-专利持有人 1-金融机构 2-保险公司 3-评估机构 4-政府
-    $.ajax({
-        type: "POST",
-        url: "all/getContract",
-        dataType: "json",
-        data: {
-            loanID: loanID
-        },
-        success: function (data) {
-            var gov = document.getElementsByClassName("gov");
-            for (var i = 0, len = gov.length; i < len; i++)
-                gov[i] = data[4];
-            var bank = document.getElementsByClassName("bank");
-            for (var i = 0, len = bank.length; i < len; i++)
-                bank[i] = data[1];
-            var insurance = document.getElementsByClassName("insurance");
-            for (var i = 0, len = insurance.length; i < len; i++)
-                insurance[i] = data[2];
-            var value = document.getElementsByClassName("value");
-            for (var i = 0, len = value.length; i < len; i++)
-                value[i] = data[3];
-        },
-        error: function () {
-            // alert("Network warning");
-        }
-    });
 
-    $("#exit").on('click', function () {
 
-        var userId = storage.getItem('user_id');
-        $.ajax({
-            type: "GET",
-            url: "user/getUserRole",
-            dataType: "json",
-            data: userId,
-            success: function (data) {
-                switch (data) {
-                    case 0:
-                    case 1:
-                        window.location.href = "/ipnet/Person-IP-list";
-                        break;
-                    case 2:
-                        window.location.href = "/ipnet/Evaluation-IP-list";
-                        break;//评估机构界面
-                    case 3:
-                        window.location.href = "/ipnet/Bank-IP-list";
-                        break;//金融机构界面
-                    case 4:
-                        window.location.href = "/ipnet/Insurance-IP-list";
-                        break;//保险公司界面
-                }
-            }
-        });
-    });
+
 </script>
+<script src="/ipnet_Login_v2/js/classie.js"></script>
+<script src="/ipnet_Login_v2/js/modalEffects.js"></script>
 <script src="/finance/js/All/All-contract.js"></script>
 </body>
 </html>

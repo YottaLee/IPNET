@@ -365,4 +365,14 @@ public class PageController {
     public String Bank_midConfirm(){
         return finance+"Bank-midConfirm";
     }
+
+    @RequestMapping("Bank-finalConfirm")
+    public String Bank_finalConfirm(){
+        return finance+"Bank-finalConfirm";
+    }
+
+    @RequestMapping("loading")
+    public String Loading(){
+        return "loading";
+    }
 }

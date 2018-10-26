@@ -84,4 +84,25 @@ public class LoanBankBL implements LoanBankBLService {
         loanDao.saveAndFlush(loan);
         return ResultMessage.Success;
     }
+
+    /**
+     * 银行提交协议
+     * @param loanID 贷款号
+     * @param loanMoney 贷款金额
+     * @param returnMoreMoney 还款金额
+     * @param duration 时长
+     * @param compensation 赔偿金额
+     * @return
+     */
+    @Override
+    public ResultMessage hasContract(String loanID, double loanMoney, double returnMoreMoney, String duration, double compensation) {
+        Loan loan = loanDao.getOne(loanID);
+        loan.setAccept_money(loanMoney);
+        loan.setAccept_time(duration);
+        loan.setReturn_money(returnMoreMoney);
+        loan.setCompensation(compensation);
+        loan.setState(Patent_loan_state.to_be_contract_by_loan);
+        loanDao.saveAndFlush(loan);
+        return ResultMessage.Success;
+    }
 }

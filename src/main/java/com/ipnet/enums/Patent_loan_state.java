@@ -11,6 +11,7 @@ public enum Patent_loan_state {
     to_be_checked_by_insurance,//待被保险公司审核
     to_be_contract_by_insurance,//待保险签约中
     to_be_buy_insurance,//待质押人给银行买保险
+    to_be_final_confirm, //待银行最终确认
     to_be_contract_by_loan, //待贷款签约中
     loaning,//质押中
     overdue,//逾期

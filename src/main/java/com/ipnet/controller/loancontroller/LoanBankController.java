@@ -19,8 +19,10 @@ public class LoanBankController {
 
     @Autowired
     private LoanBankBLService loanBankBLService;
+
     /**
      * 获取贷款信息
+     *
      * @param loanID 贷款号
      * @return 贷款信息
      */
@@ -45,6 +47,7 @@ public class LoanBankController {
 
     /**
      * 银行提交通过意见
+     *
      * @param loanID 贷款号
      * @param ifPass 是否通过预评估
      * @return
@@ -52,13 +55,36 @@ public class LoanBankController {
     @RequestMapping("/submitApplication")
     @ResponseBody
     public ResultMessage submitApplication(String loanID, boolean ifPass) {
-        return loanBankBLService.submitApplication(loanID,ifPass);
+        return loanBankBLService.submitApplication(loanID, ifPass);
     }
 
+    /**
+     * 提交中期审核
+     *
+     * @param loanID      贷款号
+     * @param ifPass      是否通过
+     * @param ifInsurance 是否让专利持有人购买专利质押贷款保证保险
+     * @return
+     */
     @RequestMapping("/submitMidApplication")
     @ResponseBody
-    public ResultMessage submitMidApplication(String loanID, boolean ifPass,boolean ifInsurance) {
-        return loanBankBLService.submitMidApplication(loanID,ifPass,ifInsurance);
+    public ResultMessage submitMidApplication(String loanID, boolean ifPass, boolean ifInsurance) {
+        return loanBankBLService.submitMidApplication(loanID, ifPass, ifInsurance);
+    }
+
+    /**
+     * 银行提交协议
+     * @param loanID 贷款号
+     * @param loanMoney 贷款金额
+     * @param returnMoreMoney 还款金额
+     * @param duration 时长
+     * @param compensation 赔偿金额
+     * @return
+     */
+    @RequestMapping("/hasContract")
+    @ResponseBody
+    public ResultMessage hasContract(String loanID, double loanMoney, double returnMoreMoney, String duration, double compensation) {
+        return loanBankBLService.hasContract(loanID, loanMoney, returnMoreMoney, duration, compensation);
     }
 
 

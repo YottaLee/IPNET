@@ -7,7 +7,10 @@ import com.ipnet.blservice.loanblservice.LoanAllBLService;
 import com.ipnet.blservice.loanblservice.LoanApplicantBLService;
 import com.ipnet.blservice.loanblservice.LoanInsuranceBLService;
 import com.ipnet.blservice.personalservice.UserInfoBLService;
+import com.ipnet.dao.CompanyUserDao;
+import com.ipnet.dao.InsuranceDao;
 import com.ipnet.dao.LoanDao;
+import com.ipnet.entity.Insurance;
 import com.ipnet.entity.Loan;
 import com.ipnet.enums.Patent_loan_state;
 import com.ipnet.enums.ResultMessage;
@@ -25,6 +28,8 @@ public class LoanApplicantBL implements LoanApplicantBLService {
 
     @Autowired
     private LoanDao loanDao;
+    @Autowired
+    private CompanyUserDao companyUserDao;
     @Autowired
     private EvaluationBLService evaluationBLService;
     @Autowired
@@ -52,6 +57,7 @@ public class LoanApplicantBL implements LoanApplicantBLService {
         if (loanOptional.isPresent()) {
             Loan loan = loanOptional.get();
             loan.setInsurance(insurance);
+            loan.setInsuranceId(companyUserDao.findCompanyUserByName(insurance).getId());
             loan.setPolicy(url);
             loan.setState(Patent_loan_state.to_be_checked_by_insurance);
             loanDao.saveAndFlush(loan);
@@ -95,6 +101,7 @@ public class LoanApplicantBL implements LoanApplicantBLService {
         loan.setUserID(userID);
         loan.setWay(way);
         loan.setBank(bank);
+        loan.setBankId(companyUserDao.findCompanyUserByName(bank).getId());
         loan.setExpect_money(money);
         loan.setExpect_time(time);
         loan.setApplication(url);
@@ -199,14 +206,18 @@ public class LoanApplicantBL implements LoanApplicantBLService {
     }
 
     @Override
-    public ResultMessage successPayForInsurance(String loanID) {
+    public String successPayForInsurance(String loanID) {
         Optional<Loan> loanOptional = loanDao.findById(loanID);
         if (loanOptional.isPresent()) {
             Loan loan = loanOptional.get();
-            loan.setState(Patent_loan_state.to_be_contract_by_loan);
+            loan.setState(Patent_loan_state.to_be_final_confirm);
             loanDao.saveAndFlush(loan);
-            return ResultMessage.Success;
+            try {
+                return loanInsuranceBLService.getInsurance(loanID).getId();
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
         }
-        return ResultMessage.Fail;
+        return "";
     }
 }

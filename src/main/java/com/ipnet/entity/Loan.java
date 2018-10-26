@@ -35,6 +35,9 @@ public class Loan {
     private double accept_money;//银行接受金额
     private String accept_time;//银行接受期限
 
+    private double return_money; //还款金额
+    private double compensation; //赔偿金额
+
     private String insuranceId;
     private String insurance;//保险公司
     private String policy;//保险保单

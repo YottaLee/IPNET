@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @Table(name="insurance")
 public interface InsuranceDao extends JpaRepository<Insurance,String>{
 
-    @Query("select i from Insurance i where i.loan_id=?1 and i.ifPass=1 ")
+    @Query("select i from Insurance i where i.loan_id=?1")
     Insurance getInsurance(String loan_id);
 
     @Query("select i from Insurance i where i.insurance_id=?1")

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 @Service
-public class LoanInsuranceBL implements LoanInsuranceBLService{
+public class LoanInsuranceBL implements LoanInsuranceBLService {
     @Autowired
     private InsuranceDao insuranceDao;
 
@@ -38,10 +38,10 @@ public class LoanInsuranceBL implements LoanInsuranceBLService{
 
     @Override
     public ResultMessage createInsurance(CreateInsuranceVO createInsuranceVO) {
-        SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd-HHmmss");
-        String id=df.format(new Date());
-        Loan loan=loanDao.getOne(createInsuranceVO.getLoan_id());
-        Insurance insurance=new Insurance(id,createInsuranceVO.getLoan_id(),loan.getPatentID(),createInsuranceVO.getInsurance_url(),loan.getPerson(),loan.getInsurance(),new Date(),loan.getExpect_money(), IfPass.WAIT,evaluationBLService.getEvaluator().getId(),loan.getBank());
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd-HHmmss");
+        String id = df.format(new Date());
+        Loan loan = loanDao.getOne(createInsuranceVO.getLoan_id());
+        Insurance insurance = new Insurance(id, createInsuranceVO.getLoan_id(), loan.getPatentID(), createInsuranceVO.getInsurance_url(), loan.getPerson(), loan.getInsurance(), new Date(), loan.getExpect_money(), IfPass.WAIT, evaluationBLService.getEvaluator().getId(), loan.getBank());
         insuranceDao.saveAndFlush(insurance);
         return ResultMessage.Success;
     }
@@ -49,27 +49,26 @@ public class LoanInsuranceBL implements LoanInsuranceBLService{
     @Override
     public InsuranceVO getInsurance(String loanid) throws IDNotExistsException {
         //不确定
-        String name=loanDao.getOne(loanid).getInsurance();
-        String id=userBLService.getCompanyId(name);
-        Insurance insurance=insuranceDao.getOne(id);
+        Insurance insurance = insuranceDao.getInsurance(loanid);
         return new InsuranceVO(insurance);
     }
 
     @Override
     public ResultMessage ifInsurance(String loanId, boolean ifPass) {
         Loan loan = loanDao.getOne(loanId);
-        if(ifPass)
+        if (ifPass)
             loan.setState(Patent_loan_state.to_be_buy_insurance);
         else
             loan.setState(Patent_loan_state.free);
+        loanDao.saveAndFlush(loan);
         return ResultMessage.Success;
     }
 
     @Override
     public ArrayList<InsuranceVO> showListForInsurance(String id) throws IDNotExistsException {
-        ArrayList<Insurance> insurances=insuranceDao.getInsuranceList(id);
-        ArrayList<InsuranceVO> insuranceVOS=new ArrayList<>();
-        for(Insurance i:insurances){
+        ArrayList<Insurance> insurances = insuranceDao.getInsuranceList(id);
+        ArrayList<InsuranceVO> insuranceVOS = new ArrayList<>();
+        for (Insurance i : insurances) {
             insuranceVOS.add(new InsuranceVO(i));
         }
         return insuranceVOS;

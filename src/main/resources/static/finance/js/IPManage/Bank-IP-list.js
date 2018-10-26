@@ -77,24 +77,8 @@ function check(loanID) {
                 case "to_be_mid_confirm":
                     window.location.href = "/ipnet/Bank-midConfirm";
                     break;
-                case "to_be_contract":
-                    $.ajax({
-                        type: "GET",
-                        url: "/all/getIfContract",
-                        data: {
-                            loanID: loanID,
-                            userid: userId
-                        },
-                        success: function (data) {
-                            if (data)
-                                window.location.href = "/ipnet/All-loan-check";
-                            else
-                                window.location.href = "/ipnet/All-loan-contract";
-                        }
-                    });
-                    break;
-                case "to_be_paid_by_bank":
-                    //支付界面
+                case "to_be_contract_by_loan":
+                    window.location.href = "/ipnet/Bank-finalConfirm";
                     break;
                 // case 7:
                 //     window.location.href = "/ipnet/Bank-insuranceApplication2";

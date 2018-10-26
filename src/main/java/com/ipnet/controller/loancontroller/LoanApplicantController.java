@@ -125,7 +125,7 @@ public class LoanApplicantController {
 
     @RequestMapping("/successPayForInsurance")
     @ResponseBody
-    public ResultMessage successPayForInsurance(String loanID) {
+    public String successPayForInsurance(String loanID) {
         return loanBLService.successPayForInsurance(loanID);
     }
 
