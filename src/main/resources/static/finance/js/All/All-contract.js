@@ -67,7 +67,10 @@ $.ajax({
 
 
 $("#submit").on('click', function () {
+    infoFile("即将跳入花旗界面进行身份认证");
     document.getElementById("link").click();
+
+
     // var loanMoney = $(".Bank-loan").val(); //贷款金额
     // var returnMoreMoney = $(".Bank-money").val(); //保管费用
     // var bankDay = $(".Bank-day").val();
