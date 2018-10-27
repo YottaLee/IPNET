@@ -27,6 +27,8 @@ public class LoanVO {
     private double evaluation; //评估经济价值结果
     private String insuranceId;
     private String insurance;
+    private double compensation;
+    private double return_money;
 
     public LoanVO(Loan loan) {
         this.loanID = loan.getLoanID();
@@ -42,6 +44,8 @@ public class LoanVO {
         this.bankId = loan.getBankId();
         this.insurance = loan.getInsurance();
         this.insuranceId = loan.getInsuranceId();
+        this.compensation = loan.getCompensation();
+        this.return_money = loan.getReturn_money();
     }
 
 }

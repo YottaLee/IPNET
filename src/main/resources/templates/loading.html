@@ -9,11 +9,27 @@
   
   
       <link rel="stylesheet" href="/load/css/style.css">
-
-  
+    <link rel="stylesheet" type="text/css" href="/tooltip/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/tooltip/css/htmleaf-demo.css">
+    <link rel="stylesheet" href="/tooltip/css/style.css">
+    <link rel="stylesheet" href="/tooltip/css/x0popup.min.css">
+    <link rel="stylesheet" href="/tooltip/css/rainbow.monokai.css">
+    <!--[if IE]>
+        <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
+<div class="block-code-full">
+					<pre><code data-language="javascript" id="code-6">x0p({
+    title: '上链成功',
+    text: 'This popup will auto close in 3 seconds.',
+    animationType: 'slideDown',
+    icon: 'info',
+    buttons: [],
+    autoClose: 3000
+});</code></pre>
+</div>
   <h1>正在上链，请稍后</h1>
   <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -36,5 +52,14 @@
 </div>
 
 </body>
-
+<script src="/tooltip/js/x0popup.min.js"></script>
+<script src="/tooltip/js/rainbow.min.js"></script>
+<script src="/tooltip/js/rainbow.linenumbers.min.js"></script>
+<script>
+    var storage = window.localStorage;
+    var contract= storage.getItem('contract');
+    var numnber = 6;
+    var code = document.getElementById('code-' + number).innerText;
+    eval(code);
+</script>
 </html>
