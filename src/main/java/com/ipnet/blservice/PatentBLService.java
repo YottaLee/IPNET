@@ -1,5 +1,6 @@
 package com.ipnet.blservice;
 
+import com.ipnet.bl.patentbl.Invitation;
 import com.ipnet.enums.Patent_state;
 import com.ipnet.enums.Region;
 import com.ipnet.enums.ResultMessage;
@@ -59,5 +60,7 @@ public interface PatentBLService {
      List<PatentVO> searchRelatedPatents();
 
     List<PatentVO> recommendPatent();
+
+    List<Invitation> receiveInvitation( String holdId);
 
 }
