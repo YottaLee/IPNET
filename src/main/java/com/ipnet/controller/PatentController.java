@@ -4,6 +4,7 @@ package com.ipnet.controller;
  * @author gy
  */
 
+import com.ipnet.bl.patentbl.Invitation;
 import com.ipnet.blservice.PatentBLService;
 import com.ipnet.enums.Patent_state;
 import com.ipnet.enums.ResultMessage;
@@ -198,6 +199,11 @@ public class PatentController {
     @RequestMapping("/recommendPatent")
     public @ResponseBody List<PatentVO> recommendPatent(){
         return service.recommendPatent();
+    }
+
+    @RequestMapping("/receiveInvitation")
+    public @ResponseBody List<Invitation> receiveInvitation(@RequestParam String userId) {
+        return service.receiveInvitation(userId);
     }
 
 }
