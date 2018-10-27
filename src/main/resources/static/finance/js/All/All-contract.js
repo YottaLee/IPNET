@@ -67,33 +67,34 @@ $.ajax({
 
 
 $("#submit").on('click', function () {
-    var loanMoney = $(".Bank-loan").val(); //贷款金额
-    var returnMoreMoney = $(".Bank-money").val(); //保管费用
-    var bankDay = $(".Bank-day").val();
-    var compensation = $(".Bank-compensation").val(); //赔偿
-    if (userRole == "PersonalUser") {
-        var contract = {
-            id: loanID,
-            amount:loanMoney,                     //贷款金额
-            interestRate:returnMoreMoney,               //贷款利率
-            debtorID:userId,                   //贷款人
-            bankID:loan.bankId,                     //贷款银行
-            ipID:loan.patentID,                       //IP 知识产权
-            compensation:compensation,               //赔偿
-            durationInMonths:parseInt(bankDay)          //贷款期限
-        };
-        storage.setItem('contract',JSON.stringify(contract));
-        document.getElementById("link").click();
-    }
-    else {
-        var saveInfo = {
-            loanID: loanID,
-            loanMoney: loanMoney,
-            returnMoreMoney: returnMoreMoney,
-            duration: bankDay,
-            compensation: compensation
-        };
-        storage.setItem('save_info',JSON.stringify(saveInfo));
-
-    }
+    document.getElementById("link").click();
+    // var loanMoney = $(".Bank-loan").val(); //贷款金额
+    // var returnMoreMoney = $(".Bank-money").val(); //保管费用
+    // var bankDay = $(".Bank-day").val();
+    // var compensation = $(".Bank-compensation").val(); //赔偿
+    // if (userRole == "PersonalUser") {
+    //     var contract = {
+    //         id: loanID,
+    //         amount:loanMoney,                     //贷款金额
+    //         interestRate:returnMoreMoney,               //贷款利率
+    //         debtorID:userId,                   //贷款人
+    //         bankID:loan.bankId,                     //贷款银行
+    //         ipID:loan.patentID,                       //IP 知识产权
+    //         compensation:compensation,               //赔偿
+    //         durationInMonths:parseInt(bankDay)          //贷款期限
+    //     };
+    //     storage.setItem('contract',JSON.stringify(contract));
+    //     document.getElementById("link").click();
+    // }
+    // else {
+    //     var saveInfo = {
+    //         loanID: loanID,
+    //         loanMoney: loanMoney,
+    //         returnMoreMoney: returnMoreMoney,
+    //         duration: bankDay,
+    //         compensation: compensation
+    //     };
+    //     storage.setItem('save_info',JSON.stringify(saveInfo));
+    //
+    // }
 });
