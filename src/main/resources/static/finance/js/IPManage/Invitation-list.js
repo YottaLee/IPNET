@@ -8,13 +8,17 @@ $.ajax({
     data: { userId: userId},
     success: function (data) {
         console.log(data);
+
         var invitationList = "";
         for (var i = 0, len = data.length; i < len; i++) {
-            item= data[i].patentId+data[i].patentPoolId;
-            invitationList += "<tr > "+
+            str = data[i].patentId;
+            item=str+"-"+ data[i].patentPoolId ;
+            alert(item);
+            invitationList += "<tr id="+item+"> "+
+                "                                                    <td >" + data[i].patentId + "</td>\n" +
                 "                                                    <td >" + data[i].patentPoolId + "</td>\n" +
-                "                                                    <td id="+item+"> "+ "<button  class=\"btn btn-success\" onclick=\"accept(this.id)\">接受</button>\n" + "</td>\n" +
-                "                                                    <td id="+item+"> "+ "<button  class=\"btn btn-success\" onclick=\"deny(this.id)\">拒绝</button>\n" + "</td>\n" +
+                "                                                    <td > "+ "<button id=\"accept-"+item +"\"  class=\"btn btn-success\" onclick=\"accept(this.id)\">接受</button>\n" + "</td>\n" +
+                "                                                    <td > "+ "<button id=\"deny-"+ item +"\" class=\"btn btn-success\" onclick=\"deny(this.id)\">拒绝</button>\n" + "</td>\n" +
                 "                                                </tr>";
 
 
@@ -31,17 +35,19 @@ $.ajax({
 
 
 function accept(id) {
-
-    patentID = (id + "").substring((patentID + "").indexOf("-") + 1);
+    console.log(id);
+    alert(id);
+    patentID = (id + "").split("-")[1];
+    patentPoolID = (id + "").split("-")[2];
     $.ajax({
-        // 判断一下该专利是否有评估结果，没有就跳转到评估报告申请界面
         type: "POST",
         url: "/Patent/acceptInvitationFromPool",
         data: {
-            patentID: patentID,
-            patentPoolId:patentPoolId
+            patentId: patentID,
+            patentPoolId:patentPoolID
 
         },
+        async: false,
         success: function (data) {
             console.log("接受成功")
         },
@@ -51,7 +57,23 @@ function accept(id) {
     });
 }
 
-function deny(patentID, patentPoolId) {
-    patentID = (patentID + "").substring((patentID + "").indexOf("-") + 1);
-    evaluationNoTransfer(patentID);
+function deny(id) {
+    patentID = (id + "").split("-")[1];
+    patentPoolID = (id + "").split("-")[2];
+    $.ajax({
+        type: "POST",
+        url: "/Patent/denyInvitationFromPool",
+        data: {
+            patentId: patentID,
+            patentPoolId:patentPoolID
+
+        },
+        async: false,
+        success: function (data) {
+            console.log("拒绝成功")
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+    });
 }
