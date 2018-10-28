@@ -2,8 +2,11 @@ package com.ipnet.bl.loanbl;
 
 import com.ipnet.blservice.loanblservice.LoanBankBLService;
 import com.ipnet.dao.LoanDao;
+import com.ipnet.dao.PatentDao;
 import com.ipnet.entity.Loan;
+import com.ipnet.entity.Patent;
 import com.ipnet.enums.Patent_loan_state;
+import com.ipnet.enums.Patent_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.vo.financevo.LoanVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,8 @@ public class LoanBankBL implements LoanBankBLService {
 
     @Autowired
     private LoanDao loanDao;
+    @Autowired
+    private PatentDao patentDao;
 
     /**
      * 获取贷款信息
@@ -27,7 +32,7 @@ public class LoanBankBL implements LoanBankBLService {
         Loan loan = loanDao.getOne(loanID);
 
         LoanVO loanVO = new LoanVO(loan);
-        loanVO.setTime(loan.getAccept_time());
+        loanVO.setTime(loan.getTime());
         loanVO.setMoney(loan.getAccept_money());
         return loanVO;
     }
@@ -58,8 +63,12 @@ public class LoanBankBL implements LoanBankBLService {
     public ResultMessage submitApplication(String loanID, boolean ifPass) {
         Loan loan = loanDao.getOne(loanID);
         loan.setBankPass(ifPass);
-        if (!ifPass) //银行不同意放贷，此次申请就此结束
+        if (!ifPass) { //银行不同意放贷，此次申请就此结束
             loan.setState(Patent_loan_state.free);
+            Patent patent = patentDao.getOne(loan.getPatentID());
+            patent.setState(Patent_state.free);
+            patentDao.saveAndFlush(patent);
+        }
         else
             loan.setState(Patent_loan_state.to_be_value);
         loanDao.saveAndFlush(loan);
@@ -77,8 +86,12 @@ public class LoanBankBL implements LoanBankBLService {
     @Override
     public ResultMessage submitMidApplication(String loanID, boolean ifPass, boolean ifInsurance) {
         Loan loan = loanDao.getOne(loanID);
-        if (!ifPass) //银行不同意放贷，此次申请就此结束
+        if (!ifPass) { //银行不同意放贷，此次申请就此结束
             loan.setState(Patent_loan_state.free);
+            Patent patent = patentDao.getOne(loan.getPatentID());
+            patent.setState(Patent_state.free);
+            patentDao.saveAndFlush(patent);
+        }
         else if(ifInsurance)
             loan.setState(Patent_loan_state.to_be_choose_insurance);
         loanDao.saveAndFlush(loan);
@@ -95,8 +108,12 @@ public class LoanBankBL implements LoanBankBLService {
     @Override
     public ResultMessage submitDecision(String loanID, boolean ifPass){
         Loan loan = loanDao.getOne(loanID);
-        if (!ifPass) //银行不同意放贷，此次申请就此结束
+        if (!ifPass) { //银行不同意放贷，此次申请就此结束
             loan.setState(Patent_loan_state.free);
+            Patent patent = patentDao.getOne(loan.getPatentID());
+            patent.setState(Patent_state.free);
+            patentDao.saveAndFlush(patent);
+        }
         else
             loan.setState(Patent_loan_state.to_be_contract_by_loan);
         loanDao.saveAndFlush(loan);

@@ -2,6 +2,7 @@ package com.ipnet.bl.loanbl;
 
 import com.ipnet.bl.patentbl.PatentHelper;
 import com.ipnet.blservice.EvaluationBLService;
+import com.ipnet.blservice.PatentBLService;
 import com.ipnet.blservice.UserBLService;
 import com.ipnet.blservice.loanblservice.LoanAllBLService;
 import com.ipnet.blservice.loanblservice.LoanApplicantBLService;
@@ -10,9 +11,12 @@ import com.ipnet.blservice.personalservice.UserInfoBLService;
 import com.ipnet.dao.CompanyUserDao;
 import com.ipnet.dao.InsuranceDao;
 import com.ipnet.dao.LoanDao;
+import com.ipnet.dao.PatentDao;
 import com.ipnet.entity.Insurance;
 import com.ipnet.entity.Loan;
+import com.ipnet.entity.Patent;
 import com.ipnet.enums.Patent_loan_state;
+import com.ipnet.enums.Patent_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.CreateInsuranceVO;
@@ -30,6 +34,8 @@ public class LoanApplicantBL implements LoanApplicantBLService {
     private LoanDao loanDao;
     @Autowired
     private CompanyUserDao companyUserDao;
+    @Autowired
+    private PatentDao patentDao;
     @Autowired
     private EvaluationBLService evaluationBLService;
     @Autowired
@@ -115,6 +121,9 @@ public class LoanApplicantBL implements LoanApplicantBLService {
             e.printStackTrace();
         }
         loan.setPatent(patentName);
+        Patent patent = patentDao.getOne(patentID);
+        patent.setState(Patent_state.to_be_loan);
+        patentDao.saveAndFlush(patent);
         loanDao.saveAndFlush(loan);
         return loanID;
     }
@@ -193,6 +202,11 @@ public class LoanApplicantBL implements LoanApplicantBLService {
         return false;
     }
 
+    /**
+     * 贷款到评估
+     * @param loanID
+     * @return
+     */
     @Override
     public ResultMessage changeEvaluationState(String loanID) {
         Optional<Loan> loanOptional = loanDao.findById(loanID);
@@ -205,6 +219,11 @@ public class LoanApplicantBL implements LoanApplicantBLService {
         return ResultMessage.Fail;
     }
 
+    /**
+     * 成功购买了保险
+     * @param loanID
+     * @return
+     */
     @Override
     public String successPayForInsurance(String loanID) {
         Optional<Loan> loanOptional = loanDao.findById(loanID);
@@ -212,6 +231,30 @@ public class LoanApplicantBL implements LoanApplicantBLService {
             Loan loan = loanOptional.get();
             loan.setState(Patent_loan_state.to_be_final_confirm);
             loanDao.saveAndFlush(loan);
+            try {
+                return loanInsuranceBLService.getInsurance(loanID).getId();
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 申请贷款成功
+     * @param loanID
+     * @return
+     */
+    @Override
+    public String loanSuccess(String loanID){
+        Optional<Loan> loanOptional = loanDao.findById(loanID);
+        if (loanOptional.isPresent()) {
+            Loan loan = loanOptional.get();
+            loan.setState(Patent_loan_state.loaning);
+            loanDao.saveAndFlush(loan);
+            Patent patent = patentDao.getOne(loan.getPatentID());
+            patent.setState(Patent_state.loaning);
+            patentDao.saveAndFlush(patent);
             try {
                 return loanInsuranceBLService.getInsurance(loanID).getId();
             }catch (Exception ex){

@@ -35,7 +35,8 @@
 </head>
 
 <body>
-<a id="link" style="display:none" href="https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?countryCode=US&businessCode=GCB&locale=en_US&state=1123&response_type=code&scope=payees&client_id=330ad3b7-650c-4515-a628-4ca95b0f7514&redirect_uri=http://127.0.0.1:8000/ipnet/loading"></a>
+<a id="link" style="display:none" href="https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?response_type=code&client_id=9f00e22b-70ba-4321-9141-e97a7ed74382&scope=payees&countryCode=US&businessCode=GCB&locale=en_US&state=12093&redirect_uri=http://localhost:8000/ipnet/loading"></a>
+<a id="bankLink" style="display:none" href="https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?countryCode=US&businessCode=GCB&locale=en_US&state=12093&response_type=code&scope=payees&client_id=c8509f66-9298-4713-a229-37b4a01d7e50&redirect_uri=http://localhost:8000/ipnet/Bank-applicationFinish"></a>
 <!--<div class="md-modal md-effect-10" id="modal-3">-->
     <!--<div class="md-content">-->
         <!--<h4>个人身份认证</h4>-->
@@ -112,7 +113,7 @@
                     <div class="fm-sign">
                         <label>质押期限：
                         </label>
-                        <input class="System duration input-class fm-input" type="text">
+                        <input style="width:200px" class="System duration input-class fm-input" type="text">
                     </div>
                     <p>为确保债务的偿还，甲方愿意以其有权处分的财产作质押，乙方经审查，同意接受甲方的财产质押，甲、乙双方根据有关法律规定，经协商一致，约定如下条款：</p>
                     <!--<div class="fm-footer">-->
@@ -122,14 +123,14 @@
                 <div>
                     <div class="manage-page">
                         <p>专利：<input class="System patent input-class fm-input" type="text"></p>
-                        <p>评估价值：<input class="System evaluation input-class fm-input" type="number"></p>
+                        <p>评估价值：<input class="System evaluation input-class fm-input" type="number">元</p>
                         <p>
                             第一条 甲方以“质押财产清单”（附后）所列之财产设定质押。
                         </p>
                         <p>第二条 甲方质押担保的贷款金额<input class="Bank loan input-class fm-input" type="text">元，贷款期限<input
-                                class="System duration input-class fm-input" type="text">。</p>
+                                style="width:200px" class="System duration input-class fm-input" type="text">。</p>
                         <p> 第三条 甲方保证对质押物依法享有完全的所有权。</p>
-                        <p> 第四条 甲方应于<input class="System duration input-class fm-input" type="text">日将质押财产产付乙方占有并同时向乙方支付保管费<input
+                        <p> 第四条 甲方应将质押财产产付乙方占有并同时向乙方支付保管费<input
                                 class="Bank-money input-class fm-input" type="number">元。 
 
                         </p>
@@ -146,7 +147,7 @@
                 </div>
                 <div>
                     <div class="manage-page">
-                        <p> 第十条 非因乙方过错致质押财产价值减少，甲方应在<input class="Bank day input-class fm-input" type="number">天内向乙方提供与减少的价值相当的担保。
+                        <p> 第十条 非因乙方过错致质押财产价值减少，甲方应在向乙方提供与减少的价值相当的担保。
                         </p>
                         <p> 第十一条 质押期间，质押财产造成环境污染或造成其他损害，应由甲方独立承担责任。
                         </p>
@@ -227,7 +228,7 @@
                                 <label>签订日期:</label>
                                 <input class="input-class year" type="number" style="width: 45px">年
                                 <input class="input-class month" type="number" style="width: 30px">月
-                                <input class="input-class date" type="number" style="width: 30px">日
+                                <input class="input-class currentDay" type="number" style="width: 30px">日
                             </div>
                             <button id="submit" class="btn btn-default">签字上链</button>
                         </div>
