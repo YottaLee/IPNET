@@ -31,23 +31,23 @@
         }
     </style>
     <script src="/common/jquery.js"></script>
-    <script type="text/javascript" src="/common/jquery-confirm.js"></script>
-    <script type="text/javascript" src="/finance/js/alertFile.js"></script>
+
 </head>
 
 <body>
-<div class="md-modal md-effect-10" id="modal-3">
-    <div class="md-content">
-        <h4>个人身份认证</h4>
-        <div class="md-maincontent">
-            <br/>
-            <span><i class="fa fa-key"></i>密钥： <input type="password" width="200px" id="key"></span><br/><br/>
-            <!--<span class="t1">开户银行： <input type="text" id="Ew_newBankCard_bank"></span><br /><br />-->
-            <button class="md-confirm" id="confirm">确认</button>
-            <button class="md-cancel" id="cancel">取消</button>
-        </div>
-    </div>
-</div>
+<a id="link" style="display:none" href="https://sandbox.apihub.citi.com/gcb/api/authCode/oauth2/authorize?countryCode=US&businessCode=GCB&locale=en_US&state=1123&response_type=code&scope=payees&client_id=330ad3b7-650c-4515-a628-4ca95b0f7514&redirect_uri=http://127.0.0.1:8000/ipnet/loading"></a>
+<!--<div class="md-modal md-effect-10" id="modal-3">-->
+    <!--<div class="md-content">-->
+        <!--<h4>个人身份认证</h4>-->
+        <!--<div class="md-maincontent">-->
+            <!--<br/>-->
+            <!--<span><i class="fa fa-key"></i>密钥： <input type="password" width="200px" id="key"></span><br/><br/>-->
+            <!--&lt;!&ndash;<span class="t1">开户银行： <input type="text" id="Ew_newBankCard_bank"></span><br /><br />&ndash;&gt;-->
+            <!--<button class="md-confirm" id="confirm">确认</button>-->
+            <!--<button class="md-cancel" id="cancel">取消</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 <div class="manage-modal">
     <div class="flipbook-viewport">
         <div class="container">
@@ -229,7 +229,7 @@
                                 <input class="input-class month" type="number" style="width: 30px">月
                                 <input class="input-class date" type="number" style="width: 30px">日
                             </div>
-                            <button data-modal="modal-3" class="md-trigger btn btn-default">签字上链</button>
+                            <button id="submit" class="btn btn-default">签字上链</button>
                         </div>
                         <!--<div class="party party-b" style="height: 100%">-->
 
@@ -303,6 +303,8 @@
 
 
 </script>
+<script type="text/javascript" src="/common/jquery-confirm.js"></script>
+<script type="text/javascript" src="/finance/js/alertFile.js"></script>
 <script src="/ipnet_Login_v2/js/classie.js"></script>
 <script src="/ipnet_Login_v2/js/modalEffects.js"></script>
 <script src="/finance/js/All/All-contract.js"></script>

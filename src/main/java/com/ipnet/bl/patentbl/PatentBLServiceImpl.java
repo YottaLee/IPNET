@@ -371,6 +371,20 @@ public class PatentBLServiceImpl implements PatentBLService {
         return  voList;
     }
 
+    @Override
+    public List<Invitation> receiveInvitation(String holdId) {
+         List<Patent> patentList = this.patentDao.searchPatentsByUserId(holdId);
+         List<Invitation> invitationList = new ArrayList<Invitation>();
+         for(Patent p : patentList) {
+             for(Invitation i : this.invitationDao.searchInvitationByPatentId(p.getPatent_id())) {
+                 invitationList.add(i);
+             }
+
+         }
+         return invitationList;
+    }
+
+
     private Patent getPatentById(String patentId) throws IDNotExistsException{
         Optional<Patent> optionalPatent = this.patentDao.findById(patentId);
         if (optionalPatent.isPresent() ==false){
@@ -383,6 +397,9 @@ public class PatentBLServiceImpl implements PatentBLService {
     private void savePatent(Patent patent){
         this.patentDao.saveAndFlush(patent);
     }
+
+
+
 
 
 }

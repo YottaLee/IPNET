@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>申请结束</title>
+    <title>签署结束</title>
 
 
     <!--STYLESHEET-->
@@ -209,7 +209,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="form-group  text-center">
-                            <p>该信息已经反馈给保险公司</p>
+                            <p>该信息已经反馈给专利持有人</p>
                             <!--Horizontal Form-->
                             <!--===================================================-->
                                         </div>
@@ -255,7 +255,27 @@
     </div>
 </div>
 <script>
-    //由支付界面跳入
+    var storage = window.localStorage;
+    var saveinfo = JSON.parse(storage.getItem('save_info'));
+    $.ajax({
+        type: "POST",
+        url: "/bank/hasContract",
+        async: false,
+        data: {
+            loanID: saveinfo.loanID,
+            loanMoney: saveinfo.loanMoney,
+            returnMoreMoney: saveinfo.returnMoreMoney,
+            duration: saveinfo.bankDay,
+            compensation: saveinfo.compensation
+        },
+        success: function () {
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+
     //跳回专利管理界面
     $("#submit").on('click',function () {
         var storage = window.localStorage;

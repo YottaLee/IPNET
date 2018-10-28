@@ -1,8 +1,33 @@
 var storage = window.localStorage;
 var loanID = storage.getItem('loan_id');
 var userId = storage.getItem('user_id');
+var loan;
 $(".Bank-money").val(300000); //贷款费用
 var userRole = "";
+ifPerson();
+
+function ifPerson() {
+    $.ajax({
+        type: "GET",
+        url: "/user/getUserRole",
+        async: false,
+        data: {
+            userID: userId
+        },
+        success: function (role) {
+            userRole = role;
+            if (role == "PersonalUser") {
+
+                $(".Bank").attr("disabled", false);
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+
+}
+
 $.ajax({
     type: 'GET',
     url: '/bank/getInfo',
@@ -11,6 +36,7 @@ $.ajax({
         loanID: loanID
     },
     success: function (data) {
+        loan = data;
         var myDate = new Date();
         $(".System").attr("disabled", false);
         $(".patent").val(data.patent);
@@ -27,59 +53,51 @@ $.ajax({
         $(".year").val(myDate.getFullYear());
         $(".month").val(myDate.getMonth() + 1);
         $(".date").val(myDate.getDate());
+        if (userRole == "PersonalUser") {
+            $(".Bank-loan").val(data.money); //贷款金额
+            $(".Bank-money").val(data.return_money); //保管费用
+            $(".Bank-day").val(data.time);
+            $(".Bank-compensation").val(data.compensation); //赔偿
+        }
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
         console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
     }
 });
 
-ifPerson();
 
-function ifPerson() {
-    $.ajax({
-        type: "GET",
-        url: "/user/getUserRole",
-        data: {
-            userID: userId
-        },
-        success: function (role) {
-            userRole = role;
-            if (role == "PersonalUser")
-                $(".Bank").attr("disabled", false);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
+$("#submit").on('click', function () {
+    infoFile("即将跳入花旗界面进行身份认证");
+    document.getElementById("link").click();
 
-}
 
-$("#confirm").on('click', function () {
-    window.location.href = "/ipnet/loading";
     // var loanMoney = $(".Bank-loan").val(); //贷款金额
     // var returnMoreMoney = $(".Bank-money").val(); //保管费用
     // var bankDay = $(".Bank-day").val();
     // var compensation = $(".Bank-compensation").val(); //赔偿
-    // var isSuccess = false;
     // if (userRole == "PersonalUser") {
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/bank/hasContract",
-    //         data: {
-    //             loanID: loanID,
-    //             loanMoney: loanMoney,
-    //             returnMoreMoney: returnMoreMoney,
-    //             duration: bankDay,
-    //             compensation: compensation
-    //         },
-    //         success: function () {
-    //            isSuccess = true;
-    //         },
-    //         error: function (error) {
-    //             console.log(error);
-    //         }
-    //     });
-    // } else {
+    //     var contract = {
+    //         id: loanID,
+    //         amount:loanMoney,                     //贷款金额
+    //         interestRate:returnMoreMoney,               //贷款利率
+    //         debtorID:userId,                   //贷款人
+    //         bankID:loan.bankId,                     //贷款银行
+    //         ipID:loan.patentID,                       //IP 知识产权
+    //         compensation:compensation,               //赔偿
+    //         durationInMonths:parseInt(bankDay)          //贷款期限
+    //     };
+    //     storage.setItem('contract',JSON.stringify(contract));
+    //     document.getElementById("link").click();
+    // }
+    // else {
+    //     var saveInfo = {
+    //         loanID: loanID,
+    //         loanMoney: loanMoney,
+    //         returnMoreMoney: returnMoreMoney,
+    //         duration: bankDay,
+    //         compensation: compensation
+    //     };
+    //     storage.setItem('save_info',JSON.stringify(saveInfo));
     //
     // }
 });

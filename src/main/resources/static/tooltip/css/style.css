@@ -1,0 +1,181 @@
+﻿html, body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Lato', 'STHeiti', 'Helvetica', 'Microsoft Yahei';
+	background-color: #f5f5f5;
+}
+
+body > .title {
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	padding: 30px 0;
+	color: #333;
+}
+
+body > .subtitle {
+	text-align: center;
+	font-size: 15px;
+	font-style: italic;
+	color: #888;
+	margin-bottom: 30px;
+}
+
+.color-1 {
+	color: #EF6080;	
+}
+
+.color-2 {
+	color: #F29F3F;
+}
+
+.color-3 {
+	color: #6090EF;
+}
+
+.color-4 {
+	color: #aaa;
+}
+
+.color-5 {
+	color: #60BF80;
+}
+
+.bg-color-1 {
+	background-color: #EF6080;	
+}
+
+.bg-color-2 {
+	background-color: #F29F3F;
+}
+
+.bg-color-3 {
+	background-color: #6090EF;
+}
+
+.bg-color-4 {
+	background-color: #aaa;
+}
+
+.bg-color-5 {
+	background-color: #60BF80;
+}
+
+.content-wrapper:nth-child(odd) {
+	background-color: #fdfdfd;
+}
+
+.content-wrapper:nth-child(even) {
+	background-color: #f4f4f4;
+}
+
+.content-wrapper > .content {
+	width: 90%;
+	max-width: 800px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	padding: 30px 20px;
+	color: #666;
+}
+
+.content-wrapper .link {
+	color: #888;
+	text-decoration: underline;
+}
+
+.content-wrapper .link:hover {
+	color: #aaa;
+}
+
+.content-wrapper table {
+	width: 100%;
+	margin: 30px 0;
+	border-collapse: collapse;
+}
+
+.content-wrapper table th {
+	background-color: #6090EF;
+	padding: 10px 0;
+	color: #fdfdfd;
+}
+
+.content-wrapper table td {
+	box-sizing: border-box;
+	padding: 8px 5px;
+	vertical-align: top;
+	background-color: #f0effa;
+}
+
+.content-wrapper table td:nth-child(1) {
+	font-style: italic;
+	padding-left: 15px;
+}
+
+.content-wrapper table td:nth-child(3) {
+	color: #999;
+}
+
+.content-wrapper table td:nth-child(4) {
+	padding-right: 15px;
+}
+
+.content-wrapper .button {
+	font-size: 20px;
+	text-decoration: none;
+	margin: 10px auto;
+	display: inline-block;
+	padding: 8px 20px;
+	/* Strange things happen in Safari if I set color */
+	/*color: #fafafa;*/
+	border-radius: 5px;
+	/*font-style: italic;*/
+	font-weight: 600;
+}
+
+.block {
+	display: inline-block;
+	width: 100%;
+	vertical-align: top;
+	margin: 20px 0;
+}
+
+.block > .title {
+	font-size: 26px;
+	color: #555;
+	text-align: center;
+	margin: 5px auto 10px auto;
+}
+
+.block > .intro {
+	font-size: 18px;
+	text-align: center;
+}
+
+.block-code {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 60%;
+	padding: 5px 10px;
+	vertical-align: top;
+}
+
+.block-detail {
+	display: inline-block;
+	box-sizing: border-box;
+	width: 40%;
+	padding: 5px 10px;
+	text-align: center;
+	vertical-align: top;
+}
+
+.block-detail-full {
+	text-align: center;
+}
+
+.block-detail > p, 
+.block-detail-full > p {
+	padding: 5px 0;
+	margin: 0;
+	/*font-style: italic;*/
+	color: #888;
+}
