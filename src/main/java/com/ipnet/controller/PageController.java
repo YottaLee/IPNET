@@ -55,6 +55,11 @@ public class PageController {
         return "frame";
     }
 
+    @RequestMapping("assessment")
+    public String assessment(){
+        return "assessment/assessment";
+    }
+
     @RequestMapping("community_home")
     public  String community_home(){
         return "community/community_home";
