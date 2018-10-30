@@ -66,6 +66,12 @@ public class LoanInsuranceController {
     }
 
 
+    @RequestMapping("/hasInsurance")
+    public @ResponseBody ResultMessage hasInsurance(@RequestParam String loanId) throws IDNotExistsException {
+        return loanInsuranceBLService.hasInsurance(loanId);
+    }
+
+
 
 
 

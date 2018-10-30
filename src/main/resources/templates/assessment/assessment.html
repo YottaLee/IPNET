@@ -7,11 +7,12 @@
 <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/home/css/style.css">
 <link rel="stylesheet" href="/common/jquery-confirm.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+      integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 <link rel="stylesheet" href="/pay/css/rippler.css">
 <link rel="stylesheet" href="/assessment/css/search-style.css">
 <link rel="stylesheet" href="/assessment/css/style.css">
-<link rel="stylesheet" type="text/css" href="/assessment/css/component.css" />
+<link rel="stylesheet" type="text/css" href="/assessment/css/component.css"/>
 <link rel="stylesheet" type="text/css" href="/assessment/css/nice-select.css">
 <script type="text/javascript" src="/common/jquery.js"></script>
 <script type="text/javascript" src="/pay/js/jquery.rippler.js"></script>
@@ -28,39 +29,68 @@
 <link href="/home/css/bootstrap.css" rel="stylesheet">
 
 <style>
-    .filter-table .quick { margin-left: 0.5em; font-size: 0.8em; text-decoration: none; }
-    .fitler-table .quick:hover { text-decoration: underline; }
-    td.alt { background-color: #ffc; background-color: rgba(255, 255, 0, 0.2); }
-    .my_td{text-align: center;color: black;font-size: 15px}
-    table{border:0;margin:0;border-collapse:collapse;border-spacing:0;}
-    .date{
-        position:  relative;
+    .filter-table .quick {
+        margin-left: 0.5em;
+        font-size: 0.8em;
+        text-decoration: none;
+    }
+
+    .fitler-table .quick:hover {
+        text-decoration: underline;
+    }
+
+    td.alt {
+        background-color: #ffc;
+        background-color: rgba(255, 255, 0, 0.2);
+    }
+
+    .my_td {
+        text-align: center;
+        color: black;
+        font-size: 15px
+    }
+
+    table {
+        border: 0;
+        margin: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .date {
+        position: relative;
         left: -108px;
     }
-    .change{
-        position:  relative;
+
+    .change {
+        position: relative;
         left: 60px;
     }
-    .nice-select{
-        position:  relative;
+
+    .nice-select {
+        position: relative;
         left: 442px;
         top: -5px;
         height: 34px;
     }
-    .current{
+
+    .current {
         color: black;
         position: relative;
         top: -3px;
     }
-    .option{
+
+    .option {
         color: black;
     }
-    .progress-title{
-        position:  relative;
+
+    .progress-title {
+        position: relative;
         bottom: 29px;
         font-size: 20px;
     }
-    .progress{
+
+    .progress {
         width: 50%;
         height: 30px;
         background: #fff;
@@ -72,8 +102,9 @@
         /*margin-bottom: 25px;*/
         overflow: visible;
     }
+
     .progress:before,
-    .progress:after{
+    .progress:after {
         content: "";
         width: 5px;
         background: #1c2647;
@@ -82,31 +113,41 @@
         left: -5px;
         bottom: 0;
     }
-    .progress:after{
+
+    .progress:after {
         left: auto;
         right: -5px;
     }
-    .progress .progress-bar{
+
+    .progress .progress-bar {
         border: none;
         box-shadow: none;
-        -webkit-animation: 2s linear 0s normal none infinite running progress-bar-stripes,animate-positive 1s;
-        animation: 2s linear 0s normal none infinite running progress-bar-stripes,animate-positive 1s;
+        -webkit-animation: 2s linear 0s normal none infinite running progress-bar-stripes, animate-positive 1s;
+        animation: 2s linear 0s normal none infinite running progress-bar-stripes, animate-positive 1s;
     }
-    @-webkit-keyframes animate-positive{
-        0%{ width: 0; }
+
+    @-webkit-keyframes animate-positive {
+        0% {
+            width: 0;
+        }
     }
-    @keyframes animate-positive{
-        0%{ width: 0; }
+
+    @keyframes animate-positive {
+        0% {
+            width: 0;
+        }
     }
-    .container{
+
+    .container {
         max-width: 1080px;
         margin: 0 auto;
         box-sizing: border-box;
     }
+
     .demo--content-block {
         background-color: #f2f2f2;
         color: #666;
-        padding: 0.8em ;
+        padding: 0.8em;
         margin: .5em 0;
         height: 150px;
         min-height: 150px;
@@ -117,7 +158,8 @@
 <body>
 
 <div class="top col-md-12" style="height: 56px;background: #3b3e43">
-    <img src="https://i.imgur.com/jwJTKCL.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+    <img src="https://i.imgur.com/jwJTKCL.png"
+         style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
     <span style="color: white;font-size: 15px">IPNET智能评估中心</span>
 </div>
 
@@ -133,8 +175,10 @@
                         <button id="message_btn"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
-                <section class="panel" id="patent_list" style="height: 100%;width: 100%;margin-left: auto;margin-right:auto;margin-top: 0px">
-                    <table frame="void" rules="none" border="0" cellpadding="0" cellspacing="0"  class="table table-hover personal-task" id="table">
+                <section class="panel" id="patent_list"
+                         style="height: 100%;width: 100%;margin-left: auto;margin-right:auto;margin-top: 0px">
+                    <table frame="void" rules="none" border="0" cellpadding="0" cellspacing="0"
+                           class="table table-hover personal-task" id="table">
                         <thead>
                         <tr>
                             <th scope="col" style="text-align: center;font-size: 15px">序号</th>
@@ -153,8 +197,12 @@
                             <td class="my_td" style="font-size: 15px">一种新型制药技术</td>
                             <td class="my_td" style="font-size: 15px">专利权有效</td>
                             <td class="my_td" style="font-size: 15px">30</td>
-                            <td class="my_td view_history" style="font-size: 15px;cursor: pointer"><i class="fas fa-eye"></i>&nbsp;点击查看</td>
-                            <td class="my_td generate_report" style="font-size: 15px;cursor: pointer"><i class="fas fa-file-alt"></i>&nbsp;点击生成</td>
+                            <td class="my_td view_history" style="font-size: 15px;cursor: pointer"><i
+                                    class="fas fa-eye"></i>&nbsp;点击查看
+                            </td>
+                            <td class="my_td generate_report" style="font-size: 15px;cursor: pointer"><i
+                                    class="fas fa-file-alt"></i>&nbsp;点击生成
+                            </td>
                         </tr>
                         <tr>
                             <td class="my_td" style="font-size: 15px">2</td>
@@ -162,8 +210,12 @@
                             <td class="my_td" style="font-size: 15px">一种可溶性纤维素</td>
                             <td class="my_td" style="font-size: 15px">专利权有效</td>
                             <td class="my_td" style="font-size: 15px">5</td>
-                            <td class="my_td view_history" style="font-size: 15px;cursor: pointer"><i class="fas fa-eye"></i>&nbsp;点击查看</td>
-                            <td class="my_td generate_report" style="font-size: 15px;cursor: pointer"><i class="fas fa-file-alt"></i>&nbsp;点击生成</td>
+                            <td class="my_td view_history" style="font-size: 15px;cursor: pointer"><i
+                                    class="fas fa-eye"></i>&nbsp;点击查看
+                            </td>
+                            <td class="my_td generate_report" style="font-size: 15px;cursor: pointer"><i
+                                    class="fas fa-file-alt"></i>&nbsp;点击生成
+                            </td>
                         </tr>
                         <tr>
                             <td class="my_td" style="font-size: 15px">3</td>
@@ -171,17 +223,24 @@
                             <td class="my_td" style="font-size: 15px">一种药用冻干机</td>
                             <td class="my_td" style="font-size: 15px">专利权有效</td>
                             <td class="my_td" style="font-size: 15px">8</td>
-                            <td class="my_td view_history" style="font-size: 15px;cursor: pointer"><i class="fas fa-eye"></i>&nbsp;点击查看</td>
-                            <td class="my_td generate_report" style="font-size: 15px;cursor: pointer"><i class="fas fa-file-alt"></i>&nbsp;点击生成</td>
+                            <td class="my_td view_history" style="font-size: 15px;cursor: pointer"><i
+                                    class="fas fa-eye"></i>&nbsp;点击查看
+                            </td>
+                            <td class="my_td generate_report" style="font-size: 15px;cursor: pointer"><i
+                                    class="fas fa-file-alt"></i>&nbsp;点击生成
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </section>
-                <section id="history" class="panel" style="height: 100%;width: 100%;margin-left: auto;margin-right:auto;margin-top: 0px;display: none">
-                    <div class="icon history_back" style="position:  absolute;left: 3%;top: 10.3%;cursor: pointer"><i class="fas fa-long-arrow-alt-left"></i></div>
+                <section id="history" class="panel"
+                         style="height: 100%;width: 100%;margin-left: auto;margin-right:auto;margin-top: 0px;display: none">
+                    <div class="icon history_back" style="position:  absolute;left: 3%;top: 10.3%;cursor: pointer"><i
+                            class="fas fa-long-arrow-alt-left"></i></div>
                     <ul class="cbp_tmtimeline" style="width: 913px;margin-right: auto;margin-left: auto">
                         <li>
-                            <time class="cbp_tmtime" datetime="2014-10-30 18:30"><span>4/10/13</span> <span>18:30</span></time>
+                            <time class="cbp_tmtime" datetime="2014-10-30 18:30"><span>4/10/13</span> <span>18:30</span>
+                            </time>
                             <div class="cbp_tmicon"><i class="fas fa-file-alt"></i></div>
                             <div class="cbp_tmlabel">
                                 <h2>评估报告(1)</h2>
@@ -189,19 +248,22 @@
                                 <div>
                                     <span class="progress-title" style="display:inline-block">市场价值68/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:90%;"></div>
+                                        <div class="progress-bar progress-bar-info progress-bar-striped active"
+                                             style="width:90%;"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="progress-title" style="display:inline-block">技术价值43/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width:43%;"></div>
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped active"
+                                             style="width:43%;"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="progress-title" style="display:inline-block">经济价值70/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:70%;"></div>
+                                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                                             style="width:70%;"></div>
                                     </div>
                                 </div>
                                 <div>
@@ -216,7 +278,8 @@
                             </div>
                         </li>
                         <li>
-                            <time class="cbp_tmtime" datetime="2014-11-01T12:04"><span>4/11/13</span> <span>12:04</span></time>
+                            <time class="cbp_tmtime" datetime="2014-11-01T12:04"><span>4/11/13</span> <span>12:04</span>
+                            </time>
                             <div class="cbp_tmicon cbp_tmicon-phone"></div>
                             <div class="cbp_tmlabel">
                                 <h2>评估报告(1)</h2>
@@ -224,19 +287,22 @@
                                 <div>
                                     <span class="progress-title" style="display:inline-block">市场价值68/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:90%;"></div>
+                                        <div class="progress-bar progress-bar-info progress-bar-striped active"
+                                             style="width:90%;"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="progress-title" style="display:inline-block">技术价值43/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width:43%;"></div>
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped active"
+                                             style="width:43%;"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="progress-title" style="display:inline-block">经济价值70/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:70%;"></div>
+                                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                                             style="width:70%;"></div>
                                     </div>
                                 </div>
                                 <div>
@@ -251,7 +317,8 @@
                             </div>
                         </li>
                         <li>
-                            <time class="cbp_tmtime" datetime="2014-11-02 05:36"><span>4/13/13</span> <span>05:36</span></time>
+                            <time class="cbp_tmtime" datetime="2014-11-02 05:36"><span>4/13/13</span> <span>05:36</span>
+                            </time>
                             <div class="cbp_tmicon cbp_tmicon-phone"></div>
                             <div class="cbp_tmlabel">
                                 <h2>评估报告(1)</h2>
@@ -259,19 +326,22 @@
                                 <div>
                                     <span class="progress-title" style="display:inline-block">市场价值68/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:90%;"></div>
+                                        <div class="progress-bar progress-bar-info progress-bar-striped active"
+                                             style="width:90%;"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="progress-title" style="display:inline-block">技术价值43/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width:43%;"></div>
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped active"
+                                             style="width:43%;"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="progress-title" style="display:inline-block">经济价值70/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:70%;"></div>
+                                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                                             style="width:70%;"></div>
                                     </div>
                                 </div>
                                 <div>
@@ -287,11 +357,14 @@
                         </li>
                     </ul>
                 </section>
-                <section id="current" class="panel" style="height: 100%;width: 100%;margin-left: auto;margin-right:auto;margin-top: 0px;display: none">
-                    <div class="icon current_back" style="position:  absolute;left: 3%;top: 10.3%;cursor: pointer"><i class="fas fa-long-arrow-alt-left"></i></div>
+                <section id="current" class="panel"
+                         style="height: 100%;width: 100%;margin-left: auto;margin-right:auto;margin-top: 0px;display: none">
+                    <div class="icon current_back" style="position:  absolute;left: 3%;top: 10.3%;cursor: pointer"><i
+                            class="fas fa-long-arrow-alt-left"></i></div>
                     <ul class="cbp_tmtimeline" style="width: 913px;margin-right: auto;margin-left: auto">
                         <li>
-                            <time class="cbp_tmtime" datetime="2014-10-30 18:30"><span>4/10/13</span> <span>18:30</span></time>
+                            <time class="cbp_tmtime" datetime="2014-10-30 18:30"><span>4/10/13</span> <span>18:30</span>
+                            </time>
                             <div class="cbp_tmicon"><i class="fas fa-file-alt"></i></div>
                             <div class="cbp_tmlabel">
                                 <h2>评估报告</h2>
@@ -299,19 +372,22 @@
                                 <div>
                                     <span class="progress-title" style="display:inline-block">市场价值68/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-info progress-bar-striped active" style="width:90%;"></div>
+                                        <div class="progress-bar progress-bar-info progress-bar-striped active"
+                                             style="width:90%;"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="progress-title" style="display:inline-block">技术价值43/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width:43%;"></div>
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped active"
+                                             style="width:43%;"></div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="progress-title" style="display:inline-block">经济价值70/100分:</span>
                                     <div class="progress" style="display: inline-block">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:70%;"></div>
+                                        <div class="progress-bar progress-bar-success progress-bar-striped active"
+                                             style="width:70%;"></div>
                                     </div>
                                 </div>
                                 <div>
@@ -333,17 +409,31 @@
 </div>
 
 <!--<div id="footerwrap">-->
-    <!--<div class="container">-->
-        <!--<h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>-->
-    <!--</div>-->
+<!--<div class="container">-->
+<!--<h4><img src="https://i.imgur.com/qrRDHYM.png" style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">Created by <a href="" style="color: rgba(61, 201, 179, 0.8)">NJU IDigger</a> - Copyright 2018</h4>-->
+<!--</div>-->
 <!--</div>-->
 
 <script src="/assessment/js/jquery.nice-select.min.js"></script>
 <script src="/assessment/js/fastclick.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('select:not(.ignore)').niceSelect();
         FastClick.attach(document.body);
+        $.ajax({
+            type: 'GET',
+            url: '/evaluation/smartEvaluation',
+            data: {
+                patentID: "CN201710139269.1"
+            },
+            success: function () {
+
+            },
+            error: function (error) {
+                console.log(error);
+            }
+
+        })
     });
 </script>
 

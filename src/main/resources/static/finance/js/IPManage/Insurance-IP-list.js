@@ -74,26 +74,26 @@ function check(loanID) {
                 case "to_be_checked_by_insurance":
                     window.location.href = "/ipnet/Insurance-check2";
                     break;
-                case "to_be_contract":
+                case "overdue":
                     $.ajax({
                         type: "GET",
-                        url: "/all/getIfContract",
+                        url: "/insurance/hasInsurance",
                         data: {
-                            loanID: loanID,
-                            userid: userId
+                            loanId: loanID
                         },
                         success: function (result) {
-                            if (result)
-                                window.location.href = "/ipnet/All-loan-check";
-                            else
-                                window.location.href = "/ipnet/All-loan-contract";
+                            if (result == "Success"){
+                                infoFile("已进行自动赔付，贵公司已获得该专利所有权，现在将进行拍卖");
+                                setTimeout(function () {
+                                   //跳入拍卖界面
+                                }, 4000);
+                            }
+
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
                         }
                     });
-                    break;
-                case "to_be_compensation":
                     //赔付界面
                     //window.location.href = "/ipnet/Insurance-checkBank";
                     break;

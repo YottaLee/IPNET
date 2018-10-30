@@ -380,4 +380,9 @@ public class PageController {
     public String Loading(){
         return "loading";
     }
+
+    @RequestMapping("Auction")
+    public String Auction(){
+        return "auction/Auction";
+    }
 }

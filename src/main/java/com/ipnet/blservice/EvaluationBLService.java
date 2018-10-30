@@ -20,4 +20,8 @@ public interface EvaluationBLService {
 
     double getValue(String patentID);
 
+    double smartEvaluation(String patentID);
+
+
+
 }

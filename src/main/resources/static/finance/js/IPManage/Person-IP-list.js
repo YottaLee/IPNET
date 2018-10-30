@@ -211,6 +211,7 @@ function loan(patentID) {
                                 break;
                             case "loaning":
                             case "overdue":
+                                alertFile("由于您未及时还款，您的专利资产将交由银行处置");
                             case "to_be_compensation":
                                 window.location.href = "/ipnet/loan_detail";//贷款详情
                                 break;
