@@ -83,4 +83,13 @@ public class LoanInsuranceBL implements LoanInsuranceBLService {
         }
         return insuranceVOS;
     }
+
+    @Override
+    public ResultMessage hasInsurance(String loanId) throws IDNotExistsException {
+        Insurance insurance = insuranceDao.getInsurance(loanId);
+        if (insurance != null)
+            return ResultMessage.Success;
+        else
+            return ResultMessage.Fail;
+    }
 }

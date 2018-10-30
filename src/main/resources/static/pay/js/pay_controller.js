@@ -213,7 +213,7 @@ $(document).ready(function () {
                                     },
                                     success: function (insuranceId) {
                                         $.ajax({
-                                            url: 'http://120.79.232.126:3000/AddAssetInsurance',
+                                            url: 'http://120.79.232.126:3000/api/AddAssetInsurance',
                                             type: 'POST',
                                             async: false,
                                             data: {

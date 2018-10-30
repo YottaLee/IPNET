@@ -6,6 +6,7 @@ import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.CreateInsuranceVO;
 import com.ipnet.vo.financevo.InsuranceVO;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
@@ -22,5 +23,6 @@ public interface LoanInsuranceBLService {
     //保险公司查看列表
     ArrayList<InsuranceVO> showListForInsurance(@RequestParam String id) throws IDNotExistsException;
 
+    ResultMessage hasInsurance(@RequestParam String loanId)  throws IDNotExistsException;
 
 }

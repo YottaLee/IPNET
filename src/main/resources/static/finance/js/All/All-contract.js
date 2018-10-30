@@ -80,7 +80,7 @@ $("#submit").on('click', function () {
             $class: "org.acme.ipregistry.AddAssetLoan",
             loan: {
                 $class: "org.acme.ipregistry.Loan",
-                id: loanID,
+                id: loanID+"6",
                 amount: loanMoney,                     //贷款金额
                 interestRate: returnMoreMoney,               //贷款利率
                 debtorID: userId,                   //贷款人

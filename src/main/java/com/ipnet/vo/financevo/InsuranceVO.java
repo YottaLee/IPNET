@@ -1,6 +1,7 @@
 package com.ipnet.vo.financevo;
 
 import com.ipnet.bl.patentbl.PatentHelper;
+import com.ipnet.blservice.PatentBLService;
 import com.ipnet.entity.Insurance;
 import com.ipnet.enums.IfPass;
 import com.ipnet.enums.Patent_loan_state;
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class InsuranceVO {
 
     @Autowired
-    private PatentHelper patentHelper;
+    private PatentBLService patentBLService;
 
     private String id;
     private String loanID; //贷款ID，也就是保险ID
@@ -39,7 +40,7 @@ public class InsuranceVO {
         this.id=insurance.getId();
         this.loanID=insurance.getLoan_id();
         this.patentID=insurance.getPatent_id();
-        this.patent=patentHelper.receivePatentName(insurance.getPatent_id());
+        this.patent=patentBLService.searchPatentByID(patentID).getPatent_name();
         this.person=insurance.getPerson();
         this.url=insurance.getInsurance_url();
         this.bank=insurance.getBank();
