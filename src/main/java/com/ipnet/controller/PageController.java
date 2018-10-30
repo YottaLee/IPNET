@@ -228,147 +228,147 @@ public class PageController {
     /* 贷款 */
     @RequestMapping("All-loan-check")
     public String All_loan_check(){
-        return finance+"All-loan-check";
+        return "finance/All-loan-check";
     }
 
     @RequestMapping("All-loan-contract")
     public String All_loan_contract(){
-        return finance+"All-loan-contract";
+        return "finance/All-loan-contract";
     }
 
     @RequestMapping("Applicant-applicationFinish")
     public String Applicant_applicationFinish(){
-        return finance+"Applicant-applicationFinish";
+        return "finance/Applicant-applicationFinish";
     }
 
     @RequestMapping("Applicant-checkEvaluation")
     public String Applicant_checkEvaluation(){
-        return finance+"Applicant-checkEvaluation";
+        return "finance/Applicant-checkEvaluation";
     }
 
     @RequestMapping("Applicant-chooseFinish")
     public String Applicant_chooseFinish(){
-        return finance+"Applicant-chooseFinish";
+        return "finance/Applicant-chooseFinish";
     }
 
     @RequestMapping("Applicant-chooseInsurance2")
     public String Applicant_chooseInsurance2(){
-        return finance+"Applicant-chooseInsurance2";
+        return "finance/Applicant-chooseInsurance2";
     }
 
     @RequestMapping("Applicant-evaluation2")
     public String Applicant_evaluation2(){
-        return finance+"Applicant-evaluation2";
+        return "finance/Applicant-evaluation2";
     }
 
     @RequestMapping("Applicant-loan2")
     public String Applicant_loan2(){
-        return finance+"Applicant-loan2";
+        return "finance/Applicant-loan2";
     }
 
     @RequestMapping("Bank-applicationFinish")
     public String Bank_applicationFinish(){
-        return finance+"Bank-applicationFinish";
+        return "finance/Bank-applicationFinish";
     }
 
     @RequestMapping("Bank-check2")
     public String Bank_check2(){
-        return finance+"Bank-check2";
+        return "finance/Bank-check2";
     }
 
     @RequestMapping("Bank-insuranceApplication2")
     public String Bank_insuranceApplication2(){
-        return finance+"Bank-insuranceApplication2";
+        return "finance/Bank-insuranceApplication2";
     }
 
     @RequestMapping("Bank-IP-list")
     public String Bank_IP_list(){
-        return finance+"Bank-IP-list";
+        return "finance/Bank-IP-list";
     }
 
     @RequestMapping("Evaluation-checkBank")
     public String Evaluation_checkBank(){
-        return finance+"Evaluation-checkBank";
+        return "finance/Evaluation-checkBank";
     }
 
     @RequestMapping("Evaluation-IP-list")
     public String Evaluation_IP_list(){
-        return finance+"Evaluation-IP-list";
+        return "finance/Evaluation-IP-list";
     }
 
     @RequestMapping("Evaluation-report2")
     public String Evaluation_report2(){
-        return finance+"Evaluation-report2";
+        return "finance/Evaluation-report2";
     }
 
     @RequestMapping("Evaluation-reportFinish")
     public String Evaluation_reportFinish(){
-        return finance+"Evaluation-reportFinish";
+        return "finance/Evaluation-reportFinish";
     }
 
     @RequestMapping("Insurance-check2")
     public String Insurance_check2(){
-        return finance+"Insurance-check2";
+        return "finance/Insurance-check2";
     }
 
     @RequestMapping("Insurance-checkBank")
     public String Insurance_checkBank(){
-        return finance+"Insurance-checkBank";
+        return "finance/Insurance-checkBank";
     }
 
     @RequestMapping("Insurance-checkFinish")
     public String Insurance_checkFinish(){
-        return finance+"Insurance-checkFinish";
+        return "finance/Insurance-checkFinish";
     }
 
     @RequestMapping("Insurance-IP-list")
     public String Insurance_IP_list(){
-        return finance+"Insurance-IP-list";
+        return "finance/Insurance-IP-list";
     }
 
     @RequestMapping("IPSET-IP-list")
     public String IPSET_IP_list(){
-        return finance+"IPSET-IP-list";
+        return "finance/IPSET-IP-list";
     }
 
     @RequestMapping("IPSET-list")
     public String IPSET_list(){
-        return finance+"IPSET-list";
+        return "finance/IPSET-list";
     }
 
     @RequestMapping("Permit-Contract")
     public String Permit_Contract(){
-        return finance+"Permit-Contract";
+        return "finance/Permit-Contract";
     }
 
     @RequestMapping("Person-IP-list")
     public String Person_IP_list(){
-        return finance+"Person-IP-list";
+        return "finance/Person-IP-list";
     }
 
     @RequestMapping("Person-IPSET-list")
     public String Person_IPSET_list(){
-        return finance+"Person-IPSET-list";
+        return "finance/Person-IPSET-list";
     }
     
     @RequestMapping("loan_detail")
     public String loan_detail(){
-        return finance+"loan_detail";
+        return "finance/loan_detail";
     }
 
     @RequestMapping("Applicant-patentEntry")
     public String Applicant_patentEntry(){
-        return finance+"Applicant-patentEntry";
+        return "finance/Applicant-patentEntry";
     }
 
     @RequestMapping("Bank-midConfirm")
     public String Bank_midConfirm(){
-        return finance+"Bank-midConfirm";
+        return "finance/Bank-midConfirm";
     }
 
     @RequestMapping("Bank-finalConfirm")
     public String Bank_finalConfirm(){
-        return finance+"Bank-finalConfirm";
+        return "finance/Bank-finalConfirm";
     }
 
     @RequestMapping("loading")
