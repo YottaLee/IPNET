@@ -6,10 +6,13 @@ import com.ipnet.blservice.loanblservice.LoanBankBLService;
 import com.ipnet.blservice.loanblservice.LoanInsuranceBLService;
 import com.ipnet.dao.InsuranceDao;
 import com.ipnet.dao.LoanDao;
+import com.ipnet.dao.PatentDao;
 import com.ipnet.entity.Insurance;
 import com.ipnet.entity.Loan;
+import com.ipnet.entity.Patent;
 import com.ipnet.enums.IfPass;
 import com.ipnet.enums.Patent_loan_state;
+import com.ipnet.enums.Patent_state;
 import com.ipnet.enums.ResultMessage;
 import com.ipnet.utility.IDNotExistsException;
 import com.ipnet.vo.financevo.CreateInsuranceVO;
@@ -29,6 +32,9 @@ public class LoanInsuranceBL implements LoanInsuranceBLService {
 
     @Autowired
     private LoanDao loanDao;
+
+    @Autowired
+    private PatentDao patentDao;
 
     @Autowired
     private EvaluationBLService evaluationBLService;
@@ -58,8 +64,12 @@ public class LoanInsuranceBL implements LoanInsuranceBLService {
         Loan loan = loanDao.getOne(loanId);
         if (ifPass)
             loan.setState(Patent_loan_state.to_be_buy_insurance);
-        else
+        else {
+            Patent patent = patentDao.getOne(loan.getPatentID());
+            patent.setState(Patent_state.free);
+            patentDao.saveAndFlush(patent);
             loan.setState(Patent_loan_state.free);
+        }
         loanDao.saveAndFlush(loan);
         return ResultMessage.Success;
     }

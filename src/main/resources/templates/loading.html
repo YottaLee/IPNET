@@ -20,16 +20,24 @@
 </head>
 
 <body>
-<div style="display: none" class="block-code-full">
-					<pre><code data-language="javascript" id="code-6">x0p({
-    title: '上链成功',
-    text: '您的交易哈希为',
-    animationType: 'slideDown',
-    icon: '',
-    buttons: [],
-    autoClose: 3000
-});</code></pre>
+<div id="success-info">
+    <script>
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "/load/js/success.js";
+        document.body.appendChild(script);
+    </script>
 </div>
+<!--<div style="display: none" class="block-code-full">-->
+					<!--<pre><code data-language="javascript" id="code-6">x0p({-->
+    <!--title: '上链成功',-->
+    <!--text: '您的交易哈希为',-->
+    <!--animationType: 'slideDown',-->
+    <!--icon: 'ok',-->
+    <!--buttons: [],-->
+    <!--autoClose: 3000-->
+<!--});</code></pre>-->
+<!--</div>-->
   <h1>正在上链，请稍后</h1>
   <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -52,20 +60,9 @@
 </div>
 
 </body>
+
 <script src="/tooltip/js/x0popup.min.js"></script>
 <script src="/tooltip/js/rainbow.min.js"></script>
 <script src="/tooltip/js/rainbow.linenumbers.min.js"></script>
-<script>
-    var storage = window.localStorage;
-    var contract= storage.getItem('contract');
-    var number = 6;
-    var code = document.getElementById('code-' + number).innerText;
-    setTimeout(function () {
-        eval(code);
-        setTimeout(function () {
-            window.location.href = "/ipnet/home";
-        }, 3000);
-    }, 5000);
-
-</script>
+<script  src="/load/js/success.js"></script>
 </html>

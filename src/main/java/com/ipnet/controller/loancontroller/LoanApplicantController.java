@@ -123,10 +123,21 @@ public class LoanApplicantController {
         return loanBLService.changeEvaluationState(loanID);
     }
 
+    /**
+     * 成功购买了保险
+     * @param loanID 贷款号
+     * @return
+     */
     @RequestMapping("/successPayForInsurance")
     @ResponseBody
     public String successPayForInsurance(String loanID) {
         return loanBLService.successPayForInsurance(loanID);
+    }
+
+    @RequestMapping("/loanSuccess")
+    @ResponseBody
+    public String loanSuccess(String loanID) {
+        return loanBLService.loanSuccess(loanID);
     }
 
 }

@@ -31,9 +31,41 @@ $.ajax({
                 "                                <td>" + data[i].patent_id + "</td>\n" +
                 "                                <td><span class=\"text-muted\"><i class=\"demo-pli-clock\"></i>" + data[i].patent_type + "</span></td>\n" +
                 "                                <td>" + data[i].apply_date + "</td>\n" +
-                "                                <td>\n" +
-                "                                    <div class=\"label label-table label-success\">" + data[i].state + "</div>\n" +
-                "                                </td>\n" +
+                "                                <td>\n";
+            var displayState = "";
+            var labelColor = "label-warning";
+            switch (data[i].state) {
+                case "free":
+                    displayState = "闲置状态";
+                    labelColor = "label-success";
+                    break;
+                case "to_be_transfer":
+                    displayState = "申请转让中";
+                    break;
+                case "transfering":
+                    displayState = "转让过程中";
+                    break;
+                case "to_be_loan":
+                    displayState = "申请贷款中";
+                    break;
+                case "loaning":
+                    displayState = "质押过程中";
+                    labelColor = "label-info";
+                    break;
+                case "to_be_check":
+                    displayState = "待审核状态";
+                    break;
+                case "overdue":
+                    displayState = "逾期";
+                    labelColor = "label-important";
+                    break;
+                default:
+                    displayState = "未找到状态";
+                    labelColor = "label-important";
+                    break;
+            }
+            patentList += "                                    <div class=\"label label-table " + labelColor + "\">" + displayState + "</div>\n";
+            patentList += "                                </td>\n" +
                 "                                <td><i class=\"demo-pli-mine\"></i>" + data[i].pool_id + "</td>\n" +
                 // "                                <td>\n" +
                 // "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-info\"  id=\"transaction-" + data[i].patent_id + "\"onclick=\"transaction(this.id)\">转让/许可</button>\n" +
@@ -119,113 +151,90 @@ function loan(patentID) {
             console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
         }
     });
-    switch (state) {
-        case "free":
-            storage.setItem('patent_id', patentID);
-            //  是否有最新的贷款
-            $.ajax({
-                type: "GET",
-                url: "/all/getLatestLoan",
-                data: {
-                    patentID: patentID
-                },
-                success: function (loanID) {
-                    if (loanID != null && loanID != "") {
-                        storage.setItem('loan_id', loanID);
-                        $.ajax({
-                            type: "GET",
-                            url: "/bank/getInfo",
-                            data: {
-                                loanID: loanID
-                            },
-                            success: function (loan) {
-                                var state = loan.loan_state;
-                                console.log(state);
-                                switch (state) {
-                                    case "to_be_loan_application":
-                                        window.location.href = "/ipnet/Applicant-loan2";//申请贷款
-                                        break;
-                                    case "to_be_checked_by_bank":
-                                        window.location.href = "/ipnet/loan_detail";//贷款详情
-                                        break;
-                                    case "to_be_value":
-                                        window.location.href = "/ipnet/Applicant-evaluation2";//申请评估
-                                        break;
-                                    case "to_be_pay_value":
-                                        payForEvaluation(patentID);
-                                        break;
-                                    case "to_be_evaluation":
-                                        window.location.href = "/ipnet/loan_detail";//贷款详情
-                                        break;
-                                    case "to_be_mid_confirm":
-                                        window.location.href = "/ipnet/Applicant-checkEvaluation";//贷款详情
-                                        break;
-                                    case "to_be_choose_insurance":
-                                        window.location.href = "/ipnet/Applicant-chooseInsurance2";//选择保险公司
-                                        break;
-                                    case "to_be_checked_by_insurance":
-                                        window.location.href = "/ipnet/loan_detail";//贷款详情
-                                        break;
-                                    case "to_be_contract_by_insurance":
-                                        window.location.href = "/ipnet/loan_detail";//贷款详情
-                                        break;
-                                    case "to_be_buy_insurance":
-                                        payForInsurance(loanID);
-                                        break;
-                                    case "to_be_final_confirm":
-                                        window.location.href = "/ipnet/loan_detail";//贷款详情
-                                        break;
-                                    case "to_be_contract_by_loan":
-                                        window.location.href = "/ipnet/All-loan-check";
-                                        break;
-                                    case "loaning":
-                                    case "overdue":
-                                    case "to_be_compensation":
-                                        window.location.href = "/ipnet/loan_detail";//贷款详情
-                                        break;
-                                    case "free":
-                                        break;
-                                    // case "to_be_contract":
-                                    //     $.ajax({
-                                    //         type: "GET",
-                                    //         url: "all/getIfContract",
-                                    //         data: {
-                                    //             loanID: loanID,
-                                    //             userid: userId
-                                    //         },
-                                    //         success: function (data) {
-                                    //             if (data)
-                                    //                 window.location.href = "/ipnet/All-loan-check";
-                                    //             else
-                                    //                 window.location.href = "/ipnet/All-loan-contract";
-                                    //         }
-                                    //     });
-                                    //     break;
 
-                                    default:
-                                        break;
+    storage.setItem('patent_id', patentID);
+    //  是否有最新的贷款
+    $.ajax({
+        type: "GET",
+        url: "/all/getLatestLoan",
+        data: {
+            patentID: patentID
+        },
+        success: function (loanID) {
+            if (loanID != null && loanID != "") {
+                storage.setItem('loan_id', loanID);
+                $.ajax({
+                    type: "GET",
+                    url: "/bank/getInfo",
+                    data: {
+                        loanID: loanID
+                    },
+                    success: function (loan) {
+                        var state = loan.loan_state;
+                        console.log(state);
+                        switch (state) {
+                            case "to_be_loan_application":
+                                window.location.href = "/ipnet/Applicant-loan2";//申请贷款
+                                break;
+                            case "to_be_checked_by_bank":
+                                window.location.href = "/ipnet/loan_detail";//贷款详情
+                                break;
+                            case "to_be_value":
+                                window.location.href = "/ipnet/Applicant-evaluation2";//申请评估
+                                break;
+                            case "to_be_pay_value":
+                                payForEvaluation(patentID);
+                                break;
+                            case "to_be_evaluation":
+                                window.location.href = "/ipnet/loan_detail";//贷款详情
+                                break;
+                            case "to_be_mid_confirm":
+                                window.location.href = "/ipnet/Applicant-checkEvaluation";//贷款详情
+                                break;
+                            case "to_be_choose_insurance":
+                                window.location.href = "/ipnet/Applicant-chooseInsurance2";//选择保险公司
+                                break;
+                            case "to_be_checked_by_insurance":
+                                window.location.href = "/ipnet/loan_detail";//贷款详情
+                                break;
+                            case "to_be_contract_by_insurance":
+                                window.location.href = "/ipnet/loan_detail";//贷款详情
+                                break;
+                            case "to_be_buy_insurance":
+                                payForInsurance(loanID);
+                                break;
+                            case "to_be_final_confirm":
+                                window.location.href = "/ipnet/loan_detail";//贷款详情
+                                break;
+                            case "to_be_contract_by_loan":
+                                window.location.href = "/ipnet/All-loan-check";
+                                break;
+                            case "loaning":
+                            case "overdue":
+                            case "to_be_compensation":
+                                window.location.href = "/ipnet/loan_detail";//贷款详情
+                                break;
+                            case "free":
+                                break;
+                            default:
+                                break;
 
 
-                                }
-                            }
-                        });
+                        }
                     }
-                    else {
-                        storage.setItem('loan_id', loanID);
-                        window.location.href = "/ipnet/Applicant-loan2";
-                    }
+                });
+            }
+            else {
+                storage.setItem('loan_id', loanID);
+                window.location.href = "/ipnet/Applicant-loan2";
+            }
 
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
-                }
-            });
-            break;
-        case "to_be_compensation":
-            break;
-        default:
-            alert(stateToText(state));
-    }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log(XMLHttpRequest.status + ":" + XMLHttpRequest.statusText);
+        }
+    });
+
 
 }
 

@@ -256,17 +256,19 @@
 </div>
 <script>
     var storage = window.localStorage;
+    console.log(storage.getItem('user_id'));
     var saveinfo = JSON.parse(storage.getItem('save_info'));
+    console.log(saveinfo);
     $.ajax({
         type: "POST",
         url: "/bank/hasContract",
         async: false,
         data: {
             loanID: saveinfo.loanID,
-            loanMoney: saveinfo.loanMoney,
-            returnMoreMoney: saveinfo.returnMoreMoney,
+            loanMoney: parseFloat(saveinfo.loanMoney),
+            returnMoreMoney: parseFloat(saveinfo.returnMoreMoney),
             duration: saveinfo.bankDay,
-            compensation: saveinfo.compensation
+            compensation: parseFloat(saveinfo.compensation)
         },
         success: function () {
 
@@ -278,7 +280,6 @@
 
     //跳回专利管理界面
     $("#submit").on('click',function () {
-        var storage = window.localStorage;
         storage.removeItem('loanID');
         window.location.href = "/ipnet/Bank-IP-list";
     });
