@@ -385,4 +385,9 @@ public class PageController {
     public String Auction(){
         return "auction/Auction";
     }
+
+    @RequestMapping("QRCode")
+    public String QRCode(){
+        return "QRCode";
+    }
 }
