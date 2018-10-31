@@ -26,7 +26,7 @@ $.ajax({
                 "                                <td><span class=\"text-muted\">" + data[i].person + "</span></td>\n" +
                 "                                <td>\n";
             switch (data[i].loan_state) {
-                case "to_be_loan_application":
+                case "loaning":
                     patentList += "                                    <div class=\"label label-table label-mint\">质押中</div>\n";
                     break;
                 case "overdue":
@@ -110,23 +110,4 @@ function check(loanID) {
 
     });
 
-}
-
-function stateToText(state) {
-    switch (state) {
-        case 1:
-            return "申请许可/转让过程中";
-        case 2:
-            return "转让过程中";
-        case 3:
-            return "申请质押贷款过程中";
-        case 4:
-            return "质押过程中";
-        case 5:
-            return "待审核状态";
-        case 6:
-            return "逾期";
-        default:
-            return "未找到状态";
-    }
 }
