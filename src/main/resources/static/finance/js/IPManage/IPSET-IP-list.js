@@ -95,7 +95,7 @@ $('.btn-mint').click(function(){
         async: false,
         data:{
             patentId:ip,
-            patentPoolId:ippool
+            patentPoolId:patentPoolID
         },
         success: function (data) {
             console.log("happy");
