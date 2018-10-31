@@ -246,11 +246,12 @@ public class LoanApplicantBL implements LoanApplicantBLService {
      * @return
      */
     @Override
-    public String loanSuccess(String loanID){
+    public String loanSuccess(String loanID,String transactionId){
         Optional<Loan> loanOptional = loanDao.findById(loanID);
         if (loanOptional.isPresent()) {
             Loan loan = loanOptional.get();
             loan.setState(Patent_loan_state.loaning);
+            loan.setTransactionId(transactionId);
             loanDao.saveAndFlush(loan);
             Patent patent = patentDao.getOne(loan.getPatentID());
             patent.setState(Patent_state.loaning);

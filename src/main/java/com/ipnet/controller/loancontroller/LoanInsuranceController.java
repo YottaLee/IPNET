@@ -71,6 +71,11 @@ public class LoanInsuranceController {
         return loanInsuranceBLService.hasInsurance(loanId);
     }
 
+    @RequestMapping("/overdue")
+    public @ResponseBody ResultMessage overDue(@RequestParam String loanId) throws IDNotExistsException {
+        return loanInsuranceBLService.overDue(loanId);
+    }
+
 
 
 

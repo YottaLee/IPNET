@@ -82,10 +82,10 @@ function check(loanID) {
                             loanId: loanID
                         },
                         success: function (result) {
-                            if (result == "Success"){
+                            if (result == "Success") {
                                 infoFile("已进行自动赔付，贵公司已获得该专利所有权，现在将进行拍卖");
                                 setTimeout(function () {
-                                   window.location.href = "/ipnet/Auction";
+                                    window.location.href = "/ipnet/Auction";
                                 }, 4000);
                             }
 
@@ -111,3 +111,55 @@ function check(loanID) {
     });
 
 }
+
+var minute = 60;
+var second = 60;
+var hour = 24;
+var timer1 = setInterval("check()", 1000);
+
+function check() {
+    //检测是否到达期限
+    //每天取出一次时间戳，看是否到达期限
+    $.ajax({});
+    //如果到达，则执行智能合约
+    //改贷款的状态
+    $.ajax({
+        type: 'POST',
+        url: '/insurance/overdue',
+        data: {
+            loanId: "CN201710139269.120181025160817"
+        },
+        success: function () {
+
+        },
+        error: function (error) {
+            console.log(error);
+        }
+
+    })
+    //clearInterval(timer1);
+    // infoFile("有专利持有人未还款，您已获得该专利所有权，您可以选择拍卖");
+    //
+}
+
+// // doSomething();
+// var timer1;
+// var tmp = 1;
+// function doSomething(){
+//     //有延迟的事件（示例为10s后改变tmp的值为2）
+//     setTimeout("changenum()",10000);
+//     //每隔1s检查一次
+//     timer1 = setInterval("check()",1000);
+// }
+// function check(){
+//     //检测操作
+//     alert("check!");
+//     //检测到延迟事件完成后执行操作
+//     if(tmp==2){
+//         clearInterval(timer1);
+//         alert("Done！Do next...");
+//     }
+// }
+// function changenum(){
+//     tmp=2;
+// }

@@ -136,8 +136,8 @@ public class LoanApplicantController {
 
     @RequestMapping("/loanSuccess")
     @ResponseBody
-    public String loanSuccess(String loanID) {
-        return loanBLService.loanSuccess(loanID);
+    public String loanSuccess(String loanID,String transactionId) {
+        return loanBLService.loanSuccess(loanID,transactionId);
     }
 
 }

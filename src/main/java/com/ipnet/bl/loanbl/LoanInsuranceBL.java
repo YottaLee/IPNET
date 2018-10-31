@@ -92,4 +92,12 @@ public class LoanInsuranceBL implements LoanInsuranceBLService {
         else
             return ResultMessage.Fail;
     }
+
+    @Override
+    public ResultMessage overDue(String loanId) throws IDNotExistsException {
+        Loan loan = loanDao.getOne(loanId);
+        loan.setState(Patent_loan_state.overdue);
+        loanDao.saveAndFlush(loan);
+        return ResultMessage.Success;
+    }
 }

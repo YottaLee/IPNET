@@ -21,8 +21,10 @@ public interface LoanInsuranceBLService {
     ResultMessage ifInsurance(String loanId, boolean ifPass);
 
     //保险公司查看列表
-    ArrayList<InsuranceVO> showListForInsurance(@RequestParam String id) throws IDNotExistsException;
+    ArrayList<InsuranceVO> showListForInsurance(String id) throws IDNotExistsException;
 
-    ResultMessage hasInsurance(@RequestParam String loanId)  throws IDNotExistsException;
+    ResultMessage hasInsurance( String loanId)  throws IDNotExistsException;
+
+    ResultMessage overDue( String loanId) throws IDNotExistsException;
 
 }

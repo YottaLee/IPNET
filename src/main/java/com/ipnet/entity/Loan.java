@@ -20,6 +20,7 @@ public class Loan {
     private String patent;//专利名称
     private String userID; //专利持有人ID
     private String person;
+    private String transactionId; //交易ID
 
     private String way; //贷款用途
     private String time;//质押申请时间
