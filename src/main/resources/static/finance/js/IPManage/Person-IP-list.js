@@ -19,9 +19,9 @@ $.ajax({
             "                                <th>专利类型</th>\n" +
             "                                <th>专利申请时间</th>\n" +
             "                                <th>状态</th>\n" +
-            "                                <th>专利池号</th>\n" +
+            // "                                <th>专利池号</th>\n" +
             // "                                <th>转让/许可</th>\n" +
-            "                                <th>申请评估</th>\n" +
+            // "                                <th>申请评估</th>\n" +
             "                                <th>申请质押贷款</th>\n" +
             "                            </tr>\n" +
             "                            </thead>\n" +
@@ -33,6 +33,7 @@ $.ajax({
                 "                                <td>" + data[i].apply_date + "</td>\n" +
                 "                                <td>\n";
             var displayState = "";
+            var displayOperation = "申请质押贷款";
             var labelColor = "label-warning";
             switch (data[i].state) {
                 case "free":
@@ -47,10 +48,12 @@ $.ajax({
                     break;
                 case "to_be_loan":
                     displayState = "申请贷款中";
+                    displayOperation = "查看贷款详情";
                     break;
                 case "loaning":
                     displayState = "质押过程中";
                     labelColor = "label-info";
+                    displayOperation = "查看贷款详情";
                     break;
                 case "to_be_check":
                     displayState = "待审核状态";
@@ -58,6 +61,7 @@ $.ajax({
                 case "overdue":
                     displayState = "逾期";
                     labelColor = "label-important";
+                    displayOperation = "查看贷款详情";
                     break;
                 default:
                     displayState = "未找到状态";
@@ -66,15 +70,15 @@ $.ajax({
             }
             patentList += "                                    <div class=\"label label-table " + labelColor + "\">" + displayState + "</div>\n";
             patentList += "                                </td>\n" +
-                "                                <td><i class=\"demo-pli-mine\"></i>" + data[i].pool_id + "</td>\n" +
+                // "                                <td><i class=\"demo-pli-mine\"></i>" + data[i].pool_id + "</td>\n" +
                 // "                                <td>\n" +
                 // "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-info\"  id=\"transaction-" + data[i].patent_id + "\"onclick=\"transaction(this.id)\">转让/许可</button>\n" +
                 // "                                </td>\n" +
+                // "                                <td>\n" +
+                // "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-success\" id=\"evaluation-" + data[i].patent_id + "\"onclick=\"evaluation(this.id)\">查看评估</button>\n" +
+                // "                                </td>\n" +
                 "                                <td>\n" +
-                "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-success\" id=\"evaluation-" + data[i].patent_id + "\"onclick=\"evaluation(this.id)\">查看评估</button>\n" +
-                "                                </td>\n" +
-                "                                <td>\n" +
-                "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-primary\" id=\"loan-" + data[i].patent_id + "\"onclick=\"loan(this.id)\">申请质押贷款</button>\n" +
+                "                                    <button data-target=\"#demo-lg-modal\" data-toggle=\"modal\" class=\"btn btn-primary\" id=\"loan-" + data[i].patent_id + "\"onclick=\"loan(this.id)\">"+displayOperation+"</button>\n" +
                 "                                </td></tr>";
         }
         patentList += "   </tbody>\n" +
@@ -210,6 +214,7 @@ function loan(patentID) {
                                 window.location.href = "/ipnet/All-loan-check";
                                 break;
                             case "loaning":
+                                window.location.href = "/ipnet/loan_detail";
                             case "overdue":
                                 alertFile("由于您未及时还款，您的专利资产将交由银行处置");
                             case "to_be_compensation":

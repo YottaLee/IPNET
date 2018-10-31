@@ -85,7 +85,7 @@ function check(loanID) {
                             if (result == "Success"){
                                 infoFile("已进行自动赔付，贵公司已获得该专利所有权，现在将进行拍卖");
                                 setTimeout(function () {
-                                   //跳入拍卖界面
+                                   window.location.href = "/ipnet/Auction";
                                 }, 4000);
                             }
 
