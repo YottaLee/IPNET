@@ -63,12 +63,12 @@ $.ajax({
         for (var i = 0, len = data.length; i < len; i++) {
             patentList += "<a href=\"#\" class=\"list-group-item\">\n" +
                 "                                            <div class=\"media-left pos-rel\">\n" +
-                "                                                <img class=\"img-circle img-xs\" src=\"img/profile-photos/2.png\" alt=\"Profile Picture\">\n" +
+                "                                                <img class=\"img-circle img-xs\" src=\"finance/img/profile-photos/2.png\" alt=\"Profile Picture\">\n" +
                 "                                                <i class=\"badge badge-success badge-stat badge-icon pull-left\"></i>\n" +
                 "                                            </div>\n" +
                 "                                            <div class=\"media-body\">\n" +
-                "                                                <p class=\"mar-no\">"+data[i].patent_name+"</p>\n" +
-                "                                                <small class=\"text-muted\">"+data[i].patent_type+"</small>\n" +
+                "                                                <p class=\"mar-no\">"+data[i].patent_id+"</p>\n" +
+                "                                                <small class=\"text-muted\">"+data[i].patent_name+"</small>\n" +
                 "                                            </div>\n" +
                 "                                        </a>";//enum
         }
