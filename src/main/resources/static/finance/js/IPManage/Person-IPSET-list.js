@@ -79,7 +79,7 @@ $.ajax({
 
 $("#poolsummit").on('click',function () {
     var name = $('#poolName').val();   //名称
-    var creater = $('#poolCreater').val();// 创建者
+    var creater = userId// 创建者
     var industry = $('#industry').val();  // 相关领域
     var intro = $('#brief-intro').val();  //简单介绍
     var date = new Date();
