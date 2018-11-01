@@ -42,29 +42,24 @@ $(document).ready(function(){
         var patent_name=$(this).parent().attr("data-name");
         var patent_id=$(this).parent().attr("data-id");
         $("#title").text(patent_name+"评估报告");
-        var myDate=new Date();
-        var date=myDate.getFullYear()+"/"+(myDate.getMonth()+1)+"/"+myDate.getDate();
-        var time=myDate.getHours()+":"+myDate.getMinutes();
-        $("#date").text(date);
-        $("#time").text(time);
-        $("#year").text(myDate.getFullYear());
-        $("#month").text(myDate.getMonth()+1);
-        $("#day").text(myDate.getDate());
         $.ajax({
             type: 'GET',
             url: '/evaluation/smartEvaluation',
             data: {patentID: patent_id},
             async: false,
             success:function (data) {
-                $("#value").text(data);
+                // $("#value").text(data);
+                localStorage.setItem("patent_name",patent_name);
+                localStorage.setItem("result",data);
+                window.location.href="/ipnet/assessment_result";
             },
             error:function (data) {
                 console.log("智能评估失败");
             }
         });
-        $("#patent_list").hide();
-        $("#current").show();
-        $("#d7").hide();
+        // $("#patent_list").hide();
+        // $("#current").show();
+        // $("#d7").hide();
     });
     $(".history_back").click(function () {
         $("#history").hide();
@@ -72,10 +67,10 @@ $(document).ready(function(){
         $("#d7").show();
         $("#title").text("个人专利列表查看");
     });
-    $(".current_back").click(function () {
-        $("#current").hide();
-        $("#patent_list").show();
-        $("#d7").show();
-        $("#title").text("个人专利列表查看");
-    });
+    // $(".current_back").click(function () {
+    //     $("#current").hide();
+    //     $("#patent_list").show();
+    //     $("#d7").show();
+    //     $("#title").text("个人专利列表查看");
+    // });
 });
