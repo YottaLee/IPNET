@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/auction/css/style.css"/>
     <link href="/home/css/main.css" rel="stylesheet">
     <link href="/home/css/icomoon.css" rel="stylesheet">
@@ -13,13 +14,103 @@
     <link rel="stylesheet" href="/tooltip/css/style.css">
     <link rel="stylesheet" href="/tooltip/css/x0popup.min.css">
     <link rel="stylesheet" href="/tooltip/css/rainbow.monokai.css">
+
+    <link href="/common/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/frame/head/css/bootsnav.css">
+    <link rel="stylesheet" type="text/css" href="/frame/head/css/user_nav.css">
+
     <script src="/auction/js/modernizr.custom.63321.js"></script>
     <script language="javascript">AC_FL_RunContent = 0;</script>
     <script src="/auction/hammar/AC_RunActiveContent.js" language="javascript"></script>
-    <!--[if lte IE 7]>
-    <style>.support-note .note-ie {
-        display: block;
-    }</style><![endif]-->
+    <script type="text/javascript" src="/frame/head/js/bootsnav.js"></script>
+
+    <style>
+        .container {
+            /*max-width: 1080px;*/
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .demo--content-block {
+            background-color: #f2f2f2;
+            color: #666;
+            padding: 0.8em;
+            margin: .5em 0;
+            height: 150px;
+            min-height: 150px;
+        }
+        .navbar-brand{
+            padding: 29px 15px;
+            height: auto;
+        }
+        nav.navbar.bootsnav{
+            border: none;
+            margin-bottom: 150px;
+        }
+        .navbar-nav{
+            float: left;
+        }
+        nav.navbar.bootsnav ul.nav > li > a{
+            color: #474747;
+            text-transform: uppercase;
+            padding: 30px;
+        }
+        nav.navbar.bootsnav ul.nav > li:hover{
+            background: #474747;
+        }
+        .nav > li:after{
+            content: "";
+            width: 0;
+            height: 5px;
+            background: #34c9dd;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: all 0.5s ease 0s;
+        }
+        .nav > li:hover:after{
+            width: 100%;
+        }
+        nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{
+            content: "+";
+            font-family: 'FontAwesome';
+            font-size: 16px;
+            font-weight: 500;
+            position: absolute;
+            top: 35%;
+            right: 10%;
+            transition: all 0.4s ease 0s;
+        }
+        nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{
+            content: "-";
+            font-family: 'FontAwesome';
+            /*transform: rotate(90deg);*/
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .dropdown-menu.multi-dropdown{
+            position: absolute;
+            left: -100% !important;
+        }
+        .dropdown-menu li{
+            background: #3b3e43;
+        }
+        nav.navbar.bootsnav li.dropdown ul.dropdown-menu{
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+        @media only screen and (max-width:990px){
+            nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after,
+            nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{ content: " "; }
+            .dropdown-menu.multi-dropdown{ left: 0 !important; }
+            nav.navbar.bootsnav ul.nav > li:hover{ background: transparent; }
+            nav.navbar.bootsnav ul.nav > li > a{ margin: 0; }
+        }
+        .tag .tag-sm{
+            position: relative;
+            left: 30px;
+        }
+    </style>
 </head>
 <body>
 <div style="display: none" class="block-code-full">
@@ -32,11 +123,59 @@
     autoClose: 3000
                         });</code></pre>
 </div>
-<div class="top col-md-12" style="height: 56px;background: #3b3e43">
-    <img src="https://i.imgur.com/jwJTKCL.png"
-         style="height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
-    <span style="color: white;font-size: 15px">IPNET专利拍卖</span>
-</div>
+<header id="masthead" class="site-header" role="banner">
+    <div class="demo" style="padding-top: 0px;height: 80px;">
+        <div class="container" style="width: 100%;height: 80px;background: #3b3e43;">
+            <div class="row" style="height: 50px;">
+                <div class="col-md-12" style="height: 50px;">
+                    <nav class="navbar navbar-default navbar-mobile bootsnav nav" style="background: #3b3e43">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-menu" >
+                            <img src="https://i.imgur.com/jwJTKCL.png" style="margin-top: 11px;margin-bottom: 11px;position: absolute;left: 20px;height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+                            <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp" style="left: 100px;position: absolute">
+                                <li class="dropdown">
+                                    <a href="/ipnet/home" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-home"></i>&nbsp;主页</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/ipnet/QRCode" style="color: white;"><i class="fab fa-weixin"></i>&nbsp;小程序入口</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ipnet/search_patent" style="color: white;"><i class="fas fa-shopping-cart"></i>&nbsp;专利交易</a></li>
+                                <li class="dropdown">
+                                    <a href="/ipnet/Person-IP-list" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-th"></i>&nbsp;专利管理</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/ipnet/Person-IP-list" style="color: white;"><i class="fas fa-user-tag"></i>&nbsp;个人专利管理</a></li>
+                                        <li><a href="/ipnet/Person-IPSET-list" style="color: white;"><i class="fas fa-boxes"></i>&nbsp;专利池管理</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-dollar-sign"></i>&nbsp;专利金融服务</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/ipnet/assessment" style="color: white;"><i class="fas fa-file-alt"></i>&nbsp;专利评估</a></li>
+                                        <li><a href="/ipnet/Person-IP-list" style="color: white;"><i class="far fa-handshake"></i>&nbsp;专利质押</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ipnet/pc_info" style="color: white;"><i class="fas fa-user-circle"></i>&nbsp;个人中心</a></li>
+                                <li><a href="/ipnet/community_home" style="color: white;"><i class="fas fa-users"></i>&nbsp;IPNET社区</a></li>
+                            </ul>
+                            <a id="aNotifications" class="tooltipped tooltipped__w " aria-label="消息" style="position: absolute;left: 1100px;margin-top: 26px">
+                                <span class="has-point"></span>
+                                <i class="fas fa-bell" style="color: white;font-size: 22px"></i>
+                            </a>
+                            <a href="javascript:void(0)" id="aPersonListPanel" class="tooltipped tooltipped__w" aria-label="您" style="position: absolute;left: 1140px;height: 27px;width: 27px;margin-top: 23px">
+                                <span class="avatar-small" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>
+                            </a>
+                            <span style="position: absolute;left: 1170px;color: white;margin-top: 24px">彭晓宇</span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 <div class="container">
     <header class="clearfix">
 

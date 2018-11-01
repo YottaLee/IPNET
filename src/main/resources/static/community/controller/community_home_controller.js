@@ -61,44 +61,44 @@ $(document).ready(function(){
     }
 
     //关注用户 关注帖子 最近发布
-    var user_id=localStorage.getItem("user_id");
-    user_id="czf";
-    $.ajax({
-        type : 'POST',
-        url : '/C_User/getRelease',
-        data:{userID:user_id},
-        async:false,
-        success:function(data){
-            document.getElementById("current_release").innerHTML=data.length;
-        },
-        error:function(data){
-            alert("fail");
-        }
-    });
-    $.ajax({
-        type : 'POST',
-        url : '/C_User/getInterestedPost',
-        data:{userID:user_id},
-        async:false,
-        success:function(data){
-            document.getElementById("interest_post").innerHTML=data.length;
-        },
-        error:function(data){
-            alert("fail");
-        }
-    });
-    $.ajax({
-        type : 'POST',
-        url : '/C_User/getInterestedUser',
-        data:{userID:user_id},
-        async:false,
-        success:function(data){
-            document.getElementById("interest_user").innerHTML=data.length;
-        },
-        error:function(data){
-            alert("fail");
-        }
-    });
+    // var user_id=localStorage.getItem("user_id");
+    // user_id="czf";
+    // $.ajax({
+    //     type : 'POST',
+    //     url : '/C_User/getRelease',
+    //     data:{userID:user_id},
+    //     async:false,
+    //     success:function(data){
+    //         document.getElementById("current_release").innerHTML=data.length;
+    //     },
+    //     error:function(data){
+    //         alert("fail");
+    //     }
+    // });
+    // $.ajax({
+    //     type : 'POST',
+    //     url : '/C_User/getInterestedPost',
+    //     data:{userID:user_id},
+    //     async:false,
+    //     success:function(data){
+    //         document.getElementById("interest_post").innerHTML=data.length;
+    //     },
+    //     error:function(data){
+    //         alert("fail");
+    //     }
+    // });
+    // $.ajax({
+    //     type : 'POST',
+    //     url : '/C_User/getInterestedUser',
+    //     data:{userID:user_id},
+    //     async:false,
+    //     success:function(data){
+    //         document.getElementById("interest_user").innerHTML=data.length;
+    //     },
+    //     error:function(data){
+    //         alert("fail");
+    //     }
+    // });
 
     //最近浏览列表
     $.ajax({
