@@ -122,7 +122,6 @@ public class PatentBLServiceImpl implements PatentBLService {
     @Override
     public List<PatentVO> searchPatentByPool(String poolId) {
         List<Patent> patentList = this.patentDao.searchRelatedPatents(poolId);
-        System.out.println(patentList.get(0).getPatent_name());
         if(patentList.size() == 0 ||patentList == null){
             return null;
         }

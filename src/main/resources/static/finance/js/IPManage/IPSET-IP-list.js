@@ -63,7 +63,7 @@ $.ajax({
         for (var i = 0, len = data.length; i < len; i++) {
             patentList += "<a href=\"#\" class=\"list-group-item\">\n" +
                 "                                            <div class=\"media-left pos-rel\">\n" +
-                "                                                <img class=\"img-circle img-xs\" src=\"finance/img/profile-photos/2.png\" alt=\"Profile Picture\">\n" +
+                "                                                <img class=\"img-circle img-xs\" src=\"/finance/img/profile-photos/2.png\" alt=\"Profile Picture\">\n" +
                 "                                                <i class=\"badge badge-success badge-stat badge-icon pull-left\"></i>\n" +
                 "                                            </div>\n" +
                 "                                            <div class=\"media-body\">\n" +
@@ -87,21 +87,23 @@ $('.btn-rounded').click(function(){
 
 $('.btn-mint').click(function(){
     var ip =$('#invitedIP').val();
-    var ippool =$('#IPPool').val();
+    var ippool =patentPoolID;
 
     $.ajax({
         type: "POST",
-        url: "Patent/sendInvitationFromPool",
+        url: "/Patent/sendInvitationFromPool",
         async: false,
         data:{
             patentId:ip,
             patentPoolId:patentPoolID
         },
         success: function (data) {
+            // alert(ip);
+            // alert(ippool);
             console.log("happy");
         },
         error: function () {
-            // alert("Network warning for posting the purpose of the loan")
+            alert("Network warning for posting the purpose of the loan")
         }
     });
 });

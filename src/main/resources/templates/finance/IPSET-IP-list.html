@@ -133,7 +133,7 @@
                             </div>
                             <p class="text-semibold text-main pad-all mar-no">专利池号</p>
                             <div class="pad-hor mar-btm">
-                                <small class="text-muted" id="poolId">00001</small>
+                                <small class="text-muted" id="poolId"></small>
                             </div>
                             <p class="text-semibold text-main pad-all mar-no">所属方向</p>
                             <div class="pad-hor mar-btm">
@@ -174,44 +174,44 @@
                                                 document.body.appendChild(script);
                                             </script>
                                         </div>
-                                        <a href="#" class="list-group-item">
-                                            <div class="media-left pos-rel">
-                                                <img class="img-circle img-xs" src="/finance/img/profile-photos/2.png" alt="Profile Picture">
-                                                <i class="badge badge-success badge-stat badge-icon pull-left"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <p class="mar-no">专利2</p>
-                                                <small class="text-muted">化学</small>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <div class="media-left pos-rel">
-                                                <img class="img-circle img-xs" src="/finance/img/profile-photos/7.png" alt="Profile Picture">
-                                            </div>
-                                            <div class="media-body">
-                                                <p class="mar-no">专利3</p>
-                                                <small class="text-muted">生物</small>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <div class="media-left pos-rel">
-                                                <img class="img-circle img-xs" src="/finance/img/profile-photos/1.png" alt="Profile Picture">
-                                                <i class="badge badge-info badge-stat badge-icon pull-left"></i>
-                                            </div>
-                                            <div class="media-body">
-                                                <p class="mar-no">专利4</p>
-                                                <small class="text-muted">通信</small>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <div class="media-left pos-rel">
-                                                <img class="img-circle img-xs" src="/finance/img/profile-photos/4.png" alt="Profile Picture">
-                                            </div>
-                                            <div class="media-body">
-                                                <p class="mar-no">专利5</p>
-                                                <small class="text-muted">通信</small>
-                                            </div>
-                                        </a>
+                                        <!--<a href="#" class="list-group-item">-->
+                                            <!--<div class="media-left pos-rel">-->
+                                                <!--<img class="img-circle img-xs" src="/finance/img/profile-photos/2.png" alt="Profile Picture">-->
+                                                <!--<i class="badge badge-success badge-stat badge-icon pull-left"></i>-->
+                                            <!--</div>-->
+                                            <!--<div class="media-body">-->
+                                                <!--<p class="mar-no">专利2</p>-->
+                                                <!--<small class="text-muted">化学</small>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                        <!--<a href="#" class="list-group-item">-->
+                                            <!--<div class="media-left pos-rel">-->
+                                                <!--<img class="img-circle img-xs" src="/finance/img/profile-photos/7.png" alt="Profile Picture">-->
+                                            <!--</div>-->
+                                            <!--<div class="media-body">-->
+                                                <!--<p class="mar-no">专利3</p>-->
+                                                <!--<small class="text-muted">生物</small>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                        <!--<a href="#" class="list-group-item">-->
+                                            <!--<div class="media-left pos-rel">-->
+                                                <!--<img class="img-circle img-xs" src="/finance/img/profile-photos/1.png" alt="Profile Picture">-->
+                                                <!--<i class="badge badge-info badge-stat badge-icon pull-left"></i>-->
+                                            <!--</div>-->
+                                            <!--<div class="media-body">-->
+                                                <!--<p class="mar-no">专利4</p>-->
+                                                <!--<small class="text-muted">通信</small>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                        <!--<a href="#" class="list-group-item">-->
+                                            <!--<div class="media-left pos-rel">-->
+                                                <!--<img class="img-circle img-xs" src="/finance/img/profile-photos/4.png" alt="Profile Picture">-->
+                                            <!--</div>-->
+                                            <!--<div class="media-body">-->
+                                                <!--<p class="mar-no">专利5</p>-->
+                                                <!--<small class="text-muted">通信</small>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
                                     </div>
                                 </div>
                             </div>
@@ -351,19 +351,20 @@
                                         <!--===================================================-->
                                         <div class="media-block">
                                             <div class="media-body form-horizontal form-padding">
-                                                <!--<div class="form-group">-->
-                                                    <!--<label class="col-md-3 control-label" for="invitedIP">被邀请专利</label>-->
-                                                    <!--<div class="col-md-6">-->
-                                                        <!--<input type="text" id="invitedIP" class="form-control" placeholder="被邀请专利号">-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
                                                 <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="IPPool">被邀请专利</label>
+                                                    <label class="col-md-3 control-label" for="invitedIP">被邀请专利</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" id="IPPool" class="form-control" placeholder="被邀请专利号">
+                                                        <input type="text" id="invitedIP" class="form-control" placeholder="被邀请专利号">
                                                     </div>
-                                                    <button class="btn btn-mint" onclick="send()">邀请</button>
+                                                <button class="btn btn-mint" onclick="send()">邀请</button>
                                                 </div>
+                                                <!--<div class="form-group">-->
+                                                    <!--<label class="col-md-3 control-label" for= "invitedIP" >被邀请专利</label>-->
+                                                    <!--<div class="col-md-6">-->
+                                                        <!--<input type="text" id="IPPool" class="form-control" placeholder="被邀请专利号">-->
+                                                    <!--</div>-->
+                                                    <!--<button class="btn btn-mint" onclick="send()">邀请</button>-->
+                                                <!--</div>-->
                                             </div>
                                         </div>
 
@@ -403,6 +404,7 @@
                 data : postData,
                 async: false,
                 success: function (data, status) {
+                    alert(IPPool);
                     console.log("我成功了");
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {

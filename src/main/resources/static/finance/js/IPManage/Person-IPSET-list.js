@@ -13,7 +13,7 @@ $.ajax({
         for (var i = 0, len = data.length; i < len; i++) {
             ipsetList += "<a href=\"#\" class=\"list-group-item\">\n" +
                 "                                            <div class=\"media-left pos-rel\">\n" +
-                "                                                     <img class=\"img-circle img-xs\" src=\"finance/img/profile-photos/2.png\" alt=\"Profile Picture\">\n" +
+                "                                                     <img class=\"img-circle img-xs\" src=\"/finance/img/profile-photos/2.png\" alt=\"Profile Picture\">\n" +
                 "                                                <i class=\"badge badge-success badge-stat badge-icon pull-left\"></i>\n" +
                 "                                            </div>\n" +
                 "                                            <div class=\"media-body\">\n" +
