@@ -112,6 +112,7 @@ function check(loanID) {
 
 }
 
+
 var minute = 60;
 var second = 60;
 var hour = 24;
@@ -120,26 +121,72 @@ var timer1 = setInterval("check()", 1000);
 function check() {
     //检测是否到达期限
     //每天取出一次时间戳，看是否到达期限
-    $.ajax({});
-    //如果到达，则执行智能合约
-    //改贷款的状态
     $.ajax({
-        type: 'POST',
-        url: '/insurance/overdue',
+        type: 'GET',
+        url: '/bank/getInfo',
+        async: false,
         data: {
-            loanId: "CN201710139269.120181025160817"
+            loanID: "CN201710139269.120181025160817"
         },
-        success: function () {
+        success: function (loan) {
+            if (loan.transactionId != null) {
+                var transactionId = loan.transactionId;
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://120.79.232.126:3000/api/AddAssetIP/Loan',
+                    data: {
+                        id: transactionId
+                    },
+                    success: function (data) {
+                        var timestamp = data.timestamp;
+                        var timeArr = timestamp.split("-");
+                        var year = timeArr[0];
+                        var month = timeArr[1];
+                        var months = data.durationInMonths;
+                        month += months;
+                        var endYear = year + month / 12;
+                        var endMonth = month % 12;
+                        var date = new Date();
+                        if (endYear == date.getFullYear() && endMonth == date.getMonth() + 1) {
+                            //如果到达，则执行智能合约
+                            $.ajax({
+                                data:{
+                                    $class: "org.acme.ipregistry.CompensatingInsurance",
+                                }
+                            });
+                            //改贷款的状态
+                            $.ajax({
+                                type: 'POST',
+                                url: '/insurance/overdue',
+                                data: {
+                                    loanId: "CN201710139269.120181025160817"
+                                },
+                                success: function () {
 
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                }
+
+                            })
+                            //clearInterval(timer1);
+                            // infoFile("有专利持有人未还款，您已获得该专利所有权，您可以选择拍卖");
+                            //
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+
+                })
+            }
         },
         error: function (error) {
             console.log(error);
         }
+    });
 
-    })
-    //clearInterval(timer1);
-    // infoFile("有专利持有人未还款，您已获得该专利所有权，您可以选择拍卖");
-    //
+
 }
 
 // // doSomething();

@@ -85,25 +85,27 @@ $('.btn-rounded').click(function(){
     console.log("测试button")
 });
 
-$('.btn-mint').click(function(){
-    var ip =$('#invitedIP').val();
-    var ippool =patentPoolID;
+$("#send").on('click',function () {
+    var invitedIP = $("#invitedIP").val();
+    var postData = {
+        "patentId":invitedIP,
+        "patentPoolId":patentPoolID
+    };
 
     $.ajax({
-        type: "POST",
         url: "/Patent/sendInvitationFromPool",
+        type: "POST",
+        data : postData,
         async: false,
-        data:{
-            patentId:ip,
-            patentPoolId:patentPoolID
+        success: function (data, status) {
+
+            alertFile("已向该专利持有人发送邀请！");
+
+            console.log("我成功了");
         },
-        success: function (data) {
-            // alert(ip);
-            // alert(ippool);
-            console.log("happy");
-        },
-        error: function () {
-            alert("Network warning for posting the purpose of the loan")
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log("传输失败");
         }
     });
 });
+

@@ -17,6 +17,8 @@
     <link href="/finance/css/bootstrap.min.css" rel="stylesheet">
 
 
+    <link rel="stylesheet" href="/common/jquery-confirm.css">
+
     <!--Nifty Stylesheet [ REQUIRED ]-->
     <link href="/finance/css/nifty.min.css" rel="stylesheet">
 
@@ -58,6 +60,8 @@
 
 
 
+    <script type="text/javascript" src="/common/jquery-confirm.js"></script>
+    <script type="text/javascript" src="/finance/js/alertFile.js"></script>
 
 
     <!--=================================================-->
@@ -356,7 +360,7 @@
                                                     <div class="col-md-6">
                                                         <input type="text" id="invitedIP" class="form-control" placeholder="被邀请专利号">
                                                     </div>
-                                                <button class="btn btn-mint" onclick="send()">邀请</button>
+                                                <button id="send" class="btn btn-mint">邀请</button>
                                                 </div>
                                                 <!--<div class="form-group">-->
                                                     <!--<label class="col-md-3 control-label" for= "invitedIP" >被邀请专利</label>-->
@@ -389,30 +393,6 @@
         <!--END CONTENT CONTAINER-->
 
     <script>
-        var send = function () {
-            var invitedIP = $("#invitedIP").val();
-            var IPPool = $("#IPPool").val();
-            console.log(invitedIP,IPPool);
-            var postData = {
-                "patentId":invitedIP,
-                "patentPoolId":IPPool
-            };
-
-            $.ajax({
-                url: "/Patent/sendInvitationFromPool",
-                type: "POST",
-                data : postData,
-                async: false,
-                success: function (data, status) {
-                    alert(IPPool);
-                    console.log("我成功了");
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log("传输失败");
-                }
-            });
-        }
-
 
     </script>
 

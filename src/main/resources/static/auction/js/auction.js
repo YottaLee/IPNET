@@ -27,32 +27,33 @@ setTimeout(function () {
                 var code = document.getElementById('code-' + number).innerText;
                 eval(code);
                 setTimeout(function () {
-                    if (AC_FL_RunContent == 0) {
-                        alert("此页需要 AC_RunActiveContent.js");
-                    } else {
-                        AC_FL_RunContent(
-                            'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
-                            'width', '450',
-                            'height', '300',
-                            'src', 'hammar',
-                            'quality', 'high',
-                            'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
-                            'align', 'middle',
-                            'play', 'true',
-                            'loop', 'true',
-                            'scale', 'showall',
-                            'wmode', 'transparent',
-                            'devicefont', 'false',
-                            'id', 'hammar',
-                            'bgcolor', 'rgba(',
-                            'name', 'hammar',
-                            'menu', 'true',
-                            'allowFullScreen', 'false',
-                            'allowScriptAccess', 'sameDomain',
-                            'movie', '/auction/hammar/hammar',
-                            'salign', ''
-                        ); //end AC code
-                    }
+                    window.location.href = "/ipnet/Insurance-IP-list"
+                    // if (AC_FL_RunContent == 0) {
+                    //     alert("此页需要 AC_RunActiveContent.js");
+                    // } else {
+                    //     AC_FL_RunContent(
+                    //         'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+                    //         'width', '450',
+                    //         'height', '300',
+                    //         'src', 'hammar',
+                    //         'quality', 'high',
+                    //         'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+                    //         'align', 'middle',
+                    //         'play', 'true',
+                    //         'loop', 'true',
+                    //         'scale', 'showall',
+                    //         'wmode', 'transparent',
+                    //         'devicefont', 'false',
+                    //         'id', 'hammar',
+                    //         'bgcolor', 'rgba(',
+                    //         'name', 'hammar',
+                    //         'menu', 'true',
+                    //         'allowFullScreen', 'false',
+                    //         'allowScriptAccess', 'sameDomain',
+                    //         'movie', '/auction/hammar/hammar',
+                    //         'salign', ''
+                    //     ); //end AC code
+                    // }
                     // setTimeout(function () {
                     //     window.location.href = "/ipnet/Insurance-IP-list"
                     // },10000);
