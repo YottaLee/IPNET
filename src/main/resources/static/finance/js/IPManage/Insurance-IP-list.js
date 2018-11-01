@@ -116,9 +116,9 @@ function check(loanID) {
 var minute = 60;
 var second = 60;
 var hour = 24;
-var timer1 = setInterval("check()", 1000);
+var timer1 = setInterval("examine()", 1000);
 
-function check() {
+function examine() {
     //检测是否到达期限
     //每天取出一次时间戳，看是否到达期限
     $.ajax({
@@ -138,6 +138,7 @@ function check() {
                         id: transactionId
                     },
                     success: function (data) {
+                        console.log(data);
                         var timestamp = data.timestamp;
                         var timeArr = timestamp.split("-");
                         var year = timeArr[0];
@@ -147,11 +148,14 @@ function check() {
                         var endYear = year + month / 12;
                         var endMonth = month % 12;
                         var date = new Date();
-                        if (endYear == date.getFullYear() && endMonth == date.getMonth() + 1) {
+                        // if (endYear == date.getFullYear() && endMonth == date.getMonth() + 1) {
                             //如果到达，则执行智能合约
                             $.ajax({
+                                type:'POST',
+                                url:'http://120.79.232.126:3000/api/CompensatingInsurance',
                                 data:{
                                     $class: "org.acme.ipregistry.CompensatingInsurance",
+                                    insuranceID: "20181026-144054"
                                 }
                             });
                             //改贷款的状态
@@ -169,10 +173,14 @@ function check() {
                                 }
 
                             })
-                            //clearInterval(timer1);
-                            // infoFile("有专利持有人未还款，您已获得该专利所有权，您可以选择拍卖");
+                            clearInterval(timer1);
+                            infoFile("有专利持有人未还款，您已获得该专利所有权，您可以选择拍卖");
+                            setTimeout(function () {
+                                window.location.href = "/ipnet/Insurance-IP-list";
+                            }, 2000);
+
                             //
-                        }
+                        // }
                     },
                     error: function (error) {
                         console.log(error);

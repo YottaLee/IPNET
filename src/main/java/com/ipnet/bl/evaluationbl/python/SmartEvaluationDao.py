@@ -1,12 +1,12 @@
 from setup import mysql
 # 执行sql
 
-def saveEvaluation(patent_id,value):
+def saveEvaluation(patent,value):
     with mysql() as cursor:
-        # cursor.execute("select max(id) from automatic_tag")
-        # newId = cursor.fetchall()[0]['max(id)']
+        cursor.execute("select patent_id from patent where patent_name = \""+patent+"\"")
+        patentId = cursor.fetchall()[0]['patent_id']
         # if newId == None:
         #     newId = 0
-        executeStr = "insert into evaluation(patentid,evaluation) values(\"patent_id\",value)"
+        executeStr = "UPDATE evaluation SET evaluation = '"+str(value)+"' WHERE patentid = \""+patentId+"\" "
         cursor.execute(executeStr)
 

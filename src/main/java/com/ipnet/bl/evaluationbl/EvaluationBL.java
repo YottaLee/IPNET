@@ -167,11 +167,11 @@ public class EvaluationBL implements EvaluationBLService {
     }
 
     @Override
-    public double getValue(String patentID){
-        ArrayList<Evaluation> evaluations=evaluationDao.findByPatentIDSortByTime(patentID);
-        if(evaluations==null || evaluations.size()==0){
+    public double getValue(String patentID) {
+        ArrayList<Evaluation> evaluations = evaluationDao.findByPatentIDSortByTime(patentID);
+        if (evaluations == null || evaluations.size() == 0) {
             return 0;
-        }else {
+        } else {
             for (Evaluation evaluation : evaluations) {
                 if (evaluation.isOver()) {
                     return evaluation.getEvaluation();
@@ -192,13 +192,13 @@ public class EvaluationBL implements EvaluationBLService {
     public double smartEvaluation(String patentID) {
         String patentName = patentBLService.searchPatentByID(patentID).getPatent_name();
         try {
-            PythonRunnerUtil.run("src/main/java/com/ipnet/bl/evaluationbl/python/test.py",
-                    new String[]{});
+            PythonRunnerUtil.run("src/main/java/com/ipnet/bl/evaluationbl/python/text.py",
+                    new String[]{"" + patentName});
+            return (double)Math.round(getValue(patentID)*10000)/100;
         } catch (Exception ex) {
             ex.printStackTrace();
             return 0;
         }
-        return 0;
     }
 
 }

@@ -25,6 +25,7 @@
 <script type="text/javascript" src="/common/jquery.js"></script>
 <script type="text/javascript" src="/pay/js/jquery.rippler.js"></script>
 <script type="text/javascript" src="/common/jquery-confirm.js"></script>
+<script type="text/javascript" src="/finance/js/alertFile.js"></script>
 <script type="text/javascript" src="/common/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assessment/js/jquery.filtertable.min.js"></script>
 <script src="/assessment/js/modernizr.custom.js"></script>
@@ -572,20 +573,6 @@
     $(document).ready(function () {
         $('select:not(.ignore)').niceSelect();
         FastClick.attach(document.body);
-        $.ajax({
-            type: 'GET',
-            url: '/evaluation/smartEvaluation',
-            data: {
-                patentID: "CN201710139269.1"
-            },
-            success: function () {
-
-            },
-            error: function (error) {
-                console.log(error);
-            }
-
-        })
     });
 </script>
 

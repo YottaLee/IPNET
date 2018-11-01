@@ -96,4 +96,6 @@ public class EvaluationController {
     public double smartEvaluation(String patentID) {
         return evaluationBLService.smartEvaluation(patentID);
     }
+
+
 }

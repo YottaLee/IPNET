@@ -36,6 +36,9 @@ $(document).ready(function(){
         $("#title").text(patent_name+"历史评估报告");
     });
     $(".generate_report").click(function(){
+        // var number = 6;
+        // var code = document.getElementById('code-' + number).innerText;
+        // eval(code);
         var patent_name=$(this).parent().attr("data-name");
         var patent_id=$(this).parent().attr("data-id");
         $("#title").text(patent_name+"评估报告");

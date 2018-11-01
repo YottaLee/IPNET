@@ -27,7 +27,7 @@ spring:
     url: jdbc:mysql://120.79.232.126:3306/ipnet?characterEncoding=UTF-8&useSSL=true
   jpa:
     database: mysql
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
       naming:
