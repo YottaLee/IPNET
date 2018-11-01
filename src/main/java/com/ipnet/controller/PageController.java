@@ -60,6 +60,11 @@ public class PageController {
         return "assessment/assessment";
     }
 
+    @RequestMapping("securities")
+    public String securities(){
+        return "securities/securities";
+    }
+
     @RequestMapping("community_home")
     public  String community_home(){
         return "community/community_home";

@@ -1,26 +1,78 @@
 $(document).ready(function(){
+    //userid
+    var user_id=localStorage.getItem("user_id");
+
+    $.ajax({
+        type: 'GET',
+        url: '/Patent/getPatentList',
+        data: {userId: user_id},
+        async: false,
+        success: function (data) {
+            for(var i=0;i<data.length;i++){
+                var new_tr="<tr data-id='"+data[i].patent_id+"' data-name='"+data[i].patent_name+"'>\n" +
+                    "                            <td class=\"my_td number\" style=\"font-size: 15px\">"+(i+1)+"</td>\n" +
+                    "                            <td class=\"my_td id\" style=\"font-size: 15px\">"+data[i].patent_id+"</td>\n" +
+                    "                            <td class=\"my_td name\" style=\"font-size: 15px\">"+data[i].patent_name+"</td>\n" +
+                    "                            <td class=\"my_td\" style=\"font-size: 15px\">专利权有效</td>\n" +
+                    "                            <td class=\"my_td view_history\" style=\"font-size: 15px;cursor: pointer\"><i\n" +
+                    "                                    class=\"fas fa-eye\"></i>&nbsp;点击查看\n" +
+                    "                            </td>\n" +
+                    "                            <td class=\"my_td generate_report\" style=\"font-size: 15px;cursor: pointer\"><i\n" +
+                    "                                    class=\"fas fa-file-alt\"></i>&nbsp;点击生成\n" +
+                    "                            </td>\n" +
+                    "                        </tr>";
+                $("#patent_table_body").append(new_tr);
+            }
+        },
+        error: function (data) {
+            console.log("拿取专利失败");
+        }
+    });
     $(".view_history").click(function(){
         $("#patent_list").hide();
         $("#history").show();
         $("#d7").hide();
-        $("#title").text("XXXXX专利历史评估报告");
+        var patent_name=$(this).parent().attr("data-name");
+        $("#title").text(patent_name+"历史评估报告");
     });
     $(".generate_report").click(function(){
+        var patent_name=$(this).parent().attr("data-name");
+        var patent_id=$(this).parent().attr("data-id");
+        $("#title").text(patent_name+"评估报告");
+        var myDate=new Date();
+        var date=myDate.getFullYear()+"/"+(myDate.getMonth()+1)+"/"+myDate.getDate();
+        var time=myDate.getHours()+":"+myDate.getMinutes();
+        $("#date").text(date);
+        $("#time").text(time);
+        $("#year").text(myDate.getFullYear());
+        $("#month").text(myDate.getMonth()+1);
+        $("#day").text(myDate.getDate());
+        $.ajax({
+            type: 'GET',
+            url: '/evaluation/smartEvaluation',
+            data: {patentID: patent_id},
+            async: false,
+            success:function (data) {
+                $("#value").text(data);
+            },
+            error:function (data) {
+                console.log("智能评估失败");
+            }
+        });
         $("#patent_list").hide();
         $("#current").show();
         $("#d7").hide();
-        $("#title").text("XXXXX专利评估报告");
     });
     $(".history_back").click(function () {
         $("#history").hide();
         $("#patent_list").show();
         $("#d7").show();
-        $("#title").text("奈瑞佛国际制药公司专利列表查看");
+        $("#title").text("个人专利列表查看");
     });
     $(".current_back").click(function () {
         $("#current").hide();
         $("#patent_list").show();
         $("#d7").show();
-        $("#title").text("奈瑞佛国际制药公司专利列表查看");
-    })
+        $("#title").text("个人专利列表查看");
+    });
 });
