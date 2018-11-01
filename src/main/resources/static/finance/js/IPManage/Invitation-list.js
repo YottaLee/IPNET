@@ -36,7 +36,7 @@ $.ajax({
 
 function accept(id) {
     console.log(id);
-    alert(id);
+    // alert(id);
     patentID = (id + "").split("-")[1];
     patentPoolID = (id + "").split("-")[2];
     $.ajax({
