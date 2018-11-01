@@ -15,15 +15,139 @@
     <link href="/introduce/css/icomoon.css" rel="stylesheet">
     <link href="/introduce/css/animate-custom.css" rel="stylesheet">
     <link href="/introduce/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/frame/head/css/bootsnav.css">
+    <link rel="stylesheet" type="text/css" href="/frame/head/css/user_nav.css">
     <script type='text/javascript' src="http://libs.baidu.com/jquery/1.7.1/jquery.js"></script>
     <script src="/common/bootstrap.min.js"></script>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!--<script type="text/javascript" src="/frame/head/js/bootsnav.js"></script>-->
+
+    <style type="text/css">
+        nav.navbar.bootsnav{
+            border: none;
+            margin-bottom: 150px;
+        }
+        .navbar-nav{
+            float: left;
+        }
+        nav.navbar.bootsnav ul.nav > li > a{
+            color: #474747;
+            text-transform: uppercase;
+            padding: 30px;
+        }
+        nav.navbar.bootsnav ul.nav > li:hover{
+            background: #474747;
+        }
+        .nav > li:after{
+            content: "";
+            width: 0;
+            height: 5px;
+            background: #34c9dd;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: all 0.5s ease 0s;
+        }
+        .nav > li:hover:after{
+            width: 100%;
+        }
+        nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after{
+            content: "+";
+            font-family: 'FontAwesome';
+            font-size: 16px;
+            font-weight: 500;
+            position: absolute;
+            top: 35%;
+            right: 10%;
+            transition: all 0.4s ease 0s;
+        }
+        nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{
+            content: "-";
+            font-family: 'FontAwesome';
+            transform: rotate(90deg);
+        }
+        .dropdown-menu.multi-dropdown{
+            position: absolute;
+            left: -100% !important;
+        }
+        .dropdown-menu li{
+            background: #3b3e43;
+        }
+        nav.navbar.bootsnav li.dropdown ul.dropdown-menu{
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border: none;
+        }
+        @media only screen and (max-width:990px){
+            nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after,
+            nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{ content: " "; }
+            .dropdown-menu.multi-dropdown{ left: 0 !important; }
+            nav.navbar.bootsnav ul.nav > li:hover{ background: transparent; }
+            nav.navbar.bootsnav ul.nav > li > a{ margin: 0; }
+        }
+    </style>
 
 </head>
 <body id="top2" style="height: auto; overflow: auto;">
 
-<header id="home">
+<header id="masthead" class="site-header" role="banner">
+    <div class="demo" style="padding-top: 0px;height: 80px;">
+        <div class="container" style="width: 100%;height: 80px;background: #3b3e43;">
+            <div class="row" style="height: 50px;">
+                <div class="col-md-12" style="height: 50px;">
+                    <nav class="navbar navbar-default navbar-mobile bootsnav nav" style="background: #3b3e43">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbar-menu" >
+                            <img src="https://i.imgur.com/jwJTKCL.png" style="margin-top: 11px;margin-bottom: 11px;position: absolute;left: 20px;height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
+                            <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp" style="left: 100px;position: absolute">
+                                <li class="dropdown">
+                                    <a href="/ipnet/home" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-home"></i>&nbsp;主页</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/ipnet/QRCode" style="color: white;"><i class="fab fa-weixin"></i>&nbsp;小程序入口</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ipnet/search_patent" style="color: white;"><i class="fas fa-shopping-cart"></i>&nbsp;专利交易</a></li>
+                                <li class="dropdown">
+                                    <a href="/ipnet/Person-IP-list" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-th"></i>&nbsp;专利管理</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/ipnet/Person-IP-list" style="color: white;"><i class="fas fa-user-tag"></i>&nbsp;个人专利管理</a></li>
+                                        <li><a href="/ipnet/Person-IPSET-list" style="color: white;"><i class="fas fa-boxes"></i>&nbsp;专利池管理</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-dollar-sign"></i>&nbsp;专利金融服务</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/ipnet/assessment" style="color: white;"><i class="fas fa-file-alt"></i>&nbsp;专利评估</a></li>
+                                        <li><a href="/ipnet/Person-IP-list" style="color: white;"><i class="far fa-handshake"></i>&nbsp;专利质押</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ipnet/pc_info" style="color: white;"><i class="fas fa-user-circle"></i>&nbsp;个人中心</a></li>
+                                <li><a href="/ipnet/community_home" style="color: white;"><i class="fas fa-users"></i>&nbsp;IPNET社区</a></li>
+                                <li class="dropdown">
+                                    <a href="/ipnet/login" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-sign-in-alt"></i>&nbsp;登录</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/ipnet/register" style="color: white;"><i class="far fa-registered"></i>&nbsp;注册</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <a id="aNotifications" class="tooltipped tooltipped__w " aria-label="消息" style="position: absolute;left: 1100px;margin-top: 26px">
+                                <span class="has-point"></span>
+                                <i class="fas fa-bell" style="color: white;font-size: 22px"></i>
+                            </a>
+                            <a href="javascript:void(0)" id="aPersonListPanel" class="tooltipped tooltipped__w" aria-label="您" style="position: absolute;left: 1140px;height: 27px;width: 27px;margin-top: 23px">
+                                <span class="avatar-small" style="background-image: url('https://i.imgur.com/ova4597.png')"></span>
+                            </a>
+                            <span style="position: absolute;left: 1170px;color: white;margin-top: 24px">Mike</span>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="hero" id="hero" style="display: none">
         <div class="container">
             <div class="row">
@@ -56,16 +180,16 @@
         </ol>
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            <div class="item firstcar active" style="background: url('https://i.imgur.com/xQOZ7ED.jpg'); height: 700px;background-size: 100% 100%">
+            <div class="item firstcar active" style="background: url('https://i.imgur.com/ZWvI1xi.png'); height: 507px;background-size: 100% 100%">
 
             </div>
-            <div class="item" style="background: url('https://i.imgur.com/Ln8TbIJ.jpg'); height: 700px;background-size: 100% 100%">
+            <div class="item" style="background: url('https://i.imgur.com/Ln8TbIJ.jpg'); height: 507px;background-size: 100% 100%">
 
             </div>
-            <div class="item" style="background: url('https://i.imgur.com/FEGdW0C.jpg'); height: 700px;background-size: 100% 100%">
+            <div class="item" style="background: url('https://i.imgur.com/EaKkcuB.png'); height: 507px;background-size: 100% 100%">
 
             </div>
-            <div class="item" style="background: url('https://i.imgur.com/FEGdW0C.jpg'); height: 700px;background-size: 100% 100%">
+            <div class="item" style="background: url('https://i.imgur.com/VGk1bEb.jpg'); height: 507px;background-size: 100% 100%">
 
             </div>
         </div>
@@ -146,7 +270,7 @@
 <div class="container" id="about" name="about" style="margin-bottom: 50px">
     <div class="row white">
         <br>
-        <h1 class="centered animated animation203 fadeInDown">知识产权金融服务平台（“IPNET”）</h1>
+        <h1 class="centered animated animation203 fadeInDown">基于大数据，AI及区块链技术的新型知识产权（专利）金融服务平台</h1>
         <hr>
 
         <div class="col-lg-6 wp2">
@@ -208,42 +332,6 @@
     </div><!-- row -->
 </div><!-- container -->
 
-<!--&lt;!&ndash; ==== SECTION DIVIDER2 &ndash;&gt;-->
-<!--<section class="section-divider textdivider divider2" style="background:url('https://i.imgur.com/AtedMlr.jpg');">-->
-<!--<div class="container">-->
-<!--<h1>DESIGN IS AN INTERACTION</h1>-->
-<!--<hr>-->
-<!--<p>To develop a deeper and more meaningful connection with consumers, we believe design must invite them to take part in the conversation.</p>-->
-<!--</div>&lt;!&ndash; container &ndash;&gt;-->
-<!--</section>&lt;!&ndash; section &ndash;&gt;-->
-
-<!-- ==== SECTION DIVIDER4 ==== -->
-<section class="section-divider textdivider divider4" style="background:url('https://i.imgur.com/2QJerEH.jpg');">
-    <div class="container">
-        <h1>积分商城福利应有尽有</h1>
-        <hr>
-        <p>用积分兑换你所需要的所有商品与服务</p>
-    </div><!-- container -->
-</section><!-- section -->
-
-<!-- ==== GREYWRAP ==== -->
-<div class="greywrap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 centered">
-                <img class="img-responsive" src="https://i.imgur.com/6MFfGNj.png" align="">
-            </div>
-            <div class="col-lg-4">
-                <h2>你能在积分商城兑换各种专利配套服务与专利产品</h2>
-                <p>每日网站首页推荐，专利池容量扩充，小额抵现等各种福利等你来换</p>
-                <p><a class="btn btn-success">浏览商城</a></p>
-            </div>
-        </div><!-- row -->
-    </div>
-    <br>
-    <br>
-</div><!-- greywrap -->
-
 <!-- ==== SECTION DIVIDER4 ==== -->
 <section class="section-divider textdivider divider4" style="background:url('https://i.imgur.com/f7G2BT1.jpg');">
     <div class="container">
@@ -258,7 +346,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 centered">
-                <img class="img-responsive" src="https://i.imgur.com/pvcekfM.png" align="">
+                <img class="img-responsive" src="https://i.imgur.com/z4oQzVx.jpg" align="">
             </div>
             <div class="col-lg-4">
                 <h2>这里有最热情的问答社区</h2>
@@ -289,10 +377,10 @@
                     <ul class="slides">
                         <li>
                             <div class="col-lg-3 centered">
-                                <img class="img img-circle" src="https://i.imgur.com/8ZOfMmu.png" height="120px" width="120px" alt="Team Member">
+                                <img class="img img-circle" src="https://i.imgur.com/XcxUhW7.jpg" height="120px" width="120px" alt="Team Member">
                                 <br>
-                                <h4><b>czf</b></h4>
-                                <p>。。。</p>
+                                <h4><b>潘星宇</b></h4>
+                                <p>项目组组长，管理团队，进行后端开发</p>
                                 <div class="social">
                                     <ul class="social-buttons">
                                         <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
@@ -303,10 +391,10 @@
                             </div><!-- col-lg-3 -->
 
                             <div class="col-lg-3 centered">
-                                <img class="img img-circle" src="https://i.imgur.com/8ZOfMmu.png" height="120px" width="120px" alt="Team Member">
+                                <img class="img img-circle" src="https://i.imgur.com/5xeIG1c.jpg" height="120px" width="120px" alt="Team Member">
                                 <br>
-                                <h4><b>czf</b></h4>
-                                <p>。。。</p>
+                                <h4><b>曹振飞</b></h4>
+                                <p>项目组前端工程师</p>
                                 <div class="social">
                                     <ul class="social-buttons">
                                         <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
@@ -316,10 +404,10 @@
                                 </div>
                             </div><!-- col-lg-3 -->
                             <div class="col-lg-3 centered">
-                                <img class="img img-circle" src="https://i.imgur.com/8ZOfMmu.png" height="120px" width="120px" alt="Team Member">
+                                <img class="img img-circle" src="https://i.imgur.com/NEdujaH.jpg" height="120px" width="120px" alt="Team Member">
                                 <br>
-                                <h4><b>czf</b></h4>
-                                <p>。。。</p>
+                                <h4><b>李宁</b></h4>
+                                <p>项目后端工程师，负责区块链开发</p>
                                 <div class="social">
                                     <ul class="social-buttons">
                                         <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
@@ -329,10 +417,10 @@
                                 </div>
                             </div><!-- col-lg-3 -->
                             <div class="col-lg-3 centered">
-                                <img class="img img-circle" src="https://i.imgur.com/8ZOfMmu.png" height="120px" width="120px" alt="Team Member">
+                                <img class="img img-circle" src="https://i.imgur.com/LAmUgfW.jpg" height="120px" width="120px" alt="Team Member">
                                 <br>
-                                <h4><b>czf</b></h4>
-                                <p>。。。</p>
+                                <h4><b>冉杰文</b></h4>
+                                <p>项目组后端工程师，负责区块链开发</p>
                                 <div class="social">
                                     <ul class="social-buttons">
                                         <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
@@ -344,10 +432,10 @@
                         </li>
                         <li>
                             <div class="col-lg-3 centered">
-                                <img class="img img-circle" src="https://i.imgur.com/8ZOfMmu.png" height="120px" width="120px" alt="Team Member">
+                                <img class="img img-circle" src="https://i.imgur.com/MBPeDaj.jpg" height="120px" width="120px" alt="Team Member">
                                 <br>
-                                <h4><b>czf</b></h4>
-                                <p>。。。</p>
+                                <h4><b>陈迪新</b></h4>
+                                <p>项目组前端工程师</p>
                                 <div class="social">
                                     <ul class="social-buttons">
                                         <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
@@ -358,10 +446,10 @@
                             </div><!-- col-lg-3 -->
 
                             <div class="col-lg-3 centered">
-                                <img class="img img-circle" src="https://i.imgur.com/8ZOfMmu.png" height="120px" width="120px" alt="Team Member">
+                                <img class="img img-circle" src="https://i.imgur.com/1fl978E.jpg" height="120px" width="120px" alt="Team Member">
                                 <br>
-                                <h4><b>czf</b></h4>
-                                <p>。。。</p>
+                                <h4><b>梁楠</b></h4>
+                                <p>项目组后端工程师</p>
                                 <div class="social">
                                     <ul class="social-buttons">
                                         <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
@@ -371,10 +459,10 @@
                                 </div>
                             </div><!-- col-lg-3 -->
                             <div class="col-lg-3 centered">
-                                <img class="img img-circle" src="https://i.imgur.com/8ZOfMmu.png" height="120px" width="120px" alt="Team Member">
+                                <img class="img img-circle" src="https://i.imgur.com/YzTWM2Z.jpg" height="120px" width="120px" alt="Team Member">
                                 <br>
-                                <h4><b>czf</b></h4>
-                                <p>。。。</p>
+                                <h4><b>张萍</b></h4>
+                                <p>项目组后端工程师</p>
                                 <div class="social">
                                     <ul class="social-buttons">
                                         <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
@@ -384,10 +472,39 @@
                                 </div>
                             </div><!-- col-lg-3 -->
                             <div class="col-lg-3 centered">
-                                <img class="img img-circle" src="https://i.imgur.com/8ZOfMmu.png" height="120px" width="120px" alt="Team Member">
+                                <img class="img img-circle" src="https://i.imgur.com/bbHd2RS.jpg" height="120px" width="120px" alt="Team Member">
                                 <br>
-                                <h4><b>czf</b></h4>
-                                <p>。。。</p>
+                                <h4><b>李泽斌</b></h4>
+                                <p>项目组后端工程师，负责数据挖掘</p>
+                                <div class="social">
+                                    <ul class="social-buttons">
+                                        <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fab fa-weixin" data-toggle="tooltip" title="微信：wx8339459"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-envelope" data-toggle="tooltip" title="邮箱：1936676473@qq.com"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div><!-- col-lg-3 -->
+                        </li>
+                        <li>
+                            <div class="col-lg-6 centered">
+                                <img class="img img-circle" src="https://i.imgur.com/3mU5HYd.jpg" height="120px" width="120px" alt="Team Member">
+                                <br>
+                                <h4><b>钟洁</b></h4>
+                                <p>项目组全栈工程师，负责前端以及后端开发，团队带领</p>
+                                <div class="social">
+                                    <ul class="social-buttons">
+                                        <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fab fa-weixin" data-toggle="tooltip" title="微信：wx8339459"></i></a></li>
+                                        <li><a href="#" class="social-btn"><i class="fa fa-envelope" data-toggle="tooltip" title="邮箱：1936676473@qq.com"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div><!-- col-lg-3 -->
+
+                            <div class="col-lg-6 centered">
+                                <img class="img img-circle" src="https://i.imgur.com/PI8ADyi.jpg" height="120px" width="120px" alt="Team Member">
+                                <br>
+                                <h4><b>葛宇</b></h4>
+                                <p>项目组后端开发工程师</p>
                                 <div class="social">
                                     <ul class="social-buttons">
                                         <li><a href="#" class="social-btn"><i class="fab fa-qq" data-toggle="tooltip" title="qq：1936676473"></i></a></li>
@@ -423,82 +540,41 @@
                         <div class="col-md-4 wp4">
                             <div class="overlay-effect effects clearfix">
                                 <div class="img">
-                                    <img src="https://i.imgur.com/A4FHpqb.png" alt="Portfolio Item">
+                                    <img src="https://i.imgur.com/bmMt8fO.png" alt="Portfolio Item" style="width: 355px;height: 264px;">
                                     <div class="overlay">
-                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
+                                        <a href="http://andlinks.com" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
                                         <a class="close-overlay hidden">x</a>
                                     </div>
                                 </div>
                             </div>
-                            <h2>保险机构</h2>
-                            <p>保险保险保险</p>
+                            <h2>南京安链数据科技有限公司</h2>
+                            <p>南京安链数据科技有限公司成立于2017年2月,是一个初创公司,公司的创始团队在互联网,大数据行业有超过10年的经验,安链科技致力于在大数据,人工智能,区块链领域创造对客户真正有价值的产品,通过对纷繁复杂的异构、多源的数据整合、处理、分析,从中发掘数据价值。</p>
                         </div>
                         <div class="col-md-4 wp4 delay-05s">
                             <div class="overlay-effect effects clearfix">
                                 <div class="img">
-                                    <img src="https://i.imgur.com/A4FHpqb.png" alt="Portfolio Item">
+                                    <img src="https://i.imgur.com/vRDglBV.png" alt="Portfolio Item" style="width: 355px;height: 264px;">
                                     <div class="overlay">
-                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
+                                        <a href="https://taiyiyun.com/" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
                                         <a class="close-overlay hidden">x</a>
                                     </div>
                                 </div>
                             </div>
-                            <h2>金融机构</h2>
-                            <p>金融金融金融</p>
+                            <h2>太一云科技</h2>
+                            <p>太一云是国内较早期投入区块链研究和应用开发的团队，早在2014年就已经研发出了国内自主知识产权的金融级别区块链系统。太一云是国内较早进行区块链技术研发和普及的企业,为各领域的区块链应用提供了稳定的底层基础设施、通用的业务平台组件，并能够针对特定的业务需求，将区块链与传统IT技术、物联网、大数据、云计算、人工智能等进行融合，提供合理的混搭式系统架构。</p>
                         </div>
                         <div class="col-md-4 wp4 delay-1s">
                             <div class="overlay-effect effects clearfix">
                                 <div class="img">
-                                    <img src="https://i.imgur.com/A4FHpqb.png" alt="Portfolio Item">
+                                    <img src="https://i.imgur.com/C02zr0a.jpg" alt="Portfolio Item" style="width: 355px;height: 264px;">
                                     <div class="overlay">
-                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
+                                        <a href="http://www.chinacpv.com/" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
                                         <a class="close-overlay hidden">x</a>
                                     </div>
                                 </div>
                             </div>
-                            <h2>评估机构</h2>
-                            <p>评估评估评估</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="col-md-4 wp4">
-                            <div class="overlay-effect effects clearfix">
-                                <div class="img">
-                                    <img src="https://i.imgur.com/A4FHpqb.png" alt="Portfolio Item">
-                                    <div class="overlay">
-                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2>保险机构</h2>
-                            <p>保险保险保险</p>
-                        </div>
-                        <div class="col-md-4 wp4 delay-05s">
-                            <div class="overlay-effect effects clearfix">
-                                <div class="img">
-                                    <img src="https://i.imgur.com/A4FHpqb.png" alt="Portfolio Item">
-                                    <div class="overlay">
-                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2>金融机构</h2>
-                            <p>金融金融金融</p>
-                        </div>
-                        <div class="col-md-4 wp4 delay-1s">
-                            <div class="overlay-effect effects clearfix">
-                                <div class="img">
-                                    <img src="https://i.imgur.com/A4FHpqb.png" alt="Portfolio Item">
-                                    <div class="overlay">
-                                        <a href="#" class="expand"><i class="fa fa-search"></i><br>了解详情</a>
-                                        <a class="close-overlay hidden">x</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2>评估机构</h2>
-                            <p>评估评估评估</p>
+                            <h2>北京中金浩资产评估公司</h2>
+                            <p>北京中金浩资产评估有限责任公司是由国家财政部授予资产评估资格，专注无形资产的评估与研究,国内权威的知识产权评估第一品牌。中金浩作为国内专业的资产评估权威机构，商标评估、品牌评估、专利评估、专有技术评估、特许经营权评估、著作权评估、整体资产评估、矿业权、项目评估等无形资产的评估水平居于全国领先地位。</p>
                         </div>
                     </li>
                 </ul>
@@ -512,8 +588,8 @@
     <div class="container">
         <h1>CRAFTED IN NAN JING, NanJing University.</h1>
         <hr>
-        <p>Some Address 地址,</p>
-        <p>+联系方式</p>
+        <p>江苏省南京大学鼓楼校区,</p>
+        <p>+</p>
         <p><a class="icon fab fa-qq" href="#" style="color: rgba(61, 201, 179, 0.8)"></a> | <a class="icon fab fa-weixin" href="#" style="color: rgba(61, 201, 179, 0.8)"></a></p>
     </div><!-- container -->
 </section><!-- section -->
@@ -527,12 +603,12 @@
         <br>
         <div class="col-lg-4">
             <h3>联系方式</h3>
-            <p><span class="icon fas fa-home"></span> 南京市栖霞区, 南京大学<br/>
-                <span class="icon fas fa-phone"></span> +固话联系方式 <br/>
-                <span class="icon fas fa-mobile-alt"></span> +手机联系方式 <br/>
-                <span class="icon far fa-envelope"></span> <a href="#" style="color: rgba(61, 201, 179, 0.8)"> 邮箱</a> <br/>
-                <span class="icon fab fa-qq"></span> <a href="#" style="color: rgba(61, 201, 179, 0.8)"> qq </a> <br/>
-                <span class="icon fab fa-weixin"></span> <a href="#" style="color: rgba(61, 201, 179, 0.8)"> 微信 </a> <br/>
+            <p><span class="icon fas fa-home"></span> 南京市鼓楼区, 南京大学鼓楼校区<br/>
+                <span class="icon fas fa-phone"></span> +80868085 <br/>
+                <span class="icon fas fa-mobile-alt"></span> +18023235963 <br/>
+                <span class="icon far fa-envelope"></span> <a href="#" style="color: rgba(61, 201, 179, 0.8)"> 705935081@qq.com</a> <br/>
+                <span class="icon fab fa-qq"></span> <a href="#" style="color: rgba(61, 201, 179, 0.8)"> 705935081 </a> <br/>
+                <span class="icon fab fa-weixin"></span> <a href="#" style="color: rgba(61, 201, 179, 0.8)"> NJUIDigger </a> <br/>
             </p>
         </div><!-- col -->
 
@@ -592,10 +668,10 @@
 <script src="/introduce/js/jquery.bootstrap-dropdown-hover.js"></script>
 <script src="/introduce/js/jquery.bootstrap-dropdown-hover.min.js"></script>
 
-<script type="text/javascript">
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fac45a0f68a119fbe4d1c4c3ac3044dbd' type='text/javascript'%3E%3C/script%3E"));
-</script>
+<!--<script type="text/javascript">-->
+    <!--var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");-->
+    <!--document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fac45a0f68a119fbe4d1c4c3ac3044dbd' type='text/javascript'%3E%3C/script%3E"));-->
+<!--</script>-->
 
 <script id="vs" type="x-shader/x-vertex">
 			varying vec2 vUv;
@@ -620,9 +696,17 @@
 				gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
 
 			}
+</script>
 
-
-
+<script>
+    $(document).ready(function(){
+       $(".dropdown").hover(function(){
+           $(this).find(".dropdown-menu").show();
+       },function(){
+           $(this).find(".dropdown-menu").hide();
+       }) ;
+       $(".item").css("height","507px");
+    });
 </script>
 
 </body>

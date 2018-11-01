@@ -59,6 +59,9 @@
     <link rel="stylesheet" type="text/css" href="/frame/head/css/user_nav.css">
 
     <style type="text/css">
+        .newspaper-x-category{
+            color: white;
+        }
         .navbar-brand{
             padding: 29px 15px;
             height: auto;
@@ -102,7 +105,8 @@
             transition: all 0.4s ease 0s;
         }
         nav.navbar.bootsnav ul.nav > li.dropdown.on > a.dropdown-toggle:after{
-            content: "\f105";
+            content: "-";
+            font-family: 'FontAwesome';
             transform: rotate(90deg);
         }
         .dropdown-menu.multi-dropdown{
@@ -143,24 +147,35 @@
                             <div class="collapse navbar-collapse" id="navbar-menu" >
                                 <img src="https://i.imgur.com/jwJTKCL.png" style="margin-top: 11px;margin-bottom: 11px;position: absolute;left: 20px;height: 56px;width: 56px;background-size: 100% 100%;margin-right: 20px">
                                 <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp" style="left: 100px;position: absolute">
-                                    <li><a href="#" style="color: white;">主页</a></li>
-                                    <li><a href="/ipnet/search_patent" style="color: white;">专利交易</a></li>
                                     <li class="dropdown">
-                                        <a href="/ipnet/Person-IP-list" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">专利管理</a>
+                                        <a href="/ipnet/home" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-home"></i>&nbsp;主页</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="/ipnet/Person-IP-list" style="color: white;">个人专利管理</a></li>
-                                            <li><a href="/ipnet/Person-IPSET-list" style="color: white;">专利池管理</a></li>
+                                            <li><a href="/ipnet/QRCode" style="color: white;"><i class="fab fa-weixin"></i>&nbsp;小程序入口</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/ipnet/search_patent" style="color: white;"><i class="fas fa-shopping-cart"></i>&nbsp;专利交易</a></li>
+                                    <li class="dropdown">
+                                        <a href="/ipnet/Person-IP-list" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-th"></i>&nbsp;专利管理</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/ipnet/Person-IP-list" style="color: white;"><i class="fas fa-user-tag"></i>&nbsp;个人专利管理</a></li>
+                                            <li><a href="/ipnet/Person-IPSET-list" style="color: white;"><i class="fas fa-boxes"></i>&nbsp;专利池管理</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">专利金融服务</a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-dollar-sign"></i>&nbsp;专利金融服务</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="/ipnet/assessment" style="color: white;">专利评估</a></li>
-                                            <li><a href="/ipnet/Person-IP-list" style="color: white;">专利质押</a></li>
+                                            <li><a href="/ipnet/assessment" style="color: white;"><i class="fas fa-file-alt"></i>&nbsp;专利评估</a></li>
+                                            <li><a href="/ipnet/Person-IP-list" style="color: white;"><i class="far fa-handshake"></i>&nbsp;专利质押</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/ipnet/pc_info" style="color: white;">个人中心</a></li>
-                                    <li><a href="/ipnet/community_home" style="color: white;">IPNET社区</a></li>
+                                    <li><a href="/ipnet/pc_info" style="color: white;"><i class="fas fa-user-circle"></i>&nbsp;个人中心</a></li>
+                                    <li><a href="/ipnet/community_home" style="color: white;"><i class="fas fa-users"></i>&nbsp;IPNET社区</a></li>
+                                    <li class="dropdown">
+                                        <a href="/ipnet/login" class="dropdown-toggle" data-toggle="dropdown" style="color: white;"><i class="fas fa-sign-in-alt"></i>&nbsp;登录</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/ipnet/register" style="color: white;"><i class="far fa-registered"></i>&nbsp;注册</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                                 <a id="aNotifications" class="tooltipped tooltipped__w " aria-label="消息" style="position: absolute;left: 1100px;margin-top: 26px">
                                     <span class="has-point"></span>
