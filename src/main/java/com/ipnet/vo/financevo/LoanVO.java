@@ -29,6 +29,7 @@ public class LoanVO {
     private String insurance;
     private double compensation;
     private double return_money;
+    private String transactionId;
 
     public LoanVO(Loan loan) {
         this.loanID = loan.getLoanID();
@@ -46,6 +47,7 @@ public class LoanVO {
         this.insuranceId = loan.getInsuranceId();
         this.compensation = loan.getCompensation();
         this.return_money = loan.getReturn_money();
+        this.transactionId = loan.getTransactionId();
     }
 
 }

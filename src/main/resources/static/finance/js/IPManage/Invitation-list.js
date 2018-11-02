@@ -13,7 +13,7 @@ $.ajax({
         for (var i = 0, len = data.length; i < len; i++) {
             str = data[i].patentId;
             item=str+"-"+ data[i].patentPoolId ;
-            alert(item);
+            // alert(item);
             invitationList += "<tr id="+item+"> "+
                 "                                                    <td >" + data[i].patentId + "</td>\n" +
                 "                                                    <td >" + data[i].patentPoolId + "</td>\n" +

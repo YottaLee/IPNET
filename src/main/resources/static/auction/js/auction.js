@@ -27,7 +27,7 @@ setTimeout(function () {
                 var code = document.getElementById('code-' + number).innerText;
                 eval(code);
                 setTimeout(function () {
-                    window.location.href = "/ipnet/Insurance-IP-list"
+                    window.location.href = "/ipnet/home"
                     // if (AC_FL_RunContent == 0) {
                     //     alert("此页需要 AC_RunActiveContent.js");
                     // } else {

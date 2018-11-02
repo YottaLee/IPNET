@@ -97,7 +97,7 @@ function toIndex() {
 
 function transaction(patentID) {
     patentID = (patentID + "").substring((patentID + "").indexOf("-") + 1);
-    //判断一下该专利是否在闲置过程中
+    //判断一下该专利是否在闲置过程中F
     if (state == "free") {
         storage.setItem('patent_id', patentID);
         //跳转到交易界面

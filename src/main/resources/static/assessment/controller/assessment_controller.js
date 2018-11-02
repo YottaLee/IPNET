@@ -36,27 +36,28 @@ $(document).ready(function(){
         $("#title").text(patent_name+"历史评估报告");
     });
     $(".generate_report").click(function(){
-        // var number = 6;
-        // var code = document.getElementById('code-' + number).innerText;
-        // eval(code);
+
         var patent_name=$(this).parent().attr("data-name");
         var patent_id=$(this).parent().attr("data-id");
         $("#title").text(patent_name+"评估报告");
-        $.ajax({
-            type: 'GET',
-            url: '/evaluation/smartEvaluation',
-            data: {patentID: patent_id},
-            async: false,
-            success:function (data) {
-                // $("#value").text(data);
-                localStorage.setItem("patent_name",patent_name);
-                localStorage.setItem("result",data);
-                window.location.href="/ipnet/assessment_result";
-            },
-            error:function (data) {
-                console.log("智能评估失败");
-            }
-        });
+        infoFile("即将生成评估报告，请稍候");
+        setTimeout(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/evaluation/smartEvaluation',
+                data: {patentID: patent_id},
+                async: false,
+                success:function (data) {
+                    // $("#value").text(data);
+                    localStorage.setItem("patent_name",patent_name);
+                    localStorage.setItem("result",data);
+                    window.location.href="/ipnet/assessment_result";
+                },
+                error:function (data) {
+                    console.log("智能评估失败");
+                }
+            });
+        },1000);
         // $("#patent_list").hide();
         // $("#current").show();
         // $("#d7").hide();

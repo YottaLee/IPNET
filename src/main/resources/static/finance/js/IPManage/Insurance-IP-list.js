@@ -131,15 +131,16 @@ function examine() {
         success: function (loan) {
             if (loan.transactionId != null) {
                 var transactionId = loan.transactionId;
+                console.log(transactionId);
                 $.ajax({
                     type: 'GET',
-                    url: 'http://120.79.232.126:3000/api/AddAssetIP/Loan',
+                    url: 'http://120.79.232.126:3000/api/AddAssetLoan',
                     data: {
-                        id: transactionId
+                        transactionId: transactionId
                     },
                     success: function (data) {
                         console.log(data);
-                        var timestamp = data.timestamp;
+                        var timestamp = data[0].timestamp;
                         var timeArr = timestamp.split("-");
                         var year = timeArr[0];
                         var month = timeArr[1];
@@ -153,6 +154,7 @@ function examine() {
                             $.ajax({
                                 type:'POST',
                                 url:'http://120.79.232.126:3000/api/CompensatingInsurance',
+                                async:false,
                                 data:{
                                     $class: "org.acme.ipregistry.CompensatingInsurance",
                                     insuranceID: "20181026-144054"
@@ -162,6 +164,7 @@ function examine() {
                             $.ajax({
                                 type: 'POST',
                                 url: '/insurance/overdue',
+                                async:false,
                                 data: {
                                     loanId: "CN201710139269.120181025160817"
                                 },
@@ -176,7 +179,7 @@ function examine() {
                             clearInterval(timer1);
                             infoFile("有专利持有人未还款，您已获得该专利所有权，您可以选择拍卖");
                             setTimeout(function () {
-                                window.location.href = "/ipnet/Insurance-IP-list";
+                                window.location.href = "/ipnet/Auction";
                             }, 2000);
 
                             //

@@ -173,9 +173,9 @@ public class EvaluationBL implements EvaluationBLService {
             return 0;
         } else {
             for (Evaluation evaluation : evaluations) {
-                if (evaluation.isOver()) {
+//                if (evaluation.isOver()) {
                     return evaluation.getEvaluation();
-                }
+//                }
             }
             return 0.0;
         }
