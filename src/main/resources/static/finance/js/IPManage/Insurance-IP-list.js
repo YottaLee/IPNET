@@ -135,6 +135,7 @@ function examine() {
                 $.ajax({
                     type: 'GET',
                     url: 'http://120.79.232.126:3000/api/AddAssetLoan',
+                    // url: 'http://localhost:3000/api/AddAssetLoan',
                     data: {
                         transactionId: transactionId
                     },
@@ -153,7 +154,8 @@ function examine() {
                             //如果到达，则执行智能合约
                             $.ajax({
                                 type:'POST',
-                                url:'http://120.79.232.126:3000/api/CompensatingInsurance',
+                                // url:'http://120.79.232.126:3000/api/CompensatingInsurance',
+                                url:'http://localhost:3000/api/CompensatingInsurance',
                                 async:false,
                                 data:{
                                     $class: "org.acme.ipregistry.CompensatingInsurance",

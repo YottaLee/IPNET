@@ -80,7 +80,7 @@ $("#submit").on('click', function () {
             $class: "org.acme.ipregistry.AddAssetLoan",
             loan: {
                 $class: "org.acme.ipregistry.Loan",
-                id: loanID + "27",
+                id: loanID,
                 amount: loanMoney,                     //贷款金额
                 interestRate: returnMoreMoney,               //贷款利率
                 debtorID: userId,                   //贷款人
@@ -91,8 +91,12 @@ $("#submit").on('click', function () {
             }
         };
         storage.setItem('contract', JSON.stringify(contract));
-        infoFile("即将跳入花旗界面进行身份认证");
-        document.getElementById("link").click();
+        // infoFile("即将跳入花旗界面进行身份认证");
+        infoFile("即将上链");
+        setTimeout(function () {
+            window.location.href = "/ipnet/loading";
+        },3000);
+        // document.getElementById("link").click();
     }
     else {
         var saveInfo = {

@@ -54,7 +54,7 @@ $(document).ready(function(){
                     window.location.href="/ipnet/assessment_result";
                 },
                 error:function (data) {
-                    console.log("智能评估失败");
+                    console.log(data);
                 }
             });
         },1000);

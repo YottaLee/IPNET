@@ -7,11 +7,11 @@ def saveEvaluation(patent,value):
         patentId = cursor.fetchall()[0]['patent_id']
         cursor.execute("select * from evaluation where patentid = \""+patentId+"\"")
         newId = cursor.fetchall()
-        if newId == None:
+        if len(newId) == 0:
             cursor.execute("select max(id) from evaluation")
-            newnewId = cursor.fetchall()+1
-            executeStr = "INSERT INTO evaluation(patentid,evaluation) values (\""+patentId+"\","+str(value)+")"
+            newId = cursor.fetchall()[0]['max(id)']+1
+            executeStr = "INSERT INTO evaluation(id,patentid,money,over,evaluation) values ("+str(newId)+",\""+patentId+"\",0,true,"+str(value)+")"
         else:
+            print (newId)
             executeStr = "UPDATE evaluation SET evaluation = '"+str(value)+"' WHERE patentid = \""+patentId+"\" "
         cursor.execute(executeStr)
-
